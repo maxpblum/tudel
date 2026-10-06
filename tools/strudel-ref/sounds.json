@@ -1,0 +1,7286 @@
+{
+ "commit": "f610965f4332837febe45743105da170e8b331ed",
+ "sources": [
+  "website/src/repl/prebake.mjs (registerSynthSounds, registerZZFXSounds)",
+  "https://strudel.b-cdn.net/piano.json",
+  "https://strudel.b-cdn.net/vcsl.json",
+  "https://strudel.b-cdn.net/tidal-drum-machines.json",
+  "https://strudel.b-cdn.net/uzu-drumkit.json",
+  "https://strudel.b-cdn.net/uzu-wavetables.json",
+  "https://strudel.b-cdn.net/mridangam.json",
+  "inline sample map in website/src/repl/prebake.mjs (base https://strudel.b-cdn.net/Dirt-Samples/)",
+  "https://strudel.b-cdn.net/tidal-drum-machines-alias.json",
+  "packages/soundfonts/gm.mjs (registerSoundfonts)"
+ ],
+ "sounds": {
+  "9000_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linn9000_bd"
+  },
+  "9000_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linn9000_cb"
+  },
+  "9000_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linn9000_cr"
+  },
+  "9000_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linn9000_hh"
+  },
+  "9000_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linn9000_ht"
+  },
+  "9000_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linn9000_lt"
+  },
+  "9000_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linn9000_mt"
+  },
+  "9000_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linn9000_oh"
+  },
+  "9000_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linn9000_perc"
+  },
+  "9000_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linn9000_rd"
+  },
+  "9000_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linn9000_rim"
+  },
+  "9000_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linn9000_sd"
+  },
+  "9000_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linn9000_tb"
+  },
+  "_base": {
+   "type": "sample",
+   "network": true
+  },
+  "ace_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rhythmace_bd"
+  },
+  "ace_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rhythmace_hh"
+  },
+  "ace_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rhythmace_ht"
+  },
+  "ace_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rhythmace_lt"
+  },
+  "ace_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rhythmace_oh"
+  },
+  "ace_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rhythmace_perc"
+  },
+  "ace_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rhythmace_sd"
+  },
+  "agogo": {
+   "type": "sample",
+   "network": true
+  },
+  "ajkpercusyn_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "ajkpercusyn_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "ajkpercusyn_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "ajkpercusyn_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "akailinn_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "akailinn_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "akailinn_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "akailinn_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "akailinn_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "akailinn_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "akailinn_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "akailinn_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "akailinn_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "akailinn_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "akailinn_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "akailinn_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "akailinn_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "akaimpc60_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "akaimpc60_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "akaimpc60_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "akaimpc60_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "akaimpc60_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "akaimpc60_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "akaimpc60_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "akaimpc60_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "akaimpc60_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "akaimpc60_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "akaimpc60_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "akaimpc60_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "akaimpc60_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "akaixr10_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "akaixr10_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "akaixr10_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "akaixr10_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "akaixr10_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "akaixr10_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "akaixr10_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "akaixr10_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "akaixr10_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "akaixr10_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "akaixr10_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "akaixr10_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "akaixr10_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "akaixr10_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "akaixr10_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "akaixr10_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "alesishr16_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "alesishr16_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "alesishr16_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "alesishr16_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "alesishr16_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "alesishr16_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "alesishr16_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "alesishr16_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "alesishr16_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "alesishr16_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "alesissr16_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "alesissr16_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "alesissr16_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "alesissr16_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "alesissr16_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "alesissr16_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "alesissr16_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "alesissr16_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "alesissr16_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "alesissr16_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "alesissr16_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "alesissr16_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "alesissr16_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "anvil": {
+   "type": "sample",
+   "network": true
+  },
+  "balafon": {
+   "type": "sample",
+   "network": true
+  },
+  "balafon_hard": {
+   "type": "sample",
+   "network": true
+  },
+  "balafon_soft": {
+   "type": "sample",
+   "network": true
+  },
+  "ballwhistle": {
+   "type": "sample",
+   "network": true
+  },
+  "bassdrum1": {
+   "type": "sample",
+   "network": true
+  },
+  "bassdrum2": {
+   "type": "sample",
+   "network": true
+  },
+  "bd": {
+   "type": "sample",
+   "network": true
+  },
+  "belltree": {
+   "type": "sample",
+   "network": true
+  },
+  "bongo": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr110_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr110_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr110_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr110_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr110_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr110_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr110_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr220_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr220_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr220_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr220_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr220_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr220_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr220_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr220_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr220_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr220_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr220_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr550_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr550_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr550_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr550_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr550_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr550_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr550_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr550_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr550_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr550_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr550_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr550_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr550_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr550_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr550_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr550_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr55_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr55_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr55_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "bossdr55_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "brakedrum": {
+   "type": "sample",
+   "network": true
+  },
+  "brk": {
+   "type": "sample",
+   "network": true
+  },
+  "brown": {
+   "type": "synth",
+   "network": false
+  },
+  "bus": {
+   "type": "input",
+   "network": false
+  },
+  "bytebeat": {
+   "type": "synth",
+   "network": false
+  },
+  "cabasa": {
+   "type": "sample",
+   "network": true
+  },
+  "cajon": {
+   "type": "sample",
+   "network": true
+  },
+  "casio": {
+   "type": "sample",
+   "network": true
+  },
+  "casiorz1_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "casiorz1_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "casiorz1_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "casiorz1_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "casiorz1_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "casiorz1_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "casiorz1_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "casiorz1_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "casiorz1_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "casiorz1_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "casiorz1_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "casiosk1_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "casiosk1_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "casiosk1_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "casiosk1_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "casiosk1_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "casiosk1_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "casiovl1_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "casiovl1_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "casiovl1_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "cb": {
+   "type": "sample",
+   "network": true
+  },
+  "circuitsdrumtracks_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sequentialcircuitsdrumtracks_bd"
+  },
+  "circuitsdrumtracks_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sequentialcircuitsdrumtracks_cb"
+  },
+  "circuitsdrumtracks_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sequentialcircuitsdrumtracks_cp"
+  },
+  "circuitsdrumtracks_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sequentialcircuitsdrumtracks_cr"
+  },
+  "circuitsdrumtracks_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sequentialcircuitsdrumtracks_hh"
+  },
+  "circuitsdrumtracks_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sequentialcircuitsdrumtracks_ht"
+  },
+  "circuitsdrumtracks_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sequentialcircuitsdrumtracks_oh"
+  },
+  "circuitsdrumtracks_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sequentialcircuitsdrumtracks_rd"
+  },
+  "circuitsdrumtracks_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sequentialcircuitsdrumtracks_rim"
+  },
+  "circuitsdrumtracks_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sequentialcircuitsdrumtracks_sd"
+  },
+  "circuitsdrumtracks_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sequentialcircuitsdrumtracks_sh"
+  },
+  "circuitsdrumtracks_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sequentialcircuitsdrumtracks_tb"
+  },
+  "circuitstom_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sequentialcircuitstom_bd"
+  },
+  "circuitstom_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sequentialcircuitstom_cp"
+  },
+  "circuitstom_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sequentialcircuitstom_cr"
+  },
+  "circuitstom_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sequentialcircuitstom_hh"
+  },
+  "circuitstom_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sequentialcircuitstom_ht"
+  },
+  "circuitstom_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sequentialcircuitstom_oh"
+  },
+  "circuitstom_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sequentialcircuitstom_sd"
+  },
+  "clap": {
+   "type": "sample",
+   "network": true
+  },
+  "clash": {
+   "type": "sample",
+   "network": true
+  },
+  "clash2": {
+   "type": "sample",
+   "network": true
+  },
+  "clave": {
+   "type": "sample",
+   "network": true
+  },
+  "clavisynth": {
+   "type": "sample",
+   "network": true
+  },
+  "compurhythm1000_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm1000_bd"
+  },
+  "compurhythm1000_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm1000_cb"
+  },
+  "compurhythm1000_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm1000_cp"
+  },
+  "compurhythm1000_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm1000_cr"
+  },
+  "compurhythm1000_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm1000_hh"
+  },
+  "compurhythm1000_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm1000_ht"
+  },
+  "compurhythm1000_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm1000_lt"
+  },
+  "compurhythm1000_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm1000_mt"
+  },
+  "compurhythm1000_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm1000_oh"
+  },
+  "compurhythm1000_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm1000_perc"
+  },
+  "compurhythm1000_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm1000_rd"
+  },
+  "compurhythm1000_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm1000_rim"
+  },
+  "compurhythm1000_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm1000_sd"
+  },
+  "compurhythm78_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm78_bd"
+  },
+  "compurhythm78_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm78_cb"
+  },
+  "compurhythm78_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm78_hh"
+  },
+  "compurhythm78_misc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm78_misc"
+  },
+  "compurhythm78_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm78_oh"
+  },
+  "compurhythm78_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm78_perc"
+  },
+  "compurhythm78_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm78_sd"
+  },
+  "compurhythm78_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm78_tb"
+  },
+  "compurhythm8000_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm8000_bd"
+  },
+  "compurhythm8000_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm8000_cb"
+  },
+  "compurhythm8000_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm8000_cp"
+  },
+  "compurhythm8000_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm8000_cr"
+  },
+  "compurhythm8000_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm8000_hh"
+  },
+  "compurhythm8000_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm8000_ht"
+  },
+  "compurhythm8000_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm8000_lt"
+  },
+  "compurhythm8000_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm8000_mt"
+  },
+  "compurhythm8000_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm8000_oh"
+  },
+  "compurhythm8000_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm8000_perc"
+  },
+  "compurhythm8000_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm8000_rim"
+  },
+  "compurhythm8000_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandcompurhythm8000_sd"
+  },
+  "concertmatemg1_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "moogconcertmatemg1_bd"
+  },
+  "concertmatemg1_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "moogconcertmatemg1_sd"
+  },
+  "conga": {
+   "type": "sample",
+   "network": true
+  },
+  "cowbell": {
+   "type": "sample",
+   "network": true
+  },
+  "cp": {
+   "type": "sample",
+   "network": true
+  },
+  "cr": {
+   "type": "sample",
+   "network": true
+  },
+  "crackle": {
+   "type": "synth",
+   "network": false
+  },
+  "crow": {
+   "type": "sample",
+   "network": true
+  },
+  "d110_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd110_bd"
+  },
+  "d110_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd110_cb"
+  },
+  "d110_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd110_cr"
+  },
+  "d110_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd110_hh"
+  },
+  "d110_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd110_lt"
+  },
+  "d110_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd110_oh"
+  },
+  "d110_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd110_perc"
+  },
+  "d110_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd110_rd"
+  },
+  "d110_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd110_rim"
+  },
+  "d110_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd110_sd"
+  },
+  "d110_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd110_sh"
+  },
+  "d110_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd110_tb"
+  },
+  "d70_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd70_bd"
+  },
+  "d70_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd70_cb"
+  },
+  "d70_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd70_cp"
+  },
+  "d70_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd70_cr"
+  },
+  "d70_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd70_hh"
+  },
+  "d70_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd70_lt"
+  },
+  "d70_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd70_mt"
+  },
+  "d70_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd70_oh"
+  },
+  "d70_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd70_perc"
+  },
+  "d70_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd70_rd"
+  },
+  "d70_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd70_rim"
+  },
+  "d70_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd70_sd"
+  },
+  "d70_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandd70_sh"
+  },
+  "dantranh": {
+   "type": "sample",
+   "network": true
+  },
+  "dantranh_tremolo": {
+   "type": "sample",
+   "network": true
+  },
+  "dantranh_vibrato": {
+   "type": "sample",
+   "network": true
+  },
+  "darbuka": {
+   "type": "sample",
+   "network": true
+  },
+  "ddm110_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgddm110_bd"
+  },
+  "ddm110_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgddm110_cp"
+  },
+  "ddm110_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgddm110_cr"
+  },
+  "ddm110_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgddm110_hh"
+  },
+  "ddm110_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgddm110_ht"
+  },
+  "ddm110_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgddm110_lt"
+  },
+  "ddm110_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgddm110_oh"
+  },
+  "ddm110_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgddm110_rim"
+  },
+  "ddm110_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgddm110_sd"
+  },
+  "ddr30_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandddr30_bd"
+  },
+  "ddr30_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandddr30_ht"
+  },
+  "ddr30_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandddr30_lt"
+  },
+  "ddr30_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandddr30_sd"
+  },
+  "didgeridoo": {
+   "type": "sample",
+   "network": true
+  },
+  "dmx_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "oberheimdmx_bd"
+  },
+  "dmx_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "oberheimdmx_cp"
+  },
+  "dmx_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "oberheimdmx_cr"
+  },
+  "dmx_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "oberheimdmx_hh"
+  },
+  "dmx_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "oberheimdmx_ht"
+  },
+  "dmx_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "oberheimdmx_lt"
+  },
+  "dmx_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "oberheimdmx_mt"
+  },
+  "dmx_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "oberheimdmx_oh"
+  },
+  "dmx_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "oberheimdmx_rd"
+  },
+  "dmx_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "oberheimdmx_rim"
+  },
+  "dmx_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "oberheimdmx_sd"
+  },
+  "dmx_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "oberheimdmx_sh"
+  },
+  "dmx_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "oberheimdmx_tb"
+  },
+  "doepferms404_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "doepferms404_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "doepferms404_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "doepferms404_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "doepferms404_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "dpm48_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sakatadpm48_bd"
+  },
+  "dpm48_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sakatadpm48_cp"
+  },
+  "dpm48_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sakatadpm48_cr"
+  },
+  "dpm48_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sakatadpm48_hh"
+  },
+  "dpm48_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sakatadpm48_ht"
+  },
+  "dpm48_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sakatadpm48_lt"
+  },
+  "dpm48_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sakatadpm48_mt"
+  },
+  "dpm48_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sakatadpm48_oh"
+  },
+  "dpm48_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sakatadpm48_perc"
+  },
+  "dpm48_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sakatadpm48_rd"
+  },
+  "dpm48_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sakatadpm48_rim"
+  },
+  "dpm48_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sakatadpm48_sd"
+  },
+  "dpm48_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "sakatadpm48_sh"
+  },
+  "dr110_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr110_bd"
+  },
+  "dr110_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr110_cp"
+  },
+  "dr110_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr110_cr"
+  },
+  "dr110_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr110_hh"
+  },
+  "dr110_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr110_oh"
+  },
+  "dr110_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr110_rd"
+  },
+  "dr110_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr110_sd"
+  },
+  "dr220_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr220_bd"
+  },
+  "dr220_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr220_cp"
+  },
+  "dr220_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr220_cr"
+  },
+  "dr220_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr220_hh"
+  },
+  "dr220_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr220_ht"
+  },
+  "dr220_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr220_lt"
+  },
+  "dr220_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr220_mt"
+  },
+  "dr220_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr220_oh"
+  },
+  "dr220_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr220_perc"
+  },
+  "dr220_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr220_rd"
+  },
+  "dr220_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr220_sd"
+  },
+  "dr550_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr550_bd"
+  },
+  "dr550_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr550_cb"
+  },
+  "dr550_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr550_cp"
+  },
+  "dr550_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr550_cr"
+  },
+  "dr550_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr550_hh"
+  },
+  "dr550_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr550_ht"
+  },
+  "dr550_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr550_lt"
+  },
+  "dr550_misc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr550_misc"
+  },
+  "dr550_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr550_mt"
+  },
+  "dr550_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr550_oh"
+  },
+  "dr550_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr550_perc"
+  },
+  "dr550_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr550_rd"
+  },
+  "dr550_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr550_rim"
+  },
+  "dr550_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr550_sd"
+  },
+  "dr550_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr550_sh"
+  },
+  "dr550_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr550_tb"
+  },
+  "dr55_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr55_bd"
+  },
+  "dr55_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr55_hh"
+  },
+  "dr55_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr55_rim"
+  },
+  "dr55_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "bossdr55_sd"
+  },
+  "drumulator_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emudrumulator_bd"
+  },
+  "drumulator_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emudrumulator_cb"
+  },
+  "drumulator_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emudrumulator_cp"
+  },
+  "drumulator_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emudrumulator_cr"
+  },
+  "drumulator_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emudrumulator_hh"
+  },
+  "drumulator_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emudrumulator_ht"
+  },
+  "drumulator_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emudrumulator_lt"
+  },
+  "drumulator_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emudrumulator_mt"
+  },
+  "drumulator_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emudrumulator_oh"
+  },
+  "drumulator_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emudrumulator_perc"
+  },
+  "drumulator_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emudrumulator_rim"
+  },
+  "drumulator_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emudrumulator_sd"
+  },
+  "east": {
+   "type": "sample",
+   "network": true
+  },
+  "emudrumulator_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "emudrumulator_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "emudrumulator_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "emudrumulator_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "emudrumulator_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "emudrumulator_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "emudrumulator_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "emudrumulator_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "emudrumulator_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "emudrumulator_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "emudrumulator_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "emudrumulator_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "emumodular_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "emumodular_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "emumodular_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "emusp12_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "emusp12_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "emusp12_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "emusp12_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "emusp12_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "emusp12_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "emusp12_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "emusp12_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "emusp12_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "emusp12_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "emusp12_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "emusp12_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "emusp12_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "emusp12_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "fingercymbal": {
+   "type": "sample",
+   "network": true
+  },
+  "flexatone": {
+   "type": "sample",
+   "network": true
+  },
+  "fmpiano": {
+   "type": "sample",
+   "network": true
+  },
+  "folkharp": {
+   "type": "sample",
+   "network": true
+  },
+  "framedrum": {
+   "type": "sample",
+   "network": true
+  },
+  "glockenspiel": {
+   "type": "sample",
+   "network": true
+  },
+  "gm_accordion": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_acoustic_bass": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_acoustic_guitar_nylon": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_acoustic_guitar_steel": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_agogo": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_alto_sax": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_applause": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_bagpipe": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_bandoneon": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_banjo": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_baritone_sax": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_bassoon": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_bird_tweet": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_blown_bottle": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_brass_section": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_breath_noise": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_celesta": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_cello": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_choir_aahs": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_church_organ": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_clarinet": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_clavinet": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_contrabass": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_distortion_guitar": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_drawbar_organ": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_dulcimer": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_electric_bass_finger": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_electric_bass_pick": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_electric_guitar_clean": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_electric_guitar_jazz": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_electric_guitar_muted": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_english_horn": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_epiano1": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_epiano2": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_fiddle": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_flute": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_french_horn": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_fretless_bass": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_fx_atmosphere": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_fx_brightness": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_fx_crystal": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_fx_echoes": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_fx_goblins": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_fx_rain": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_fx_sci_fi": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_fx_soundtrack": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_glockenspiel": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_guitar_fret_noise": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_guitar_harmonics": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_gunshot": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_harmonica": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_harpsichord": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_helicopter": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_kalimba": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_koto": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_lead_1_square": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_lead_2_sawtooth": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_lead_3_calliope": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_lead_4_chiff": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_lead_5_charang": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_lead_6_voice": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_lead_7_fifths": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_lead_8_bass_lead": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_marimba": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_melodic_tom": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_music_box": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_muted_trumpet": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_oboe": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_ocarina": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_orchestra_hit": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_orchestral_harp": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_overdriven_guitar": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_pad_bowed": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_pad_choir": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_pad_halo": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_pad_metallic": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_pad_new_age": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_pad_poly": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_pad_sweep": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_pad_warm": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_pan_flute": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_percussive_organ": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_piano": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_piccolo": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_pizzicato_strings": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_recorder": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_reed_organ": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_reverse_cymbal": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_rock_organ": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_seashore": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_shakuhachi": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_shamisen": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_shanai": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_sitar": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_slap_bass_1": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_slap_bass_2": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_soprano_sax": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_steel_drums": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_string_ensemble_1": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_string_ensemble_2": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_synth_bass_1": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_synth_bass_2": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_synth_brass_1": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_synth_brass_2": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_synth_choir": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_synth_drum": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_synth_strings_1": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_synth_strings_2": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_taiko_drum": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_telephone": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_tenor_sax": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_timpani": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_tinkle_bell": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_tremolo_strings": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_trombone": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_trumpet": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_tuba": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_tubular_bells": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_vibraphone": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_viola": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_violin": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_voice_oohs": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_whistle": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_woodblock": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gm_xylophone": {
+   "type": "soundfont",
+   "network": true
+  },
+  "gong": {
+   "type": "sample",
+   "network": true
+  },
+  "gong2": {
+   "type": "sample",
+   "network": true
+  },
+  "guiro": {
+   "type": "sample",
+   "network": true
+  },
+  "handbells": {
+   "type": "sample",
+   "network": true
+  },
+  "handchimes": {
+   "type": "sample",
+   "network": true
+  },
+  "harmonica": {
+   "type": "sample",
+   "network": true
+  },
+  "harmonica_soft": {
+   "type": "sample",
+   "network": true
+  },
+  "harmonica_vib": {
+   "type": "sample",
+   "network": true
+  },
+  "harp": {
+   "type": "sample",
+   "network": true
+  },
+  "hh": {
+   "type": "sample",
+   "network": true
+  },
+  "hihat": {
+   "type": "sample",
+   "network": true
+  },
+  "hr16_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesishr16_bd"
+  },
+  "hr16_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesishr16_cp"
+  },
+  "hr16_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesishr16_hh"
+  },
+  "hr16_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesishr16_ht"
+  },
+  "hr16_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesishr16_lt"
+  },
+  "hr16_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesishr16_oh"
+  },
+  "hr16_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesishr16_perc"
+  },
+  "hr16_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesishr16_rim"
+  },
+  "hr16_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesishr16_sd"
+  },
+  "hr16_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesishr16_sh"
+  },
+  "ht": {
+   "type": "sample",
+   "network": true
+  },
+  "insect": {
+   "type": "sample",
+   "network": true
+  },
+  "jazz": {
+   "type": "sample",
+   "network": true
+  },
+  "jd990_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandjd990_bd"
+  },
+  "jd990_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandjd990_cb"
+  },
+  "jd990_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandjd990_cp"
+  },
+  "jd990_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandjd990_cr"
+  },
+  "jd990_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandjd990_hh"
+  },
+  "jd990_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandjd990_ht"
+  },
+  "jd990_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandjd990_lt"
+  },
+  "jd990_misc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandjd990_misc"
+  },
+  "jd990_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandjd990_mt"
+  },
+  "jd990_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandjd990_oh"
+  },
+  "jd990_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandjd990_perc"
+  },
+  "jd990_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandjd990_rd"
+  },
+  "jd990_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandjd990_sd"
+  },
+  "jd990_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandjd990_tb"
+  },
+  "kalimba": {
+   "type": "sample",
+   "network": true
+  },
+  "kalimba2": {
+   "type": "sample",
+   "network": true
+  },
+  "kalimba3": {
+   "type": "sample",
+   "network": true
+  },
+  "kalimba4": {
+   "type": "sample",
+   "network": true
+  },
+  "kalimba5": {
+   "type": "sample",
+   "network": true
+  },
+  "kawai": {
+   "type": "sample",
+   "network": true
+  },
+  "korgddm110_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "korgddm110_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "korgddm110_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "korgddm110_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "korgddm110_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "korgddm110_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "korgddm110_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "korgddm110_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "korgddm110_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkpr77_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkpr77_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkpr77_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkpr77_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkpr77_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkr55_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkr55_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkr55_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkr55_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkr55_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkr55_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkr55_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkr55_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkr55_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkrz_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkrz_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkrz_fx": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkrz_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkrz_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkrz_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkrz_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkrz_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkrz_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "korgkrz_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "korgm1_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "korgm1_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "korgm1_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "korgm1_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "korgm1_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "korgm1_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "korgm1_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "korgm1_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "korgm1_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "korgm1_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "korgm1_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "korgm1_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "korgm1_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "korgm1_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "korgm1_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "korgminipops_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "korgminipops_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "korgminipops_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "korgminipops_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "korgminipops_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "korgpoly800_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "korgt3_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "korgt3_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "korgt3_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "korgt3_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "korgt3_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "korgt3_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "korgt3_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "korgt3_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "korgt3_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "kpr77_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkpr77_bd"
+  },
+  "kpr77_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkpr77_cp"
+  },
+  "kpr77_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkpr77_hh"
+  },
+  "kpr77_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkpr77_oh"
+  },
+  "kpr77_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkpr77_sd"
+  },
+  "kr55_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkr55_bd"
+  },
+  "kr55_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkr55_cb"
+  },
+  "kr55_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkr55_cr"
+  },
+  "kr55_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkr55_hh"
+  },
+  "kr55_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkr55_ht"
+  },
+  "kr55_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkr55_oh"
+  },
+  "kr55_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkr55_perc"
+  },
+  "kr55_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkr55_rim"
+  },
+  "kr55_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkr55_sd"
+  },
+  "krz_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkrz_bd"
+  },
+  "krz_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkrz_cr"
+  },
+  "krz_fx": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkrz_fx"
+  },
+  "krz_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkrz_hh"
+  },
+  "krz_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkrz_ht"
+  },
+  "krz_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkrz_lt"
+  },
+  "krz_misc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkrz_misc"
+  },
+  "krz_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkrz_oh"
+  },
+  "krz_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkrz_rd"
+  },
+  "krz_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgkrz_sd"
+  },
+  "linn9000_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "linn9000_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "linn9000_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "linn9000_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "linn9000_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "linn9000_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "linn9000_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "linn9000_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "linn9000_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "linn9000_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "linn9000_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "linn9000_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "linn9000_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "linn_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akailinn_bd"
+  },
+  "linn_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akailinn_cb"
+  },
+  "linn_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akailinn_cp"
+  },
+  "linn_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akailinn_cr"
+  },
+  "linn_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akailinn_hh"
+  },
+  "linn_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akailinn_ht"
+  },
+  "linn_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akailinn_lt"
+  },
+  "linn_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akailinn_mt"
+  },
+  "linn_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akailinn_oh"
+  },
+  "linn_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akailinn_rd"
+  },
+  "linn_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akailinn_sd"
+  },
+  "linn_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akailinn_sh"
+  },
+  "linn_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akailinn_tb"
+  },
+  "linndrum_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "linndrum_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "linndrum_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "linndrum_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "linndrum_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "linndrum_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "linndrum_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "linndrum_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "linndrum_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "linndrum_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "linndrum_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "linndrum_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "linndrum_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "linndrum_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "linndrum_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm1_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm1_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm1_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm1_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm1_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm1_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm1_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm1_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm1_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm1_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm1_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm1_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm2_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm2_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm2_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm2_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm2_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm2_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm2_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm2_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm2_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm2_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm2_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm2_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm2_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "linnlm2_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "lm1_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm1_bd"
+  },
+  "lm1_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm1_cb"
+  },
+  "lm1_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm1_cp"
+  },
+  "lm1_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm1_hh"
+  },
+  "lm1_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm1_ht"
+  },
+  "lm1_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm1_lt"
+  },
+  "lm1_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm1_oh"
+  },
+  "lm1_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm1_perc"
+  },
+  "lm1_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm1_rim"
+  },
+  "lm1_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm1_sd"
+  },
+  "lm1_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm1_sh"
+  },
+  "lm1_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm1_tb"
+  },
+  "lm2_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm2_bd"
+  },
+  "lm2_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm2_cb"
+  },
+  "lm2_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm2_cp"
+  },
+  "lm2_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm2_cr"
+  },
+  "lm2_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm2_hh"
+  },
+  "lm2_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm2_ht"
+  },
+  "lm2_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm2_lt"
+  },
+  "lm2_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm2_mt"
+  },
+  "lm2_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm2_oh"
+  },
+  "lm2_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm2_rd"
+  },
+  "lm2_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm2_rim"
+  },
+  "lm2_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm2_sd"
+  },
+  "lm2_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm2_sh"
+  },
+  "lm2_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "linnlm2_tb"
+  },
+  "lm8953_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "xdrumlm8953_bd"
+  },
+  "lm8953_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "xdrumlm8953_cr"
+  },
+  "lm8953_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "xdrumlm8953_hh"
+  },
+  "lm8953_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "xdrumlm8953_ht"
+  },
+  "lm8953_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "xdrumlm8953_lt"
+  },
+  "lm8953_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "xdrumlm8953_mt"
+  },
+  "lm8953_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "xdrumlm8953_oh"
+  },
+  "lm8953_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "xdrumlm8953_rd"
+  },
+  "lm8953_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "xdrumlm8953_rim"
+  },
+  "lm8953_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "xdrumlm8953_sd"
+  },
+  "lm8953_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "xdrumlm8953_tb"
+  },
+  "lt": {
+   "type": "sample",
+   "network": true
+  },
+  "m1_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgm1_bd"
+  },
+  "m1_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgm1_cb"
+  },
+  "m1_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgm1_cp"
+  },
+  "m1_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgm1_cr"
+  },
+  "m1_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgm1_hh"
+  },
+  "m1_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgm1_ht"
+  },
+  "m1_misc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgm1_misc"
+  },
+  "m1_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgm1_mt"
+  },
+  "m1_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgm1_oh"
+  },
+  "m1_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgm1_perc"
+  },
+  "m1_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgm1_rd"
+  },
+  "m1_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgm1_rim"
+  },
+  "m1_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgm1_sd"
+  },
+  "m1_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgm1_sh"
+  },
+  "m1_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgm1_tb"
+  },
+  "marimba": {
+   "type": "sample",
+   "network": true
+  },
+  "marktrees": {
+   "type": "sample",
+   "network": true
+  },
+  "mc202_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmc202_bd"
+  },
+  "mc202_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmc202_ht"
+  },
+  "mc202_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmc202_perc"
+  },
+  "mc303_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmc303_bd"
+  },
+  "mc303_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmc303_cb"
+  },
+  "mc303_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmc303_cp"
+  },
+  "mc303_fx": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmc303_fx"
+  },
+  "mc303_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmc303_hh"
+  },
+  "mc303_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmc303_ht"
+  },
+  "mc303_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmc303_lt"
+  },
+  "mc303_misc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmc303_misc"
+  },
+  "mc303_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmc303_mt"
+  },
+  "mc303_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmc303_oh"
+  },
+  "mc303_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmc303_perc"
+  },
+  "mc303_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmc303_rd"
+  },
+  "mc303_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmc303_rim"
+  },
+  "mc303_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmc303_sd"
+  },
+  "mc303_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmc303_sh"
+  },
+  "mc303_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmc303_tb"
+  },
+  "metal": {
+   "type": "sample",
+   "network": true
+  },
+  "mfb512_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "mfb512_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "mfb512_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "mfb512_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "mfb512_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "mfb512_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "mfb512_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "mfb512_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "mfb512_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "microrhythmer12_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "univoxmicrorhythmer12_bd"
+  },
+  "microrhythmer12_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "univoxmicrorhythmer12_hh"
+  },
+  "microrhythmer12_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "univoxmicrorhythmer12_oh"
+  },
+  "microrhythmer12_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "univoxmicrorhythmer12_sd"
+  },
+  "minipops_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgminipops_bd"
+  },
+  "minipops_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgminipops_hh"
+  },
+  "minipops_misc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgminipops_misc"
+  },
+  "minipops_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgminipops_oh"
+  },
+  "minipops_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgminipops_sd"
+  },
+  "misc": {
+   "type": "sample",
+   "network": true
+  },
+  "moogconcertmatemg1_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "moogconcertmatemg1_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "mpc1000_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "mpc1000_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "mpc1000_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "mpc1000_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "mpc1000_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "mpc1000_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "mpc1000_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "mpc60_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaimpc60_bd"
+  },
+  "mpc60_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaimpc60_cp"
+  },
+  "mpc60_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaimpc60_cr"
+  },
+  "mpc60_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaimpc60_hh"
+  },
+  "mpc60_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaimpc60_ht"
+  },
+  "mpc60_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaimpc60_lt"
+  },
+  "mpc60_misc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaimpc60_misc"
+  },
+  "mpc60_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaimpc60_mt"
+  },
+  "mpc60_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaimpc60_oh"
+  },
+  "mpc60_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaimpc60_perc"
+  },
+  "mpc60_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaimpc60_rd"
+  },
+  "mpc60_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaimpc60_rim"
+  },
+  "mpc60_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaimpc60_sd"
+  },
+  "mridangam_ardha": {
+   "type": "sample",
+   "network": true
+  },
+  "mridangam_chaapu": {
+   "type": "sample",
+   "network": true
+  },
+  "mridangam_dhi": {
+   "type": "sample",
+   "network": true
+  },
+  "mridangam_dhin": {
+   "type": "sample",
+   "network": true
+  },
+  "mridangam_dhum": {
+   "type": "sample",
+   "network": true
+  },
+  "mridangam_gumki": {
+   "type": "sample",
+   "network": true
+  },
+  "mridangam_ka": {
+   "type": "sample",
+   "network": true
+  },
+  "mridangam_ki": {
+   "type": "sample",
+   "network": true
+  },
+  "mridangam_na": {
+   "type": "sample",
+   "network": true
+  },
+  "mridangam_nam": {
+   "type": "sample",
+   "network": true
+  },
+  "mridangam_ta": {
+   "type": "sample",
+   "network": true
+  },
+  "mridangam_tha": {
+   "type": "sample",
+   "network": true
+  },
+  "mridangam_thom": {
+   "type": "sample",
+   "network": true
+  },
+  "ms404_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "doepferms404_bd"
+  },
+  "ms404_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "doepferms404_hh"
+  },
+  "ms404_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "doepferms404_lt"
+  },
+  "ms404_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "doepferms404_oh"
+  },
+  "ms404_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "doepferms404_sd"
+  },
+  "mt": {
+   "type": "sample",
+   "network": true
+  },
+  "mt32_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmt32_bd"
+  },
+  "mt32_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmt32_cb"
+  },
+  "mt32_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmt32_cp"
+  },
+  "mt32_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmt32_cr"
+  },
+  "mt32_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmt32_hh"
+  },
+  "mt32_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmt32_ht"
+  },
+  "mt32_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmt32_lt"
+  },
+  "mt32_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmt32_mt"
+  },
+  "mt32_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmt32_oh"
+  },
+  "mt32_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmt32_perc"
+  },
+  "mt32_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmt32_rd"
+  },
+  "mt32_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmt32_rim"
+  },
+  "mt32_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmt32_sd"
+  },
+  "mt32_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmt32_sh"
+  },
+  "mt32_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandmt32_tb"
+  },
+  "num": {
+   "type": "sample",
+   "network": true
+  },
+  "numbers": {
+   "type": "sample",
+   "network": true
+  },
+  "oberheimdmx_": {
+   "type": "sample",
+   "network": true
+  },
+  "oberheimdmx_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "oberheimdmx_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "oberheimdmx_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "oberheimdmx_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "oberheimdmx_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "oberheimdmx_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "oberheimdmx_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "oberheimdmx_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "oberheimdmx_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "oberheimdmx_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "oberheimdmx_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "oberheimdmx_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "oberheimdmx_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "ocarina": {
+   "type": "sample",
+   "network": true
+  },
+  "ocarina_small": {
+   "type": "sample",
+   "network": true
+  },
+  "ocarina_small_stacc": {
+   "type": "sample",
+   "network": true
+  },
+  "ocarina_vib": {
+   "type": "sample",
+   "network": true
+  },
+  "oceandrum": {
+   "type": "sample",
+   "network": true
+  },
+  "oh": {
+   "type": "sample",
+   "network": true
+  },
+  "one": {
+   "type": "synth",
+   "network": false
+  },
+  "organ_4inch": {
+   "type": "sample",
+   "network": true
+  },
+  "organ_8inch": {
+   "type": "sample",
+   "network": true
+  },
+  "organ_full": {
+   "type": "sample",
+   "network": true
+  },
+  "percysyn_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "ajkpercusyn_bd"
+  },
+  "percysyn_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "ajkpercusyn_cb"
+  },
+  "percysyn_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "ajkpercusyn_ht"
+  },
+  "percysyn_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "ajkpercusyn_sd"
+  },
+  "piano": {
+   "type": "sample",
+   "network": true
+  },
+  "piano1": {
+   "type": "sample",
+   "network": true
+  },
+  "pink": {
+   "type": "synth",
+   "network": false
+  },
+  "pipeorgan_loud": {
+   "type": "sample",
+   "network": true
+  },
+  "pipeorgan_loud_pedal": {
+   "type": "sample",
+   "network": true
+  },
+  "pipeorgan_quiet": {
+   "type": "sample",
+   "network": true
+  },
+  "pipeorgan_quiet_pedal": {
+   "type": "sample",
+   "network": true
+  },
+  "polaris_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rhodespolaris_bd"
+  },
+  "polaris_misc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rhodespolaris_misc"
+  },
+  "polaris_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rhodespolaris_sd"
+  },
+  "poly800_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgpoly800_bd"
+  },
+  "psaltery_bow": {
+   "type": "sample",
+   "network": true
+  },
+  "psaltery_pluck": {
+   "type": "sample",
+   "network": true
+  },
+  "psaltery_spiccato": {
+   "type": "sample",
+   "network": true
+  },
+  "pulse": {
+   "type": "synth",
+   "network": false
+  },
+  "r88_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "soundmastersr88_bd"
+  },
+  "r88_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "soundmastersr88_cr"
+  },
+  "r88_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "soundmastersr88_hh"
+  },
+  "r88_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "soundmastersr88_oh"
+  },
+  "r88_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "soundmastersr88_sd"
+  },
+  "r8_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandr8_bd"
+  },
+  "r8_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandr8_cb"
+  },
+  "r8_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandr8_cp"
+  },
+  "r8_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandr8_cr"
+  },
+  "r8_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandr8_hh"
+  },
+  "r8_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandr8_ht"
+  },
+  "r8_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandr8_lt"
+  },
+  "r8_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandr8_mt"
+  },
+  "r8_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandr8_oh"
+  },
+  "r8_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandr8_perc"
+  },
+  "r8_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandr8_rd"
+  },
+  "r8_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandr8_rim"
+  },
+  "r8_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandr8_sd"
+  },
+  "r8_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandr8_sh"
+  },
+  "r8_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandr8_tb"
+  },
+  "ratchet": {
+   "type": "sample",
+   "network": true
+  },
+  "rd": {
+   "type": "sample",
+   "network": true
+  },
+  "recorder_alto_stacc": {
+   "type": "sample",
+   "network": true
+  },
+  "recorder_alto_sus": {
+   "type": "sample",
+   "network": true
+  },
+  "recorder_alto_vib": {
+   "type": "sample",
+   "network": true
+  },
+  "recorder_bass_stacc": {
+   "type": "sample",
+   "network": true
+  },
+  "recorder_bass_sus": {
+   "type": "sample",
+   "network": true
+  },
+  "recorder_bass_vib": {
+   "type": "sample",
+   "network": true
+  },
+  "recorder_soprano_stacc": {
+   "type": "sample",
+   "network": true
+  },
+  "recorder_soprano_sus": {
+   "type": "sample",
+   "network": true
+  },
+  "recorder_tenor_stacc": {
+   "type": "sample",
+   "network": true
+  },
+  "recorder_tenor_sus": {
+   "type": "sample",
+   "network": true
+  },
+  "recorder_tenor_vib": {
+   "type": "sample",
+   "network": true
+  },
+  "rhodespolaris_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rhodespolaris_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "rhodespolaris_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "rhythmace_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rhythmace_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "rhythmace_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "rhythmace_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "rhythmace_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "rhythmace_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "rhythmace_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "rim": {
+   "type": "sample",
+   "network": true
+  },
+  "rm50_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharm50_bd"
+  },
+  "rm50_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharm50_cb"
+  },
+  "rm50_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharm50_cp"
+  },
+  "rm50_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharm50_cr"
+  },
+  "rm50_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharm50_hh"
+  },
+  "rm50_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharm50_ht"
+  },
+  "rm50_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharm50_lt"
+  },
+  "rm50_misc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharm50_misc"
+  },
+  "rm50_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharm50_mt"
+  },
+  "rm50_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharm50_oh"
+  },
+  "rm50_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharm50_perc"
+  },
+  "rm50_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharm50_rd"
+  },
+  "rm50_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharm50_sd"
+  },
+  "rm50_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharm50_sh"
+  },
+  "rm50_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharm50_tb"
+  },
+  "rolandcompurhythm1000_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm1000_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm1000_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm1000_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm1000_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm1000_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm1000_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm1000_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm1000_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm1000_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm1000_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm1000_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm1000_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm78_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm78_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm78_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm78_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm78_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm78_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm78_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm78_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm8000_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm8000_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm8000_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm8000_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm8000_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm8000_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm8000_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm8000_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm8000_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm8000_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm8000_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandcompurhythm8000_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd110_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd110_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd110_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd110_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd110_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd110_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd110_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd110_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd110_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd110_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd110_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd110_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd70_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd70_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd70_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd70_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd70_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd70_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd70_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd70_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd70_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd70_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd70_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd70_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandd70_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandddr30_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandddr30_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandddr30_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandddr30_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandjd990_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandjd990_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandjd990_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandjd990_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandjd990_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandjd990_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandjd990_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandjd990_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandjd990_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandjd990_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandjd990_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandjd990_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandjd990_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandjd990_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmc202_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmc202_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmc202_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmc303_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmc303_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmc303_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmc303_fx": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmc303_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmc303_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmc303_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmc303_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmc303_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmc303_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmc303_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmc303_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmc303_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmc303_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmc303_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmc303_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmt32_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmt32_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmt32_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmt32_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmt32_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmt32_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmt32_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmt32_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmt32_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmt32_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmt32_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmt32_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmt32_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmt32_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandmt32_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandr8_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandr8_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandr8_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandr8_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandr8_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandr8_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandr8_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandr8_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandr8_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandr8_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandr8_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandr8_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandr8_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandr8_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandr8_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolands50_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolands50_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolands50_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "rolands50_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "rolands50_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "rolands50_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolands50_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolands50_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolands50_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolands50_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolands50_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolands50_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolands50_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolands50_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandsh09_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandsystem100_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandsystem100_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandsystem100_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandsystem100_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandsystem100_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandsystem100_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr505_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr505_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr505_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr505_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr505_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr505_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr505_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr505_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr505_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr505_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr505_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr505_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr505_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr606_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr606_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr606_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr606_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr606_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr606_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr606_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr626_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr626_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr626_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr626_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr626_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr626_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr626_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr626_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr626_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr626_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr626_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr626_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr626_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr626_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr626_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr707_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr707_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr707_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr707_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr707_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr707_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr707_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr707_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr707_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr707_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr707_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr707_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr727_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr727_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr808_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr808_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr808_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr808_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr808_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr808_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr808_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr808_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr808_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr808_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr808_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr808_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr808_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr909_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr909_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr909_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr909_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr909_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr909_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr909_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr909_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr909_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr909_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "rolandtr909_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "rx21_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharx21_bd"
+  },
+  "rx21_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharx21_cp"
+  },
+  "rx21_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharx21_cr"
+  },
+  "rx21_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharx21_hh"
+  },
+  "rx21_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharx21_ht"
+  },
+  "rx21_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharx21_lt"
+  },
+  "rx21_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharx21_mt"
+  },
+  "rx21_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharx21_oh"
+  },
+  "rx21_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharx21_sd"
+  },
+  "rx5_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharx5_bd"
+  },
+  "rx5_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharx5_cb"
+  },
+  "rx5_fx": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharx5_fx"
+  },
+  "rx5_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharx5_hh"
+  },
+  "rx5_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharx5_lt"
+  },
+  "rx5_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharx5_oh"
+  },
+  "rx5_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharx5_rim"
+  },
+  "rx5_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharx5_sd"
+  },
+  "rx5_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharx5_sh"
+  },
+  "rx5_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamaharx5_tb"
+  },
+  "ry30_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahary30_bd"
+  },
+  "ry30_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahary30_cb"
+  },
+  "ry30_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahary30_cp"
+  },
+  "ry30_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahary30_cr"
+  },
+  "ry30_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahary30_hh"
+  },
+  "ry30_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahary30_ht"
+  },
+  "ry30_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahary30_lt"
+  },
+  "ry30_misc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahary30_misc"
+  },
+  "ry30_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahary30_mt"
+  },
+  "ry30_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahary30_oh"
+  },
+  "ry30_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahary30_perc"
+  },
+  "ry30_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahary30_rd"
+  },
+  "ry30_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahary30_rim"
+  },
+  "ry30_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahary30_sd"
+  },
+  "ry30_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahary30_sh"
+  },
+  "ry30_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahary30_tb"
+  },
+  "rz1_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "casiorz1_bd"
+  },
+  "rz1_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "casiorz1_cb"
+  },
+  "rz1_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "casiorz1_cp"
+  },
+  "rz1_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "casiorz1_cr"
+  },
+  "rz1_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "casiorz1_hh"
+  },
+  "rz1_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "casiorz1_ht"
+  },
+  "rz1_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "casiorz1_lt"
+  },
+  "rz1_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "casiorz1_mt"
+  },
+  "rz1_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "casiorz1_rd"
+  },
+  "rz1_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "casiorz1_rim"
+  },
+  "rz1_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "casiorz1_sd"
+  },
+  "s50_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolands50_bd"
+  },
+  "s50_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolands50_cb"
+  },
+  "s50_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolands50_cp"
+  },
+  "s50_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolands50_cr"
+  },
+  "s50_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolands50_ht"
+  },
+  "s50_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolands50_lt"
+  },
+  "s50_misc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolands50_misc"
+  },
+  "s50_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolands50_mt"
+  },
+  "s50_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolands50_oh"
+  },
+  "s50_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolands50_perc"
+  },
+  "s50_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolands50_rd"
+  },
+  "s50_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolands50_sd"
+  },
+  "s50_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolands50_sh"
+  },
+  "s50_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolands50_tb"
+  },
+  "sakatadpm48_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "sakatadpm48_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "sakatadpm48_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "sakatadpm48_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "sakatadpm48_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "sakatadpm48_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "sakatadpm48_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "sakatadpm48_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "sakatadpm48_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "sakatadpm48_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "sakatadpm48_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "sakatadpm48_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "sakatadpm48_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "saw": {
+   "type": "synth",
+   "network": false,
+   "aliasOf": "sawtooth"
+  },
+  "sawtooth": {
+   "type": "synth",
+   "network": false
+  },
+  "sax": {
+   "type": "sample",
+   "network": true
+  },
+  "sax_stacc": {
+   "type": "sample",
+   "network": true
+  },
+  "sax_vib": {
+   "type": "sample",
+   "network": true
+  },
+  "saxello": {
+   "type": "sample",
+   "network": true
+  },
+  "saxello_stacc": {
+   "type": "sample",
+   "network": true
+  },
+  "saxello_vib": {
+   "type": "sample",
+   "network": true
+  },
+  "sbd": {
+   "type": "synth",
+   "network": false
+  },
+  "sd": {
+   "type": "sample",
+   "network": true
+  },
+  "sds400_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "simmonssds400_ht"
+  },
+  "sds400_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "simmonssds400_lt"
+  },
+  "sds400_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "simmonssds400_mt"
+  },
+  "sds400_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "simmonssds400_sd"
+  },
+  "sds5_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "simmonssds5_bd"
+  },
+  "sds5_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "simmonssds5_hh"
+  },
+  "sds5_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "simmonssds5_ht"
+  },
+  "sds5_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "simmonssds5_lt"
+  },
+  "sds5_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "simmonssds5_mt"
+  },
+  "sds5_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "simmonssds5_oh"
+  },
+  "sds5_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "simmonssds5_rim"
+  },
+  "sds5_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "simmonssds5_sd"
+  },
+  "sequentialcircuitsdrumtracks_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "sequentialcircuitsdrumtracks_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "sequentialcircuitsdrumtracks_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "sequentialcircuitsdrumtracks_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "sequentialcircuitsdrumtracks_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "sequentialcircuitsdrumtracks_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "sequentialcircuitsdrumtracks_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "sequentialcircuitsdrumtracks_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "sequentialcircuitsdrumtracks_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "sequentialcircuitsdrumtracks_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "sequentialcircuitsdrumtracks_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "sequentialcircuitsdrumtracks_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "sequentialcircuitstom_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "sequentialcircuitstom_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "sequentialcircuitstom_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "sequentialcircuitstom_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "sequentialcircuitstom_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "sequentialcircuitstom_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "sequentialcircuitstom_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "sergemodular_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "sergemodular_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "sergemodular_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "sh": {
+   "type": "sample",
+   "network": true
+  },
+  "sh09_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandsh09_bd"
+  },
+  "shaker_large": {
+   "type": "sample",
+   "network": true
+  },
+  "shaker_small": {
+   "type": "sample",
+   "network": true
+  },
+  "simmonssds400_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "simmonssds400_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "simmonssds400_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "simmonssds400_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "simmonssds5_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "simmonssds5_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "simmonssds5_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "simmonssds5_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "simmonssds5_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "simmonssds5_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "simmonssds5_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "simmonssds5_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "sin": {
+   "type": "synth",
+   "network": false,
+   "aliasOf": "sine"
+  },
+  "sine": {
+   "type": "synth",
+   "network": false
+  },
+  "siren": {
+   "type": "sample",
+   "network": true
+  },
+  "sk1_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "casiosk1_bd"
+  },
+  "sk1_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "casiosk1_hh"
+  },
+  "sk1_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "casiosk1_ht"
+  },
+  "sk1_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "casiosk1_mt"
+  },
+  "sk1_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "casiosk1_oh"
+  },
+  "sk1_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "casiosk1_sd"
+  },
+  "slapstick": {
+   "type": "sample",
+   "network": true
+  },
+  "sleighbells": {
+   "type": "sample",
+   "network": true
+  },
+  "slitdrum": {
+   "type": "sample",
+   "network": true
+  },
+  "snare_hi": {
+   "type": "sample",
+   "network": true
+  },
+  "snare_low": {
+   "type": "sample",
+   "network": true
+  },
+  "snare_modern": {
+   "type": "sample",
+   "network": true
+  },
+  "snare_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "soundmastersr88_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "soundmastersr88_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "soundmastersr88_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "soundmastersr88_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "soundmastersr88_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "sp12_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emusp12_bd"
+  },
+  "sp12_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emusp12_cb"
+  },
+  "sp12_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emusp12_cp"
+  },
+  "sp12_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emusp12_cr"
+  },
+  "sp12_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emusp12_hh"
+  },
+  "sp12_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emusp12_ht"
+  },
+  "sp12_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emusp12_lt"
+  },
+  "sp12_misc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emusp12_misc"
+  },
+  "sp12_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emusp12_mt"
+  },
+  "sp12_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emusp12_oh"
+  },
+  "sp12_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emusp12_perc"
+  },
+  "sp12_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emusp12_rd"
+  },
+  "sp12_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emusp12_rim"
+  },
+  "sp12_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "emusp12_sd"
+  },
+  "space": {
+   "type": "sample",
+   "network": true
+  },
+  "spacedrum_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "viscospacedrum_bd"
+  },
+  "spacedrum_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "viscospacedrum_cb"
+  },
+  "spacedrum_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "viscospacedrum_hh"
+  },
+  "spacedrum_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "viscospacedrum_ht"
+  },
+  "spacedrum_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "viscospacedrum_lt"
+  },
+  "spacedrum_misc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "viscospacedrum_misc"
+  },
+  "spacedrum_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "viscospacedrum_mt"
+  },
+  "spacedrum_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "viscospacedrum_oh"
+  },
+  "spacedrum_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "viscospacedrum_perc"
+  },
+  "spacedrum_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "viscospacedrum_rim"
+  },
+  "spacedrum_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "viscospacedrum_sd"
+  },
+  "sqr": {
+   "type": "synth",
+   "network": false,
+   "aliasOf": "square"
+  },
+  "square": {
+   "type": "synth",
+   "network": false
+  },
+  "sr16_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesissr16_bd"
+  },
+  "sr16_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesissr16_cb"
+  },
+  "sr16_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesissr16_cp"
+  },
+  "sr16_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesissr16_cr"
+  },
+  "sr16_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesissr16_hh"
+  },
+  "sr16_misc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesissr16_misc"
+  },
+  "sr16_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesissr16_oh"
+  },
+  "sr16_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesissr16_perc"
+  },
+  "sr16_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesissr16_rd"
+  },
+  "sr16_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesissr16_rim"
+  },
+  "sr16_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesissr16_sd"
+  },
+  "sr16_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesissr16_sh"
+  },
+  "sr16_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "alesissr16_tb"
+  },
+  "steinway": {
+   "type": "sample",
+   "network": true
+  },
+  "strumstick": {
+   "type": "sample",
+   "network": true
+  },
+  "super64": {
+   "type": "sample",
+   "network": true
+  },
+  "super64_acc": {
+   "type": "sample",
+   "network": true
+  },
+  "super64_vib": {
+   "type": "sample",
+   "network": true
+  },
+  "supersaw": {
+   "type": "synth",
+   "network": false
+  },
+  "sus_cymbal": {
+   "type": "sample",
+   "network": true
+  },
+  "sus_cymbal2": {
+   "type": "sample",
+   "network": true
+  },
+  "system100_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandsystem100_bd"
+  },
+  "system100_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandsystem100_hh"
+  },
+  "system100_misc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandsystem100_misc"
+  },
+  "system100_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandsystem100_oh"
+  },
+  "system100_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandsystem100_perc"
+  },
+  "system100_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandsystem100_sd"
+  },
+  "t3_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgt3_bd"
+  },
+  "t3_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgt3_cp"
+  },
+  "t3_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgt3_hh"
+  },
+  "t3_misc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgt3_misc"
+  },
+  "t3_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgt3_oh"
+  },
+  "t3_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgt3_perc"
+  },
+  "t3_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgt3_rim"
+  },
+  "t3_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgt3_sd"
+  },
+  "t3_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "korgt3_sh"
+  },
+  "tambourine": {
+   "type": "sample",
+   "network": true
+  },
+  "tambourine2": {
+   "type": "sample",
+   "network": true
+  },
+  "tb": {
+   "type": "sample",
+   "network": true
+  },
+  "tg33_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahatg33_bd"
+  },
+  "tg33_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahatg33_cb"
+  },
+  "tg33_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahatg33_cp"
+  },
+  "tg33_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahatg33_cr"
+  },
+  "tg33_fx": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahatg33_fx"
+  },
+  "tg33_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahatg33_ht"
+  },
+  "tg33_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahatg33_lt"
+  },
+  "tg33_misc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahatg33_misc"
+  },
+  "tg33_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahatg33_mt"
+  },
+  "tg33_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahatg33_oh"
+  },
+  "tg33_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahatg33_perc"
+  },
+  "tg33_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahatg33_rd"
+  },
+  "tg33_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahatg33_rim"
+  },
+  "tg33_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahatg33_sd"
+  },
+  "tg33_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahatg33_sh"
+  },
+  "tg33_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "yamahatg33_tb"
+  },
+  "timpani": {
+   "type": "sample",
+   "network": true
+  },
+  "timpani2": {
+   "type": "sample",
+   "network": true
+  },
+  "timpani_roll": {
+   "type": "sample",
+   "network": true
+  },
+  "tom2_mallet": {
+   "type": "sample",
+   "network": true
+  },
+  "tom2_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "tom2_stick": {
+   "type": "sample",
+   "network": true
+  },
+  "tom_mallet": {
+   "type": "sample",
+   "network": true
+  },
+  "tom_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "tom_stick": {
+   "type": "sample",
+   "network": true
+  },
+  "tr505_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr505_bd"
+  },
+  "tr505_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr505_cb"
+  },
+  "tr505_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr505_cp"
+  },
+  "tr505_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr505_cr"
+  },
+  "tr505_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr505_hh"
+  },
+  "tr505_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr505_ht"
+  },
+  "tr505_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr505_lt"
+  },
+  "tr505_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr505_mt"
+  },
+  "tr505_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr505_oh"
+  },
+  "tr505_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr505_perc"
+  },
+  "tr505_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr505_rd"
+  },
+  "tr505_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr505_rim"
+  },
+  "tr505_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr505_sd"
+  },
+  "tr606_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr606_bd"
+  },
+  "tr606_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr606_cr"
+  },
+  "tr606_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr606_hh"
+  },
+  "tr606_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr606_ht"
+  },
+  "tr606_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr606_lt"
+  },
+  "tr606_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr606_oh"
+  },
+  "tr606_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr606_sd"
+  },
+  "tr626_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr626_bd"
+  },
+  "tr626_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr626_cb"
+  },
+  "tr626_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr626_cp"
+  },
+  "tr626_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr626_cr"
+  },
+  "tr626_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr626_hh"
+  },
+  "tr626_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr626_ht"
+  },
+  "tr626_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr626_lt"
+  },
+  "tr626_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr626_mt"
+  },
+  "tr626_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr626_oh"
+  },
+  "tr626_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr626_perc"
+  },
+  "tr626_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr626_rd"
+  },
+  "tr626_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr626_rim"
+  },
+  "tr626_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr626_sd"
+  },
+  "tr626_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr626_sh"
+  },
+  "tr626_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr626_tb"
+  },
+  "tr707_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr707_bd"
+  },
+  "tr707_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr707_cb"
+  },
+  "tr707_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr707_cp"
+  },
+  "tr707_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr707_cr"
+  },
+  "tr707_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr707_hh"
+  },
+  "tr707_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr707_ht"
+  },
+  "tr707_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr707_lt"
+  },
+  "tr707_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr707_mt"
+  },
+  "tr707_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr707_oh"
+  },
+  "tr707_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr707_rim"
+  },
+  "tr707_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr707_sd"
+  },
+  "tr707_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr707_tb"
+  },
+  "tr727_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr727_perc"
+  },
+  "tr727_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr727_sh"
+  },
+  "tr808_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr808_bd"
+  },
+  "tr808_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr808_cb"
+  },
+  "tr808_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr808_cp"
+  },
+  "tr808_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr808_cr"
+  },
+  "tr808_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr808_hh"
+  },
+  "tr808_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr808_ht"
+  },
+  "tr808_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr808_lt"
+  },
+  "tr808_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr808_mt"
+  },
+  "tr808_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr808_oh"
+  },
+  "tr808_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr808_perc"
+  },
+  "tr808_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr808_rim"
+  },
+  "tr808_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr808_sd"
+  },
+  "tr808_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr808_sh"
+  },
+  "tr909_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr909_bd"
+  },
+  "tr909_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr909_cp"
+  },
+  "tr909_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr909_cr"
+  },
+  "tr909_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr909_hh"
+  },
+  "tr909_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr909_ht"
+  },
+  "tr909_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr909_lt"
+  },
+  "tr909_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr909_mt"
+  },
+  "tr909_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr909_oh"
+  },
+  "tr909_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr909_rd"
+  },
+  "tr909_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr909_rim"
+  },
+  "tr909_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "rolandtr909_sd"
+  },
+  "trainwhistle": {
+   "type": "sample",
+   "network": true
+  },
+  "tri": {
+   "type": "synth",
+   "network": false,
+   "aliasOf": "triangle"
+  },
+  "triangle": {
+   "type": "synth",
+   "network": false
+  },
+  "triangles": {
+   "type": "sample",
+   "network": true
+  },
+  "tubularbells": {
+   "type": "sample",
+   "network": true
+  },
+  "tubularbells2": {
+   "type": "sample",
+   "network": true
+  },
+  "univoxmicrorhythmer12_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "univoxmicrorhythmer12_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "univoxmicrorhythmer12_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "univoxmicrorhythmer12_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "user": {
+   "type": "synth",
+   "network": false
+  },
+  "vibraphone": {
+   "type": "sample",
+   "network": true
+  },
+  "vibraphone_bowed": {
+   "type": "sample",
+   "network": true
+  },
+  "vibraphone_soft": {
+   "type": "sample",
+   "network": true
+  },
+  "vibraslap": {
+   "type": "sample",
+   "network": true
+  },
+  "viscospacedrum_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "viscospacedrum_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "viscospacedrum_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "viscospacedrum_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "viscospacedrum_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "viscospacedrum_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "viscospacedrum_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "viscospacedrum_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "viscospacedrum_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "viscospacedrum_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "viscospacedrum_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "vl1_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "casiovl1_bd"
+  },
+  "vl1_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "casiovl1_hh"
+  },
+  "vl1_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "casiovl1_sd"
+  },
+  "white": {
+   "type": "synth",
+   "network": false
+  },
+  "wind": {
+   "type": "sample",
+   "network": true
+  },
+  "wineglass": {
+   "type": "sample",
+   "network": true
+  },
+  "wineglass_slow": {
+   "type": "sample",
+   "network": true
+  },
+  "woodblock": {
+   "type": "sample",
+   "network": true
+  },
+  "wt_digital": {
+   "type": "wavetable",
+   "network": true
+  },
+  "wt_digital_bad_day": {
+   "type": "wavetable",
+   "network": true
+  },
+  "wt_digital_basique": {
+   "type": "wavetable",
+   "network": true
+  },
+  "wt_digital_crickets": {
+   "type": "wavetable",
+   "network": true
+  },
+  "wt_digital_curses": {
+   "type": "wavetable",
+   "network": true
+  },
+  "wt_digital_echoes": {
+   "type": "wavetable",
+   "network": true
+  },
+  "wt_vgame": {
+   "type": "wavetable",
+   "network": true
+  },
+  "xdrumlm8953_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "xdrumlm8953_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "xdrumlm8953_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "xdrumlm8953_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "xdrumlm8953_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "xdrumlm8953_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "xdrumlm8953_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "xdrumlm8953_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "xdrumlm8953_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "xdrumlm8953_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "xdrumlm8953_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "xr10_bd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaixr10_bd"
+  },
+  "xr10_cb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaixr10_cb"
+  },
+  "xr10_cp": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaixr10_cp"
+  },
+  "xr10_cr": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaixr10_cr"
+  },
+  "xr10_hh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaixr10_hh"
+  },
+  "xr10_ht": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaixr10_ht"
+  },
+  "xr10_lt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaixr10_lt"
+  },
+  "xr10_misc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaixr10_misc"
+  },
+  "xr10_mt": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaixr10_mt"
+  },
+  "xr10_oh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaixr10_oh"
+  },
+  "xr10_perc": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaixr10_perc"
+  },
+  "xr10_rd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaixr10_rd"
+  },
+  "xr10_rim": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaixr10_rim"
+  },
+  "xr10_sd": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaixr10_sd"
+  },
+  "xr10_sh": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaixr10_sh"
+  },
+  "xr10_tb": {
+   "type": "sample",
+   "network": true,
+   "aliasOf": "akaixr10_tb"
+  },
+  "xylophone_hard_ff": {
+   "type": "sample",
+   "network": true
+  },
+  "xylophone_hard_pp": {
+   "type": "sample",
+   "network": true
+  },
+  "xylophone_medium_ff": {
+   "type": "sample",
+   "network": true
+  },
+  "xylophone_medium_pp": {
+   "type": "sample",
+   "network": true
+  },
+  "xylophone_soft_ff": {
+   "type": "sample",
+   "network": true
+  },
+  "xylophone_soft_pp": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharm50_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharm50_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharm50_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharm50_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharm50_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharm50_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharm50_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharm50_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharm50_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharm50_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharm50_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharm50_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharm50_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharm50_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharm50_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharx21_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharx21_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharx21_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharx21_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharx21_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharx21_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharx21_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharx21_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharx21_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharx5_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharx5_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharx5_fx": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharx5_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharx5_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharx5_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharx5_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharx5_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharx5_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "yamaharx5_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahary30_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahary30_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahary30_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahary30_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahary30_hh": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahary30_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahary30_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahary30_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahary30_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahary30_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahary30_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahary30_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahary30_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahary30_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahary30_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahary30_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahatg33_bd": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahatg33_cb": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahatg33_cp": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahatg33_cr": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahatg33_fx": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahatg33_ht": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahatg33_lt": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahatg33_misc": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahatg33_mt": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahatg33_oh": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahatg33_perc": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahatg33_rd": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahatg33_rim": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahatg33_sd": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahatg33_sh": {
+   "type": "sample",
+   "network": true
+  },
+  "yamahatg33_tb": {
+   "type": "sample",
+   "network": true
+  },
+  "z_noise": {
+   "type": "synth",
+   "network": false
+  },
+  "z_sawtooth": {
+   "type": "synth",
+   "network": false
+  },
+  "z_sine": {
+   "type": "synth",
+   "network": false
+  },
+  "z_square": {
+   "type": "synth",
+   "network": false
+  },
+  "z_tan": {
+   "type": "synth",
+   "network": false
+  },
+  "z_triangle": {
+   "type": "synth",
+   "network": false
+  },
+  "zzfx": {
+   "type": "synth",
+   "network": false
+  }
+ }
+}

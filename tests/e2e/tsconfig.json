@@ -1,0 +1,28 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": [
+      "ES2022",
+      "DOM"
+    ],
+    "types": [
+      "node"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@playwright/test": [
+        "./pw/index"
+      ],
+      "@tutor/content-schema": [
+        "../../packages/content-schema/src/index.ts"
+      ]
+    },
+    "typeRoots": [
+      "../../apps/web/node_modules/@types"
+    ]
+  },
+  "include": [
+    "./**/*.ts",
+    "../../apps/web/src/env.d.ts"
+  ]
+}

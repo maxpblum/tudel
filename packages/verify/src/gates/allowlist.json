@@ -1,0 +1,7 @@
+[
+  {
+    "name": "p",
+    "adr": "docs/decisions/0003-allowlist-p.md",
+    "reason": "Pattern method injected by @strudel/core's repl; the transpiler rewrites each `$:` label to `.p(\"$\")`. Not documented in doc.json."
+  }
+]

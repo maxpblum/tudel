@@ -1,0 +1,11 @@
+id: fx.filter.v03
+skills: [fx.filter]
+type: refactor
+difficulty: 2
+title: Use the primary names
+prompt: Rewrite this with house-style names.
+starter: |
+  note("c3").sound("saw").cutoff(500)
+solutions:
+  - code: |
+      note("c3").s("sawtooth").lpf(500)

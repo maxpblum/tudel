@@ -1,0 +1,5 @@
+entries:
+  - symbol: Csus4
+    tones: [C, F, G]
+  - symbol: Cmaj7
+    tones: [C, E, G, B]

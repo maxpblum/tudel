@@ -1,0 +1,27 @@
+id: snd.filter-sweep.v02
+skills: [snd.filter-sweep]
+type: sweep
+difficulty: 3
+title: A slow eight-bar wah
+prompt: |
+  A sixteenth-note pulse on **c3** (sawtooth) has a low-pass cutoff that glides
+  smoothly **up and back down once every eight bars**, between **300** and
+  **3000 Hz**. It starts in the middle of that range and opens first.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c3*16").s("sawtooth").lpf(sine.range(300, 3000).slow(8))
+listen_for:
+  - A smooth glide, no steps (sixteenths sample the signal often)
+  - Brightest around bar 3, darkest around bar 7
+  - Back to the starting colour after eight bars
+verify:
+  cycles: 8
+sources:
+  - strudel-doc: sine
+  - strudel-doc: range
+  - strudel-doc: slow
+  - strudel-src: "packages/core/signal.mjs#L70-L80"
+  - workshop: first-effects
+  - lexicon: bright
+  - lexicon: dark

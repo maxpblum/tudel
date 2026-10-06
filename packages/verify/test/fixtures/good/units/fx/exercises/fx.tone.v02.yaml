@@ -1,0 +1,19 @@
+id: fx.tone.v02
+skills: [fx.tone]
+type: spec-to-code
+difficulty: 1
+title: Arpeggio twice per bar
+prompt: |
+  Play **c4 e4 g4** twice per bar on a square wave.
+solutions:
+  - code: |
+      note("[c4 e4 g4]*2").s("square")
+  - code: |
+      note("c4 e4 g4 c4 e4 g4").s("square")
+    note: Writing it out gives the same events; `*2` reads better.
+verify:
+  cycles: 2
+sources:
+  - strudel-src: "packages/core/demo.mjs#L1"
+  - lexicon: warm
+  - url: https://strudel.cc/workshop/

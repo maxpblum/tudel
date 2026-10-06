@@ -1,0 +1,22 @@
+id: snd.highpass.v03
+skills: [snd.highpass, snd.filter-sweep]
+type: sweep
+difficulty: 3
+title: A high-pass riser over a phrase
+prompt: |
+  Build tension over a four-bar phrase. An eighth-note pulse on the chord
+  **c3, g3, c4** (sawtooth) gets thinner every bar: the high-pass cutoff steps
+  through **200, 400, 800, 1600 Hz**, one value per bar.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("[c3,g3,c4]*8").s("sawtooth").hpf("<200 400 800 1600>")
+listen_for:
+  - The pulse itself never changes; only the weight drains away
+  - A clear step at each barline, not a smooth glide
+  - By bar 4 the chord has lost its low fundamentals; only the upper partials remain
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: hpf
+  - lexicon: thin

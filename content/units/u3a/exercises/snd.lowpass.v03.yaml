@@ -1,0 +1,24 @@
+id: snd.lowpass.v03
+skills: [snd.lowpass]
+type: match-by-ear
+difficulty: 3
+title: Match the ringing bass
+prompt: |
+  Listen to the target: eighth notes on **a1**, one bar, sawtooth through a
+  low-pass. Match the cutoff and the resonance by ear. Start from
+  `.lpf(1000).lpq(1)` in your own tool and move one parameter at a time.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("a1*8").s("sawtooth").lpf(500).lpq(20)
+listen_for:
+  - A strong ringing pitch near the cutoff, above the bass note (high resonance)
+  - Overall dark tone, with little energy above the ringing peak (low cutoff)
+  - If yours rings less, raise lpq. If it is brighter, lower lpf.
+verify:
+  cycles: 1
+sources:
+  - lexicon: resonant
+  - lexicon: dark
+  - strudel-doc: lpq
+  - lexicon: bright

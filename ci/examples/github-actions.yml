@@ -1,0 +1,25 @@
+# Example GitHub Actions workflow. Copy to .github/workflows/ci.yml.
+# Every job just calls the portable scripts in ci/; nothing here is GitHub-specific logic.
+name: ci
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm install -g pnpm@10.34.6
+      - run: pnpm exec playwright install --with-deps chromium || true
+      - run: bash ci/run-all.sh
+  drift:
+    # Reports differences against the latest Strudel release; never fails the build.
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm install -g pnpm@10.34.6
+      - run: bash tools/strudel-ref/generate-doc-json.sh --setup-only
+      - run: bash ci/drift.sh

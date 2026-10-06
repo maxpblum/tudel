@@ -1,0 +1,44 @@
+id: snd.amp-envelope.v05
+skills: [snd.amp-envelope, snd.waveforms]
+type: dictation
+difficulty: 3
+title: Accented 3+3+2 pluck line
+prompt: |
+  Write this two-bar line on a **square** wave with a pluck envelope (decay
+  **0.15**, sustain **0**). The accents (>) mean gain **1**. All unaccented notes
+  has gain **0.6**. The 3+3+2 grouping is common in pop and dance music.
+abc: |
+  X:1
+  M:4/4
+  L:1/8
+  K:Am
+  !>!A c e !>!A c e !>!G B | !>!F A c !>!F A c !>!E ^G |
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("<[a4 c5 e5 a4 c5 e5 g4 b4] [f4 a4 c5 f4 a4 c5 e4 g#4]>")
+        .s("square")
+        .decay(0.15)
+        .sustain(0)
+        .gain("1 0.6 0.6 1 0.6 0.6 1 0.6")
+  - code: |
+      note("<[a4 c5 e5 a4 c5 e5 g4 b4] [f4 a4 c5 f4 a4 c5 e4 g#4]>")
+        .s("square")
+        .decay(0.15)
+        .sustain(0)
+        .gain("1 0.6!2 1 0.6!2 1 0.6")
+    note: "`!2` repeats a step, so `0.6!2` is two steps of 0.6. Same eight values."
+listen_for:
+  - Eight plucked eighth notes per bar
+  - Accents on beats 1, the "and" of 2, and 4, grouping the bar 3+3+2
+  - Bar 2 ends on E and G sharp, leading back to A
+verify:
+  cycles: 2
+  abc_agreement:
+    voice: 0
+    compare: [pitch, onset, duration]
+sources:
+  - strudel-doc: gain
+  - strudel-doc: decay
+  - strudel-doc: sustain
+  - lexicon: plucky

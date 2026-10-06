@@ -1,0 +1,26 @@
+id: snd.amp-envelope.v02
+skills: [snd.amp-envelope]
+type: recall
+difficulty: 1
+title: The adsr shorthand
+prompt: |
+  Play **c3 e3 g3 b3** on a sawtooth with attack **0.05**, decay **0.1**,
+  sustain **0.7** and release **0.5**, all set in a single method call.
+
+  (Four separate calls would sound identical, but this drill is about
+  recalling the one-call shorthand.)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c3 e3 g3 b3").s("sawtooth").adsr("0.05:0.1:0.7:0.5")
+listen_for:
+  - A slightly softened onset (50 ms attack)
+  - Notes settle a little below their peak, then hold
+  - A short tail after each note ends (half-second release)
+  - "Code check: one `.adsr(\"0.05:0.1:0.7:0.5\")` call. Four separate calls give the same sound but aren't what was asked."
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: adsr
+  - strudel-src: "packages/core/controls.mjs#L2572-L2576"
+  - lexicon: soft

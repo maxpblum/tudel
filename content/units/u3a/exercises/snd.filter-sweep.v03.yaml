@@ -1,0 +1,26 @@
+id: snd.filter-sweep.v03
+skills: [snd.filter-sweep]
+type: sweep
+difficulty: 3
+title: Riser that resets every phrase
+prompt: |
+  An eighth-note pulse on the dyad **c3, g3** (sawtooth). Across each four-bar
+  phrase the low-pass cutoff climbs at an even rate in hertz from **200** to
+  **4000 Hz**, then snaps back to dark at the start of the next phrase.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("[c3,g3]*8").s("sawtooth").lpf(saw.range(200, 4000).slow(4))
+listen_for:
+  - Brightening over four bars, in one direction only. Most of the audible change comes in bar 1, because the range is linear in Hz.
+  - A sudden drop back to dark at bar 5
+  - Many small steps, eight per bar, one per note. They are most audible at the dark end.
+verify:
+  cycles: 8
+sources:
+  - strudel-doc: saw
+  - strudel-doc: range
+  - strudel-doc: slow
+  - strudel-src: "packages/core/signal.mjs#L23-L35"
+  - lexicon: bright
+  - lexicon: dark

@@ -1,0 +1,34 @@
+id: snd.waveforms.v02
+skills: [snd.waveforms]
+type: dictation
+difficulty: 2
+title: Chiptune phrase in D major
+prompt: |
+  Write this two-bar phrase in Strudel on a **square** wave, the classic
+  chiptune lead. One bar is one cycle. Mind the key signature.
+abc: |
+  X:1
+  M:4/4
+  L:1/4
+  K:D
+  D F A d | c B A2 |
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("<[d4 f#4 a4 d5] [c#5 b4 a4@2]>").s("square")
+  - code: |
+      note("[d4 f#4 a4 d5] [c#5 b4 a4@2]").s("square").slow(2)
+    note: Two bars squeezed into one cycle and then slowed down by 2 gives the same events. The `<...>` form, one bar per entry, is easier to read.
+listen_for:
+  - Bar 1 climbs the D major triad to the upper D in even quarter notes
+  - Bar 2 steps down through C sharp and B to a held A (a half note)
+  - Hollow square-wave tone throughout
+verify:
+  cycles: 2
+  abc_agreement:
+    voice: 0
+    compare: [pitch, onset, duration]
+sources:
+  - strudel-doc: note
+  - strudel-doc: s
+  - lexicon: hollow

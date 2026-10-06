@@ -1,0 +1,11 @@
+id: fx.filter.v02
+skills: [fx.filter]
+type: transform
+difficulty: 2
+title: Darken it
+prompt: Add a low-pass filter at 600 Hz.
+starter: |
+  note("c3 e3").s("sawtooth")
+solutions:
+  - code: |
+      note("c3 e3").s("sawtooth").lpf(600)

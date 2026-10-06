@@ -1,0 +1,20 @@
+# Example Forgejo Actions workflow. Copy to .forgejo/workflows/ci.yml.
+# Forgejo Actions are GitHub-Actions-compatible; jobs just call the portable scripts in ci/.
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: docker
+    container: { image: "mcr.microsoft.com/playwright:v1.63.0-noble" }
+    steps:
+      - uses: https://code.forgejo.org/actions/checkout@v4
+      - run: npm install -g pnpm@10.34.6
+      - run: bash ci/run-all.sh
+  drift:
+    runs-on: docker
+    container: { image: "node:22" }
+    continue-on-error: true
+    steps:
+      - uses: https://code.forgejo.org/actions/checkout@v4
+      - run: npm install -g pnpm@10.34.6
+      - run: bash tools/strudel-ref/generate-doc-json.sh --setup-only
+      - run: bash ci/drift.sh

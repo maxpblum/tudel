@@ -1,0 +1,30 @@
+id: snd.lowpass.v01
+skills: [snd.lowpass]
+type: spec-to-code
+difficulty: 2
+title: Resonant sawtooth bass
+prompt: |
+  One bar of eighth notes on **c2**, sawtooth, low-pass cutoff **600 Hz**,
+  resonance (Q) **8**.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c2*8").s("sawtooth").lpf(600).lpq(8)
+  - code: |
+      note("c2*8").s("sawtooth").lpf("600:8")
+    note: >-
+      `lpf` accepts "cutoff:resonance" in mini-notation and sets the same two
+      values. The separate `.lpq(8)` is clearer for a reader.
+listen_for:
+  - Eight even notes on the same low C
+  - Darker than a raw sawtooth, with the top buzz gone
+  - A moderate resonant peak at the cutoff
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: lpf
+  - strudel-doc: lpq
+  - strudel-src: "packages/core/controls.mjs#L1190-L1204"
+  - lexicon: dark
+  - lexicon: buzzy
+  - lexicon: resonant

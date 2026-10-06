@@ -1,0 +1,8 @@
+node_modules/
+dist/
+coverage/
+.cache/
+test-results/
+playwright-report/
+apps/web/src/content/bundle.json
+*.log

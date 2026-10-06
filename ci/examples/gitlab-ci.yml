@@ -1,0 +1,19 @@
+# Example GitLab CI config. Copy to .gitlab-ci.yml.
+# Jobs just call the portable scripts in ci/.
+image: mcr.microsoft.com/playwright:v1.63.0-noble
+
+before_script:
+  - npm install -g pnpm@10.34.6
+
+build:
+  script:
+    - bash ci/run-all.sh
+
+drift:
+  allow_failure: true
+  script:
+    - bash tools/strudel-ref/generate-doc-json.sh --setup-only
+    - bash ci/drift.sh
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - when: manual

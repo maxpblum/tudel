@@ -1,0 +1,34 @@
+id: snd.amp-envelope.v03
+skills: [snd.amp-envelope, snd.lowpass]
+type: describe-to-code
+difficulty: 3
+title: A soft, swelling pad
+prompt: |
+  Hold an A flat major triad **ab3, c4, eb4** for a whole bar on a sawtooth.
+  It should be a **soft, pad-like** sound: it blooms in slowly, like a choir
+  entering *niente*, and lingers after the bar ends. Darken it a little so it
+  is **warm** rather than buzzy.
+
+  Set only the stages you need. Reasonable values: attack 0.4–1 s, release
+  1–2 s, cutoff 800–1500 Hz.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("ab3,c4,eb4").s("sawtooth").attack(0.6).release(1.5).lpf(1200)
+listen_for:
+  - No hard onset; the chord swells in over about half a second
+  - It holds at full level (setting only attack and release leaves sustain at 1)
+  - A tail that overlaps the next bar's swell
+  - No buzzy edge on top (warm rather than bright)
+verify:
+  cycles: 2
+sources:
+  - lexicon: pad-like
+  - lexicon: soft
+  - lexicon: warm
+  - strudel-doc: attack
+  - strudel-doc: release
+  - strudel-src: "packages/superdough/helpers.mjs#L167-L178"
+  - lexicon: bright
+  - lexicon: dark
+  - lexicon: buzzy

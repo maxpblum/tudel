@@ -1,0 +1,23 @@
+id: snd.amp-envelope.v01
+skills: [snd.amp-envelope]
+type: spec-to-code
+difficulty: 2
+title: Square-wave pluck
+prompt: |
+  Play **c4 e4 g4 e4** as quarter notes on a square wave with a pluck
+  envelope: instant attack, decay **0.15** seconds, sustain **0**.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c4 e4 g4 e4").s("square").decay(0.15).sustain(0)
+listen_for:
+  - Each note starts at full level and dies away quickly
+  - Silence between the notes, even though each note lasts a quarter
+  - No fade-in at the start of a note
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: decay
+  - strudel-doc: sustain
+  - strudel-src: "packages/superdough/helpers.mjs#L167-L178"
+  - lexicon: plucky

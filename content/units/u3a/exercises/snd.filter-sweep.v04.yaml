@@ -1,0 +1,32 @@
+id: snd.filter-sweep.v04
+skills: [snd.filter-sweep, snd.lowpass]
+type: match-by-ear
+difficulty: 4
+title: Name that sweep
+prompt: |
+  Listen to the target: an eighth-note sawtooth bass on **c2** with a moving,
+  resonant low-pass. Work out three things, then write it:
+
+  1. Is the motion a smooth rise-and-fall or a ramp that resets?
+  2. How many bars does one sweep take?
+  3. Roughly how low and how high does the cutoff go?
+
+  Loop it for at least four bars before you answer.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c2*8").s("sawtooth").lpf(saw.range(300, 2500).slow(2)).lpq(10)
+listen_for:
+  - A ramp that only opens, then resets (saw, not sine)
+  - One ramp every two bars
+  - From quite dark to moderately bright, never fully open
+  - A whistling resonant peak riding on the sweep
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: saw
+  - strudel-doc: lpq
+  - lexicon: resonant
+  - lexicon: bright
+  - lexicon: dark
+  - lexicon: thin

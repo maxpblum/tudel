@@ -1,0 +1,26 @@
+id: snd.amp-envelope.v04
+skills: [snd.amp-envelope]
+type: match-by-ear
+difficulty: 3
+title: Match the chiptune blip
+prompt: |
+  Listen to the target: a falling C major arpeggio **c5 g4 e4 c4**, twice per
+  bar, on a triangle wave. The notes are the same length as eighth notes, but
+  they don't sound like it. Recreate the articulation.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("[c5 g4 e4 c4]*2").s("triangle").decay(0.1).sustain(0)
+  - code: |
+      note("c5 g4 e4 c4 c5 g4 e4 c4").s("triangle").decay(0.1).sustain(0)
+    note: Writing all eight notes out gives the same events. The `*2` form says "the figure, twice".
+listen_for:
+  - Very short, percussive blips with gaps between them
+  - Instant onset; each note dies away within about a tenth of a second
+  - No tail after the notes (no release added)
+verify:
+  cycles: 1
+sources:
+  - lexicon: plucky
+  - strudel-doc: decay
+  - strudel-doc: sustain

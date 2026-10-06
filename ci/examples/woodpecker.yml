@@ -1,0 +1,18 @@
+# Example Woodpecker CI pipeline (used by Codeberg / Forgejo). Copy to .woodpecker.yml.
+# Steps just call the portable scripts in ci/.
+steps:
+  build:
+    image: mcr.microsoft.com/playwright:v1.63.0-noble
+    commands:
+      - npm install -g pnpm@10.34.6
+      - bash ci/run-all.sh
+
+  drift:
+    image: node:22
+    failure: ignore
+    commands:
+      - npm install -g pnpm@10.34.6
+      - bash tools/strudel-ref/generate-doc-json.sh --setup-only
+      - bash ci/drift.sh
+    when:
+      - event: [cron, manual]

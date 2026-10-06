@@ -1,0 +1,25 @@
+{
+  "name": "strudel-tutor",
+  "private": true,
+  "type": "module",
+  "license": "AGPL-3.0-or-later",
+  "packageManager": "pnpm@10.34.6",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "verify": "pnpm --filter @tutor/verify run verify",
+    "test": "pnpm -r --if-present run test",
+    "e2e": "pnpm --filter @tutor/web run e2e",
+    "dev": "pnpm verify && pnpm --filter @tutor/web run dev",
+    "build": "pnpm verify && pnpm --filter @tutor/web run build",
+    "typecheck": "pnpm -r --if-present run typecheck",
+    "strudel-ref": "bash tools/strudel-ref/generate-doc-json.sh",
+    "start": "pnpm build && pnpm --filter @tutor/web run preview"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+id: snd.highpass.v01
+skills: [snd.highpass]
+type: spec-to-code
+difficulty: 1
+title: Thin out a pad
+prompt: |
+  Hold the chord **c4, eb4, g4** for a whole bar on a sawtooth, high-passed at
+  **800 Hz**.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c4,eb4,g4").s("sawtooth").hpf(800)
+listen_for:
+  - The same three pitches, but with little body or weight
+  - A brighter, thinner sound than the plain sawtooth chord
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: hpf
+  - lexicon: thin
+  - lexicon: bright
+  - lexicon: pad-like

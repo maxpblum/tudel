@@ -1,0 +1,16 @@
+entries:
+  - term: warm
+    tendencies: ["lower lpf cutoff", "slower attack"]
+    status: canonical
+    confidence: medium
+    sources:
+      - title: Example source
+        url: https://example.org/warm
+  - term: bright
+    tendencies: ["higher lpf cutoff"]
+    status: canonical
+    confidence: high
+    sources:
+      - title: Example source
+        url: https://example.org/bright
+        note: Raise `lpf` for more brightness.

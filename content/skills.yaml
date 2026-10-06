@@ -1,0 +1,82 @@
+# Skill graph. Schema: SkillsFile in packages/content-schema/src/index.ts.
+# Every vocabulary entry is a primary doc.json name (gate L2; see docs/house-style.md).
+# The graph is drawn in docs/curriculum.md. Keep the two in sync.
+
+units:
+  - id: u3a
+    title: Sound basics
+    milestone: M1
+    order: 3
+    summary: >-
+      Build a synth voice from the source outward: pick a waveform, carve it
+      with low-pass and high-pass filters, shape its articulation with an
+      amplitude envelope and gain, and move the filter over bars.
+
+skills:
+  - id: snd.waveforms
+    unit: u3a
+    title: Choose a waveform
+    prereqs: []
+    summary: >-
+      Play notes on the four built-in oscillators (sawtooth, square, triangle,
+      sine) and hear how their harmonic content differs.
+    vocabulary: [note, s]
+    lesson: snd.waveforms.lesson
+    idiom_note: >-
+      Say what, then with what: note(...) first, then .s(...). The sound name
+      is just another pattern, so "<sawtooth square>" changes it per bar.
+
+  - id: snd.lowpass
+    unit: u3a
+    title: Low-pass filter and resonance
+    prereqs: [snd.waveforms]
+    summary: >-
+      Darken a bright waveform with lpf (cutoff in Hz) and add a resonant
+      peak at the cutoff with lpq.
+    vocabulary: [lpf, lpq]
+    lesson: snd.lowpass.lesson
+    idiom_note: >-
+      Start from a harmonically rich source (sawtooth or square) and subtract;
+      a filter can only remove partials that are there.
+
+  - id: snd.highpass
+    unit: u3a
+    title: High-pass filter
+    prereqs: [snd.lowpass]
+    summary: >-
+      Thin a sound out from below with hpf, and combine hpf with lpf to keep
+      only a band of the spectrum.
+    vocabulary: [hpf]
+    lesson: snd.highpass.lesson
+    idiom_note: >-
+      Method order is for readers, not for the sound: the chain is always
+      oscillator, amp envelope, gain, low-pass, high-pass. Write note, s,
+      envelope, filters, then gain, the same way every time.
+
+  - id: snd.amp-envelope
+    unit: u3a
+    title: Amplitude envelope and gain
+    prereqs: [snd.lowpass]
+    summary: >-
+      Shape articulation with attack, decay, sustain and release (or the adsr
+      shorthand), and set dynamics and accents with gain.
+    vocabulary: [attack, decay, sustain, release, adsr, gain]
+    lesson: snd.amp-envelope.lesson
+    idiom_note: >-
+      Set only the envelope stages you mean, and write sustain explicitly when
+      it matters: .decay(0.2).sustain(0) says "pluck" more clearly than
+      relying on an inferred default.
+
+  - id: snd.filter-sweep
+    unit: u3a
+    title: Filter sweeps over bars
+    prereqs: [snd.lowpass]
+    summary: >-
+      Move the cutoff over time: step it once per bar with "<...>", or glide it
+      with a signal such as sine.range(a, b).slow(n).
+    vocabulary: [sine, saw, range, slow]
+    lesson: snd.filter-sweep.lesson
+    idiom_note: >-
+      Patterns go anywhere a number goes: put the change inside the parameter
+      (.lpf("<400 800>") or .lpf(sine.range(400, 2000).slow(4))) instead of
+      copying the line once per bar.

@@ -1,0 +1,227 @@
+# Timbre lexicon: qualitative words -> parameter tendencies in Strudel vocabulary.
+# Schema: LexiconFile in packages/content-schema/src/index.ts. Gate L8d requires a source and a
+# confidence level for every entry.
+#
+# Rules (see docs/content-authoring.md):
+# - Every qualitative word used in a prompt, listen_for item or lesson must have an entry here.
+# - Every URL was fetched and its text checked against the claim on 2026-10-05. Quotes in `note` are verbatim.
+# - status: canonical = broad agreement in the timbre literature or in standard synthesis teaching;
+#   subjective = listeners or genres disagree, or the term is colloquial.
+# - Tendencies are what a *tutor* can promise. Exact values are always the learner's ears' call.
+
+entries:
+  - term: bright
+    tendencies:
+      - higher lpf cutoff (or no lpf)
+      - a harmonically rich source such as s("sawtooth") or s("square")
+    status: canonical
+    confidence: high
+    sources:
+      - title: 'Caetano, Saitis & Siedenburg, "Audio Content Descriptors of Timbre", in Timbre (Springer, 2019), ch. 11'
+        url: https://comma.eecs.qmul.ac.uk/assets/pdf/Caetano_chap11.pdf
+        note: '"Sounds described as bright, such as a brassy trombone note, have higher spectral centroids because they feature more spectral energy in high frequency regions."'
+      - title: 'Siedenburg, Saitis & McAdams, "The Present, Past, and Future of Timbre Research", in Timbre (Springer, 2019), ch. 1 (preview)'
+        url: https://comma.eecs.qmul.ac.uk/assets/pdf/Timbre_chapter1.pdf
+        note: Describes the dull-bright adjective pair as a salient semantic dimension tied to energy in higher frequency bands.
+      - title: 'J. D. Tillman, "A Palette of Static Audio Waveforms"'
+        url: https://till.com/articles/wavepalette/
+        note: Calls the sawtooth "A bright waveform with all harmonics."
+    notes: The best-agreed timbre word in the literature; its main acoustic correlate is the spectral centroid.
+
+  - term: dark
+    tendencies:
+      - lower lpf cutoff
+      - fewer upper harmonics (s("triangle") or s("sine"), or a filtered sawtooth)
+    status: canonical
+    confidence: medium
+    sources:
+      - title: 'Beau Sievers, "A Young Person''s Guide to the Principles of Music Synthesis"'
+        url: http://beausievers.com/synth/synthbasics/
+        note: Decreasing high frequencies "makes it seem "darker" or muffled", and increasing them makes it seem "brighter".
+      - title: 'Siedenburg, Saitis & McAdams, "The Present, Past, and Future of Timbre Research", in Timbre (Springer, 2019), ch. 1 (preview)'
+        url: https://comma.eecs.qmul.ac.uk/assets/pdf/Timbre_chapter1.pdf
+        note: Names the dull-bright pole. The chapter does not use the word "dark"; equating dark with dull is this course's inference.
+    notes: >-
+      The opposite of bright. Dark and muffled overlap; muffled usually implies a stronger cut.
+      Confidence is medium because the only source that uses the word "dark" is an introductory
+      guide; the literature's term is "dull".
+
+  - term: muffled
+    tendencies:
+      - low lpf cutoff, letting only the fundamental and the first few harmonics through
+    status: canonical
+    confidence: high
+    sources:
+      - title: 'Beau Sievers, "A Young Person''s Guide to the Principles of Music Synthesis"'
+        url: http://beausievers.com/synth/synthbasics/
+        note: '"A low pass filter allows low frequencies to pass through the filter and blocks out high frequencies, causing the sound to seem muffled."'
+      - title: 'FabFilter Learn, "Basics: Filters"'
+        url: https://www.fabfilter.com/learn/synthesis-and-sound-design/basics-filters
+        note: 'Low-pass filter: "cuts the highs, and makes the sound duller or warmer." This supports the synonym "dull" rather than the word "muffled".'
+    notes: Also "dull". The workshop's image is the club heard through a closed door.
+
+  - term: warm
+    tendencies:
+      - moderate lpf cutoff on a rich source (roughly 500-1500 Hz for a mid-register sawtooth)
+      - keep the low and low-mid register; no hpf
+      - little or no lpq
+    status: subjective
+    confidence: medium
+    sources:
+      - title: 'Stables, De Man, Enderby, Reiss, Fazekas & Wilmering, "Semantic Description of Timbral Transformations in Music Production" (ACM Multimedia 2016)'
+        url: https://www.open-access.bcu.ac.uk/4105/1/Semantic%20Description%20of%20Timbral%20Transformations%20in%20Music%20Production-RS.pdf
+        note: EQ curves for the "warm, bass, boom, box and vocal" cluster "generally exhibit a boost around 500 Hz with a high-frequency roll-off."
+      - title: 'Enderby & Stables, "A Nonlinear Method for Manipulating Warmth and Brightness" (DAFx-17)'
+        url: https://www.dafx17.eca.ed.ac.uk/papers/DAFx17_paper_17.pdf
+        note: Groups warm with boom, deep and full (increased low-frequency energy). Listeners agreed on synonyms for warmth less often (54%) than for brightness (74%).
+      - title: 'FabFilter Learn, "Basics: Filters"'
+        url: https://www.fabfilter.com/learn/synthesis-and-sound-design/basics-filters
+        note: A low-pass "makes the sound duller or warmer."
+    notes: >-
+      Widely used but less agreed than bright. The common thread is low-mid weight with softened
+      highs. The cutoff range in the tendencies is this course's working convention, not a
+      literature value.
+
+  - term: buzzy
+    tendencies:
+      - s("sawtooth") (every harmonic present, amplitudes 1/n)
+      - high lpf cutoff or no lpf
+    status: canonical
+    confidence: medium
+    sources:
+      - title: 'Beau Sievers, "A Young Person''s Guide to the Principles of Music Synthesis"'
+        url: http://beausievers.com/synth/synthbasics/
+        note: '"Sawtooth waves ... have a very strong, clear, buzzing sound." "Square waves have a rich sound that''s not quite as buzzy as a sawtooth wave."'
+      - title: 'Gordon Reid, "Synth Secrets, Part 1 - What''s In A Sound?", Sound On Sound (May 1999)'
+        url: https://www.soundonsound.com/techniques/whats-sound
+        note: 'Sawtooth: "Every harmonic is present, and the amplitude of the nth harmonic is 1/n times that of the fundamental."'
+    notes: >-
+      Standard synthesis-teaching usage rather than a term from the formal timbre-semantics
+      literature, hence medium confidence. No source found that ties "buzzy" to even harmonics
+      specifically; the link is to the full 1/n series.
+
+  - term: hollow
+    tendencies:
+      - s("square") (odd harmonics only)
+    status: canonical
+    confidence: high
+    sources:
+      - title: 'Gordon Reid, "Synth Secrets - Synthesizing Wind Instruments", Sound On Sound'
+        url: https://www.soundonsound.com/techniques/synthesizing-wind-instruments
+        note: '"The clarinet has a very distinctive ''hollow'' sound which, on a synthesizer, we associate with square waves... the only common synthesizer waveform that contains just odd harmonics."'
+      - title: 'Joe Wolfe, "Clarinet acoustics - an introduction", UNSW Music Acoustics'
+        url: https://newt.phys.unsw.edu.au/jw/clarinetacoustics.html
+        note: Odd harmonics predominate in the chalumeau register, which "gives this register its characteristic 'hollow' timbre."
+      - title: 'J. D. Tillman, "A Palette of Static Audio Waveforms"'
+        url: https://till.com/articles/wavepalette/
+        note: The square "has only odd harmonics and a distinctly hollow character."
+
+  - term: pure
+    tendencies:
+      - s("sine") (fundamental only)
+    status: canonical
+    confidence: high
+    sources:
+      - title: 'Beau Sievers, "A Young Person''s Guide to the Principles of Music Synthesis"'
+        url: http://beausievers.com/synth/synthbasics/
+        note: '"The sine wave is the most basic, pure waveform."'
+      - title: 'J. D. Tillman, "A Palette of Static Audio Waveforms"'
+        url: https://till.com/articles/wavepalette/
+        note: 'Sine: "Just the fundamental frequency, no harmonic content."'
+      - title: 'A. D. Davis, "12.3 Sound Quality", Eastern Illinois University'
+        url: https://www.ux1.eiu.edu/~addavis/3050/Adventures/chapter_12/ch12_3.htm
+        note: The flute's waveform "looks like a sine wave", and "A musician might describe a flute as having a very pure tone."
+
+  - term: soft
+    tendencies:
+      - fewer upper harmonics (s("triangle") or s("sine"), or a low lpf cutoff)
+      - slower attack
+      - lower gain
+    status: subjective
+    confidence: low
+    sources:
+      - title: 'J. D. Tillman, "A Palette of Static Audio Waveforms"'
+        url: https://till.com/articles/wavepalette/
+        note: 'Triangle: "The same odd harmonics as the square wave, but the harmonics fall off in strength much faster for a much mellower sound."'
+      - title: 'Caetano, Saitis & Siedenburg, "Audio Content Descriptors of Timbre", in Timbre (Springer, 2019), ch. 11'
+        url: https://comma.eecs.qmul.ac.uk/assets/pdf/Caetano_chap11.pdf
+        note: Percussive instruments have short attack times with sharp onsets; sustained instruments such as the tuba have longer attack times.
+    notes: >-
+      Ambiguous: it can mean quiet (dynamics), mellow (spectrum) or gentle onset (envelope).
+      Prompts that use "soft" must say which they mean or pair it with a second, clearer word.
+
+  - term: thin
+    tendencies:
+      - higher hpf cutoff (remove the fundamentals and low partials)
+    status: canonical
+    confidence: medium
+    sources:
+      - title: 'FabFilter Learn, "Basics: Filters"'
+        url: https://www.fabfilter.com/learn/synthesis-and-sound-design/basics-filters
+        note: 'High-pass filter: "cuts the lows, and makes the synthesizer sound brighter or thinner." "The higher your high-pass cut-off frequency is, the thinner the resulting sound."'
+      - title: 'Stables, De Man, Enderby, Reiss, Fazekas & Wilmering, "Semantic Description of Timbral Transformations in Music Production" (ACM Multimedia 2016)'
+        url: https://www.open-access.bcu.ac.uk/4105/1/Semantic%20Description%20of%20Timbral%20Transformations%20in%20Music%20Production-RS.pdf
+        note: The "thin, clean, cut, click and tin" cluster of EQ descriptors exhibits a boost in high-frequency energy.
+    notes: >-
+      In the production literature "thin" means relatively more high-frequency energy than low,
+      which a high-pass produces. The "small radio" or "telephone" image is a band: hpf plus lpf.
+      Its opposite, which prompts call "body" or "weight", means energy in the fundamentals and low
+      partials. Removing that energy is what makes a sound thin.
+
+  - term: resonant
+    tendencies:
+      - higher lpq (a peak at the lpf cutoff)
+    status: canonical
+    confidence: high
+    sources:
+      - title: 'Gordon Reid, "Synth Secrets - Of Responses & Resonance", Sound On Sound (October 1999)'
+        url: https://www.soundonsound.com/techniques/responses-resonance
+        note: With resonance, the filter "still attenuates the frequencies far above the cutoff frequency, but a band around the cutoff is boosted."
+      - title: 'FabFilter Learn, "Basics: Filters"'
+        url: https://www.fabfilter.com/learn/synthesis-and-sound-design/basics-filters
+        note: Resonance "emphasizes the frequencies just before the filter cut-off frequency", and "the higher the resonance, the more pronounced this bump becomes."
+      - title: 'W3C, Web Audio API, BiquadFilterNode Q'
+        url: https://www.w3.org/TR/webaudio/#dom-biquadfilternode-q
+        note: '"For lowpass and highpass filters the Q value is interpreted to be in dB." Strudel''s lpq sets this Q.'
+    notes: >-
+      "Whistling", "ringing" and "squelchy" are colloquial descriptions of strong resonance. No
+      authoritative source defines them; treat them as subjective synonyms of high lpq.
+
+  - term: plucky
+    tendencies:
+      - near-instant attack (leave attack unset)
+      - short decay (about 0.05-0.3 s)
+      - sustain(0)
+    status: canonical
+    confidence: medium
+    sources:
+      - title: 'Gordon Reid, "Synth Secrets - Envelopes, Gates & Triggers", Sound On Sound (November 1999)'
+        url: https://www.soundonsound.com/techniques/envelopes-gates-triggers
+        note: '"The Attack time determines how percussive a sound is, and the Decay determines how long the sound takes to fall to the Sustain level after the initial accent."'
+      - title: 'Caetano, Saitis & Siedenburg, "Audio Content Descriptors of Timbre", in Timbre (Springer, 2019), ch. 11'
+        url: https://comma.eecs.qmul.ac.uk/assets/pdf/Caetano_chap11.pdf
+        note: Percussive instruments such as the xylophone "feature short attack times with sharp onsets."
+    notes: >-
+      Also "pluck". Standard synth practice. The sources support a fast attack and a decay-shaped
+      sound, but none states "sustain = 0" explicitly; that part is this course's convention.
+      "Percussive" (Reid's word) and the chiptune slang "blip" (a very short pluck) are
+      synonyms in this course.
+
+  - term: pad-like
+    tendencies:
+      - slower attack (about 0.3-1 s)
+      - full or high sustain
+      - long release (about 1-2 s)
+      - usually a moderately low lpf cutoff
+    status: subjective
+    confidence: low
+    sources:
+      - title: 'Gordon Reid, "Synth Secrets - Synthesizing Strings - PWM & String Sounds", Sound On Sound'
+        url: https://www.soundonsound.com/techniques/synthesizing-strings-pwm-string-sounds
+        note: The string-ensemble envelope uses full sustain, "a rapid but smooth attack, and a gentle release."
+      - title: 'Caetano, Saitis & Siedenburg, "Audio Content Descriptors of Timbre", in Timbre (Springer, 2019), ch. 11'
+        url: https://comma.eecs.qmul.ac.uk/assets/pdf/Caetano_chap11.pdf
+        note: Sustained instruments "feature longer attack times."
+    notes: >-
+      Also "swelling" and "blooming". The sources support high sustain and a gentle release; the
+      slow attack is common practice, but no authoritative source pins it down, hence low confidence.

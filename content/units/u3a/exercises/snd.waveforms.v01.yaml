@@ -1,0 +1,27 @@
+id: snd.waveforms.v01
+skills: [snd.waveforms]
+type: spec-to-code
+difficulty: 1
+title: Square-wave arpeggio
+prompt: |
+  Play the C major arpeggio **c4 e4 g4 c5** as eighth notes, so it runs twice
+  per bar, on a **square** wave.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("[c4 e4 g4 c5]*2").s("square")
+  - code: |
+      note("c4 e4 g4 c5 c4 e4 g4 c5").s("square")
+    note: Writing all eight notes out gives the same events. The `*2` form says "the figure, twice", which is easier to read and to change.
+listen_for:
+  - Eight even notes per bar, two rising arpeggios
+  - A hollow tone, still bright, but less buzzy than a sawtooth (no even harmonics)
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: note
+  - strudel-doc: s
+  - strudel-src: "packages/superdough/synth.mjs#L23-L29"
+  - lexicon: hollow
+  - lexicon: bright
+  - lexicon: buzzy

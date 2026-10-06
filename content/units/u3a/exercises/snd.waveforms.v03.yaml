@@ -1,0 +1,25 @@
+id: snd.waveforms.v03
+skills: [snd.waveforms]
+type: match-by-ear
+difficulty: 2
+title: Which waveform is it?
+prompt: |
+  Listen to the target. It plays the arpeggio **c3 eb3 g3 bb3** (one bar) on
+  one of the four basic waveforms, with nothing else added. Which waveform is
+  it? Write the code.
+
+  Compare it in your own tool against the other three before you reveal.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c3 eb3 g3 bb3").s("square")
+listen_for:
+  - Hollow, like a clarinet's low register (odd harmonics only)
+  - Not as buzzy as a sawtooth, much brighter than a triangle or sine
+verify:
+  cycles: 1
+sources:
+  - strudel-src: "packages/superdough/synth.mjs#L23-L29"
+  - lexicon: hollow
+  - lexicon: buzzy
+  - lexicon: bright

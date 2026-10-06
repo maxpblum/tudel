@@ -1,0 +1,12 @@
+id: fx.filter.v01
+skills: [fx.filter, fx.tone]
+type: sweep
+difficulty: 2
+title: Bar-by-bar cutoff
+prompt: |
+  Step the cutoff of a sawtooth through 400, 800, 1600 and 3200, one per bar.
+solutions:
+  - code: |
+      note("c2*4").s("sawtooth").lpf("<400 800 1600 3200>")
+verify:
+  cycles: 4

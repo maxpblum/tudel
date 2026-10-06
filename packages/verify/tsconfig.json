@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["node"],
+    // tonal 6.5.0's package.json points "types" at a file it doesn't ship (dist/index.d.ts).
+    "paths": { "tonal": ["./node_modules/tonal/dist/index.d.mts"] }
+  },
+  "include": ["src", "test", "vitest.config.ts"]
+}

@@ -1,0 +1,23 @@
+units:
+  - id: fx
+    title: Fixture unit
+    milestone: M1
+    summary: Small content used by the verifier's own tests.
+    order: 1
+skills:
+  - id: fx.tone
+    unit: fx
+    title: Tones on a synth
+    prereqs: []
+    summary: Play notes on a synth with `note` and `s`.
+    vocabulary: [note, s]
+    lesson: fx.tone.lesson
+    idiom_note: Say what is played first, then with what sound.
+  - id: fx.filter
+    unit: fx
+    title: Low-pass filter
+    prereqs: [fx.tone]
+    summary: Shape a `"sawtooth"` with `.lpf(800)`.
+    vocabulary: [lpf, lpq]
+    lesson: fx.filter.lesson
+    idiom_note: Filter after the source, like a signal chain.

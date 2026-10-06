@@ -1,0 +1,26 @@
+id: snd.filter-sweep.v01
+skills: [snd.filter-sweep]
+type: sweep
+difficulty: 2
+title: Close the filter bar by bar
+prompt: |
+  Over a four-bar phrase, an eighth-note sawtooth bass on **a1** gets darker
+  every bar. The low-pass cutoff steps **down** through **3200, 1600, 800,
+  400 Hz**, one value per bar, with resonance **5** throughout.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("a1*8").s("sawtooth").lpf("<3200 1600 800 400>").lpq(5)
+listen_for:
+  - Bright and buzzy in bar 1, muffled by bar 4
+  - The change happens at each barline, in steps
+  - A mild resonant edge that follows the cutoff down
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: lpf
+  - lexicon: muffled
+  - lexicon: bright
+  - lexicon: dark
+  - lexicon: buzzy
+  - lexicon: resonant

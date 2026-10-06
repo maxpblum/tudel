@@ -1,0 +1,28 @@
+id: snd.highpass.v02
+skills: [snd.highpass, snd.lowpass]
+type: describe-to-code
+difficulty: 3
+title: A thin "radio" lead
+prompt: |
+  Play the melody **g4 a4 bb4 d5** (quarter notes) on a sawtooth so it sounds
+  **thin**, as if it came out of a tiny radio speaker: no low body
+  *and* no bright, buzzy top. You will need both filters.
+
+  A band from roughly 500–800 Hz up to 2000–3000 Hz fits. The reference uses
+  one choice.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("g4 a4 bb4 d5").s("sawtooth").lpf(2500).hpf(700)
+listen_for:
+  - Four rising quarter notes
+  - No low weight (the high-pass is doing its job)
+  - No bright, buzzy top either, so only the midrange is left
+verify:
+  cycles: 1
+sources:
+  - lexicon: thin
+  - strudel-doc: hpf
+  - strudel-doc: lpf
+  - lexicon: bright
+  - lexicon: buzzy

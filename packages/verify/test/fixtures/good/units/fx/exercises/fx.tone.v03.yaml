@@ -1,0 +1,14 @@
+id: fx.tone.v03
+skills: [fx.tone]
+type: match-by-ear
+difficulty: 2
+title: Which waveform?
+prompt: |
+  Listen, then recreate it.
+
+  :::play{hidecode}
+  note("c3").s("sine")
+  :::
+solutions:
+  - code: |
+      note("c3").s("sine")
