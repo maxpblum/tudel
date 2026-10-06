@@ -12,11 +12,32 @@ export const EnvelopeBody = z.strictObject({
   release: z.number().min(0),
   hold: z.number().min(0).optional(),
 });
-export const FilterBody = z.strictObject({
-  type: z.enum(['lowpass', 'highpass', 'bandpass']),
+const FilterCurve = z.strictObject({
   cutoff: z.number().positive(),
   q: z.number().min(0),
+  label: z.string().min(1).optional(),
 });
+/**
+ * Either the single-curve form `{type, cutoff, q}` or the family form `{type, curves: [{cutoff, q, label}]}`
+ * (1-6 curves; a label on every curve when there is more than one). Both normalise to `{type, curves}`.
+ */
+export const FilterBody = z
+  .strictObject({
+    type: z.enum(['lowpass', 'highpass', 'bandpass']),
+    cutoff: z.number().positive().optional(),
+    q: z.number().min(0).optional(),
+    curves: z.array(FilterCurve).min(1, 'needs at least 1 curve').max(6, 'at most 6 curves are allowed').optional(),
+  })
+  .superRefine((b, ctx) => {
+    if (b.curves) {
+      if (b.cutoff !== undefined || b.q !== undefined) ctx.addIssue({ code: 'custom', message: 'use either top-level cutoff/q or curves, not both' });
+      if (b.curves.length > 1 && b.curves.some((c) => !c.label)) ctx.addIssue({ code: 'custom', path: ['curves'], message: 'every curve needs a label when there is more than one curve' });
+    } else {
+      if (b.cutoff === undefined) ctx.addIssue({ code: 'custom', path: ['cutoff'], message: 'cutoff is required (or give a curves list)' });
+      if (b.q === undefined) ctx.addIssue({ code: 'custom', path: ['q'], message: 'q is required (or give a curves list)' });
+    }
+  })
+  .transform((b) => ({ type: b.type, curves: b.curves ?? [{ cutoff: b.cutoff!, q: b.q! }] }));
 export const SignalBody = z.strictObject({
   shape: z.enum(['sine', 'cosine', 'saw', 'isaw', 'tri', 'square', 'perlin', 'rand']),
   min: z.number(),

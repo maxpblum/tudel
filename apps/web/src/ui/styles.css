@@ -12,6 +12,7 @@
   --danger: #a33a3a;
   --ok: #2f6b3f;
   --code-bg: #f3f2ee;
+  --curve-0: #0072b2; --curve-1: #d55e00; --curve-2: #007a5a; --curve-3: #aa4499; --curve-4: #8a6a00; --curve-5: #44494f;
   --radius: 10px;
   --mono: ui-monospace, 'SF Mono', 'Cascadia Code', 'JetBrains Mono', Menlo, Consolas, monospace;
   color-scheme: light;
@@ -35,6 +36,7 @@
     --warn-bg: #3a3120;
     --warn-ink: #f0d79a;
     --code-bg: #1a1c20;
+    --curve-0: #56b4e9; --curve-1: #ff9a4d; --curve-2: #2ed3a0; --curve-3: #e79bd3; --curve-4: #f0e442; --curve-5: #c9ccd1;
     color-scheme: dark;
   }
 }
@@ -128,6 +130,16 @@ main { max-width: 820px; margin: 0 auto; padding: 1rem 1.25rem 4rem; }
 .plot-bg { fill: var(--code-bg); stroke: var(--line); }
 .plot-line { fill: none; stroke: var(--accent); stroke-width: 2; }
 .plot-guide { stroke: var(--muted); stroke-dasharray: 3 3; stroke-width: 1; }
+.plot-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; }
+.plot-legend { list-style: none; margin: 0.3rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.2rem 1rem; font-size: 0.85rem; }
+.plot-legend li { display: flex; align-items: center; gap: 0.35rem; }
+.plot-legend svg { flex: none; overflow: visible; }
+.plot-curve-0 { stroke: var(--curve-0); }
+.plot-curve-1 { stroke: var(--curve-1); }
+.plot-curve-2 { stroke: var(--curve-2); }
+.plot-curve-3 { stroke: var(--curve-3); }
+.plot-curve-4 { stroke: var(--curve-4); }
+.plot-curve-5 { stroke: var(--curve-5); }
 .plot-tick { font-size: 9px; fill: var(--muted); }
 figcaption { font-size: 0.82rem; color: var(--muted); }
 .diagram { margin: 0.8rem 0; color: var(--ink); overflow-x: auto; }

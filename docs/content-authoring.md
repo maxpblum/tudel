@@ -1,6 +1,6 @@
 # Content authoring
 
-How to write lessons, exercise variants and lexicon entries for the Strudel tutor, whether you are a human or an LLM. Read `PROPOSAL.md` §1, §2, §10–§13 first. Then read `docs/house-style.md` (how reference code must look) and `docs/time-conventions.md` (what "a bar" means).
+How to write lessons, exercise variants and lexicon entries for the Strudel tutor, whether you are a human or an LLM. Read `PROPOSAL.md` §1, §2, §10–§13 first. Then read `docs/house-style.md` (how reference code must look) and `docs/time-conventions.md` (what "a bar" means). For prose, follow `content/STYLE_TIPS.md` (who the reader is and what makes prose clear for them) and run its QA checklist on every lesson, prompt and listen-for list you write.
 
 **The one rule above all others is accuracy (R-ACCURACY).** Every function name must exist in the pinned `doc.json`. Every behavioural claim is cited to `doc.json` or to pinned source lines. Every snippet is run, and you look at its events before you commit it. When you are unsure, cut the claim or soften it. Never guess.
 
@@ -46,10 +46,21 @@ Directives are fenced blocks. Each starts on its own line with `:::name{attrs}` 
 | `abc` | ABC text | Staff notation. |
 | `diagram` | Graphviz DOT | Rendered to SVG at build time. |
 | `envelope` | YAML `{attack, decay, sustain, release, hold?}` | ADSR plot. `hold` is the note length in seconds. |
-| `filter` | YAML `{type: lowpass\|highpass\|bandpass, cutoff, q}` | Response plot. `q` uses the same units as `lpq`/`hpq`/`bpq`, so it goes straight to Web Audio's `Q`. For lowpass and highpass that is **dB** ([W3C](https://www.w3.org/TR/webaudio/#dom-biquadfilternode-q)), and for bandpass it is linear. U3a's only plot uses `q: 10`, meaning `lpq(10)`, a peak of about 10 dB. |
+| `filter{title="…"?}` | YAML `{type: lowpass\|highpass\|bandpass, cutoff, q}`, or `{type, curves: [{cutoff, q, label}]}` for a family (below) | Response plot. `q` uses the same units as `lpq`/`hpq`/`bpq`, so it goes straight to Web Audio's `Q`. For lowpass and highpass that is **dB** ([W3C](https://www.w3.org/TR/webaudio/#dom-biquadfilternode-q)), and for bandpass it is linear. For example, `q: 10` means `lpq(10)`, a peak of about 10 dB. |
 | `signal` | YAML `{shape, min, max, period, cycles, label?}` | `period` is the `.slow(n)` value in cycles. |
 | `bridge{title="…"}` | Markdown | Classical-to-Strudel callout. |
 | `compare{diff="…"}` | YAML `{a: {label, code}, b: {label, code}}` | The two snippets must differ in **exactly one** parameter, and `diff` names it. The one exception is a single conceptual control: the amplitude envelope may change as a whole (pluck versus pad) if `diff` spells out every value that changes. Both sides must still be idiomatic code. |
+
+**Filter families.** To compare several responses on one plot, give `type` once and a `curves` list of 1 to 6 `{cutoff, q, label}` entries (instead of top-level `cutoff`/`q`). Every curve needs a `label` when there is more than one; `title` is an optional attribute. The plot draws each curve with its own colour and dash pattern, a legend, and a dashed marker at each distinct cutoff.
+
+```
+:::filter{title="Same cutoff (800 Hz), different resonance"}
+type: lowpass
+curves:
+  - {cutoff: 800, q: 1, label: lpq 1 (default)}
+  - {cutoff: 800, q: 10, label: lpq 10}
+:::
+```
 
 **Inline citations** (gate L8b) go right after the claim: `{cite doc=lpf}` for a doc.json entry, or `{cite src="packages/superdough/helpers.mjs#L219-L227"}` for lines in the pinned clone, always as a `#Lx-Ly` range. Cite **behaviour**: units, defaults, ranges, what a function sets, the order of processing. You don't need to cite the meaning of a musical term. External acoustics facts get a Markdown link to a source you have actually read.
 

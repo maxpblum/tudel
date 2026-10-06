@@ -1,6 +1,6 @@
 # AGENTS.md: orientation for LLM contributors
 
-Read this first. Then read `PROPOSAL.md` §2 (binding requirements) and `ARCHITECTURE.md`. Everything here runs with standard open tools (Node, pnpm, git, Chromium). Nothing depends on any company's internal infrastructure.
+Read this first (`CLAUDE.md` and `GEMINI.md` import it). Then read `PROPOSAL.md` §2 (binding requirements) and `ARCHITECTURE.md`. Everything here runs with standard open tools (Node, pnpm, git, Chromium). Nothing depends on any company's internal infrastructure.
 
 ## Invariants (never break these)
 
@@ -24,6 +24,12 @@ Read this first. Then read `PROPOSAL.md` §2 (binding requirements) and `ARCHITE
 | Run everything | `bash ci/run-all.sh` (install, typecheck, verify, test, e2e) |
 | Record a decision | Add an ADR in `docs/decisions/` in the right number block |
 
+## Writing prose (lessons, prompts, listen-for lists, lexicon notes)
+
+1. **Follow `content/STYLE_TIPS.md`.** It defines who the reader is and what makes prose clear for them: demos that are easy to hear, terms defined before use, concrete simplifications, explicit inferences, units, plots of what's described, and analogies from the learner's own experience.
+2. **Run a style QA pass after writing or editing prose.** Go through the QA checklist at the end of `STYLE_TIPS.md`, sentence by sentence, reading as the learner. For larger batches, have a reviewer who did not write the prose do this, such as a fresh subagent. Report how well each tip was followed, with the failures you found and fixed. The gates check facts and code, not clarity, so this pass is not optional.
+3. Then run `pnpm verify` so the edited prose still parses and its claims and code are still correct.
+
 ## Style
 
 - **Strudel code:** `docs/house-style.md`. In Strudel, double quotes mean mini-notation, so single-quoted strings are banned in references.
@@ -32,4 +38,4 @@ Read this first. Then read `PROPOSAL.md` §2 (binding requirements) and `ARCHITE
 
 ## Before you call work done
 
-`bash ci/run-all.sh` is green. For content changes, an adversarial review is recorded in `docs/qa/reviews/`. For milestones, `docs/qa/release-checklist.md` passes.
+`bash ci/run-all.sh` is green. For content changes, the style QA pass is done and an adversarial review is recorded in `docs/qa/reviews/`. For milestones, `docs/qa/release-checklist.md` passes.

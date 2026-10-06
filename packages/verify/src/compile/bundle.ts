@@ -72,8 +72,13 @@ export async function segmentsToBlocks(ctx: Ctx, item: string, segments: Segment
         else out.push({ kind: 'diagram', svg: d.svg! });
         break;
       }
+      case 'filter': {
+        const p = parseBody('filter', s.body);
+        if (!p.ok) fail(p.error);
+        else out.push({ kind: 'filter', type: p.value.type, ...(typeof s.attrs.title === 'string' ? { title: s.attrs.title } : {}), curves: p.value.curves });
+        break;
+      }
       case 'envelope':
-      case 'filter':
       case 'signal': {
         const p = parseBody(s.name, s.body);
         if (!p.ok) fail(p.error);

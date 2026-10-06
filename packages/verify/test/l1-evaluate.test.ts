@@ -28,6 +28,7 @@ describe('L1 evaluate', () => {
     ['no events', 'silence', /produces no events/],
     ['bare string pattern (makes no sound)', '"c3 e3"', /not a control object/],
     ['no pattern at all', 'setcpm(30)', /evaluation failed|no events/],
+    ['register below C3 (inaudible on laptop speakers)', 'note("c3 b2").s("sawtooth")', /MIDI 47, below C3/],
   ];
   for (const [name, code, re] of cases) {
     test(`catches: ${name}`, async () => {
@@ -41,7 +42,7 @@ describe('L1 evaluate', () => {
 
   test('checks lesson snippets, compare sides, prompt snippets and starters too', async () => {
     const ws = workspace();
-    ws.edit(`${LESSONS}/filter.md`, (s) => s.replace('code: note("c2").s("sawtooth").lpf(2000)', 'code: note("c2").s("sawtooth").lpff(2000)'));
+    ws.edit(`${LESSONS}/filter.md`, (s) => s.replace('code: note("c3").s("sawtooth").lpf(2000)', 'code: note("c3").s("sawtooth").lpff(2000)'));
     ws.edit(`${VARIANTS}/fx.tone.v03.yaml`, (s) => s.replace('  note("c3").s("sine")\n  :::', '  note("c3").s("sine").nope()\n  :::'));
     ws.edit(`${VARIANTS}/fx.filter.v02.yaml`, (s) => s.replace('starter: |\n  note("c3 e3").s("sawtooth")', 'starter: |\n  note("c3 e3").s("sawtooth").nothere()'));
     const o = await ws.verify({ gates: ['L0', 'L1'] });

@@ -205,8 +205,8 @@ export const Block: z.ZodType<Block> = z.lazy(() =>
     z.object({
       kind: z.literal('filter'),
       type: z.enum(['lowpass', 'highpass', 'bandpass']),
-      cutoff: z.number(),
-      q: z.number(),
+      title: z.string().optional(),
+      curves: z.array(z.object({ cutoff: z.number(), q: z.number(), label: z.string().optional() })).min(1).max(6),
     }),
     z.object({
       kind: z.literal('signal'),
@@ -236,7 +236,7 @@ export type Block =
   | { kind: 'abc'; abc: string }
   | { kind: 'diagram'; svg: string }
   | { kind: 'envelope'; attack: number; decay: number; sustain: number; release: number; hold?: number }
-  | { kind: 'filter'; type: 'lowpass' | 'highpass' | 'bandpass'; cutoff: number; q: number }
+  | { kind: 'filter'; type: 'lowpass' | 'highpass' | 'bandpass'; title?: string; curves: { cutoff: number; q: number; label?: string }[] }
   | {
       kind: 'signal';
       shape: 'sine' | 'cosine' | 'saw' | 'isaw' | 'tri' | 'square' | 'perlin' | 'rand';

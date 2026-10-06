@@ -14,7 +14,7 @@ export const DIRECTIVES = {
   abc: {},
   diagram: {},
   envelope: {},
-  filter: {},
+  filter: { title: 'string' },
   signal: {},
   bridge: { title: 'string' },
   compare: { diff: 'string' },

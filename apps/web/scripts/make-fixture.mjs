@@ -75,7 +75,11 @@ const lessons = [
     id: 'fx.lowpass.lesson', title: 'The low-pass filter', skill: 'fx.lowpass',
     blocks: [
       html('<p>A low-pass filter removes frequencies above its <code>lpf</code> cutoff.</p>'),
-      { kind: 'filter', type: 'lowpass', cutoff: 800, q: 1 },
+      { kind: 'filter', type: 'lowpass', curves: [{ cutoff: 800, q: 1 }] },
+      {
+        kind: 'filter', type: 'lowpass', title: 'Same cutoff (800 Hz), different resonance',
+        curves: [{ cutoff: 800, q: 1, label: 'lpq 1 (default)' }, { cutoff: 800, q: 10, label: 'lpq 10' }, { cutoff: 800, q: 18, label: 'lpq 18' }],
+      },
       { kind: 'signal', shape: 'sine', min: 200, max: 2000, period: 4, cycles: 8, label: 'lpf sweep' },
       {
         kind: 'compare', diff: 'lpf 400 → 2000',

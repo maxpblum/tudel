@@ -4,13 +4,13 @@ type: match-by-ear
 difficulty: 3
 title: Match the ringing bass
 prompt: |
-  Listen to the target: eighth notes on **a1**, one bar, sawtooth through a
+  Listen to the target: eighth notes on **a3**, one bar, sawtooth through a
   low-pass. Match the cutoff and the resonance by ear. Start from
   `.lpf(1000).lpq(1)` in your own tool and move one parameter at a time.
 hide_reference_code_until_reveal: true
 solutions:
   - code: |
-      note("a1*8").s("sawtooth").lpf(500).lpq(20)
+      note("a3*8").s("sawtooth").lpf(500).lpq(20)
 listen_for:
   - A strong ringing pitch near the cutoff, above the bass note (high resonance)
   - Overall dark tone, with little energy above the ringing peak (low cutoff)

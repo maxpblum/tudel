@@ -4,6 +4,16 @@ import { Bundle } from '@tutor/content-schema';
 import { failures, gate, LESSONS, VARIANTS, workspace } from './helpers.js';
 
 describe('compiler', () => {
+  test('filter directive: multi-curve family with title compiles to curves', async () => {
+    const ws = workspace();
+    ws.edit(`${LESSONS}/filter.md`, (s) =>
+      s.replace(':::filter\ntype: lowpass\ncutoff: 800\nq: 10\n', ':::filter{title="Same cutoff, different resonance"}\ntype: lowpass\ncurves:\n  - {cutoff: 800, q: 1, label: lpq 1 (default)}\n  - {cutoff: 800, q: 10, label: lpq 10}\n'),
+    );
+    const o = await ws.verify();
+    const f = o.bundle!.lessons.find((l) => l.id === 'fx.filter.lesson')!.blocks[2];
+    expect(f).toEqual({ kind: 'filter', type: 'lowpass', title: 'Same cutoff, different resonance', curves: [{ cutoff: 800, q: 1, label: 'lpq 1 (default)' }, { cutoff: 800, q: 10, label: 'lpq 10' }] });
+  });
+
   test('writes a schema-valid, deterministic bundle', async () => {
     const ws = workspace();
     const o = await ws.verify();
@@ -37,10 +47,10 @@ describe('compiler', () => {
     expect(play2.showCode).toBe(false);
     expect(play1.snippet.html).toMatch(/^<pre class="shiki shiki-themes github-light github-dark"/);
     expect(play1.snippet.html).toContain('--shiki-dark:');
-    expect(filter.blocks[2]).toEqual({ kind: 'filter', type: 'lowpass', cutoff: 800, q: 10 });
+    expect(filter.blocks[2]).toEqual({ kind: 'filter', type: 'lowpass', curves: [{ cutoff: 800, q: 10 }] });
     expect(filter.blocks[3]).toEqual({ kind: 'envelope', attack: 0.01, decay: 0.2, sustain: 0.5, release: 0.3, hold: 0.5 });
     expect(filter.blocks[4]).toEqual({ kind: 'signal', shape: 'sine', min: 200, max: 2000, period: 4, cycles: 4, label: 'lpf' });
-    expect(filter.blocks[1]).toMatchObject({ kind: 'compare', diff: 'lpf 400 → 2000', a: { label: 'Cutoff 400 Hz' }, b: { label: 'Cutoff 2000 Hz', snippet: { code: 'note("c2").s("sawtooth").lpf(2000)' } } });
+    expect(filter.blocks[1]).toMatchObject({ kind: 'compare', diff: 'lpf 400 → 2000', a: { label: 'Cutoff 400 Hz' }, b: { label: 'Cutoff 2000 Hz', snippet: { code: 'note("c3").s("sawtooth").lpf(2000)' } } });
     expect((filter.blocks[5] as any).html).toContain('<table>');
     const diagram = tone.blocks.find((x) => x.kind === 'diagram') as any;
     expect(diagram.svg).toMatch(/^<svg/);

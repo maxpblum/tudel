@@ -7,6 +7,6 @@ prompt: |
   Step the cutoff of a sawtooth through 400, 800, 1600 and 3200, one per bar.
 solutions:
   - code: |
-      note("c2*4").s("sawtooth").lpf("<400 800 1600 3200>")
+      note("c3*4").s("sawtooth").lpf("<400 800 1600 3200>")
 verify:
   cycles: 4

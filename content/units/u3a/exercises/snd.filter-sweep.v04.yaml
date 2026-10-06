@@ -4,7 +4,7 @@ type: match-by-ear
 difficulty: 4
 title: Name that sweep
 prompt: |
-  Listen to the target: an eighth-note sawtooth bass on **c2** with a moving,
+  Listen to the target: an eighth-note sawtooth bass on **c3** with a moving,
   resonant low-pass. Work out three things, then write it:
 
   1. Is the motion a smooth rise-and-fall or a ramp that resets?
@@ -15,7 +15,7 @@ prompt: |
 hide_reference_code_until_reveal: true
 solutions:
   - code: |
-      note("c2*8").s("sawtooth").lpf(saw.range(300, 2500).slow(2)).lpq(10)
+      note("c3*8").s("sawtooth").lpf(saw.range(300, 2500).slow(2)).lpq(10)
 listen_for:
   - A ramp that only opens, then resets (saw, not sine)
   - One ramp every two bars

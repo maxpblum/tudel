@@ -60,7 +60,7 @@ describe('L4 notation agreement', () => {
     const ws = workspace();
     ws.edit(V, (s) =>
       s
-        .replace('note("c4 d4 e4 g4").s("triangle")', '$: note("c4 d4 e4 g4").s("triangle")\n      $: note("c2").s("sawtooth")')
+        .replace('note("c4 d4 e4 g4").s("triangle")', '$: note("c4 d4 e4 g4").s("triangle")\n      $: note("c3").s("sawtooth")')
         .replace('abc_agreement: { voice: 0, compare: [pitch, onset, duration] }', 'abc_agreement: { voice: 0, compare: [pitch, onset, duration], only_sounds: [triangle] }'),
     );
     expect(gate(await ws.verify({ gates: ['L0', 'L4'] }), 'L4').ok).toBe(true);

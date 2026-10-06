@@ -192,8 +192,34 @@
         {
           "kind": "filter",
           "type": "lowpass",
-          "cutoff": 800,
-          "q": 1
+          "curves": [
+            {
+              "cutoff": 800,
+              "q": 1
+            }
+          ]
+        },
+        {
+          "kind": "filter",
+          "type": "lowpass",
+          "title": "Same cutoff (800 Hz), different resonance",
+          "curves": [
+            {
+              "cutoff": 800,
+              "q": 1,
+              "label": "lpq 1 (default)"
+            },
+            {
+              "cutoff": 800,
+              "q": 10,
+              "label": "lpq 10"
+            },
+            {
+              "cutoff": 800,
+              "q": 18,
+              "label": "lpq 18"
+            }
+          ]
         },
         {
           "kind": "signal",

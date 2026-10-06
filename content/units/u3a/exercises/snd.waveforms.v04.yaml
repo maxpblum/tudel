@@ -4,16 +4,16 @@ type: describe-to-code
 difficulty: 2
 title: A bright, buzzy bass
 prompt: |
-  The bass line **c2 c2 eb2 f2** in quarter notes should sound **bright** and
+  The bass line **c3 c3 eb3 f3** in quarter notes should sound **bright** and
   **buzzy**, like a brass section playing low. Choose the waveform with the
   richest harmonic content. No filter yet.
 hide_reference_code_until_reveal: true
 solutions:
   - code: |
-      note("c2 c2 eb2 f2").s("sawtooth")
+      note("c3 c3 eb3 f3").s("sawtooth")
 listen_for:
   - A rich, buzzy tone with every harmonic present
-  - Clearly audible pitch even this low, because the upper harmonics carry it
+  - Clearly audible pitch in a low register, because the upper harmonics carry it
 verify:
   cycles: 1
 sources:

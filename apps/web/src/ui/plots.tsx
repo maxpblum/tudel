@@ -49,24 +49,64 @@ export function EnvelopePlot({ attack, decay, sustain, release, hold }: { attack
   );
 }
 
-export function FilterPlot({ type, cutoff, q }: { type: 'lowpass' | 'highpass' | 'bandpass'; cutoff: number; q: number }) {
-  const fmin = 20, fmax = 20000, dbMin = -36, dbMax = Math.max(18, type === 'bandpass' ? 0 : q + 6);
-  const pts: Pt[] = [];
-  for (let i = 0; i <= 200; i++) {
-    const f = fmin * (fmax / fmin) ** (i / 200);
-    pts.push([f, Math.max(dbMin, Math.min(dbMax, filterDb(type, cutoff, q, f)))]);
-  }
+type FilterType = 'lowpass' | 'highpass' | 'bandpass';
+export interface FilterCurve { cutoff: number; q: number; label?: string }
+
+/** Dash patterns paired with the colours in styles.css (`--curve-N`), so curves differ without colour too. */
+export const CURVE_DASHES = ['', '7 3', '2 2.5', '8 3 2 3', '4 2', '1 3'];
+
+const curveDesc = (type: FilterType, c: FilterCurve) => `${c.label ? `${c.label}: ` : ''}${c.cutoff} Hz, ${type === 'bandpass' ? 'Q' : 'resonance'} ${c.q}`;
+
+export function FilterPlot({ type, title, curves }: { type: FilterType; title?: string; curves: FilterCurve[] }) {
+  const multi = curves.length > 1;
+  const fmin = 20, fmax = 20000, dbMin = -36, dbMax = Math.max(18, type === 'bandpass' ? 0 : Math.max(...curves.map((c) => c.q)) + 6);
   const sx = (f: number) => PAD.l + (Math.log(f / fmin) / Math.log(fmax / fmin)) * (W - PAD.l - PAD.r);
   const sy = (db: number) => PAD.t + ((dbMax - db) / (dbMax - dbMin)) * (H - PAD.t - PAD.b);
+  const paths = curves.map((c) => {
+    const pts: Pt[] = [];
+    for (let i = 0; i <= 200; i++) {
+      const f = fmin * (fmax / fmin) ** (i / 200);
+      pts.push([f, Math.max(dbMin, Math.min(dbMax, filterDb(type, c.cutoff, c.q, f)))]);
+    }
+    return path(pts, sx, sy);
+  });
+  const cutoffs = [...new Set(curves.map((c) => c.cutoff))];
+  const label = `${title ? `${title}. ` : ''}${type} filter, ${multi ? `${curves.length} curves: ` : ''}${curves.map((c) => curveDesc(type, c)).join('; ')}`;
   return (
     <figure className="plot-figure" data-testid="plot-filter">
-      <Frame label={`${type} filter at ${cutoff} Hz, Q ${q}`} xTicks={[100, 1000, 10000].map((f) => [sx(f), `${fmt(f)}Hz`] as [number, string])} yTicks={[[sy(0), '0 dB'], [sy(-24), '-24']]}>
-        <line x1={sx(cutoff)} x2={sx(cutoff)} y1={PAD.t} y2={H - PAD.b} className="plot-guide" />
+      {title && <div className="plot-title">{title}</div>}
+      <Frame label={label} xTicks={[100, 1000, 10000].map((f) => [sx(f), `${fmt(f)}Hz`] as [number, string])} yTicks={[[sy(0), '0 dB'], [sy(-24), '-24']]}>
+        {cutoffs.map((f) => (
+          <line key={f} x1={sx(f)} x2={sx(f)} y1={PAD.t} y2={H - PAD.b} className="plot-guide" data-testid="plot-cutoff" />
+        ))}
         <line x1={PAD.l} x2={W - PAD.r} y1={sy(0)} y2={sy(0)} className="plot-guide" />
-        <path d={path(pts, sx, sy)} className="plot-line" />
+        {paths.map((d, i) => (
+          <path key={i} d={d} className={multi ? `plot-line plot-curve-${i}` : 'plot-line'} strokeDasharray={multi ? CURVE_DASHES[i] || undefined : undefined} data-testid="plot-curve" />
+        ))}
       </Frame>
+      {multi && (
+        <ul className="plot-legend" data-testid="plot-legend">
+          {curves.map((c, i) => (
+            <li key={i}>
+              <svg width="26" height="8" aria-hidden="true">
+                <line x1="1" x2="25" y1="4" y2="4" className={`plot-line plot-curve-${i}`} strokeDasharray={CURVE_DASHES[i] || undefined} />
+              </svg>
+              <span>{c.label}</span>
+            </li>
+          ))}
+        </ul>
+      )}
       <figcaption>
-        {type} · cutoff {cutoff} Hz · {type === 'bandpass' ? `Q ${q}` : `resonance ${q} (peak ≈ ${q} dB at the cutoff, as in Web Audio)`}
+        {multi ? (
+          <>
+            {type} · {cutoffs.length === 1 ? `cutoff ${cutoffs[0]} Hz` : `cutoffs ${cutoffs.join(', ')} Hz`}
+            {type === 'bandpass' ? ' · Q is linear' : ' · resonance is the peak height in dB at the cutoff, as in Web Audio'}
+          </>
+        ) : (
+          <>
+            {type} · cutoff {curves[0]!.cutoff} Hz · {type === 'bandpass' ? `Q ${curves[0]!.q}` : `resonance ${curves[0]!.q} (peak ≈ ${curves[0]!.q} dB at the cutoff, as in Web Audio)`}
+          </>
+        )}
       </figcaption>
     </figure>
   );
