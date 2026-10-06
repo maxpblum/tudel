@@ -1,6 +1,6 @@
 # Architecture
 
-Strudel Tutor has three planes that never mix:
+tudel has three planes that never mix:
 
 ```
   content/ (Markdown + YAML)          packages/verify (Node only)                       apps/web (browser only)

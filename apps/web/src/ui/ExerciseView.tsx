@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import type { BundleVariant } from '@tutor/content-schema';
+import type { BundleVariant } from '@tudel/content-schema';
 import { content } from '../content';
 import { engine } from '../engine';
 import { AbcNotation } from '../notation/Abc';

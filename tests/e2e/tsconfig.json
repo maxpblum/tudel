@@ -13,7 +13,7 @@
       "@playwright/test": [
         "./pw/index"
       ],
-      "@tutor/content-schema": [
+      "@tudel/content-schema": [
         "../../packages/content-schema/src/index.ts"
       ]
     },

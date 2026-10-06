@@ -13,4 +13,4 @@ Run with `pnpm e2e` from the repo root. The config lives in `apps/web/playwright
 | `data.spec.ts` | Export → import round trip into a fresh profile |
 | `l6-audio.spec.ts` | **Gate L6**: every reference and lesson snippet plays through the real engine with no errors and RMS above the threshold |
 
-Environment variables: `L6_OFFLINE=1` (skip network-needing snippets and block the network), `L6_RMS_THRESHOLD`, `TUTOR_FIXTURE=1` (run against the fixture bundle). `pw/` is a small re-export shim so the specs resolve `@playwright/test` (ADR 0104).
+Environment variables: `L6_OFFLINE=1` (skip network-needing snippets and block the network), `L6_RMS_THRESHOLD`, `TUDEL_FIXTURE=1` (run against the fixture bundle). `pw/` is a small re-export shim so the specs resolve `@playwright/test` (ADR 0104).

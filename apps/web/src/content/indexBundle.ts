@@ -1,4 +1,4 @@
-import type { Bundle, BundleLesson, BundleSkill, BundleVariant, Unit } from '@tutor/content-schema';
+import type { Bundle, BundleLesson, BundleSkill, BundleVariant, Unit } from '@tudel/content-schema';
 
 export interface ContentIndex {
   bundle: Bundle;

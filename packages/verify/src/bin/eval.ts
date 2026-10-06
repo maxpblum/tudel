@@ -1,7 +1,7 @@
 /**
  * Dev tool: evaluate Strudel code and print its haps.
- *   pnpm --filter @tutor/verify exec node scripts/run.mjs eval 'note("c3 e3").s("sawtooth")' [cycles]
- *   echo 'note("c3")' | pnpm --filter @tutor/verify exec node scripts/run.mjs eval - [cycles]
+ *   pnpm --filter @tudel/verify exec node scripts/run.mjs eval 'note("c3 e3").s("sawtooth")' [cycles]
+ *   echo 'note("c3")' | pnpm --filter @tudel/verify exec node scripts/run.mjs eval - [cycles]
  */
 import { readFileSync } from 'node:fs';
 import { queryCode } from '../harness/evaluate.js';

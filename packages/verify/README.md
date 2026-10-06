@@ -1,6 +1,6 @@
-# @tutor/verify
+# @tudel/verify
 
-The verification package: the Node-only gate that all content must pass to enter the app (PROPOSAL §7, §13). It loads `content/`, runs gates L0-L5, L7 and L8, and, only if all pass, compiles the bundle the app reads (`apps/web/src/content/bundle.json`, schema `Bundle` in `@tutor/content-schema`).
+The verification package: the Node-only gate that all content must pass to enter the app (PROPOSAL §7, §13). It loads `content/`, runs gates L0-L5, L7 and L8, and, only if all pass, compiles the bundle the app reads (`apps/web/src/content/bundle.json`, schema `Bundle` in `@tudel/content-schema`).
 
 What each gate checks and how to work with them: [docs/verification.md](../../docs/verification.md).
 
@@ -10,10 +10,10 @@ What each gate checks and how to work with them: [docs/verification.md](../../do
 pnpm verify                      # from the repo root: all gates, bundle on success
 pnpm verify --update             # also rewrite L3 snapshots (__snapshots__/), then review the diff
 pnpm verify --explain <id>       # per-gate report for one variant or lesson
-pnpm --filter @tutor/verify test # unit tests (Vitest)
-pnpm --filter @tutor/verify typecheck
+pnpm --filter @tudel/verify test # unit tests (Vitest)
+pnpm --filter @tudel/verify typecheck
 node scripts/run.mjs eval 'note("c3 e3").s("sawtooth")' 2   # dev tool: print the haps of a snippet
-pnpm --filter @tutor/verify sounds   # regenerate tools/strudel-ref/sounds.json (network)
+pnpm --filter @tudel/verify sounds   # regenerate tools/strudel-ref/sounds.json (network)
 ```
 
 ## Why everything runs through esbuild

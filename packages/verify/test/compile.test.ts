@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 import { readFileSync } from 'node:fs';
-import { Bundle } from '@tutor/content-schema';
+import { Bundle } from '@tudel/content-schema';
 import { failures, gate, LESSONS, VARIANTS, workspace } from './helpers.js';
 
 describe('compiler', () => {

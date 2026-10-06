@@ -1,5 +1,5 @@
 {
-  "name": "@tutor/verify",
+  "name": "@tudel/verify",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -15,7 +15,7 @@
     "@strudel/tonal": "1.2.6",
     "@strudel/transpiler": "1.2.6",
     "@strudel/webaudio": "1.3.0",
-    "@tutor/content-schema": "workspace:*",
+    "@tudel/content-schema": "workspace:*",
     "@viz-js/viz": "3.31.0",
     "abcjs": "6.7.1",
     "acorn": "8.19.0",

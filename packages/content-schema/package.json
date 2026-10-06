@@ -1,5 +1,5 @@
 {
-  "name": "@tutor/content-schema",
+  "name": "@tudel/content-schema",
   "version": "0.1.0",
   "private": true,
   "type": "module",

@@ -2,7 +2,7 @@
 
 ## License of this project
 
-Strudel Tutor bundles `@strudel/*` packages, which are licensed AGPL-3.0-or-later, so the app as a whole is distributed under the **GNU Affero General Public License v3.0 or later** (see `LICENSE`). For personal, local use, nothing more is required. If the app is ever served to other people over a network, its complete source must be offered to them.
+tudel bundles `@strudel/*` packages, which are licensed AGPL-3.0-or-later, so the app as a whole is distributed under the **GNU Affero General Public License v3.0 or later** (see `LICENSE`). For personal, local use, nothing more is required. The app is served publicly at https://maxpblum.github.io/tudel/, so its complete source is offered via the "Source" link in the app header (https://github.com/maxpblum/tudel).
 
 ## Software
 

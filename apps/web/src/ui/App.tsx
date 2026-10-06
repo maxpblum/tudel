@@ -42,12 +42,14 @@ export function App() {
       )}
       <header className="topbar">
         <a href="#/" className="brand">
-          Strudel Tutor
+          <img src="./avatar.jpeg" alt="" className="brand-avatar" />
+          tudel
         </a>
         <nav>
           {nav('#/', 'Today', undefined)}
           {nav('#/library', 'Library', 'library')}
           {nav('#/data', 'Data', 'data')}
+          <a href="https://github.com/maxpblum/tudel">Source</a>
         </nav>
       </header>
       <main>{page}</main>

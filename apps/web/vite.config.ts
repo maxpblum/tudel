@@ -14,7 +14,7 @@ const require = createRequire(import.meta.url);
 const realBundle = path.join(here, 'src/content/bundle.json');
 const fixtureBundle = path.join(here, 'src/content/fixture.bundle.json');
 const isTest = !!process.env.VITEST;
-const forceFixture = process.env.TUTOR_FIXTURE === '1';
+const forceFixture = process.env.TUDEL_FIXTURE === '1';
 const useFixture = isTest || forceFixture || !existsSync(realBundle);
 const bundlePath = useFixture ? fixtureBundle : realBundle;
 

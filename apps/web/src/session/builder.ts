@@ -14,7 +14,7 @@
  * Fill steps are added only while they fit in the budget, so fill never pushes the estimate past
  * `minutes`. If the content runs out first, the estimate is simply shorter (shown honestly).
  */
-import type { BundleVariant } from '@tutor/content-schema';
+import type { BundleVariant } from '@tudel/content-schema';
 import type { ContentIndex } from '../content/indexBundle';
 import { isDue, isIntroduced, lastRatingsAllAgain, statusOf, type SrsState } from '../srs';
 import type { Step } from '../store/events';

@@ -1,6 +1,6 @@
 # Verifier tests
 
-`pnpm --filter @tutor/verify test` (Vitest). Strudel and tonal load through esbuild bundles that `vitest.config.ts` builds first (see ADR 0002). Nothing is mocked.
+`pnpm --filter @tudel/verify test` (Vitest). Strudel and tonal load through esbuild bundles that `vitest.config.ts` builds first (see ADR 0002). Nothing is mocked.
 
 - `fixtures/good/`: a small content tree (2 skills, 2 lessons, 6 variants) that passes every gate and uses every directive. `fixtures/good-snapshots/` holds its L3 snapshots. Regenerate them with `node scripts/run.mjs verify --content test/fixtures/good --snapshots test/fixtures/good-snapshots --src-root test/fixtures/fake-strudel --no-bundle --update`.
 - `fixtures/fake-strudel/`: a stand-in for the pinned clone, so L8b tests don't need it.

@@ -1,6 +1,6 @@
 # Content authoring
 
-How to write lessons, exercise variants and lexicon entries for the Strudel tutor, whether you are a human or an LLM. Read `PROPOSAL.md` §1, §2, §10–§13 first. Then read `docs/house-style.md` (how reference code must look) and `docs/time-conventions.md` (what "a bar" means). For prose, follow `content/STYLE_TIPS.md` (who the reader is and what makes prose clear for them) and run its QA checklist on every lesson, prompt and listen-for list you write.
+How to write lessons, exercise variants and lexicon entries for the tudel, whether you are a human or an LLM. Read `PROPOSAL.md` §1, §2, §10–§13 first. Then read `docs/house-style.md` (how reference code must look) and `docs/time-conventions.md` (what "a bar" means). For prose, follow `content/STYLE_TIPS.md` (who the reader is and what makes prose clear for them) and run its QA checklist on every lesson, prompt and listen-for list you write.
 
 **The one rule above all others is accuracy (R-ACCURACY).** Every function name must exist in the pinned `doc.json`. Every behavioural claim is cited to `doc.json` or to pinned source lines. Every snippet is run, and you look at its events before you commit it. When you are unsure, cut the claim or soften it. Never guess.
 

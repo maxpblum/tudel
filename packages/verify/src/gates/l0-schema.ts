@@ -1,5 +1,5 @@
 /**
- * Gate L0: schema validation (zod, from @tutor/content-schema) and skill-graph integrity.
+ * Gate L0: schema validation (zod, from @tudel/content-schema) and skill-graph integrity.
  *
  * Checks: every file parses and matches its schema; ids are unique; units, prereqs, lessons,
  * and variant skills all resolve; the prerequisite graph has no cycles; variant file names
@@ -9,7 +9,7 @@
  */
 import path from 'node:path';
 import { z } from 'zod';
-import { LessonFrontmatter, LexiconFile, SkillsFile, Variant, type Skill } from '@tutor/content-schema';
+import { LessonFrontmatter, LexiconFile, SkillsFile, Variant, type Skill } from '@tudel/content-schema';
 import type { RawContent } from '../content/load.js';
 import { parseDirectives, type Segment } from '../content/directives.js';
 import { BODY_SCHEMAS, formatZodError, parseBody } from '../content/directive-bodies.js';

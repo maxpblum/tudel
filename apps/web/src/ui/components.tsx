@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import type { CodeSnippet, RollHap } from '@tutor/content-schema';
+import type { CodeSnippet, RollHap } from '@tudel/content-schema';
 import { engine } from '../engine';
 import { useEngineStatus, useSamplesUnavailable } from './useEngine';
 

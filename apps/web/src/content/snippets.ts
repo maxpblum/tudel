@@ -2,7 +2,7 @@
  * Pure helpers over a Bundle (no import of the bundle itself), shared by the app, unit tests and the
  * Playwright L6 test (which imports this file from Node).
  */
-import type { Block, Bundle, CodeSnippet } from '@tutor/content-schema';
+import type { Block, Bundle, CodeSnippet } from '@tudel/content-schema';
 
 export interface PlayableSnippet {
   /** Stable id, e.g. `variant:fx.lowpass.v01:solution` or `lesson:fx.lowpass.lesson:3:b`. */

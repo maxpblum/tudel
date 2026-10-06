@@ -9,7 +9,7 @@
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
-import { Bundle, type Block, type BundleVariant, type CodeSnippet, type RollHap } from '@tutor/content-schema';
+import { Bundle, type Block, type BundleVariant, type CodeSnippet, type RollHap } from '@tudel/content-schema';
 import type { Segment } from '../content/directives.js';
 import { parseBody } from '../content/directive-bodies.js';
 import { LESSON_CYCLES, type ValidContent } from '../content/model.js';

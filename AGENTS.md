@@ -22,6 +22,7 @@ Read this first (`CLAUDE.md` and `GEMINI.md` import it). Then read `PROPOSAL.md`
 | Check a Strudel name or its signature | Query `tools/strudel-ref/doc.json`. Read source at `tools/strudel-ref/.cache/strudel` (set up with `bash tools/strudel-ref/generate-doc-json.sh --setup-only`) |
 | Change app behavior | Edit `apps/web/src/*` (each folder has a README). Keep ≥90% line coverage on `srs/`, `store/`, `session/` |
 | Run everything | `bash ci/run-all.sh` (install, typecheck, verify, test, e2e) |
+| Update the live site (gh-pages) | `pnpm pages` (builds from a clean tree, force-pushes `gh-pages`) |
 | Record a decision | Add an ADR in `docs/decisions/` in the right number block |
 
 ## Writing prose (lessons, prompts, listen-for lists, lexicon notes)
@@ -38,4 +39,4 @@ Read this first (`CLAUDE.md` and `GEMINI.md` import it). Then read `PROPOSAL.md`
 
 ## Before you call work done
 
-`bash ci/run-all.sh` is green. For content changes, the style QA pass is done and an adversarial review is recorded in `docs/qa/reviews/`. For milestones, `docs/qa/release-checklist.md` passes.
+`bash ci/run-all.sh` is green. If the change affects commands, status, milestones, the deploy flow, or the live URL, update `README.md` in the same change. For content changes, the style QA pass is done and an adversarial review is recorded in `docs/qa/reviews/`. For milestones, `docs/qa/release-checklist.md` passes.

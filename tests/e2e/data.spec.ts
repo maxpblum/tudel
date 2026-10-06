@@ -12,11 +12,11 @@ test('export → import round trip into a fresh profile restores identical state
   const count = await a.getByTestId('event-count').textContent();
   expect(Number(count)).toBeGreaterThan(3);
   const [download] = await Promise.all([a.waitForEvent('download'), a.getByTestId('export').click()]);
-  expect(download.suggestedFilename()).toMatch(/^strudel-tutor-progress-\d{4}-\d{2}-\d{2}\.json$/);
+  expect(download.suggestedFilename()).toMatch(/^tudel-progress-\d{4}-\d{2}-\d{2}\.json$/);
   const file = await download.path();
   const text = readFileSync(file, 'utf8');
   const doc = JSON.parse(text);
-  expect(doc.format).toBe('strudel-tutor-log');
+  expect(doc.format).toBe('tudel-log');
   expect(doc.version).toBe(1);
   expect(doc.events).toHaveLength(Number(count));
   await a.goto('./#/');

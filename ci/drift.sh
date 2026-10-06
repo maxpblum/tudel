@@ -46,7 +46,7 @@ node -e '
 ' "$TMP/packages/verify/package.json" $(for p in $PKGS; do printf '%s=%s ' "$p" "${LATEST[$p]}"; done)
 
 say "installing the latest release in the copy"
-(cd "$TMP" && "$PNPM" install --no-frozen-lockfile --filter @tutor/verify... --silent) || { echo "drift: install failed"; exit 1; }
+(cd "$TMP" && "$PNPM" install --no-frozen-lockfile --filter @tudel/verify... --silent) || { echo "drift: install failed"; exit 1; }
 
 SRC_ROOT="$ROOT/tools/strudel-ref/.cache/strudel"
 if [ "$WITH_DOCS" = 1 ]; then

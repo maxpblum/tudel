@@ -69,7 +69,7 @@ describe('export/import', () => {
     expect(doc.version).toBe(LOG_VERSION);
     const r = parseExport(text);
     expect(r).toEqual({ ok: true, events, fromVersion: 1 });
-    expect(exportFileName(new Date(T0))).toBe('strudel-tutor-progress-2026-10-05.json');
+    expect(exportFileName(new Date(T0))).toBe('tudel-progress-2026-10-05.json');
   });
   it('imports and migrates a v0 file', () => {
     const text = JSON.stringify({
@@ -87,10 +87,14 @@ describe('export/import', () => {
       expect(r.events[1]).toMatchObject({ rating: 4, v: 1 });
     }
   });
+  it('accepts the pre-rename format name', () => {
+    const r = parseExport(JSON.stringify({ format: 'strudel-tutor-log', version: 1, events: [] }));
+    expect(r.ok).toBe(true);
+  });
   it.each([
     ['not json', '{', /Not a JSON/],
     ['null', 'null', /Not a progress file/],
-    ['wrong format', JSON.stringify({ format: 'x', version: 1, events: [] }), /Not a Strudel Tutor/],
+    ['wrong format', JSON.stringify({ format: 'x', version: 1, events: [] }), /Not a tudel/],
     ['newer', JSON.stringify({ format: FILE_FORMAT, version: 9, events: [] }), /newer app version/],
     ['no list', JSON.stringify({ format: FILE_FORMAT, version: 1, events: 3 }), /no event list/],
     ['non-object event', JSON.stringify({ format: FILE_FORMAT, version: 1, events: [3] }), /not an object/],

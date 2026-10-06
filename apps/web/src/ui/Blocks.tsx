@@ -1,4 +1,4 @@
-import type { Block } from '@tutor/content-schema';
+import type { Block } from '@tudel/content-schema';
 import { AbcNotation } from '../notation/Abc';
 import { CodeBlock, PlayControls } from './components';
 import { EnvelopePlot, FilterPlot, SignalPlot } from './plots';

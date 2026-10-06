@@ -1,4 +1,4 @@
-# @tutor/content-schema
+# @tudel/content-schema
 
 zod schemas and TypeScript types shared by the verifier (Node) and the app (browser). This is the contract between the planes.
 

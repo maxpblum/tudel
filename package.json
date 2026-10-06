@@ -1,5 +1,5 @@
 {
-  "name": "strudel-tutor",
+  "name": "tudel",
   "private": true,
   "type": "module",
   "license": "AGPL-3.0-or-later",
@@ -8,14 +8,15 @@
     "node": ">=22"
   },
   "scripts": {
-    "verify": "pnpm --filter @tutor/verify run verify",
+    "verify": "pnpm --filter @tudel/verify run verify",
     "test": "pnpm -r --if-present run test",
-    "e2e": "pnpm --filter @tutor/web run e2e",
-    "dev": "pnpm verify && pnpm --filter @tutor/web run dev",
-    "build": "pnpm verify && pnpm --filter @tutor/web run build",
+    "e2e": "pnpm --filter @tudel/web run e2e",
+    "dev": "pnpm verify && pnpm --filter @tudel/web run dev",
+    "build": "pnpm verify && pnpm --filter @tudel/web run build",
     "typecheck": "pnpm -r --if-present run typecheck",
     "strudel-ref": "bash tools/strudel-ref/generate-doc-json.sh",
-    "start": "pnpm build && pnpm --filter @tutor/web run preview"
+    "start": "pnpm build && pnpm --filter @tudel/web run preview",
+    "pages": "bash tools/deploy-pages.sh"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

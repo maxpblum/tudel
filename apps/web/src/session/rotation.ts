@@ -2,7 +2,7 @@
  * Variant rotation (R-SKILLS, PROPOSAL §14): when a skill comes up, show a variant the learner hasn't
  * seen, else the one seen longest ago.
  */
-import type { BundleVariant } from '@tutor/content-schema';
+import type { BundleVariant } from '@tudel/content-schema';
 import type { LogEvent } from '../store/events';
 
 /** variantId → timestamp of the most recent `variant_shown`. */

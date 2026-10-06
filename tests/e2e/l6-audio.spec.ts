@@ -25,7 +25,7 @@ declare global {
 const here = path.dirname(fileURLToPath(import.meta.url));
 const contentDir = path.join(here, '../../apps/web/src/content');
 const real = path.join(contentDir, 'bundle.json');
-const bundleFile = process.env.TUTOR_FIXTURE !== '1' && existsSync(real) ? real : path.join(contentDir, 'fixture.bundle.json');
+const bundleFile = process.env.TUDEL_FIXTURE !== '1' && existsSync(real) ? real : path.join(contentDir, 'fixture.bundle.json');
 const bundle = JSON.parse(readFileSync(bundleFile, 'utf8'));
 const snippets = smokeSnippets(bundle);
 const offline = process.env.L6_OFFLINE === '1';

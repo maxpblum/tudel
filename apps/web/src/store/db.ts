@@ -2,6 +2,7 @@
  * Minimal IndexedDB wrapper for the event log. One object store `events` with auto-increment keys, so
  * key order is append order. Every write resolves only after its transaction commits.
  */
+// Pre-rename name, kept on purpose: renaming would orphan existing local progress.
 export const DB_NAME = 'strudel-tutor';
 const DB_VERSION = 1;
 const STORE = 'events';

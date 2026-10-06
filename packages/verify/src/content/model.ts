@@ -1,5 +1,5 @@
 /** Validated content (the output of gate L0) that the other gates and the compiler consume. */
-import type { LexiconEntry, Skill, Unit, Variant } from '@tutor/content-schema';
+import type { LexiconEntry, Skill, Unit, Variant } from '@tudel/content-schema';
 import type { Segment } from './directives.js';
 
 export interface ValidLesson {

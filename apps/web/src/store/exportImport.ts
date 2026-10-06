@@ -5,7 +5,9 @@
 import { LOG_VERSION, LogEvent } from './events';
 import { migrateEvent } from './migrations';
 
-export const FILE_FORMAT = 'strudel-tutor-log';
+export const FILE_FORMAT = 'tudel-log';
+/** Format name written before the project was renamed to tudel; still accepted on import. */
+const LEGACY_FILE_FORMATS = ['strudel-tutor-log'];
 
 export interface ExportFile {
   format: typeof FILE_FORMAT;
@@ -20,7 +22,7 @@ export function serializeLog(events: LogEvent[], now: Date): string {
 }
 
 export function exportFileName(now: Date): string {
-  return `strudel-tutor-progress-${now.toISOString().slice(0, 10)}.json`;
+  return `tudel-progress-${now.toISOString().slice(0, 10)}.json`;
 }
 
 export type ParseResult = { ok: true; events: LogEvent[]; fromVersion: number } | { ok: false; error: string };
@@ -41,8 +43,8 @@ export function parseExport(text: string): ParseResult {
   const version = typeof d.version === 'number' ? d.version : NaN;
   let rawEvents: unknown;
   if (version === 0) rawEvents = d.log;
-  else if (d.format === FILE_FORMAT && version >= 1) rawEvents = d.events;
-  else return { ok: false, error: 'Not a Strudel Tutor progress file.' };
+  else if ((d.format === FILE_FORMAT || LEGACY_FILE_FORMATS.includes(d.format as string)) && version >= 1) rawEvents = d.events;
+  else return { ok: false, error: 'Not a tudel progress file.' };
   if (version > LOG_VERSION)
     return { ok: false, error: `This file is from a newer app version (${version}); this app reads up to ${LOG_VERSION}.` };
   if (!Array.isArray(rawEvents)) return { ok: false, error: 'The file has no event list.' };

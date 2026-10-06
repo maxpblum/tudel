@@ -11,7 +11,7 @@
  */
 import { existsSync } from 'node:fs';
 import path from 'node:path';
-import type { Skill } from '@tutor/content-schema';
+import type { Skill } from '@tudel/content-schema';
 import type { Snippet } from '../content/snippets.js';
 import { analyzeCode } from '../code/ast.js';
 import { isKnownName, type Reference } from '../ref/reference.js';

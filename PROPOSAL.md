@@ -1,4 +1,4 @@
-# Strudel Tutor — Proposal & Design
+# tudel — Proposal & Design
 
 *Status: **direction approved by the learner**; ready to be expanded into a detailed implementation plan · 2026-10-05*
 
@@ -136,7 +136,7 @@ There are three planes, and they never mix:
 ### 9. Codebase layout
 
 ```
-strudel-tutor/
+tudel/
 ├─ README.md                  # what it is, quickstart, where to look next
 ├─ AGENTS.md                  # orientation for LLM contributors: invariants, how to add content, how to run gates
 ├─ ARCHITECTURE.md            # the three planes, data flow, diagram

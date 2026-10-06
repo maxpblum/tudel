@@ -1,10 +1,14 @@
-# Strudel Tutor
+# tudel
 
-A personal tutor for becoming fluent in [Strudel](https://strudel.cc), the browser live-coding language for music. It's aimed at synthwave, synth-pop, and chiptune.
+<img src="apps/web/public/avatar.jpeg" alt="tudel avatar" width="480">
 
-You type every answer in **your own** Strudel setup. The tutor proposes a short daily session (spaced-repetition reviews plus one new micro-lesson with drills), plays reference solutions through a hidden Strudel engine, and lets you grade yourself by ear and by eye. Every code snippet and factual claim is machine-checked against a pinned Strudel version.
+**tudel** (**tu**tor + stru**del**) is a personal tutor for becoming fluent in [Strudel](https://strudel.cc), the browser live-coding language for music. It's aimed at synthwave, synth-pop, and chiptune.
 
-- **Status:** milestone **M1** (vertical slice: unit U3a "Sound basics"). See `docs/qa/M1-walkthrough.md`.
+**Try it:** https://maxpblum.github.io/tudel/ (a fully static site; progress stays in your browser)
+
+You type every answer in **your own** Strudel setup. tudel proposes a short daily session (spaced-repetition reviews plus one new micro-lesson with drills), plays reference solutions through a hidden Strudel engine, and lets you grade yourself by ear and by eye. Every code snippet and factual claim is machine-checked against a pinned Strudel version.
+
+- **Status:** milestone **M1** (vertical slice: unit U3a "Sound basics") is built and awaiting the learner's trial. See `docs/qa/M1-walkthrough.md`.
 - **Design:** `PROPOSAL.md` (binding requirements) and `ARCHITECTURE.md`.
 
 ## Quickstart
@@ -30,9 +34,20 @@ Open the URL in a desktop browser. Audio starts on your first click. Progress li
 | `pnpm e2e` | Playwright end-to-end tests, including gate L6 (every reference audibly plays in real Chromium) |
 | `pnpm typecheck` | TypeScript across the workspace |
 | `bash ci/run-all.sh` | Everything above, exactly as CI runs it |
+| `pnpm pages` | Builds from a clean tree and force-pushes the static site to the `gh-pages` branch (see Deploying) |
 | `bash ci/drift.sh` | Checks the content against the *latest* Strudel release. Report only |
 
-On a fresh machine, run `pnpm --filter @tutor/web exec playwright install chromium` once before `pnpm e2e`. Gate L8b needs the pinned Strudel source clone; `ci/run-all.sh` sets it up automatically, or run `bash tools/strudel-ref/generate-doc-json.sh --setup-only`.
+On a fresh machine, run `pnpm --filter @tudel/web exec playwright install chromium` once before `pnpm e2e`. Gate L8b needs the pinned Strudel source clone; `ci/run-all.sh` sets it up automatically, or run `bash tools/strudel-ref/generate-doc-json.sh --setup-only`.
+
+## Deploying
+
+The app is plain static files (Vite build, hash routing, IndexedDB storage), hosted on GitHub Pages from the `gh-pages` branch. To update the live site, commit your changes and run:
+
+```sh
+pnpm pages
+```
+
+This runs `tools/deploy-pages.sh`, which builds with verified content and pushes `apps/web/dist` as a single commit (`Deploy <sha>`) to `gh-pages`. One-time setup: in the repo's Settings → Pages, set the source to the `gh-pages` branch, `/ (root)`.
 
 ## Where to look next
 
@@ -48,4 +63,4 @@ On a fresh machine, run `pnpm --filter @tutor/web exec playwright install chromi
 
 ## License
 
-AGPL-3.0-or-later, because the app bundles Strudel. See `LICENSE` and `ATTRIBUTION.md`.
+AGPL-3.0-or-later, because the app bundles Strudel. The hosted app links back to this source. See `LICENSE` and `ATTRIBUTION.md`.

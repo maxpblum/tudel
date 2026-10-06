@@ -55,7 +55,8 @@ h3 { font-size: 1.05rem; margin: 0 0 0.5em; }
   padding: 0.7rem 1.25rem; border-bottom: 1px solid var(--line); background: var(--surface);
   position: sticky; top: 0; z-index: 5;
 }
-.brand { font-weight: 700; text-decoration: none; color: var(--ink); letter-spacing: 0.01em; }
+.brand { display: inline-flex; align-items: center; gap: 0.5em; font-weight: 700; text-decoration: none; color: var(--ink); letter-spacing: 0.01em; }
+.brand-avatar { height: 2em; aspect-ratio: 1; object-fit: cover; border-radius: 50%; }
 .topbar nav { display: flex; gap: 1.1rem; }
 .topbar nav a { text-decoration: none; color: var(--muted); padding: 0.2rem 0; border-bottom: 2px solid transparent; }
 .topbar nav a.active, .topbar nav a:hover { color: var(--ink); border-bottom-color: var(--accent); }

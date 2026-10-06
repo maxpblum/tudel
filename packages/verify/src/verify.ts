@@ -4,7 +4,7 @@
  */
 import { mkdirSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
-import type { Bundle } from '@tutor/content-schema';
+import type { Bundle } from '@tudel/content-schema';
 import { loadContent } from './content/load.js';
 import { collectSnippets } from './content/snippets.js';
 import type { ValidContent } from './content/model.js';

@@ -17,7 +17,7 @@ No milestone is handed to the learner as ready to use until every box below is c
 
 ## 3. Scripted exploratory pass (fresh browser profile)
 
-Run against the production build (`pnpm build && pnpm --filter @tutor/web preview`) and record observations:
+Run against the production build (`pnpm build && pnpm --filter @tudel/web preview`) and record observations:
 
 1. [ ] **First run.** A fresh profile opens to Today, which proposes due reviews (none) plus one new skill whose prerequisites are met.
 2. [ ] **Lesson.** It renders all block types. Play buttons sound after the first click, and copy buttons copy exactly the shown code.
@@ -32,3 +32,8 @@ Run against the production build (`pnpm build && pnpm --filter @tutor/web previe
 ## 4. Written walkthrough
 
 - [ ] `docs/qa/<milestone>-walkthrough.md` covers what was built, how to run it, a narrated tour, the results of sections 1–3, known limitations, and what the learner should evaluate during the trial.
+
+## 5. Publish
+
+- [ ] `README.md` status, commands, and live link are accurate.
+- [ ] `pnpm pages` run from the release commit; https://maxpblum.github.io/tudel/ loads, navigates, and plays audio.

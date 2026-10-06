@@ -8,7 +8,7 @@
 - **Time:** the app reads "now" from `Date.now` (`AppProvider` `clock` default, `EventLog` clock, and `useNow`), so time travel uses Playwright's `page.clock` (`install`, `setSystemTime`, `fastForward`).
 - **Scripts:** throwaway Playwright scripts. Every bug fixed here has a permanent regression test in `tests/e2e/qa-regressions.spec.ts` or `apps/web/src/ui/plotMath.test.ts`.
 
-After the fixes: `pnpm --filter @tutor/web test` (52 tests), `pnpm --filter @tutor/web typecheck`, and `pnpm e2e` (53 tests, including L6) are green.
+After the fixes: `pnpm --filter @tudel/web test` (52 tests), `pnpm --filter @tudel/web typecheck`, and `pnpm e2e` (53 tests, including L6) are green.
 
 ## Summary
 
@@ -129,9 +129,9 @@ Then reopen `#/` (and `#/session` directly).
 **Observed.**
 - **Equality:** the 31 events are byte-identical (`JSON.stringify`). Today's text is identical straight after import and after a reload.
 - **Resume after import:** the half-done session resumes at the same step, still revealed.
-- **File name:** `strudel-tutor-progress-2026-10-07.json`.
+- **File name:** `tudel-progress-2026-10-07.json`.
 - **Confirm dialog:** states the event counts.
-- **Bad file:** rejected with "Not a Strudel Tutor progress file" and the data is untouched.
+- **Bad file:** rejected with "Not a tudel progress file" and the data is untouched.
 
 **Result.** Pass.
 

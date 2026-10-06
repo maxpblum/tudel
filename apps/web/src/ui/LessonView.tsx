@@ -1,4 +1,4 @@
-import type { BundleLesson } from '@tutor/content-schema';
+import type { BundleLesson } from '@tudel/content-schema';
 import { content } from '../content';
 import { Blocks } from './Blocks';
 
