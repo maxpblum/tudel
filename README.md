@@ -30,7 +30,8 @@ Open the URL in a desktop browser. Audio starts on your first click. Progress li
 | `pnpm verify --explain <id>` | Explains, gate by gate, why one variant or lesson passed or failed |
 | `pnpm verify --update` | Re-records event snapshots (gate L3) after an intended content change. Review the diff |
 | `pnpm dev` | Verifies, then runs the app dev server |
-| `pnpm test` | Unit tests (verifier and app) |
+| `pnpm test` | Fast parallel unit tests across the workspace |
+| `pnpm test:coverage` | Unit tests with coverage check (enforces ≥90% line coverage on web store/session/srs) |
 | `pnpm e2e` | Playwright end-to-end tests, including gate L6 (every reference audibly plays in real Chromium) |
 | `pnpm typecheck` | TypeScript across the workspace |
 | `bash ci/run-all.sh` | Everything above, exactly as CI runs it |

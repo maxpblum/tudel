@@ -43,7 +43,7 @@ export default defineConfig({
   },
   preview: { port: 4173, strictPort: true },
   test: {
-    environment: 'jsdom',
+    environment: 'node',
     include: ['src/**/*.test.{ts,tsx}'],
     setupFiles: ['src/test-setup.ts'],
     coverage: {

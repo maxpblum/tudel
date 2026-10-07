@@ -15,4 +15,4 @@
 
 ## Consequences
 
-The full L6 run takes about 4 s per snippet, roughly 2 minutes for 30 snippets. It runs serially because there is one AudioContext.
+Each snippet plays for 1.5 s (plus up to 2 s wait for silence). Tests run in parallel across worker browser contexts, each with its own isolated `AudioContext` and page instance initialized once per worker. The full run of 200+ snippets completes in ~1.5–2 minutes.

@@ -6,7 +6,8 @@ The tudel app: a Vite + React + TypeScript SPA that reads only the verified cont
 |---|---|
 | `pnpm --filter @tudel/web dev` | Dev server (uses `src/content/bundle.json`, else the fixture with a banner) |
 | `pnpm --filter @tudel/web build` | Static build into `dist/` (relative base, so it can be opened from any static host) |
-| `pnpm --filter @tudel/web test` | Vitest with coverage; fails below 90% lines on `src/{srs,store,session}` |
+| `pnpm --filter @tudel/web test` | Fast Vitest run without coverage |
+| `pnpm --filter @tudel/web test:coverage` | Vitest with coverage; fails below 90% lines on `src/{srs,store,session}` |
 | `pnpm e2e` | Builds, serves with `vite preview`, and runs Playwright (`tests/e2e`), including gate L6 |
 | `L6_OFFLINE=1 pnpm e2e` | Same, with L6 run offline: snippets that need the network are skipped |
 

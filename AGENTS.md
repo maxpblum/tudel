@@ -21,7 +21,8 @@ Read this first (`CLAUDE.md` and `GEMINI.md` import it). Then read `PROPOSAL.md`
 | See why an item fails | `pnpm verify --explain <variant-or-lesson-id>` |
 | Check a Strudel name or its signature | Query `tools/strudel-ref/doc.json`. Read source at `tools/strudel-ref/.cache/strudel` (set up with `bash tools/strudel-ref/generate-doc-json.sh --setup-only`) |
 | Change app behavior | Edit `apps/web/src/*` (each folder has a README). Keep ≥90% line coverage on `srs/`, `store/`, `session/` |
-| Run everything | `bash ci/run-all.sh` (install, typecheck, verify, test, e2e) |
+| Run unit tests / coverage | `pnpm test` for fast parallel unit tests; `pnpm test:coverage` to check the ≥90% line coverage threshold |
+| Run everything | `bash ci/run-all.sh` (install, typecheck, verify, test:coverage, e2e) |
 | Update the live site (gh-pages) | `pnpm pages` (builds from a clean tree, force-pushes `gh-pages`) |
 | Record a decision | Add an ADR in `docs/decisions/` in the right number block |
 

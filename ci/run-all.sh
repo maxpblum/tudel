@@ -24,7 +24,7 @@ step "verify (gates L0-L5, L7, L8; writes the bundle)"
 "$PNPM" verify
 
 step "unit tests"
-"$PNPM" test
+"$PNPM" test:coverage
 
 step "e2e (Playwright, including gate L6)"
 "$PNPM" e2e

@@ -31,10 +31,10 @@ async function waitForSilence(timeoutMs: number) {
   }
 }
 
-async function run(id: string, { ms = 3000 } = {}): Promise<SmokeResult> {
+async function run(id: string, { ms = 1500 } = {}): Promise<SmokeResult> {
   const s = snippets.find((x) => x.id === id);
   if (!s) throw new Error(`unknown snippet ${id}`);
-  await waitForSilence(4000);
+  await waitForSilence(2000);
   const errors: string[] = [];
   const off = engine.onError((m) => errors.push(m));
   try {
