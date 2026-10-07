@@ -30,5 +30,5 @@ Adding to note names instead adds **semitones**: `note("g4 a4 b4 c5".add("0,-4")
 One trap: `.add("0,2")` written *after* `n(...)` does not add anything. Strudel prints "Can't do arithmetic on control pattern" and plays each note twice in unison {cite src="packages/core/value.mjs#L10-L18"}. Put the `add` inside the parentheses, as above.
 
 :::bridge{title="Tonal and real"}
-This is the difference between a tonal and a real answer in a fugue. Adding degrees gives a tonal copy that follows the key, like thirds in a Mozart duet. Adding semitones gives a real copy that keeps the exact interval and steps outside the key.
+This is the difference between a tonal and a real sequence. Adding degrees gives a tonal copy that follows the key, like thirds in a Mozart duet. Adding semitones gives a real copy that keeps the exact interval and steps outside the key.
 :::

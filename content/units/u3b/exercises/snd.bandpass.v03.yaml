@@ -1,0 +1,25 @@
+id: snd.bandpass.v03
+skills: [snd.bandpass]
+type: sweep
+difficulty: 3
+title: A band that climbs by octaves
+prompt: |
+  An eighth-note pulse on **c3** (sawtooth) goes through a band-pass with
+  `bpq` **4**. The band's centre climbs an octave every bar: **400, 800, 1600,
+  3200 Hz**, one value per bar.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c3*8").s("sawtooth").bpf("<400 800 1600 3200>").bpq(4)
+listen_for:
+  - The pitch, c3, never changes. Only the colour climbs
+  - A clear step at each barline, not a glide
+  - Bar 1 is low and dark. In it the band is only about 100 Hz wide, so the third harmonic, near G4 (392 Hz), stands out above its neighbours
+  - By bar 4 the colour is high and thin
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: bpf
+  - strudel-doc: bpq
+  - lexicon: dark
+  - lexicon: thin

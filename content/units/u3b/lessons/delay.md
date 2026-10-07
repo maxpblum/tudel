@@ -11,10 +11,22 @@ A **delay** repeats a sound as echoes. Like reverb it is a send: the dry note pl
 :::compare{diff="delaysync 1 / 8 → 3 / 16"}
 a:
   label: Echoes an eighth note later
-  code: note("c5 g4 e5 g4").s("triangle").decay(0.1).sustain(0).delay(0.5).delaysync(1 / 8)
+  code: |
+    note("c5 g4 e5 g4")
+      .s("triangle")
+      .decay(0.1)
+      .sustain(0)
+      .delay(0.5)
+      .delaysync(1 / 8)
 b:
   label: Echoes a dotted eighth later
-  code: note("c5 g4 e5 g4").s("triangle").decay(0.1).sustain(0).delay(0.5).delaysync(3 / 16)
+  code: |
+    note("c5 g4 e5 g4")
+      .s("triangle")
+      .decay(0.1)
+      .sustain(0)
+      .delay(0.5)
+      .delaysync(3 / 16)
 :::
 
 With quarter-note plucks, eighth-note echoes fill the offbeats; dotted-eighth echoes fall between the beats and make a running sixteenth-note pattern.

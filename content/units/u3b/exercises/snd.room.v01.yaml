@@ -1,0 +1,26 @@
+id: snd.room.v01
+skills: [snd.room]
+type: spec-to-code
+difficulty: 1
+title: Plucks with a little reverb
+prompt: |
+  Play **e4 g4 b4 e5** as plucks on a triangle wave (`decay` 0.15 seconds,
+  nothing held), and send them to the reverb at level **0.4**. Leave
+  `roomsize` at its default.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("e4 g4 b4 e5").s("triangle").decay(0.15).sustain(0).room(0.4)
+listen_for:
+  - A tail fills the silence after each pluck
+  - The plucks themselves are as loud as without reverb. room only adds the wet signal
+  - Each tail takes about 2 seconds, the default roomsize, to fade, so it carries across the next beats
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: room
+  - strudel-doc: roomsize
+  - strudel-src: "packages/superdough/superdough.mjs#L938-L955"
+  - strudel-src: "packages/superdough/reverb.mjs#L28-L28"
+  - lexicon: plucky
+  - lexicon: wet

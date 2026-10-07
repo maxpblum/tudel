@@ -15,7 +15,6 @@ X:1
 M:4/4
 L:1/4
 K:C
-%%score {1 2}
 V:1
 [CEGc]4 | [CFAc]4 | [DFGB]4 | [CEGc]4 |
 V:2 clef=bass

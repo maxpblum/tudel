@@ -11,7 +11,8 @@ prompt: |
 
   Decide whether the mapping is `range` or `rangex`. Try both in your own tool
   and compare: one lingers at the bright end and rushes past the dark end,
-  the other spends about equal time on every octave.
+  the other is symmetric, spending as long near the dark end as near the
+  bright end.
 hide_reference_code_until_reveal: true
 solutions:
   - code: |

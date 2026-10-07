@@ -11,13 +11,12 @@ prompt: |
     the tonic on A4.
   - **Bass:** on `"sawtooth"` with `.lpf(700)`, as note names.
 
-  The staff check compares the upper part.
+  The upper part is on the treble staff and the bass on the bass staff.
 abc: |
   X:1
   M:4/4
   L:1/8
   K:Am
-  %%score {1 2}
   V:1
   A2 B c A2 c2 | d2 c B ^G4 |
   V:2 clef=bass

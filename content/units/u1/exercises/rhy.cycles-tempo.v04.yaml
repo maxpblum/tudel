@@ -4,13 +4,12 @@ type: dictation
 difficulty: 2
 title: A triplet across the bar
 prompt: |
-  Write this bar in Strudel on a **triangle** wave, at the tempo marked. The
+  Write this bar in Strudel on a **triangle** wave, at **96 BPM**. The
   triplet spans the whole bar.
 abc: |
   X:1
   M:4/4
   L:1/4
-  Q:1/4=96
   K:C
   (3C2E2G2 |
 hide_reference_code_until_reveal: true

@@ -4,9 +4,9 @@ title: "Even steps or even ratios: range and rangex"
 skill: mod.range
 ---
 
-`range(min, max)` maps a signal's 0 to 1 onto your values in a straight line: min + (max − min) × signal {cite src="packages/core/pattern.mjs#L1771-L1773"}. With the min larger than the max the result is turned upside down, so `saw.range(2000, 400)` falls.
+`range(min, max)` maps a signal's 0 to 1 onto your values in a straight line: min + (max − min) × signal {cite src="packages/core/pattern.mjs#L1771-L1773"}. If min is larger than max, the result is upside down: `saw.range(2000, 400)` falls.
 
-The ear does not hear hertz in a straight line. It hears ratios: each doubling of frequency is one octave. Take a sawtooth cutoff sweep from 200 to 3200 Hz over four bars, which is four octaves. Here is the cutoff on each downbeat:
+The ear hears frequency as ratios: each doubling is one octave. Take a sawtooth cutoff sweep from 200 to 3200 Hz over four bars, which is four octaves. Here is the cutoff on each downbeat:
 
 | Downbeat of bar | 1 | 2 | 3 | 4 | (approached at the end of bar 4) |
 |---|---|---|---|---|---|

@@ -5,8 +5,8 @@ difficulty: 2
 title: Rests in a drum groove
 prompt: |
   One bar on an eighth-note grid, on the **TR-909**: bass drum on beat 1 and
-  on the second half of beat 3, snare on beats 2 and 4. Every other eighth is
-  silent.
+  on the second half of beat 3, snare on beats 2 and 4. The other four eighths
+  are silent.
 hide_reference_code_until_reveal: true
 solutions:
   - code: |

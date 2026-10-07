@@ -1,0 +1,30 @@
+id: snd.fm-envelope.v02
+skills: [snd.fm-envelope]
+type: spec-to-code
+difficulty: 2
+title: A brassy fanfare
+prompt: |
+  Play **c4 e4 g4 c5** on a sine with FM index **3**, leaving `fmh` at its
+  default, 1. Make it **brassy**, so the brightness grows with the loudness as
+  in a brass attack: an amplitude `attack` of **0.1 seconds**, and an FM
+  envelope that reaches the full index over the same **0.1 seconds**. Leave
+  every other stage unset.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c4 e4 g4 c5").s("sine").attack(0.1).fmi(3).fmattack(0.1)
+listen_for:
+  - Each note starts quiet and nearly pure, and gets louder and brighter together
+  - After a tenth of a second both are at full level, and they hold to the end of the note. With only an attack set, each envelope's sustain is 1
+  - If the brightness never moves, check fmattack. Without any FM stage set, the index stays fixed
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: fmattack
+  - strudel-doc: attack
+  - strudel-doc: fmi
+  - strudel-src: "packages/superdough/helpers.mjs#L167-L178"
+  - strudel-src: "packages/superdough/helpers.mjs#L446-L466"
+  - lexicon: brassy
+  - lexicon: bright
+  - lexicon: pure

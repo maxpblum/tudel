@@ -22,7 +22,7 @@ C E G d | C E G c |
 
 The entries can be whole groups, so `"<[c4 e4 g4 d5] [c4 e4 g4 c5]>"` gives exactly the same two bars. The short form writes the shared beats once.
 
-`/n` does the opposite of `*n`: it slows a step down so that it lasts n cycles {cite src="packages/mini/krill.pegjs#L150-L151"} {cite doc=slow}. `"[c4 e4 g4 c5]/2"` spreads four notes over two bars, so each is a half note. It gives the same events as `"<[c4 e4] [g4 c5]>"`.
+`/n` does the opposite of `*n`: it slows a step down n times {cite src="packages/mini/krill.pegjs#L150-L151"} {cite doc=slow}. On a group that fills the whole bar, that spreads the group over n bars: `"[c4 e4 g4 c5]/2"` plays its four notes over two bars, so each is a half note. It gives the same events as `"<[c4 e4] [g4 c5]>"`. This course uses `/n` only on a group like this.
 
 :::play{label="Four notes over two bars: half notes"}
 note("[c4 e4 g4 c5]/2").s("triangle")

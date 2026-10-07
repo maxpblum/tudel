@@ -1,0 +1,25 @@
+id: snd.fm.v02
+skills: [snd.fm]
+type: match-by-ear
+difficulty: 3
+title: Match an FM tone
+prompt: |
+  Listen to the target: **e4 g4 b4 e5** on a sine with FM. Find its two FM
+  settings. The ratio `fmh` is one of 1, 2 or 1.41, and the index `fmi` is one
+  of 1, 4 or 8.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("e4 g4 b4 e5").s("sine").fmi(4).fmh(1.41)
+listen_for:
+  - Metallic partials that don't fit the written notes. The ratio is 1.41, not a whole number
+  - Bright, but the written pitches still come through. That is index 4. At 8 the extra partials crowd the pitch more, and at 1 there are fewer and weaker ones
+  - If yours sounds hollow, like a square wave, your ratio is 2
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: fmi
+  - strudel-doc: fmh
+  - lexicon: metallic
+  - lexicon: bright
+  - lexicon: hollow

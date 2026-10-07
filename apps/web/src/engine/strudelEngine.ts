@@ -21,6 +21,21 @@ export interface StrudelEngine {
   attachPianoroll(canvas: HTMLCanvasElement): () => void;
 }
 
+if (typeof AudioNode !== 'undefined' && !('__safeDisconnect' in AudioNode.prototype)) {
+  const origDisconnect = AudioNode.prototype.disconnect;
+  AudioNode.prototype.disconnect = function (this: AudioNode, ...args: any[]) {
+    try {
+      return (origDisconnect as any).apply(this, args);
+    } catch (err: unknown) {
+      if (err instanceof DOMException && (err.name === 'InvalidAccessError' || /not connected/i.test(err.message))) {
+        return undefined as any;
+      }
+      throw err;
+    }
+  };
+  (AudioNode.prototype as any).__safeDisconnect = true;
+}
+
 export async function createStrudelEngine(cb: StrudelCallbacks): Promise<StrudelEngine> {
   const ctx = getAudioContext();
   void ctx.resume();

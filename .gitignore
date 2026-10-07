@@ -6,3 +6,4 @@ test-results/
 playwright-report/
 apps/web/src/content/bundle.json
 *.log
+validation/out/

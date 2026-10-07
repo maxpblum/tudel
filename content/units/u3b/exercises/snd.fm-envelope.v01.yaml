@@ -1,0 +1,47 @@
+id: snd.fm-envelope.v01
+skills: [snd.fm-envelope]
+type: describe-to-code
+difficulty: 3
+title: A struck bell
+prompt: |
+  Play one note per bar, **c5** then **g4**, on a sine, and make it
+  **bell-like**, after Chowning's FM bell:
+
+  - an inharmonic ratio near **1.4** (`fmh`), with a high index (any `fmi` from
+    about 8 to 10);
+  - brightness that dies away over **about a second** (`fmdecay`, with
+    `fmsustain(0)`);
+  - an amplitude that rings down over **about 1.5 seconds** and is not held
+    (`decay`, with `sustain(0)`).
+
+  The reference uses one value from each range.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("<c5 g4>")
+        .s("sine")
+        .decay(1.5)
+        .sustain(0)
+        .fmi(8)
+        .fmh(1.4)
+        .fmdecay(1)
+        .fmsustain(0)
+verify:
+  cycles: 2
+listen_for:
+  - A bright, metallic strike, with partials that don't fit the written note
+  - The brightness fades fast. With the default exp curve, most of it is gone in the first third of a second, and the tone ends close to a pure sine
+  - The note rings down over 1.5 seconds and is silent before the next bar (2 seconds at the default tempo)
+sources:
+  - strudel-doc: fmdecay
+  - strudel-doc: fmsustain
+  - strudel-doc: fmi
+  - strudel-doc: fmh
+  - strudel-doc: decay
+  - strudel-doc: sustain
+  - strudel-src: "packages/superdough/helpers.mjs#L452-L464"
+  - url: https://yamahasynth.com/wp-content/uploads/images/fm_synthesispaper-2.pdf
+  - lexicon: bell-like
+  - lexicon: metallic
+  - lexicon: bright
+  - lexicon: pure

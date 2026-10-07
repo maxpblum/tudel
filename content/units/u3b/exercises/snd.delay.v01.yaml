@@ -1,0 +1,32 @@
+id: snd.delay.v01
+skills: [snd.delay]
+type: spec-to-code
+difficulty: 2
+title: Echoes a quarter note later
+prompt: |
+  Play **c5 g4**, two half-note plucks, on a triangle wave (`decay` 0.1
+  seconds, nothing held). Echo them **a quarter note later**, timed in cycles
+  so the echoes follow the tempo. Send them to the delay at level **0.5**, with
+  feedback **0.3**.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c5 g4")
+        .s("triangle")
+        .decay(0.1)
+        .sustain(0)
+        .delay(0.5)
+        .delaysync(1 / 4)
+        .delayfeedback(0.3)
+listen_for:
+  - Plucks on beats 1 and 3, and their first echoes on beats 2 and 4
+  - The first echo has half the amplitude of the pluck (send 0.5), and each later echo is 0.3 times the one before, about 10 dB quieter
+  - Later echoes fall under the next pluck and die away quickly
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: delay
+  - strudel-doc: delaysync
+  - strudel-doc: delayfeedback
+  - strudel-src: "packages/superdough/feedbackdelay.mjs#L3-L17"
+  - lexicon: plucky

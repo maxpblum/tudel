@@ -37,7 +37,7 @@ b:
 note("c4 e4 g4 c5").s("triangle").decay(0.15).sustain(0).room(0.6).roomsize(6)
 :::
 
-All parts share one reverb unless you separate them (a later lesson covers how), and a new `roomsize` rebuilds it {cite src="packages/superdough/superdoughoutput.mjs#L69-L93"}. Its reference entry says to change it only sparingly {cite doc=roomsize}. So pattern `room` if you like, but set `roomsize` once per piece.
+By default all parts share one reverb, and a new `roomsize` rebuilds it {cite src="packages/superdough/superdoughoutput.mjs#L69-L93"}. Its reference entry says to change it only sparingly {cite doc=roomsize}. So pattern `room` if you like, but set `roomsize` once per piece.
 
 :::bridge{title="Rehearsal room and cathedral"}
 The same choir sounds close and exact in a carpeted rehearsal room and distant in a stone church. The church's long reverberation time is `roomsize`. How much of it reaches you compared with the direct sound, as when you move from the front row to the back, is `room`.

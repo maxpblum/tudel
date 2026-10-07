@@ -1,0 +1,30 @@
+id: snd.room.v02
+skills: [snd.room]
+type: describe-to-code
+difficulty: 2
+title: Far away in a stone church
+prompt: |
+  Play **c4 g4**, two half-note plucks, on a triangle wave (`decay` 0.2
+  seconds, nothing held). Place them **far away in a large stone church**: a
+  **wet** sound with a long tail.
+
+  Any `room` from about 0.6 to 1 and any `roomsize` from about 6 to 10 seconds
+  fits the description. The reference uses one value from each range.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c4 g4").s("triangle").decay(0.2).sustain(0).room(0.8).roomsize(8)
+listen_for:
+  - The reverb is nearly as present as the plucks themselves, so they sound distant
+  - Each tail lasts far longer than the gap between plucks, so the tails overlap into a wash. With roomsize 8, a tail takes 8 seconds (four bars at the default tempo) to fade by 60 dB
+  - The tail grows darker as it fades
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: room
+  - strudel-doc: roomsize
+  - strudel-src: "packages/superdough/reverbGen.mjs#L30-L36"
+  - strudel-src: "packages/superdough/reverbGen.mjs#L85-L102"
+  - lexicon: wet
+  - lexicon: plucky
+  - lexicon: dark

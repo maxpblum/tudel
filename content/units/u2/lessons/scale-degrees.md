@@ -14,7 +14,6 @@ M:4/4
 L:1/8
 K:C
 C E G c G E C B, |
-w: 0 2 4 7 4 2 0 -1
 :::
 
 :::play{label="The bar above: degrees 0 2 4 7 4 2 0 -1 in C major, from C4"}

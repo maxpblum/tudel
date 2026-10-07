@@ -7,8 +7,8 @@ skill: pit.register-inversion
 `voicing` lines each chord up against one note, the **anchor**, which is C5 unless you set it {cite doc=anchor}. **`mode`** says which end of the voicing touches the anchor {cite src="packages/tonal/tonleiter.mjs#L131-L137"}:
 
 - `mode("below")` (the default): the top note is the closest chord tone at or below the anchor.
-- `mode("above")`: the bottom note is the closest chord tone at or below the anchor. Strudel's documentation says "at or above", but the code rounds down {cite doc=voicing} {cite src="packages/tonal/tonleiter.mjs#L148-L169"}. Put the anchor on a chord tone and the bottom note lands exactly on it.
-- `mode("root")`: always the root-position voicing, with the root at or below the anchor {cite src="packages/tonal/tonleiter.mjs#L159-L161"}.
+- `mode("above")`: the bottom note is the closest chord tone at or below the anchor. Strudel's documentation says "at or above", but the code rounds down {cite doc=voicing} {cite src="packages/tonal/tonleiter.mjs#L148-L169"}. For a major or minor triad, put the anchor on a chord tone and the bottom note lands exactly on it.
+- `mode("root")`: always the dictionary's first voicing for the chord, which has the root in the bass, with that root at or below the anchor {cite src="packages/tonal/tonleiter.mjs#L159-L161"}.
 
 The dictionary's voicings differ in which chord tone is on top and which is in the bass, so moving the anchor changes the inversion too, not just the register. With the anchor on C5, C major gets C5 on top and E3 in the bass, a 6/3. With the anchor on G4, it gets G4 on top and C3 in the bass, root position:
 
@@ -32,7 +32,6 @@ X:1
 M:4/4
 L:1/4
 K:C
-%%score {1 2}
 V:1
 [CE]4 | [CEG]4 | [CEGc]4 |
 V:2 clef=bass

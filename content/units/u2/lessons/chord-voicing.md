@@ -10,14 +10,13 @@ Writing every chord tone by hand is slow. Strudel can read lead-sheet chord symb
 chord("<C Am F G>").voicing().s("triangle")
 :::
 
-`voicing` doesn't play a close-position triad. Its default dictionary holds several piano voicings for each chord type, mostly four or five notes over about two octaves, with doubled tones {cite src="packages/tonal/voicings.mjs#L83-L83"} {cite src="packages/tonal/voicings.mjs#L245-L245"} {cite src="packages/tonal/ireal.mjs#L49-L50"}. For each chord it picks the voicing whose **top note** is the closest chord tone at or below C5 (later lessons move that limit) {cite src="packages/tonal/tonleiter.mjs#L139-L169"}. Here is what the example plays:
+`voicing` doesn't play a close-position triad. Its default dictionary holds several piano voicings for each chord type, mostly four or five notes spread over about an octave and a half, with doubled tones {cite src="packages/tonal/voicings.mjs#L83-L83"} {cite src="packages/tonal/voicings.mjs#L245-L245"} {cite src="packages/tonal/ireal.mjs#L49-L50"}. For each chord it picks the voicing whose **top note** is the closest chord tone at or below C5 (later lessons move that limit) {cite src="packages/tonal/tonleiter.mjs#L139-L169"}. Here is what the example plays:
 
 :::abc
 X:1
 M:4/4
 L:1/4
 K:C
-%%score {1 2}
 V:1
 [CEGc]4 | [CEAc]4 | [CFAc]4 | [DGB]4 |
 V:2 clef=bass

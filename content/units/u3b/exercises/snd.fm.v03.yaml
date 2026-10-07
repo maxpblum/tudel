@@ -1,0 +1,28 @@
+id: snd.fm.v03
+skills: [snd.fm, snd.filter-sweep]
+type: sweep
+difficulty: 3
+title: An FM index that swells over four bars
+prompt: |
+  An eighth-note pulse on **c4** (sine) has an FM index that glides smoothly
+  between **0** and **6**, up and back down **once every four bars**. It starts
+  in the middle of that range and rises first. Leave `fmh` at its default, 1.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c4*8").s("sine").fmi(sine.range(0, 6).slow(4))
+listen_for:
+  - The colour changes a little on every eighth note, so it sounds like a glide, not a step per bar
+  - Brightest at the start of bar 2, and a pure sine at the start of bar 4, where the index is 0
+  - The pitch never changes. With fmh 1 every sideband is a harmonic of c4
+  - Back to the starting colour after four bars
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: fmi
+  - strudel-doc: sine
+  - strudel-doc: range
+  - strudel-doc: slow
+  - strudel-src: "packages/core/signal.mjs#L70-L80"
+  - lexicon: bright
+  - lexicon: pure

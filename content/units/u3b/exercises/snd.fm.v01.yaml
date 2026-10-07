@@ -1,0 +1,26 @@
+id: snd.fm.v01
+skills: [snd.fm]
+type: spec-to-code
+difficulty: 1
+title: A hollow tone from FM
+prompt: |
+  Play **c4 e4 g4 c5** on a sine, and use FM to give it the **hollow**
+  spectrum of a square wave, with odd harmonics only. Put the modulator at
+  **twice** the note's frequency, and set the modulation index to **2**.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c4 e4 g4 c5").s("sine").fmi(2).fmh(2)
+listen_for:
+  - A hollow, clarinet-like colour instead of the sine's pure tone
+  - The pitches are as written. With fmh 2 the sidebands land on the odd harmonics of each note
+  - If yours sounds metallic, check that fmh is a whole number
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: fmi
+  - strudel-doc: fmh
+  - url: https://www.soundonsound.com/techniques/more-frequency-modulation
+  - lexicon: hollow
+  - lexicon: pure
+  - lexicon: metallic

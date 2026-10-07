@@ -1,0 +1,30 @@
+id: snd.bandpass.v01
+skills: [snd.bandpass]
+type: transform
+difficulty: 2
+title: One band instead of two filters
+prompt: |
+  The starter keeps roughly the band between 800 and 1200 Hz with two filters:
+  a low-pass at 1200 Hz and a high-pass at 800 Hz. Say "only this band" with
+  **one** band-pass instead: centre it at **1000 Hz** with `bpq` **2.5**.
+
+  The width between the band's two 3 dB points is about the centre divided by
+  `bpq`: 1000 / 2.5 = 400 Hz, from about 820 to 1220 Hz.
+starter: |
+  note("c4 eb4 g4 bb4").s("sawtooth").lpf(1200).hpf(800)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c4 eb4 g4 bb4").s("sawtooth").bpf(1000).bpq(2.5)
+listen_for:
+  - The same notes, with a similar narrow, nasal colour, now from a single filter
+  - The fundamentals (262 to 466 Hz) are turned down in both versions, so both sound thin
+  - The code now names the band directly, by its centre and its width
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: bpf
+  - strudel-doc: bpq
+  - url: https://www.w3.org/TR/webaudio/#dom-biquadfilternode-q
+  - lexicon: nasal
+  - lexicon: thin

@@ -1,0 +1,26 @@
+id: snd.noise.v02
+skills: [snd.noise]
+type: describe-to-code
+difficulty: 2
+title: A breathy flute line
+prompt: |
+  Play **g4 a4 b4 d5** on a triangle wave and make it **breathy**, like a
+  flute: mix a little noise into the tone. Any `noise` from about 0.1 to 0.3
+  fits the description. The reference uses one value in that range.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("g4 a4 b4 d5").s("triangle").noise(0.2)
+listen_for:
+  - A faint hiss of air on every note, under a clear pitch
+  - The tone itself is as loud as without noise. Up to 0.5, noise only adds the hiss
+  - The breath starts and stops with each note, because it goes through the same amplitude envelope
+  - If the hiss covers the tone, lower noise
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: noise
+  - strudel-src: "packages/superdough/helpers.mjs#L293-L307"
+  - strudel-src: "packages/superdough/synth.mjs#L539-L542"
+  - strudel-src: "packages/superdough/synth.mjs#L61-L68"
+  - lexicon: breathy

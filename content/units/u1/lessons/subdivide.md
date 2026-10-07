@@ -10,7 +10,7 @@ Square brackets make a group that takes the time of one step {cite src="packages
 - `[f4 e4 d4]` is three notes in one beat: an eighth-note triplet.
 - Groups nest: `[c4 [d4 c4]]` is an eighth note, then two sixteenths.
 
-`*n` plays a step n times inside its own slot {cite src="packages/mini/krill.pegjs#L153-L154"}, by speeding it up n times {cite doc=fast}. So `e4*3` and `[e4 e4 e4]` give the same three triplet eighths. Here beat 1 has one note, beat 2 two, beat 3 three and beat 4 four:
+`*n` plays a step n times in the time of that one step {cite src="packages/mini/krill.pegjs#L153-L154"}, by speeding it up n times {cite doc=fast}. So `e4*3` and `[e4 e4 e4]` give the same three triplet eighths. Here beat 1 has one note, beat 2 two, beat 3 three and beat 4 four:
 
 :::play{label="One, two, three, then four notes per beat"}
 note("e4 e4*2 e4*3 e4*4").s("square")

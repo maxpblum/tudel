@@ -15,7 +15,7 @@ You have swept a filter with `sine` and `saw`. They belong to a family of six ba
 | `tri` | 0 | straight up to 1 at mid-bar (beat 3), straight back down {cite src="packages/core/signal.mjs#L124-L124"} |
 | `square` | 0 | 0 for the first half of the bar, 1 for the second {cite src="packages/core/signal.mjs#L107-L107"} |
 
-`tri` is `saw` squeezed into the first half of the bar, followed by `isaw` in the second half {cite src="packages/core/signal.mjs#L124-L124"}:
+`tri` is `saw` squeezed into the first half of the bar, then `isaw` in the second {cite src="packages/core/signal.mjs#L124-L124"}:
 
 :::signal
 shape: tri
@@ -26,7 +26,7 @@ cycles: 2
 label: tri, two bars
 :::
 
-`saw` and `isaw` are mirror images. Here they are on the same line, with the same range:
+`saw` and `isaw` are mirror images, here on the same line and range:
 
 :::compare{diff="saw → isaw"}
 a:
@@ -39,6 +39,6 @@ b:
 
 As before, each note reads the signal once, at its onset {cite src="packages/core/signal.mjs#L18-L21"}. Every parameter, `gain` as much as `lpf`, accepts a pattern in the same way {cite src="packages/core/controls.mjs#L41-L49"}, so a signal can drive any of them.
 
-:::bridge{title="Six hairpins"}
-Read the shapes as dynamics. `tri` is a *messa di voce*: swell, then fade. `sine` is the same arc entered halfway up, and `cosine` enters at the peak. `saw` is a crescendo that ends *subito piano*. `isaw` starts *forte* and makes a steady diminuendo. `square` is a Baroque echo: one level, then the other.
+:::bridge{title="Six dynamic shapes"}
+Read the shapes as dynamics. `tri` is a *messa di voce*: swell, then fade. `sine` is the same arc entered halfway up, and `cosine` enters at the peak. `saw` is a crescendo that ends *subito piano*. `isaw` starts *forte* and makes a steady diminuendo. `square` is terraced dynamics: two levels, half a bar each.
 :::

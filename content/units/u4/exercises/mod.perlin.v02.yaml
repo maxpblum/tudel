@@ -7,7 +7,7 @@ prompt: |
   Play this broken C major chord on a **triangle** wave, all eighth notes:
   **c4 e4 g4 c5 g4 e4 c4 e4**. Give every note its own random **gain**
   between **0.4 and 0.8**, as if each key were struck with a slightly
-  different weight.
+  different force.
 hide_reference_code_until_reveal: true
 solutions:
   - code: |

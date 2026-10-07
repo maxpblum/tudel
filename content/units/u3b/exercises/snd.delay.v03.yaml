@@ -1,0 +1,33 @@
+id: snd.delay.v03
+skills: [snd.delay]
+type: match-by-ear
+difficulty: 3
+title: Match the echo trail
+prompt: |
+  Listen to the target: one pluck per bar on a triangle wave, **e5** then
+  **c5** (`decay` 0.1 seconds, nothing held), followed by a long trail of
+  echoes. Recreate the delay. The echo spacing is 1/8, 3/16 or 1/4 of a cycle,
+  and the send level and the feedback are each 0.3, 0.5 or 0.7.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("<e5 c5>")
+        .s("triangle")
+        .decay(0.1)
+        .sustain(0)
+        .delay(0.7)
+        .delaysync(3 / 16)
+        .delayfeedback(0.7)
+listen_for:
+  - The echoes cut across the beat. They come 3, 6, 9, 12 and 15 sixteenths after the pluck, a dotted eighth apart
+  - The first echo is only a little quieter than the pluck (send 0.7, about 3 dB down)
+  - Each echo is about 3 dB below the one before, so the trail is still audible when the next pluck arrives
+  - 3 / 16 is also the default spacing. Writing it out makes the timing visible
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: delay
+  - strudel-doc: delaysync
+  - strudel-doc: delayfeedback
+  - strudel-src: "packages/superdough/superdough.mjs#L193-L194"
+  - lexicon: plucky

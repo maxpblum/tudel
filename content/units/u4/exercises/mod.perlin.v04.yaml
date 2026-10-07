@@ -23,3 +23,4 @@ sources:
   - strudel-doc: perlin
   - strudel-doc: rand
   - strudel-doc: slow
+  - lexicon: bright

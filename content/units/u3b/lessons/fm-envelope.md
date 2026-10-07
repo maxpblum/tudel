@@ -18,7 +18,7 @@ release: 0.01
 hold: 0.5
 :::
 
-`fmenv` chooses the ramp shape: `"lin"` for straight lines, or `"exp"`, the default {cite src="packages/superdough/helpers.mjs#L452-L464"}. Its reference entry warns that exp "might be a bit broken" {cite doc=fmenv}. An exp decay is curved: it falls from full to a tenth in the first third of `fmdecay`, then tapers. So exp sounds bright only at the very start, while lin stays bright longer and then drops away.
+`fmenv` chooses the ramp shape: `fmenv("lin")` for straight lines, or `fmenv("exp")`, the default {cite src="packages/superdough/helpers.mjs#L452-L464"}. Its reference entry warns that exp "might be a bit broken" {cite doc=fmenv}. An exp decay is curved: it falls from full to a tenth in the first third of `fmdecay`, then tapers. So exp sounds bright only at the very start, while lin stays bright longer and then drops away.
 
 :::compare{diff="fmenv exp (default) → lin"}
 a:

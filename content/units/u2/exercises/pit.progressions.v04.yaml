@@ -1,0 +1,27 @@
+id: pit.progressions.v04
+skills: [pit.progressions]
+type: ear-dictation
+difficulty: 3
+title: Two chords to find in A minor
+prompt: |
+  The target plays four chords in **A minor**, one per bar: i, then two
+  chords to find by ear, then V. Each of the two middle chords is a triad
+  built on a degree of the natural minor scale. V is major, with the raised
+  leading tone G sharp. In this progression voicing puts every chord's root in
+  the bass, so the lowest note of each bar is its root.
+
+  Name the chords, then write them as chord symbols with `chord` and
+  `.voicing()` on `"triangle"`, with the default settings.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<Am F Dm E>").voicing().s("triangle")
+listen_for:
+  - "i, VI, iv, V in A minor: Am, F, Dm, E"
+  - The bass falls A3, F3, D3, then rises a step to E3
+  - The top note moves C5, C5, A4, B4. In the E chord, G sharp 4 sits just below B4, and when the progression repeats, this leading tone rises to A4
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: chord
+  - strudel-doc: voicing

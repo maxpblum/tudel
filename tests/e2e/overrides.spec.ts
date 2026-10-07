@@ -52,12 +52,16 @@ test('overrides are available inside an exercise', async ({ page }) => {
 });
 
 test('suspend takes a skill out of Today until restored', async ({ page }) => {
-  // U3a: snd.waveforms is the first new skill for a fresh learner
+  // suspend whatever Today offers as the first new skill (curriculum order decides which)
   await page.goto('./#/');
   await expect(page.getByTestId('plan-new-skill')).toBeVisible();
   const first = await page.getByTestId('plan-new-skill').innerText();
 
-  await page.goto('./#/library/skill/snd.waveforms');
+  await page.goto('./#/library');
+  await page.getByTestId('skill-link').filter({ hasText: first }).first().click();
+  await expect(page.getByTestId('skill-page')).toBeVisible();
+  const skillUrl = page.url();
+  const skillId = decodeURIComponent(skillUrl.split('/').pop()!);
   await page.getByTestId('overrides').locator('summary').click();
   await expect(page.getByTestId('override-restore')).toHaveCount(0);
   await page.getByTestId('override-suspend').click();
@@ -67,12 +71,13 @@ test('suspend takes a skill out of Today until restored', async ({ page }) => {
   await expect(page.getByTestId('override-restore')).toBeVisible();
   await expect(page.getByTestId('override-retire')).toHaveCount(0);
 
-  // never new in Today (nothing is introduced, so its dependants are locked too)
+  // never new in Today
   await page.goto('./#/');
-  await expect(page.getByTestId('due-snd.waveforms')).toHaveText('suspended');
-  await expect(page.getByTestId('plan-new-skill')).toHaveCount(0);
+  await expect(page.getByTestId(`due-${skillId}`)).toHaveText('suspended');
+  const next = page.getByTestId('plan-new-skill');
+  if (await next.count()) await expect(next).not.toHaveText(first);
 
-  await page.goto('./#/library/skill/snd.waveforms');
+  await page.goto(skillUrl);
   await page.getByTestId('overrides').locator('summary').click();
   await page.getByTestId('override-restore').click();
   await expect(page.getByTestId('skill-status')).toHaveText('not started');
@@ -83,22 +88,28 @@ test('suspend takes a skill out of Today until restored', async ({ page }) => {
 test('focusing a unit restricts Today’s new skill to it; clearing restores the default', async ({ page }) => {
   await page.goto('./#/');
   await expect(page.getByTestId('focus-chip')).toHaveCount(0);
+  await expect(page.getByTestId('plan-new-skill')).toBeVisible();
+  const unfocused = await page.getByTestId('plan-new-skill').innerText();
 
+  // U3a (exists in the shipped bundle and the fixture) comes after U1 in curriculum order, and its
+  // first skill has no prerequisites, so focusing it changes a fresh learner's new skill.
   await page.goto('./#/library');
-  // the last unit shown (U3a is the only one until M2 content lands)
-  const unit = page.getByTestId('unit').last();
+  const unit = page.getByTestId('unit').filter({ has: page.locator('[data-unit="u3a"]') });
   const titles = await unit.getByTestId('skill-link').allInnerTexts();
+  expect(titles).not.toContain(unfocused);
   await unit.getByTestId('focus-unit').click();
   await expect(unit.getByTestId('clear-focus')).toHaveText('Clear focus');
 
   await page.goto('./#/');
   await expect(page.getByTestId('focus-chip')).toBeVisible();
-  const plan = page.getByTestId('plan-new-skill');
-  if (await plan.count()) expect(titles).toContain(await plan.innerText());
+  await expect(page.getByTestId('plan-new-skill')).toBeVisible();
+  const focused = await page.getByTestId('plan-new-skill').innerText();
+  expect(titles).toContain(focused);
   // the focus survives a reload (it is derived from the log)
   await page.reload();
   await expect(page.getByTestId('focus-chip')).toBeVisible();
 
   await page.getByTestId('clear-focus').click();
   await expect(page.getByTestId('focus-chip')).toHaveCount(0);
+  await expect(page.getByTestId('plan-new-skill')).toHaveText(unfocused);
 });

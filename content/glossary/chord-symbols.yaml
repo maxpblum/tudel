@@ -1,0 +1,63 @@
+# Every chord symbol used in the prose or code of the pitch and harmony unit
+# (ADR 0201 §6). Gate L8c checks `tones` against tonal's spelling of `symbol`.
+entries:
+  - symbol: C
+    tones: [C, E, G]
+    name: C major
+    skills: [pit.chord-voicing, pit.register-inversion, pit.progressions]
+  - symbol: Dm
+    tones: [D, F, A]
+    name: D minor
+    skills: [pit.chord-voicing, pit.progressions]
+  - symbol: Em
+    tones: [E, G, B]
+    name: E minor
+    skills: [pit.chord-voicing, pit.progressions]
+  - symbol: F
+    tones: [F, A, C]
+    name: F major
+    skills: [pit.chord-voicing, pit.register-inversion, pit.progressions]
+  - symbol: G
+    tones: [G, B, D]
+    name: G major
+    skills: [pit.chord-voicing, pit.register-inversion, pit.progressions]
+  - symbol: Am
+    tones: [A, C, E]
+    name: A minor
+    skills: [pit.chord-voicing, pit.register-inversion, pit.progressions]
+  - symbol: Bo
+    tones: [B, D, F]
+    name: B diminished
+    skills: [pit.chord-voicing, pit.progressions]
+  - symbol: Bdim
+    tones: [B, D, F]
+    name: B diminished (voicing's default dictionary has no dim, so write Bo)
+    skills: [pit.chord-voicing]
+  - symbol: D
+    tones: [D, F#, A]
+    name: D major
+    skills: [pit.chord-voicing]
+  - symbol: E
+    tones: [E, G#, B]
+    name: E major
+    skills: [pit.progressions]
+  - symbol: Gm
+    tones: [G, Bb, D]
+    name: G minor
+    skills: [pit.progressions]
+  - symbol: Bb
+    tones: [Bb, D, F]
+    name: B flat major
+    skills: [pit.chord-voicing, pit.progressions]
+  - symbol: G7
+    tones: [G, B, D, F]
+    name: G dominant seventh
+    skills: [pit.chord-voicing, pit.progressions]
+  - symbol: C7
+    tones: [C, E, G, Bb]
+    name: C dominant seventh
+    skills: [pit.progressions]
+  - symbol: D7
+    tones: [D, F#, A, C]
+    name: D dominant seventh
+    skills: [pit.progressions]

@@ -3,7 +3,7 @@ import { completeStep, startSession, stepIndex } from './helpers';
 
 /** Session/scheduling gaps from the M1 QA pass (docs/qa/M1-exploratory.md U2–U7). Content-generic. */
 
-async function storedEvents(page: Page): Promise<{ type: string; elapsedMs?: number | null; rating?: number }[]> {
+async function storedEvents(page: Page): Promise<{ type: string; elapsedMs?: number | null; rating?: number; variantId?: string }[]> {
   return page.evaluate(
     () =>
       new Promise((resolve, reject) => {
@@ -116,13 +116,16 @@ test('fluency time excludes time the tab was closed', async ({ context }) => {
   expect(revealed[0]!.elapsedMs).not.toBeNull();
   expect(revealed[0]!.elapsedMs!).toBeLessThan(10 * 60_000);
 
-  // The reveal shows up as a fluency trend on its skill (U3a: the first new skill is snd.waveforms),
-  // and a skill with no reveals shows none.
-  await page2.goto('./#/library/skill/snd.waveforms');
+  // The reveal shows up as a fluency trend on its variant's primary skill (the variant page's
+  // breadcrumb links to it), and a skill with no reveals shows none.
+  await page2.goto(`./#/variant/${encodeURIComponent(revealed[0]!.variantId!)}`);
+  await page2.locator('nav.crumbs a').nth(1).click();
+  await expect(page2.getByTestId('skill-page')).toBeVisible();
   await expect(page2.getByTestId('fluency')).toContainText('informational only, not used for scheduling');
   await expect(page2.getByTestId('fluency-spark')).toBeVisible();
   await expect(page2.getByTestId('fluency-last')).toHaveText(/^\d+\.\d s$/);
   await expect(page2.getByTestId('fluency-median')).toHaveText(/^\d+\.\d s$/);
+  // snd.lowpass needs snd.waveforms first, so it cannot be the first session's new skill
   await page2.goto('./#/library/skill/snd.lowpass');
   await expect(page2.getByTestId('skill-page')).toBeVisible();
   await expect(page2.getByTestId('fluency')).toHaveCount(0);

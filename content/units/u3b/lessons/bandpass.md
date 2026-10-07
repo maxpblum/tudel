@@ -17,7 +17,7 @@ b:
 
 The pitches stay the same, because the partials that survive are still harmonics of each note. Only the colour moves: low and dark at 500 Hz, high and thin at 2000 Hz.
 
-`bpq` sets the width {cite doc=bpq}. Unlike `lpq`, it is a plain number, not decibels: for a band-pass, Web Audio [reads Q as linear](https://www.w3.org/TR/webaudio/#dom-biquadfilternode-q), and the [band-pass formula](https://www.w3.org/TR/webaudio/#filters-characteristics) never boosts. The centre always passes at full level (0 dB), and a higher `bpq` only narrows the band around it. The width in hertz between the two points 3 dB down is about the centre divided by `bpq`. So the default, 1 {cite src="packages/superdough/helpers.mjs#L219-L227"}, keeps about 1.4 octaves around the centre, and `bpq` 5 keeps about a third of an octave (618 to 1618 Hz versus 905 to 1105 Hz around 1000 Hz).
+`bpq` sets the width {cite doc=bpq}. Unlike `lpq`, it is a plain number, not decibels: for a band-pass, Web Audio [reads Q as linear](https://www.w3.org/TR/webaudio/#dom-biquadfilternode-q), and the [band-pass formula](https://www.w3.org/TR/webaudio/#filters-characteristics) never boosts. The centre always passes at full level (0 dB), and a higher `bpq` only narrows the band around it. The width in hertz between the two points 3 dB down is about the centre divided by `bpq`. So the default, 1 {cite src="packages/superdough/helpers.mjs#L219-L227"}, keeps about 1.4 octaves around the centre, and `bpq` 5 keeps a little under a third of an octave (618 to 1618 Hz versus 905 to 1105 Hz around 1000 Hz).
 
 :::filter{title="Band-pass at 1000 Hz, different widths"}
 type: bandpass

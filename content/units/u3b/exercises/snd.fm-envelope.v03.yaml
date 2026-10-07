@@ -1,0 +1,29 @@
+id: snd.fm-envelope.v03
+skills: [snd.fm-envelope]
+type: transform
+difficulty: 3
+title: Keep the brightness longer
+prompt: |
+  In the starter, each note is bright only for an instant: its FM index falls
+  along the default exp curve. Make the brightness **last longer** in each note
+  **without changing `fmdecay`**. Change only the shape of the index's ramps.
+starter: |
+  note("a4 c5 e5 a5").s("sine").fmi(6).fmdecay(0.5).fmsustain(0)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("a4 c5 e5 a5").s("sine").fmi(6).fmdecay(0.5).fmsustain(0).fmenv("lin")
+listen_for:
+  - Each note stays bright for longer, then its brightness drains away steadily
+  - Each note reaches a pure sine just as it ends. fmdecay 0.5 seconds is one quarter note at the default tempo
+  - The difference is largest early in the note. After 0.17 seconds the exp index is down to a tenth, while the lin index is still at two thirds
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: fmenv
+  - strudel-doc: fmdecay
+  - strudel-doc: fmsustain
+  - strudel-src: "packages/superdough/helpers.mjs#L40-L99"
+  - strudel-src: "packages/superdough/helpers.mjs#L452-L464"
+  - lexicon: bright
+  - lexicon: pure

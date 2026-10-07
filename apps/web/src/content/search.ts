@@ -29,7 +29,7 @@ export function buildSearchIndex(bundle: Bundle): SearchIndex {
   const add = (kind: ResultKind, id: string, title: string, body: string) =>
     docs.push({ kind, id, title, snippet: '', body, t: norm(title), b: norm(body) });
   for (const s of bundle.skills) add('skill', s.id, s.title, `${s.id} ${s.summary} ${s.vocabulary.join(' ')}`);
-  for (const l of bundle.lessons) add('lesson', l.id, l.title, `${l.id} ` + l.text || blocksText(l.blocks));
+  for (const l of bundle.lessons) add('lesson', l.id, l.title, `${l.id} ${l.text || blocksText(l.blocks)}`);
   for (const v of bundle.variants) add('variant', v.id, v.title, `${v.id} ${variantText(v)}`);
   for (const t of bundle.terms) add('term', t.name, t.name, `${t.synopsis} ${t.synonyms.join(' ')}`);
   for (const e of bundle.lexicon) add('lexicon', e.term, e.term, `${e.tendencies.join(' ')} ${e.notes ?? ''}`);

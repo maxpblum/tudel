@@ -4,7 +4,7 @@ title: "Signal speed: slow, fast, and the notes that carry them"
 skill: mod.signal-speed
 ---
 
-A basic signal repeats once per cycle. `slow(n)` stretches it over *n* cycles {cite doc=slow}, and `fast(n)` squeezes *n* repetitions into one cycle {cite doc=fast}. With this course's convention of one cycle per bar in 4/4, `.slow(8)` is one sweep per eight-bar verse and `.fast(4)` is one wobble per beat.
+A basic signal repeats once per cycle. `slow(n)` stretches it over *n* cycles {cite doc=slow}, and `fast(n)` squeezes *n* repetitions into one cycle {cite doc=fast}. With this course's convention of one cycle per bar in 4/4, `.slow(8)` is one sweep per eight-bar verse and `.fast(4)` is one wobble (one full repetition of the signal) per beat.
 
 Signals count cycles, not seconds, so the tempo decides how long a sweep lasts. `setcpm(90 / 4)` sets 22.5 cycles per minute {cite doc=setcpm}, which with one bar of four beats per cycle is 90 beats per minute. One bar then lasts 60 ÷ 22.5 = 2.67 seconds, so a `.slow(4)` sweep takes 4 × 2.67 = 10.7 seconds.
 

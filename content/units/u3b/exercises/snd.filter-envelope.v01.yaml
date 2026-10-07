@@ -1,0 +1,27 @@
+id: snd.filter-envelope.v01
+skills: [snd.filter-envelope]
+type: spec-to-code
+difficulty: 2
+title: A flash of brightness on every note
+prompt: |
+  An eighth-note pulse on **a3** (sawtooth) goes through a low-pass at
+  **400 Hz**. On every note the cutoff opens **three octaves** above that, to
+  3200 Hz, and then falls back to 400 Hz. Leave the four filter-envelope stages
+  at their defaults.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("a3*8").s("sawtooth").lpf(400).lpenv(3)
+listen_for:
+  - Each eighth note starts bright and turns dark within about 0.15 seconds (the default lpdecay is 0.14 seconds)
+  - For the rest of each note the tone is as dark as a plain lpf at 400 Hz, because the default lpsustain is 0
+  - If nothing moves, check that lpf is set. Without a low-pass, lpenv has nothing to move
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: lpenv
+  - strudel-doc: lpf
+  - strudel-src: "packages/superdough/helpers.mjs#L250-L251"
+  - strudel-src: "packages/superdough/superdough.mjs#L660-L660"
+  - lexicon: bright
+  - lexicon: dark

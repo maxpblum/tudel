@@ -17,7 +17,7 @@ solutions:
       setcpm(90 / 4)
       note("c3*8").s("sawtooth").lpf(sine.range(400, 2400).slow(3))
 listen_for:
-  - "One bar is 60 ÷ 22.5 = 2.67 seconds, so 8 seconds is 8 ÷ 2.67 = 3 bars: slow(3)"
+  - "One bar is 60 ÷ 22.5 = 8/3 ≈ 2.67 seconds, so 8 seconds is exactly 3 bars: slow(3)"
   - The cutoff is back at its starting colour on the downbeat of bar 4, then of bar 7
   - Brightest on beat 4 of bar 1 (three quarters of a bar in), darkest on beat 2 of bar 3 (2.25 bars in)
 verify:

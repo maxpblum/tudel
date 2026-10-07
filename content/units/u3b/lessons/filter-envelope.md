@@ -32,7 +32,13 @@ a:
   code: note("a3 a3 c4 a3 e4 a3 g4 a4").s("sawtooth").lpf(300).lpenv(4).gain(0.5)
 b:
   label: lpq 20 dB
-  code: note("a3 a3 c4 a3 e4 a3 g4 a4").s("sawtooth").lpf(300).lpq(20).lpenv(4).gain(0.5)
+  code: |
+    note("a3 a3 c4 a3 e4 a3 g4 a4")
+      .s("sawtooth")
+      .lpf(300)
+      .lpq(20)
+      .lpenv(4)
+      .gain(0.5)
 :::
 
 :::bridge{title="A diphthong on every note"}

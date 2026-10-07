@@ -110,7 +110,7 @@ Small pure functions with tests next to them, and ≥90% coverage kept on srs, s
 - **U4:**
   - `mod.signals`: `sine`, `saw`, `tri` and `square` as parameters.
   - `mod.range`.
-  - `mod.slow-signals`: tying a sweep to N bars.
+  - `mod.signal-speed`: tying a sweep to N bars with `slow`, and N wobbles per bar with `fast` (authored under this id instead of the earlier working name `mod.slow-signals`).
   - `mod.segment`.
   - `mod.perlin`: `perlin` and `rand` drift.
   - `mod.signal-melody`: `n(sine.segment(8).range(…)).scale(…)`.

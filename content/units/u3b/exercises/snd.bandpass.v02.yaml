@@ -1,0 +1,27 @@
+id: snd.bandpass.v02
+skills: [snd.bandpass]
+type: describe-to-code
+difficulty: 2
+title: A nasal line
+prompt: |
+  Play **g3 c4 d4 eb4**, four quarter notes, on a sawtooth and make the line
+  **nasal**, like a singer placing the tone in the nose. Use one band-pass.
+
+  Any centre from about 800 to 1500 Hz and any `bpq` from about 2 to 5 fits
+  the description. The reference uses one value from each range.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("g3 c4 d4 eb4").s("sawtooth").bpf(1000).bpq(3)
+listen_for:
+  - A honky colour, centred in the middle of the spectrum, on every note
+  - The fundamentals (196 to 311 Hz) are turned down, but the pitches are still clear
+  - If yours whistles, lower bpq. If it sounds like a plain dark sawtooth, raise the centre
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: bpf
+  - strudel-doc: bpq
+  - lexicon: nasal
+  - lexicon: resonant
+  - lexicon: dark

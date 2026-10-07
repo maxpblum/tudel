@@ -12,8 +12,8 @@ prompt: |
   2. Does it glide smoothly, or jump from note to note?
   3. How often does it seem to change course?
 
-  Then write it. The cutoff is a frequency, so pick the mapping that gives each
-  octave equal weight.
+  Then write it. The cutoff is a frequency, so pick the mapping that spreads
+  the signal in even ratios rather than even steps in hertz.
 hide_reference_code_until_reveal: true
 solutions:
   - code: |
@@ -28,3 +28,4 @@ sources:
   - strudel-doc: perlin
   - strudel-doc: rangex
   - strudel-src: "packages/core/signal.mjs#L626-L635"
+  - lexicon: dark

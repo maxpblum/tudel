@@ -1,0 +1,24 @@
+id: pit.progressions.v01
+skills: [pit.progressions]
+type: spec-to-code
+difficulty: 2
+title: I vi ii V7 in F major
+prompt: |
+  Play the progression **I, vi, ii, V7** in F major, one chord per bar, as
+  chord symbols with `chord` and `.voicing()` on `"triangle"`, with the
+  default settings. First turn each numeral into a symbol: the key decides
+  whether each triad is major or minor, and V7 adds a minor seventh above the
+  root of V.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<F Dm Gm C7>").voicing().s("triangle")
+listen_for:
+  - "I, vi, ii, V7 in F major: F, Dm, Gm, C7"
+  - The bass runs F3, D3, G3, then E3, because voicing puts C7 in first inversion, with the seventh, B flat 3, just above the bass
+  - The top note moves C5, A4, B flat 4, C5
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: chord
+  - strudel-doc: voicing

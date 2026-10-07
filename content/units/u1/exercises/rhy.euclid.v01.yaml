@@ -23,7 +23,7 @@ solutions:
 listen_for:
   - Five hits per bar, spaced 3, 3, 3, 3 and then 4 sixteenths apart
   - The longest gap runs from the fifth hit back to the downbeat
-  - Strudel's source lists (5,16) as the bossa nova rhythm
+  - "Strudel's source calls (5,16) the bossa nova \"rhythm necklace\": a cycle of gaps that may start from any of its hits"
 verify:
   cycles: 1
   abc_agreement:

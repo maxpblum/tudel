@@ -19,7 +19,7 @@ solutions:
       s("bd hh sd hh bd bd sd hh").bank("RolandTR909")
 listen_for:
   - Eight evenly spaced hits per bar, one drum on each
-  - Kick on beat 1, and on beat 3 together with the eighth after it (two kicks in a row)
+  - Kick on beats 1 and 3, plus a second kick on the eighth right after beat 3 (two kicks in a row)
   - Snare on beats 2 and 4; hi-hat on the second half of beats 1, 2 and 4
 verify:
   cycles: 1

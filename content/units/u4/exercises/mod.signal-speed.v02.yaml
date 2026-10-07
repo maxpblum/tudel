@@ -18,7 +18,7 @@ solutions:
       note("c3*16").s("sawtooth").lpf(sine.range(400, 2400).fast(4))
 listen_for:
   - "Why the starter failed: eighths read each wobble only at its start and its middle, where the sine is at its midpoint both times, so every note got 1400 Hz"
-  - With sixteenths, each beat cycles through 1400, 2400, 1400 and 400 Hz, an audible wah on every beat
+  - With sixteenths, each beat cycles through 1400, 2400, 1400 and 400 Hz, so the filter audibly opens and closes on every beat
   - Four notes per wobble still sound stepped; that is expected
 verify:
   cycles: 1

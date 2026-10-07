@@ -4,7 +4,7 @@ title: Chords in mini-notation
 skill: pit.chords-mini
 ---
 
-A comma inside square brackets stacks notes into one step, so they start and stop together: a block chord {cite src="packages/mini/krill.pegjs#L178-L180"} {cite src="packages/mini/krill.pegjs#L113-L113"}. `"[c4,e4,g4] [f4,a4,c5]"` is two chords, each one step long. With four steps in a bar, each chord is a quarter note.
+A comma inside square brackets stacks notes into one step, so they start and stop together: a block chord {cite src="packages/mini/krill.pegjs#L178-L180"} {cite src="packages/mini/krill.pegjs#L113-L113"}. `"[c4,e4,g4] [f4,a4,c5]"` is two chords, each one step long. Two steps share the bar, so each chord is a half note. The demo below has four steps, so each chord is a quarter note.
 
 The same works with scale degrees, and there it pays off. A triad is a degree plus the degrees two and four above it: `[0,2,4]` is the tonic triad, `[3,5,7]` the triad on the fourth degree, `[4,6,8]` the dominant. The scale decides each chord's quality, so in C major `[1,3,5]` is D minor without your having to spell it:
 

@@ -32,6 +32,11 @@ describe('search', () => {
   it('respects the limit', () => {
     expect(search(index, 'a', 2).length).toBeLessThanOrEqual(2);
   });
+
+  it('falls back to lesson blocks when a lesson has no plain text', () => {
+    const noText = buildSearchIndex({ ...bundle, lessons: bundle.lessons.map((l) => ({ ...l, text: '' })) });
+    expect(search(noText, 'organ').some((x) => x.kind === 'lesson' && x.id === 'fx.waveforms.lesson')).toBe(true);
+  });
 });
 
 describe('lexiconLinks', () => {

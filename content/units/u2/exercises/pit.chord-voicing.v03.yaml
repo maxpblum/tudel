@@ -12,7 +12,7 @@ solutions:
   - code: |
       chord("<Dm G7 C Am>").voicing().s("triangle")
 listen_for:
-  - Each bar has one chord of four or five notes, held for the whole bar
+  - Each bar has one chord of five notes, held for the whole bar
   - The G7 bar contains F4, the seventh, above G3 in the bass
   - The C bar has E3 in the bass, the default voicing's first inversion
 verify:

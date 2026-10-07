@@ -1,0 +1,33 @@
+id: snd.filter-envelope.v02
+skills: [snd.filter-envelope]
+type: describe-to-code
+difficulty: 3
+title: A squelchy pulse
+prompt: |
+  Make an eighth-note pulse on **c3** (sawtooth) **squelchy**: on every note, a
+  resonant low-pass snaps open and shuts again at once.
+
+  Start from a low-pass at **200 Hz** that opens **five octaves** (to 6400 Hz)
+  on each note. Then choose two things. Any resonance (`lpq`) from about 10 to
+  20 dB fits. Any fall back to 200 Hz (`lpdecay`) from about 0.05 to 0.2
+  seconds fits, with nothing held after it (`lpsustain` at 0). The reference
+  uses one value from each range.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c3*8").s("sawtooth").lpf(200).lpq(12).lpenv(5).lpdecay(0.1).lpsustain(0)
+listen_for:
+  - A quick "yow" on every note, as the resonant peak sweeps from high to low
+  - The sweep is over in about a tenth of a second, and the note stays dark until the next one
+  - If it whistles too much, lower lpq. If it doesn't squelch, raise lpq or lpenv
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: lpenv
+  - strudel-doc: lpq
+  - strudel-doc: lpdecay
+  - strudel-doc: lpsustain
+  - strudel-src: "packages/superdough/helpers.mjs#L245-L263"
+  - lexicon: squelchy
+  - lexicon: resonant
+  - lexicon: dark

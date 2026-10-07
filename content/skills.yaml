@@ -176,7 +176,7 @@ skills:
     prereqs: [rhy.subdivide]
     summary: >-
       Play one entry per cycle with <...>, placed only where the bars differ,
-      and stretch a step over n cycles with /n.
+      and stretch a group that fills the bar over n cycles with /n.
     vocabulary: [s]
     lesson: rhy.alternate.lesson
     idiom_note: >-
@@ -348,7 +348,7 @@ skills:
   - id: snd.fm
     unit: u3b
     title: "FM synthesis basics"
-    prereqs: [snd.amp-envelope]
+    prereqs: [snd.amp-envelope, snd.filter-sweep]
     summary: >-
       Add partials to a sine with frequency modulation: fmh, the modulator's
       frequency ratio, picks which partials (whole numbers keep them harmonic),

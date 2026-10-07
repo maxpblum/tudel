@@ -17,7 +17,7 @@ solutions:
 listen_for:
   - Note 2 drops a fourth from D4 to A3, the dominant below the tonic (-3)
   - Notes 3 and 4 climb back through the leading tone C sharp 4 (-1) to D4
-  - The second half outlines the tonic triad, D4 F sharp 4 A4 F sharp 4, then back to D4
+  - Notes 4 to 8 outline the tonic triad, D4 F sharp 4 A4 F sharp 4 D4
 verify:
   cycles: 1
 sources:

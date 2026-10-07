@@ -84,6 +84,10 @@ test('search finds skills, lessons and exercises by any word', async ({ page }) 
   await hit.click();
   await expect(page.getByTestId('skill-page')).toBeVisible();
 
+  // U1: "euclid" finds the Euclidean-rhythms skill (title and id match)
+  await page.goto('./#/search/euclid');
+  await expect(page.locator('[data-testid="search-result"][data-kind="skill"][data-id="rhy.euclid"]')).toBeVisible();
+
   await page.goto('./#/search/zzzzqqqq');
   await expect(page.getByTestId('search-count')).toHaveText(/^0 results/);
   await expect(page.getByTestId('search-result')).toHaveCount(0);

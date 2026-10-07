@@ -1,0 +1,27 @@
+id: pit.progressions.v03
+skills: [pit.progressions]
+type: spec-to-code
+difficulty: 3
+title: vi IV I V over a root bass
+prompt: |
+  Play **vi, IV, I, V** in C major, one chord per bar, with `chord` and
+  `.voicing()` on `"triangle"`. Under it, with `stack`, add a bass on the
+  chord roots, written as scale degrees on `"C3:major"`, on `"sawtooth"` with
+  `.lpf(600)`. A root's degree is its Roman numeral minus one.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      stack(
+        chord("<Am F C G>").voicing().s("triangle"),
+        n("<5 3 0 4>").scale("C3:major").s("sawtooth").lpf(600),
+      )
+listen_for:
+  - The bass plays A3, F3, C3, G3, the root of every chord
+  - On its own, voicing puts E3 at the bottom of the C chord; with C3 below it, the chord is now in root position
+  - In the other three bars the bass doubles the lowest note of the voicing, A3, F3 and G3
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: chord
+  - strudel-doc: voicing
+  - strudel-doc: stack

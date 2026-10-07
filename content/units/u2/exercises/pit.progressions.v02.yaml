@@ -1,0 +1,23 @@
+id: pit.progressions.v02
+skills: [pit.progressions]
+type: transform
+difficulty: 2
+title: I IV V7 I, from C major to G major
+prompt: |
+  The starter plays I, IV, V7, I in C major. Move the progression to
+  **G major**: rewrite the four chord symbols, and change nothing else.
+starter: |
+  chord("<C F G7 C>").voicing().s("triangle")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<G C D7 G>").voicing().s("triangle")
+listen_for:
+  - "I, IV, V7, I in G major: G, C, D7, G"
+  - The top note moves B4, C5, C5, B4. C5 is held from the C chord into D7, where it becomes the seventh, and then falls to B4
+  - The D7 chord has F sharp 3, its third, in the bass, and no A, because the voicing chosen for it leaves out the fifth
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: chord
+  - strudel-doc: voicing

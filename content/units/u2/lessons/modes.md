@@ -25,7 +25,7 @@ n("0 1 2 3 4 5 6 7")
   .s("triangle")
 :::
 
-Listen for each mode's characteristic degree. Dorian has the major sixth (B), phrygian the minor second (E flat), lydian the raised fourth (G sharp) and mixolydian the minor seventh (C).
+Listen for each mode's characteristic degree, the one that sets it apart from natural minor (dorian, phrygian) or from major (lydian, mixolydian). Dorian has the major sixth (B), phrygian the minor second (E flat), lydian the raised fourth (G sharp) and mixolydian the minor seventh (C).
 
 :::bridge{title="Modal mixture in one word"}
 `"C4:<major minor>"` is modal mixture written once. Every second bar borrows the lowered third, sixth and seventh from the parallel minor, the way a Romantic song turns to the minor for a phrase without leaving its key. The degree line, which is the tune, does not change. Only the scale under it does.

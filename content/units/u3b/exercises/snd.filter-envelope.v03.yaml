@@ -1,0 +1,38 @@
+id: snd.filter-envelope.v03
+skills: [snd.filter-envelope]
+type: sweep
+difficulty: 3
+title: A pad chord that opens slowly
+prompt: |
+  Hold the chord **c3, g3, eb4** for a whole bar on a sawtooth, through a
+  low-pass at **300 Hz** that opens **four octaves** (to 4800 Hz). Shape the
+  filter's movement as a pad: it **opens over 1 second**, stays open while the
+  chord is held, and **closes over 1 second** after the chord ends.
+
+  Give the amplitude a 1-second `release` as well. With the default release of
+  0.01 seconds, the chord would stop before you could hear the filter close.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c3,g3,eb4")
+        .s("sawtooth")
+        .release(1)
+        .lpf(300)
+        .lpenv(4)
+        .lpattack(1)
+        .lprelease(1)
+listen_for:
+  - Each chord starts dark and brightens gradually over the first half of the bar (1 second at the default tempo)
+  - It stays bright for the rest of the bar. No lpsustain is needed, because with lpattack set and lpdecay unset the sustain is 1
+  - After the chord ends, its tail darkens as it fades, under the start of the next chord
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: lpattack
+  - strudel-doc: lprelease
+  - strudel-doc: lpenv
+  - strudel-doc: release
+  - strudel-src: "packages/superdough/helpers.mjs#L167-L178"
+  - lexicon: pad-like
+  - lexicon: bright
+  - lexicon: dark

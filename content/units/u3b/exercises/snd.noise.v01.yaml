@@ -1,0 +1,25 @@
+id: snd.noise.v01
+skills: [snd.noise]
+type: spec-to-code
+difficulty: 1
+title: Ticks of white noise
+prompt: |
+  Make an eighth-note pulse of **white noise** hits, like a whispered "ts" on
+  every eighth. Each hit dies away in **0.05 seconds**, and nothing is held.
+  Noise has no pitch, so there is no `note` to write.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      s("white*8").decay(0.05).sustain(0)
+listen_for:
+  - Eight short ticks per bar, evenly spaced
+  - Each tick is a bright hiss with no pitch
+  - If yours is one continuous hiss, check decay and sustain. Without them, noise holds at 0.6 of full level for the whole step
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: s
+  - strudel-doc: decay
+  - strudel-doc: sustain
+  - strudel-src: "packages/superdough/synth.mjs#L407-L421"
+  - lexicon: bright

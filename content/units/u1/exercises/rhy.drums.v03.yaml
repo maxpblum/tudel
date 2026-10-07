@@ -13,8 +13,8 @@ solutions:
       s("bd hh sd oh").bank("RolandTR909")
 listen_for:
   - "Beat 1: the lowest-pitched hit, the bass drum (bd)"
-  - "Beat 2: a short tick, the closed hi-hat (hh)"
-  - "Beat 3: the snare (sd), higher than the kick and noisier"
+  - "Beat 2: a high, very short hit that stops almost at once, the closed hi-hat (hh)"
+  - "Beat 3: the snare (sd), in a middle register, higher than the kick and lower than the hi-hats"
   - "Beat 4: a hi-hat that rings on longer than the one on beat 2, the open hi-hat (oh)"
 verify:
   cycles: 1

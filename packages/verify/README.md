@@ -2,6 +2,8 @@
 
 The verification package: the Node-only gate that all content must pass to enter the app (PROPOSAL §7, §13). It loads `content/`, runs gates L0-L5, L7 and L8, and, only if all pass, compiles the bundle the app reads (`apps/web/src/content/bundle.json`, schema `Bundle` in `@tudel/content-schema`).
 
+The bundle is `schemaVersion` 2. Besides units, skills, lessons, variants and the timbre lexicon, it carries `chords` (copied from `content/glossary/chord-symbols.yaml`, empty if the file is absent; L0 checks each entry's `skills` exist) and `terms` (derived in `src/compile/terms.ts`: one per name in any skill's `vocabulary`, with the first sentence of its doc.json description and every skill that lists it).
+
 What each gate checks and how to work with them: [docs/verification.md](../../docs/verification.md).
 
 ## Commands

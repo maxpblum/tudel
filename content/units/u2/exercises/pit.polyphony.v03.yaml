@@ -23,7 +23,7 @@ solutions:
 listen_for:
   - The top part, on the triangle, moves in eighth notes around A4
   - The middle part, on the filtered square, moves in quarter notes, F4 D4 E4 C sharp 4
-  - The bass, on the filtered sawtooth, plays two half notes, D3 then A3: the tonic, then the dominant
+  - "The bass, on the filtered sawtooth, plays two half notes, D3 then A3: the tonic, then the dominant"
   - The middle part ends on the leading tone C sharp 4, which resolves to D4 when the bar repeats
 verify:
   cycles: 1

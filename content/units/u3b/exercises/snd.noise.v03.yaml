@@ -1,0 +1,32 @@
+id: snd.noise.v03
+skills: [snd.noise]
+type: match-by-ear
+difficulty: 3
+title: Match the wave on the shore
+prompt: |
+  Listen to the target: one noise sound per bar that swells and then fades
+  away, like a wave on a shore. Find its colour, `"white"`, `"pink"` or
+  `"brown"`, and its envelope. The swell takes a quarter of the bar, the fade
+  takes the rest, and nothing is held.
+
+  The levels are matched as in the lesson: `gain` 0.3 for white, 0.9 for pink
+  and 3 for brown.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      s("brown").attack(0.5).decay(1.5).sustain(0).gain(3)
+listen_for:
+  - The darkest of the three colours, with almost no high hiss
+  - The swell peaks on beat 2, 0.5 seconds into the bar at the default tempo
+  - Then a long fade to silence, reached at the barline 1.5 seconds later
+  - If yours sounds like hiss, try a darker colour
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: s
+  - strudel-doc: attack
+  - strudel-doc: decay
+  - strudel-doc: sustain
+  - strudel-doc: gain
+  - url: https://en.wikipedia.org/wiki/Colors_of_noise
+  - lexicon: dark

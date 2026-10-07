@@ -53,6 +53,56 @@ Exercise-type coverage in U3a: 4 spec-to-code, 4 describe-to-code, 5 match-by-ea
 
 **Deliberately left for later units:** filter envelopes (`lpenv` and friends) and `ftype` go to U3b; `segment` and `perlin` go to U4; samples and drum banks go to U1. U3a uses synth sounds only, so it works offline.
 
+## U3b: Sound, continued
+
+**Learner outcome.** Given a timbre word such as "squelchy", "nasal", "metallic", "bell-like", "brassy", "breathy" or "wet", or a sound heard in the head, the learner can add movement inside each note (a filter envelope or an FM envelope), keep one band with `bpf`, build spectra with FM, add noise, and place the sound in a space with `room` and tempo-synced `delay`, typing idiomatic Strudel without looking anything up.
+
+**Classical bridges used** (R-PEDAGOGY): a sung diphthong for the filter envelope, vowel formants and nasal placement for band-pass, the trombone's harmonic series versus a bell's partials for FM, the piano hammer and the brass crescendo for FM envelopes, breath in a choral tone or a flute for noise, the rehearsal room versus the stone church for reverb, and a canon at the unison for delay.
+
+```dot
+digraph u3b {
+  rankdir=LR;
+  node [shape=box, style=rounded, fontname="Helvetica"];
+  "snd.amp-envelope" [style="rounded,dashed"];
+  "snd.highpass" [style="rounded,dashed"];
+  "rhy.subdivide" [style="rounded,dashed"];
+  "snd.filter-sweep" [style="rounded,dashed"];
+  "snd.filter-envelope" [label="snd.filter-envelope\nFilter envelopes and resonance\nlpenv, lpattack, lpdecay, lpsustain, lprelease"];
+  "snd.bandpass" [label="snd.bandpass\nBand-pass filter\nbpf, bpq"];
+  "snd.fm" [label="snd.fm\nFM synthesis basics\nfmi, fmh"];
+  "snd.fm-envelope" [label="snd.fm-envelope\nFM envelopes\nfmenv, fmattack, fmdecay, fmsustain"];
+  "snd.noise" [label="snd.noise\nNoise sources\nnoise, s"];
+  "snd.room" [label="snd.room\nReverb with room\nroom, roomsize"];
+  "snd.delay" [label="snd.delay\nTempo-synced delay\ndelay, delaysync, delayfeedback"];
+  "snd.amp-envelope" -> "snd.filter-envelope";
+  "snd.highpass" -> "snd.bandpass";
+  "snd.amp-envelope" -> "snd.fm";
+  "snd.filter-sweep" -> "snd.fm";
+  "snd.fm" -> "snd.fm-envelope";
+  "snd.bandpass" -> "snd.noise";
+  "snd.amp-envelope" -> "snd.noise";
+  "snd.amp-envelope" -> "snd.room";
+  "snd.room" -> "snd.delay";
+  "rhy.subdivide" -> "snd.delay";
+}
+```
+
+Dashed nodes are prerequisites from other units.
+
+| Skill | Prereqs | Lesson | Variants (type) |
+|---|---|---|---|
+| `snd.filter-envelope` | snd.amp-envelope | Filter envelopes and resonance | v01 spec-to-code, v02 describe-to-code, v03 sweep |
+| `snd.bandpass` | snd.highpass | Band-pass filter | v01 transform, v02 describe-to-code, v03 sweep |
+| `snd.fm` | snd.amp-envelope, snd.filter-sweep | FM synthesis basics | v01 spec-to-code, v02 match-by-ear, v03 sweep |
+| `snd.fm-envelope` | fm | FM envelopes | v01 describe-to-code, v02 spec-to-code, v03 transform |
+| `snd.noise` | bandpass, snd.amp-envelope | Noise sources | v01 spec-to-code, v02 describe-to-code, v03 match-by-ear |
+| `snd.room` | snd.amp-envelope | Reverb with room | v01 spec-to-code, v02 describe-to-code, v03 sweep |
+| `snd.delay` | room, rhy.subdivide | Tempo-synced delay | v01 spec-to-code, v02 describe-to-code, v03 match-by-ear |
+
+`snd.fm.v03` also lists `snd.filter-sweep`, because it moves `fmi` with `sine.range(a, b).slow(n)`.
+
+Exercise-type coverage in U3b: 6 spec-to-code, 6 describe-to-code, 4 sweep, 3 match-by-ear, 2 transform. There is no dictation: the unit is about timbre, and the notes in every exercise are given. All of U3b is synth-only, so it works offline (ADR 0201 §1); noise uses the built-in `"white"`, `"pink"` and `"brown"` synths.
+
 ## U1: Time & rhythm
 
 **Learner outcome.** Given a rhythm on a staff (pitched or percussion), heard by ear, or described in musical terms ("a backbeat at 100 BPM", "triple-tongued triplets on beats 1 and 2", "the tresillo starting on its second hit"), the learner can write it in mini-notation without looking anything up: the tempo with `setcpm(BPM / 4)`, steps that share the bar, `[ ]` and `*` for subdivisions and tuplets, `~`, `@` and `!` for rests, lengths and repeats, `< >` and `/` for bar-to-bar changes, the comma and `stack` for layers and polyrhythms, and `(k,n,r)` for Euclidean rhythms. They know the two facts that keep rhythms honest: the bar (cycle) never stretches, and a drum sample rings to its end whatever its step length.
@@ -98,6 +148,52 @@ Exercise-type coverage in U1: 7 dictation (5 of them drum dictations with `clef=
 **Verified behaviour the unit relies on** (pinned source, checked in the harness): the default tempo is 0.5 cycles per second (`packages/core/cyclist.mjs#L24`) and `setcpm` divides by 60 (`packages/core/repl.mjs#L132-L135`); `@` adds weight and `!` adds full steps (`packages/mini/krill.pegjs#L134-L145`); `~` and `-` are rests (`packages/mini/mini.mjs#L157-L158`); a sample plays to its natural end unless `clip`, `loop` or `release` is set (`packages/superdough/sampler.mjs#L313-L317`); Euclidean rotation `r` moves every hit `r` slots *later* (`packages/core/euclid.mjs#L130-L136`, `packages/core/util.mjs#L153`; the harness shows `(3,8,1)` on slots 2, 5 and 8).
 
 **Deliberately left for later units:** `_` (another way to lengthen a step), `?` and `|` (randomness), `{ }` polymeters, `n` for choosing among a bank's samples, `ply`, `struct` and `clip` go to the pattern-transform units in M3.
+
+## U2: Pitch, voices & harmony basics
+
+**Learner outcome.** Given a melody, chords or a progression on a staff, heard by ear, or described in musical terms ("I vi IV V in G major", "a tune in parallel thirds", "fauxbourdon under this line", "the same phrase in D dorian"), the learner can write it without looking anything up: degrees with `n` and `scale`, modes by name and per bar, block chords and inversions with the comma, parallel voices with `add`, independent parts with `stack`, and chord symbols with `chord` and `voicing`, steered by `anchor` and `mode`.
+
+**Classical bridges used** (R-PEDAGOGY): movable-do solfège for degrees counted from 0, modal mixture for patterned scale names, figured bass for inversions in brackets, tonal and real answers for degrees versus semitones in `add`, the two-part invention for `stack`, continuo realisation for `voicing`, soprano position and figured bass for `anchor` with `mode`, and Roman numerals for progressions.
+
+```dot
+digraph u2 {
+  rankdir=LR;
+  node [shape=box, style=rounded, fontname="Helvetica"];
+  "pit.scale-degrees" [label="pit.scale-degrees\nScale degrees\nn, scale"];
+  "pit.modes" [label="pit.modes\nScales and modes per bar\nscale"];
+  "pit.chords-mini" [label="pit.chords-mini\nChords in mini-notation\nnote, n"];
+  "pit.parallel" [label="pit.parallel\nParallel voices\nadd"];
+  "pit.polyphony" [label="pit.polyphony\nIndependent parts\nstack"];
+  "pit.chord-voicing" [label="pit.chord-voicing\nChord symbols and voicing\nchord, voicing"];
+  "pit.register-inversion" [label="pit.register-inversion\nInversion and register\nanchor, mode"];
+  "pit.progressions" [label="pit.progressions\nDiatonic progressions\nchord, voicing"];
+  "pit.scale-degrees" -> "pit.modes";
+  "pit.scale-degrees" -> "pit.chords-mini";
+  "pit.chords-mini" -> "pit.parallel";
+  "pit.chords-mini" -> "pit.polyphony";
+  "pit.chords-mini" -> "pit.chord-voicing";
+  "pit.chord-voicing" -> "pit.register-inversion";
+  "pit.register-inversion" -> "pit.progressions";
+  "pit.modes" -> "pit.progressions";
+}
+```
+
+| Skill | Prereqs | Lesson | Variants (type) |
+|---|---|---|---|
+| `pit.scale-degrees` | snd.waveforms, rhy.subdivide | Scale degrees with n and scale | v01 dictation, v02 ear-dictation, v03 transform |
+| `pit.modes` | scale-degrees, rhy.alternate | Scales and modes, bar by bar | v01 sweep, v02 ear-dictation, v03 dictation, v04 spec-to-code |
+| `pit.chords-mini` | scale-degrees, rhy.layers | Chords in mini-notation | v01 dictation, v02 spec-to-code, v03 transform |
+| `pit.parallel` | chords-mini | Parallel voices from one line | v01 refactor, v02 dictation, v03 spec-to-code, v04 read-the-code |
+| `pit.polyphony` | chords-mini, rhy.layers | Independent parts with stack | v01 dictation (two voices, `only_sounds`), v02 transform, v03 read-the-code |
+| `pit.chord-voicing` | chords-mini, rhy.alternate | Chord symbols and voicing | v01 dictation, v02 ear-dictation, v03 spec-to-code |
+| `pit.register-inversion` | chord-voicing | Inversion and register with anchor and mode | v01 spec-to-code, v02 match-by-ear, v03 transform |
+| `pit.progressions` | register-inversion, modes | Simple diatonic progressions | v01 spec-to-code, v02 transform, v03 spec-to-code (with a `stack` bass), v04 ear-dictation |
+
+Exercise-type coverage in U2: 7 spec-to-code, 6 dictation, 5 transform, 4 ear-dictation, 2 read-the-code, 1 sweep, 1 refactor, 1 match-by-ear (27 variants). U2 is synth-only and works offline (ADR 0201 §1). Every chord symbol used in U2 has an entry in `content/glossary/chord-symbols.yaml`, checked against `tonal` by gate L8c (ADR 0201 §6).
+
+**Verified behaviour the unit relies on** (pinned source): `voicing` uses the `ireal` dictionary by default (`packages/tonal/voicings.mjs#L83`, `#L245`), whose major and minor entries are four- and five-note piano voicings (`packages/tonal/ireal.mjs#L49-L50`); for each chord it picks, on its own and with no memory of the previous chord, the voicing whose top note (`mode` below), bottom note (`above`) or root-position form (`root`) lands closest at or below the anchor, C5 by default (`packages/tonal/tonleiter.mjs#L131-L169`); a symbol missing from the dictionary logs "unknown chord" and plays nothing (`packages/tonal/voicings.mjs#L209-L212`), so Bdim fails and Bo works. The dictation and listen-for notes of U2's `voicing` variants were derived from that algorithm by hand.
+
+**Deliberately left for later units:** voicing dictionaries other than the default, and `dict`, wait for U5 in M3 (ADR 0201 §3).
 
 ## U4: Time & modulation
 
