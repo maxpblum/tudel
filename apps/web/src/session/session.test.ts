@@ -4,7 +4,7 @@ import { replaySrs } from '../srs';
 import type { NewEvent, RatingValue } from '../store/events';
 import { mkLog, DAY, MIN, T0 } from '../test-helpers';
 import {
-  buildSession, dueReviewOrder, fluencyElapsed, nextNewSkill, pickVariant, practicePool, replayMinutes, replaySessions, revealTimes,
+  buildSession, dueReviewOrder, fluencyBySkill, fluencyElapsed, replayFocus, nextNewSkill, pickVariant, practicePool, replayMinutes, replaySessions, revealTimes,
   unmetPrereqs, variantHistory, wasPractised, COST, DEFAULT_MINUTES, FLUENCY_MAX_MS,
 } from '.';
 
@@ -376,5 +376,88 @@ describe('content index', () => {
     const ids = content.variantsForSkill('fx.waveforms').map((v) => v.id);
     expect(ids.slice(0, 3)).toEqual(['fx.waveforms.v01', 'fx.waveforms.v02', 'fx.waveforms.v03']);
     expect(ids.at(-1)).toBe('fx.lowpass.v01');
+  });
+});
+
+describe('replayFocus', () => {
+  it('is the latest focus_changed unit, null when cleared or never set', () => {
+    expect(replayFocus([])).toBeNull();
+    const set = mkLog([[T0, { type: 'focus_changed', unitId: 'u3a' }]]);
+    expect(replayFocus(set)).toBe('u3a');
+    expect(replayFocus([...set, ...mkLog([[T0 + 1, { type: 'focus_changed', unitId: null }]])])).toBeNull();
+    expect(replayFocus([...set, ...mkLog([[T0 + 1, { type: 'focus_changed', unitId: 'u1' }]])])).toBe('u1');
+  });
+});
+
+describe('focus unit', () => {
+  const focusPlan = (items: [number, NewEvent][], now: number, focusUnit: string | null, minutes?: number) => {
+    const log = mkLog(items);
+    return buildSession({ content, srs: replaySrs(log), history: variantHistory(log), now: new Date(now), minutes, focusUnit });
+  };
+  it('restricts the new skill to the unit', () => {
+    expect(focusPlan([], T0, null).newSkillId).toBe('fx.drums');
+    expect(focusPlan([], T0, 'u3a').newSkillId).toBe('fx.waveforms');
+    expect(nextNewSkill(content, replaySrs([]), 'u3a')).toBe('fx.waveforms');
+  });
+  it('offers no new skill when the focused unit has none eligible', () => {
+    const items: [number, NewEvent][] = [[T0, { type: 'override', skillId: 'fx.drums', action: 'retire' }]];
+    expect(focusPlan(items, T0, 'u1').newSkillId).toBeNull();
+    expect(focusPlan(items, T0, 'u3a').newSkillId).toBe('fx.waveforms');
+  });
+  it('restricts extra practice to the unit but keeps due reviews from every unit', () => {
+    const items: [number, NewEvent][] = [
+      [T0, rate('fx.drums', 3)],
+      [T0 + MIN, rate('fx.waveforms', 3)],
+      [T0 + 2 * MIN, rate('fx.lowpass', 3)],
+    ];
+    const now = T0 + 10 * MIN;
+    const srs = replaySrs(mkLog(items));
+    expect(practicePool(content, srs, now > 0 ? new Date(now) : new Date(), new Set(), 'u3a')).not.toContain('fx.drums');
+    const unfocused = focusPlan(items, T0 + 3 * MIN, null, 30);
+    const focused = focusPlan(items, T0 + 3 * MIN, 'u3a', 30);
+    expect(unfocused.practiceSkillIds).toContain('fx.drums');
+    expect(focused.practiceSkillIds).not.toContain('fx.drums');
+    // due reviews are unchanged by focus
+    const later = T0 + 60 * DAY;
+    expect(focusPlan(items, later, 'u3a').reviewSkillIds).toEqual(focusPlan(items, later, null).reviewSkillIds);
+    expect(focusPlan(items, later, 'u3a').reviewSkillIds).toContain('fx.drums');
+  });
+  it('never offers or practises suspended skills', () => {
+    const items: [number, NewEvent][] = [
+      [T0, rate('fx.waveforms', 3)],
+      [T0 + MIN, { type: 'override', skillId: 'fx.waveforms', action: 'suspend' }],
+      [T0 + MIN, { type: 'override', skillId: 'fx.drums', action: 'suspend' }],
+    ];
+    const srs = replaySrs(mkLog(items));
+    expect(nextNewSkill(content, srs)).not.toBe('fx.drums');
+    expect(dueReviewOrder(content, srs, new Date(T0 + 365 * DAY))).toEqual([]);
+    expect(practicePool(content, srs, new Date(T0 + DAY))).not.toContain('fx.waveforms');
+    // card-based prerequisites: waveforms (started) still unlocks lowpass; unstarted drums does not count
+    expect(nextNewSkill(content, srs)).toBe('fx.lowpass');
+  });
+});
+
+describe('fluencyBySkill', () => {
+  const rev = (variantId: string, ms: number | null): NewEvent => ({ type: 'revealed', sessionId: null, step: null, variantId, elapsedMs: ms });
+  it('groups reveal times per primary skill in order, with the median', () => {
+    const log = mkLog([
+      [T0, rev('fx.waveforms.v01', 9000)],
+      [T0 + 1, rev('fx.waveforms.v02', 3000)],
+      [T0 + 2, rev('fx.drums.v01', 5000)],
+      [T0 + 3, rev('fx.waveforms.v03', 6000)],
+      [T0 + 4, rev('fx.waveforms.v01', null)],
+      [T0 + 5, rev('unknown.v1', 1000)],
+      [T0 + 6, rev('fx.waveforms.v01', DAY)],
+    ]);
+    const f = fluencyBySkill(log, (id) => content.variant(id)?.skills[0]);
+    expect([...f.keys()].sort()).toEqual(['fx.drums', 'fx.waveforms']);
+    expect(f.get('fx.waveforms')!.points).toEqual([{ ts: T0, ms: 9000 }, { ts: T0 + 1, ms: 3000 }, { ts: T0 + 3, ms: 6000 }]);
+    expect(f.get('fx.waveforms')!.median).toBe(6000);
+    expect(f.get('fx.drums')!.median).toBe(5000);
+  });
+  it('averages the middle pair for an even count and is empty without data', () => {
+    const log = mkLog([[T0, rev('fx.drums.v01', 2000)], [T0 + 1, rev('fx.drums.v02', 4000)]]);
+    expect(fluencyBySkill(log, (id) => content.variant(id)?.skills[0]).get('fx.drums')!.median).toBe(3000);
+    expect(fluencyBySkill([], () => 'x').size).toBe(0);
   });
 });

@@ -1,0 +1,25 @@
+id: rhy.layers.v02
+skills: [rhy.layers]
+type: spec-to-code
+difficulty: 3
+title: Three against four with stack
+prompt: |
+  A two-layer polyrhythm on a **triangle** wave, written with `stack`:
+  **c4** four times per bar (quarter notes) and **g4** three times per bar
+  (equal thirds of the bar). Write `.s("triangle")` only once, after the
+  `stack(...)`.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      stack(note("c4*4"), note("g4*3")).s("triangle")
+  - code: |
+      note("c4*4, g4*3").s("triangle")
+    note: The same events, written with the comma. The prompt asks for `stack`, which also works when the layers are separate patterns rather than one string.
+listen_for:
+  - Both layers start together on the downbeat and meet again only on the next one
+  - c4 keeps the four beats while g4 pulls against them with three
+  - Both layers have the same sound, from the single .s("triangle")
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: stack

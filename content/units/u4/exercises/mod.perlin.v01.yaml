@@ -1,0 +1,30 @@
+id: mod.perlin.v01
+skills: [mod.perlin]
+type: describe-to-code
+difficulty: 2
+title: A tone that wanders
+prompt: |
+  An eighth-note sawtooth pulse on **c3** whose colour never settles: it
+  wanders between **dark** and fairly **bright**, smoothly and without a
+  regular pattern, like a choir's tone over a long phrase. It should head
+  somewhere new about **every two bars**, not every bar.
+
+  Any range from about 300–500 Hz at the bottom to 2000–3000 Hz at the top
+  fits. The reference uses one pair of values from those ranges.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c3*8").s("sawtooth").lpf(perlin.range(400, 2400).slow(2))
+listen_for:
+  - Smooth changes, with no jumps between neighbouring notes (perlin, not rand)
+  - No repeating cycle; the brightest and darkest moments fall at irregular places
+  - A new target level only every two bars, at the downbeats of bars 3, 5 and 7 (slow(2)); without slow there would be a new one every bar
+  - It starts at its darkest, 400 Hz, on the very first downbeat, as perlin always does at cycle 0
+verify:
+  cycles: 8
+sources:
+  - strudel-doc: perlin
+  - strudel-src: "packages/core/signal.mjs#L626-L635"
+  - strudel-doc: slow
+  - lexicon: dark
+  - lexicon: bright

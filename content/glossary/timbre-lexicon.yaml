@@ -14,6 +14,7 @@ entries:
     tendencies:
       - higher lpf cutoff (or no lpf)
       - a harmonically rich source such as s("sawtooth") or s("square")
+      - with FM, a higher fmi
     status: canonical
     confidence: high
     sources:
@@ -26,12 +27,18 @@ entries:
       - title: 'J. D. Tillman, "A Palette of Static Audio Waveforms"'
         url: https://till.com/articles/wavepalette/
         note: Calls the sawtooth "A bright waveform with all harmonics."
-    notes: The best-agreed timbre word in the literature; its main acoustic correlate is the spectral centroid.
+      - title: 'Cycling ''74, "Synthesis Tutorial 5: Frequency Modulation", Max 8 documentation'
+        url: https://docs.cycling74.com/max8/tutorials/06_synthesischapter05
+        note: 'Modulation index: "this value affects the ''brightness'' of the timbre by affecting the relative strength of the partials."'
+    notes: >-
+      The best-agreed timbre word in the literature; its main acoustic correlate is the spectral
+      centroid. With FM, a higher fmi spreads energy into more sidebands, which brightens the tone.
 
   - term: dark
     tendencies:
       - lower lpf cutoff
       - fewer upper harmonics (s("triangle") or s("sine"), or a filtered sawtooth)
+      - for noise, s("pink") or s("brown") rather than s("white")
     status: canonical
     confidence: medium
     sources:
@@ -41,6 +48,9 @@ entries:
       - title: 'Siedenburg, Saitis & McAdams, "The Present, Past, and Future of Timbre Research", in Timbre (Springer, 2019), ch. 1 (preview)'
         url: https://comma.eecs.qmul.ac.uk/assets/pdf/Timbre_chapter1.pdf
         note: Names the dull-bright pole. The chapter does not use the word "dark"; equating dark with dull is this course's inference.
+      - title: 'Wikipedia, "Colors of noise"'
+        url: https://en.wikipedia.org/wiki/Colors_of_noise
+        note: 'White noise has "a flat frequency spectrum"; pink noise''s power density "decreases by 3.01 dB per octave"; Brownian noise''s "decreases 6.02 dB per octave". Less energy up high is this course''s reading of "darker".'
     notes: >-
       The opposite of bright. Dark and muffled overlap; muffled usually implies a stronger cut.
       Confidence is medium because the only source that uses the word "dark" is an introductory
@@ -103,6 +113,7 @@ entries:
   - term: hollow
     tendencies:
       - s("square") (odd harmonics only)
+      - FM on a sine with fmh(2), which also gives odd harmonics only
     status: canonical
     confidence: high
     sources:
@@ -115,6 +126,9 @@ entries:
       - title: 'J. D. Tillman, "A Palette of Static Audio Waveforms"'
         url: https://till.com/articles/wavepalette/
         note: The square "has only odd harmonics and a distinctly hollow character."
+      - title: 'Gordon Reid, "Synth Secrets - More On Frequency Modulation", Sound On Sound (May 2000)'
+        url: https://www.soundonsound.com/techniques/more-frequency-modulation
+        note: 'For "a 1:2 frequency modulation", "the result is a truncated harmonic series with just the odd harmonics present... it''s what you get when you filter a square wave!"'
 
   - term: pure
     tendencies:
@@ -184,8 +198,9 @@ entries:
         url: https://www.w3.org/TR/webaudio/#dom-biquadfilternode-q
         note: '"For lowpass and highpass filters the Q value is interpreted to be in dB." Strudel''s lpq sets this Q.'
     notes: >-
-      "Whistling", "ringing" and "squelchy" are colloquial descriptions of strong resonance. No
+      "Whistling" and "ringing" are colloquial descriptions of strong resonance. No
       authoritative source defines them; treat them as subjective synonyms of high lpq.
+      "Squelchy" (resonance moved by a filter envelope) has its own entry.
 
   - term: plucky
     tendencies:
@@ -225,3 +240,144 @@ entries:
     notes: >-
       Also "swelling" and "blooming". The sources support high sustain and a gentle release; the
       slow attack is common practice, but no authoritative source pins it down, hence low confidence.
+
+  # --- Added for U3b (Sound, continued). URLs fetched and quotes checked on 2026-10-06. ---
+
+  - term: squelchy
+    tendencies:
+      - low lpf cutoff with a large lpenv (several octaves) and a short lpdecay with lpsustain(0)
+      - high lpq, so the resonant peak travels with the moving cutoff
+      - s("sawtooth") or s("square") as the source
+    status: subjective
+    confidence: medium
+    sources:
+      - title: 'Wikipedia, "Roland TB-303"'
+        url: https://en.wikipedia.org/wiki/Roland_TB-303
+        note: 'The TB-303 has a "24 dB/octave low-pass filter" "manipulated by an envelope generator". Of the acid house pioneers: "By manipulating the synthesizer as it played, they created a unique ''squelching, resonant and liquid sound''".'
+      - title: 'FabFilter Learn, "Basics: Filters"'
+        url: https://www.fabfilter.com/learn/synthesis-and-sound-design/basics-filters
+        note: '"we can also use an envelope to shape how the filter''s cut-off frequency changes over time"; resonance "emphasizes the frequencies just before the filter cut-off frequency."'
+    notes: >-
+      Also "acid" and "squelch". Colloquial, from acid house. The sources tie the word to a
+      resonant low-pass moved by an envelope; the value ranges in the tendencies are this course's
+      working convention. Strudel's default filter is 12 dB per octave, not the TB-303's 24 dB.
+
+  - term: nasal
+    tendencies:
+      - bpf centred roughly 800-1500 Hz on a rich source (s("sawtooth"))
+      - a moderately narrow band (bpq about 2-5)
+    status: subjective
+    confidence: medium
+    sources:
+      - title: 'Paul White, "Q. Can I use EQ to fix my nasal-sounding vocals?", Sound On Sound (December 2004)'
+        url: https://www.soundonsound.com/sound-advice/q-can-use-eq-fix-my-nasal-sounding-vocals
+        note: 'Find the honk with a narrow boost, then "place an EQ cut at this frequency, which is likely to be in the 800Hz to 1.5kHz range."'
+      - title: 'Bjorgvin Benediktsson, "Why Does Your Singer Sound So Congested When He Doesn''t Even Have a Cold?", Audio Issues'
+        url: https://www.audio-issues.com/music-mixing/why-does-your-singer-sound-so-congested-when-he-doesnt-even-have-a-cold
+        note: '"Usually, a nasal and congested vocal sound is the by-product of too much 1 kHz. 1 kHz gives you a honky sound that sounds great on some instruments."'
+      - title: 'FabFilter Learn, "Basics: Filters"'
+        url: https://www.fabfilter.com/learn/synthesis-and-sound-design/basics-filters
+        note: 'Band-pass: "creating thin sounding synthesizer patches that cut through a mix"; the sound "will take on a lo-fi character: sounding like it''s coming from an old radio or speaker."'
+    notes: >-
+      Also "honky". The sources place the nasal region at about 1 kHz in mixing practice, for
+      voices. Using a band-pass there to make a synth nasal is this course's inference from them.
+      A band-pass also thins the sound (see thin).
+
+  - term: metallic
+    tendencies:
+      - FM with a non-integer, non-simple fmh (for example 1.41), which makes the partials inharmonic
+      - a fairly high fmi, so the inharmonic partials are strong
+    status: canonical
+    confidence: medium
+    sources:
+      - title: 'Strudel documentation, "Synths": fmh'
+        url: https://strudel.cc/learn/synths/
+        note: '"Whole numbers and simple ratios sound more natural, while decimal numbers and complex ratios sound metallic."'
+      - title: 'Cycling ''74, "Synthesis Tutorial 5: Frequency Modulation", Max 8 documentation'
+        url: https://docs.cycling74.com/max8/tutorials/06_synthesischapter05
+        note: Harmonicity ratio is "defined as Fm/Fc"; "The non-integer value for the harmonicity ratio will cause an inharmonic set of partials." Inharmonic spectrum plus a falling index and exponential decay "combine to make a metallic bell-like tone."
+      - title: 'Gordon Reid, "Synth Secrets - More On Frequency Modulation", Sound On Sound (May 2000)'
+        url: https://www.soundonsound.com/techniques/more-frequency-modulation
+        note: With non-integer ratios "the resulting sound will be completely enharmonic."
+    notes: >-
+      Canonical in synthesis teaching (inharmonic FM sounds metallic). The formal timbre literature
+      ties "metallic" to inharmonicity less directly, hence medium confidence. Strudel's fmh is the
+      same quantity as the tutorial's harmonicity ratio Fm/Fc.
+
+  - term: bell-like
+    tendencies:
+      - FM on a sine with a non-integer fmh (about 1.4) and a high fmi (about 8-10)
+      - fmdecay with fmsustain(0), so the brightness dies away
+      - a long amplitude decay with sustain(0), on notes long enough to let it ring
+    status: canonical
+    confidence: high
+    sources:
+      - title: 'John M. Chowning, "The Synthesis of Complex Audio Spectra by Means of Frequency Modulation", J. Audio Eng. Soc. 21(7), 1973 (digital version 2007)'
+        url: https://yamahasynth.com/wp-content/uploads/images/fm_synthesispaper-2.pdf
+        note: '"Bell-like sounds can be produced by making the change of the index directly proportional to the amplitude envelope." "The ratio c/m = 1/1.4 results in an inharmonic relation of the frequency components. With the large initial index, the spectrum is dense and as the amplitude decreases the spectrum becomes gradually simple."'
+      - title: 'Cycling ''74, "Synthesis Tutorial 5: Frequency Modulation", Max 8 documentation'
+        url: https://docs.cycling74.com/max8/tutorials/06_synthesischapter05
+        note: '"inharmonic spectrum, the steady drop in modulation index from bright to pure, and the long exponential amplitude decay all combine to make a metallic bell-like tone."'
+    notes: >-
+      Also "bell". Chowning's bell uses c/m = 1/1.4 (modulator 1.4 times the carrier, which is
+      fmh 1.4 in Strudel) and an index falling from 10. Strudel's amplitude envelope is linear,
+      not exponential, so the bell's tail is only an approximation of Chowning's.
+
+  - term: brassy
+    tendencies:
+      - FM on a sine with fmh 1 (harmonic) and an index that rises with the loudness (fmattack close to attack)
+      - a fairly fast attack (under about 0.1 s) and full sustain
+    status: canonical
+    confidence: medium
+    sources:
+      - title: 'John M. Chowning, "The Synthesis of Complex Audio Spectra by Means of Frequency Modulation", J. Audio Eng. Soc. 21(7), 1973 (digital version 2007)'
+        url: https://yamahasynth.com/wp-content/uploads/images/fm_synthesispaper-2.pdf
+        note: 'For trumpet tones, "the amount of energy in the spectrum is distributed over an increasing band in approximate proportion to the increase of intensity." Brass-like premises: harmonic series, "The higher harmonics increase in significance with intensity".'
+      - title: 'Caetano, Saitis & Siedenburg, "Audio Content Descriptors of Timbre", in Timbre (Springer, 2019), ch. 11'
+        url: https://comma.eecs.qmul.ac.uk/assets/pdf/Caetano_chap11.pdf
+        note: '"Sounds described as bright, such as a brassy trombone note, have higher spectral centroids because they feature more spectral energy in high frequency regions."'
+    notes: >-
+      Brightness that grows with loudness is the brass signature in Chowning's account. Tying fmi
+      to the amplitude attack with fmattack is this course's Strudel translation of it.
+
+  - term: breathy
+    tendencies:
+      - a little noise mixed into a pure tone (noise about 0.1-0.3 on s("sine") or s("triangle"))
+      - s("pink") or s("white") through a bpf for breath on its own
+    status: canonical
+    confidence: medium
+    sources:
+      - title: 'Reymore, Beauvais-Lacasse, Smith & McAdams, "Modeling Noise-Related Timbre Semantic Categories of Orchestral Instrument Sounds With Audio Features, Pitch Register, and Instrument Family", Frontiers in Psychology (2022)'
+        url: https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2022.796422/full
+        note: '"airy/breathy" is one of three noise-related timbre categories studied. "Flutes and recorders generally provide the best examples of the airy/breathy quale."'
+      - title: 'Gordon Reid, "Synth Secrets - Synthesizing Simple Flutes", Sound On Sound (September 2003)'
+        url: https://www.soundonsound.com/techniques/synthesizing-simple-flutes
+        note: 'A flute patch: "a low-amplitude triangle waveform gave him the closest approximation to the sound he wanted, with just a smidgen of white noise added in the Mixer."'
+      - title: 'Strudel documentation, "Synths": Noise'
+        url: https://strudel.cc/learn/synths/
+        note: '"Some amount of pink noise can also be added to any oscillator by using the noise parameter."'
+    notes: >-
+      Also "airy" (the literature's category is "airy/breathy"). The category is established; the
+      noise amounts in the tendencies are this course's convention.
+
+  - term: wet
+    tendencies:
+      - a higher room (reverb send level) or delay (echo send level)
+      - for reverb, a longer roomsize as well
+    status: canonical
+    confidence: high
+    sources:
+      - title: 'Strudel documentation, "Audio effects": signal chain and orbits'
+        url: https://strudel.cc/learn/effects/
+        note: 'The sound is split into a "Dry output (amount controlled by dry parameter)" and sends: "Delay (amount controlled by delay parameter)" and "Reverb (amount controlled by room parameter)".'
+      - title: 'Wikipedia, "Sound localization": distance cues'
+        url: https://en.wikipedia.org/wiki/Sound_localization
+        note: '"The ratio between direct sound and reflected sound can give an indication about the distance of the sound source."'
+      - title: 'Wikipedia, "Reverberation"'
+        url: https://en.wikipedia.org/wiki/Reverberation
+        note: 'T60 "is defined as the time it takes for the sound pressure level to reduce by 60 dB, measured after the generated test signal is abruptly ended."'
+    notes: >-
+      Studio usage: "wet" is the effected signal, "dry" the unprocessed one. Its opposite "dry"
+      (also "close") means little or no room and delay. "Distant" and "spacious" count as
+      synonyms here: more reverb relative to the direct sound reads as farther away, per the
+      distance-cue source. Strudel keeps the dry sound at full level and adds the wet send on top.

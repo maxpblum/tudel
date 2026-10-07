@@ -1,0 +1,26 @@
+id: mod.segment.v03
+skills: [mod.segment]
+type: sweep
+difficulty: 3
+title: A sixteen-step staircase
+prompt: |
+  An eighth-note sawtooth pulse on **c3**. Across each four-bar phrase the
+  low-pass cutoff climbs a staircase of **sixteen equal steps, one per beat**,
+  starting at **300 Hz** and rising **200 Hz** per step, so the last step
+  (beat 4 of bar 4) is 3300 Hz. At bar 5 it starts again at 300 Hz.
+
+  Mind the order of `slow` and `segment`.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c3*8").s("sawtooth").lpf(saw.range(300, 3500).slow(4).segment(4))
+listen_for:
+  - Two eighths at each brightness, with a small step up on every beat, sixteen steps in all
+  - Dark again on the downbeat of bar 5
+  - "If the cutoff changes only once per bar, segment came before slow: slow stretched the steps to one per bar"
+verify:
+  cycles: 8
+sources:
+  - strudel-doc: segment
+  - strudel-doc: slow
+  - lexicon: dark

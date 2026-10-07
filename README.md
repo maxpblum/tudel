@@ -8,7 +8,7 @@
 
 You type every answer in **your own** Strudel setup. tudel proposes a short daily session (spaced-repetition reviews plus one new micro-lesson with drills), plays reference solutions through a hidden Strudel engine, and lets you grade yourself by ear and by eye. Every code snippet and factual claim is machine-checked against a pinned Strudel version.
 
-- **Status:** milestone **M1** (vertical slice: unit U3a "Sound basics") is built and awaiting the learner's trial. See `docs/qa/M1-walkthrough.md`.
+- **Status:** milestone **M1** (vertical slice: unit U3a "Sound basics") was approved by the learner on 2026-10-06 (see `docs/qa/M1-walkthrough.md`). **M2** (foundation: units U1, U2, U3b, U4 and the skill map, search, overrides, fluency and glossaries) is in progress; see `docs/plan/M2-plan.md`.
 - **Design:** `PROPOSAL.md` (binding requirements) and `ARCHITECTURE.md`.
 
 ## Quickstart

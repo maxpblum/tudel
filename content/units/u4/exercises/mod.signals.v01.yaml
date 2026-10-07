@@ -1,0 +1,26 @@
+id: mod.signals.v01
+skills: [mod.signals]
+type: sweep
+difficulty: 2
+title: Bright on every downbeat
+prompt: |
+  A sixteenth-note sawtooth line on **a3**. In every bar the low-pass cutoff
+  starts at **4000 Hz** on the downbeat, falls at an even rate towards
+  **400 Hz** through the bar, and jumps back to 4000 Hz at the next barline.
+  Choose the signal that already has this shape.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("a3*16").s("sawtooth").lpf(isaw.range(400, 4000))
+listen_for:
+  - Bright on each downbeat, darker with every sixteenth, darkest just before the barline
+  - A sudden return to bright at each barline, the same every bar
+  - "If yours gets brighter through the bar, you used saw: switch to isaw"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: isaw
+  - strudel-doc: range
+  - strudel-src: "packages/core/signal.mjs#L56-L56"
+  - lexicon: bright
+  - lexicon: dark

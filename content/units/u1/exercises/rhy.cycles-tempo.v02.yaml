@@ -1,0 +1,29 @@
+id: rhy.cycles-tempo.v02
+skills: [rhy.cycles-tempo]
+type: transform
+difficulty: 2
+title: A three-second bar
+prompt: |
+  At Strudel's default tempo this bar lasts 2 seconds. Slow it down so that
+  the bar lasts exactly **3 seconds**. Work out the BPM first, then write it
+  with `setcpm`.
+starter: |
+  note("c4 e4 g4 c5").s("triangle")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(80 / 4)
+      note("c4 e4 g4 c5").s("triangle")
+  - code: |
+      setcpm(20)
+      note("c4 e4 g4 c5").s("triangle")
+    note: The same tempo, 20 cycles per minute (one 3-second bar = 60 / 3 = 20 bars per minute). Writing `80 / 4` shows the beats per minute.
+listen_for:
+  - Four beats in 3 seconds, so each beat lasts 0.75 s, and 60 / 0.75 = 80 BPM
+  - Slower than the starter, whose beats last 0.5 s (120 BPM)
+  - The notes and their order are unchanged
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: setcpm
+  - strudel-src: "packages/core/cyclist.mjs#L24-L24"

@@ -1,0 +1,32 @@
+id: pit.modes.v01
+skills: [pit.modes]
+type: sweep
+difficulty: 3
+title: Raise one degree per bar
+prompt: |
+  Over a four-bar phrase, one degree line on D4 changes mode once per bar.
+  Each new mode raises exactly one degree of the one before:
+
+  - bar 1: D **phrygian**
+  - bar 2: D **aeolian** (the second degree rises, E flat to E)
+  - bar 3: D **dorian** (the sixth rises, B flat to B)
+  - bar 4: D **mixolydian** (the third rises, F to F sharp)
+
+  Use the degree line `"0 1 2 3 4 5 4 2"` in eighth notes. It touches all
+  three degrees that change. Change the mode inside the scale name, not the
+  numbers.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("0 1 2 3 4 5 4 2")
+        .scale("D4:<phrygian aeolian dorian mixolydian>")
+        .s("triangle")
+listen_for:
+  - Bar 2 differs from bar 1 only in the second note, E flat 4 rising to E4
+  - Bar 3 differs from bar 2 only in the sixth note, B flat 4 rising to B4
+  - Bar 4 has F sharp 4 for both F's, so the line now outlines a major triad
+  - The rhythm and contour never change, only the scale under them
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: scale

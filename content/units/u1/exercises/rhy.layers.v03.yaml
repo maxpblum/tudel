@@ -1,0 +1,23 @@
+id: rhy.layers.v03
+skills: [rhy.layers]
+type: transform
+difficulty: 1
+title: Add hi-hats underneath
+prompt: |
+  Add closed hi-hats in sixteenth notes as a second layer **in the same
+  string**, so that the bank applies to both layers.
+starter: |
+  s("bd sd bd sd").bank("RolandTR808")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      s("bd sd bd sd, hh*16").bank("RolandTR808")
+listen_for:
+  - Sixteen even hi-hats per bar, four per beat
+  - The bass drum and snare are unchanged
+  - Both layers use the TR-808 sounds
+verify:
+  cycles: 1
+sources:
+  - strudel-src: "packages/mini/krill.pegjs#L178-L180"
+  - strudel-doc: bank

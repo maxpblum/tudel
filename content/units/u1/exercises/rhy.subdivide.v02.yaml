@@ -1,0 +1,24 @@
+id: rhy.subdivide.v02
+skills: [rhy.subdivide]
+type: spec-to-code
+difficulty: 2
+title: Triple-tongued fanfare
+prompt: |
+  One bar on a **square** wave. On beats 1 and 2, three **c4**s each (eighth-note
+  triplets). Then **g4** on beat 3 and **c5** on beat 4, as quarter notes.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c4*3 c4*3 g4 c5").s("square")
+  - code: |
+      note("[c4 c4 c4] [c4 c4 c4] g4 c5").s("square")
+    note: The same events. `c4*3` says "the same note three times" in fewer characters.
+listen_for:
+  - Six repeated Cs fill the first half of the bar, in two groups of three
+  - G and the upper C follow as plain quarter notes
+  - Each triplet note lasts a third of a beat, about 0.17 s at the default 120 BPM
+verify:
+  cycles: 1
+sources:
+  - strudel-src: "packages/mini/krill.pegjs#L153-L154"
+  - strudel-doc: fast

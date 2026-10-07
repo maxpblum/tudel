@@ -20,6 +20,14 @@ export interface DocEntry {
   memberof?: string;
   kind?: string;
   synonyms?: string[];
+  /** HTML (rendered Markdown from the JSDoc comment). */
+  description?: string;
+}
+
+/** What doc.json says about one name, for the app's Strudel-terms glossary. */
+export interface DocInfo {
+  description: string;
+  synonyms: string[];
 }
 
 export type SoundType = 'synth' | 'sample' | 'wavetable' | 'soundfont' | 'input';
@@ -49,6 +57,8 @@ export interface Reference {
   names: Set<string>;
   /** synonym → primary name. Excludes synonyms that are themselves primary names. */
   synonyms: Map<string, string>;
+  /** Primary name → description (HTML) and synonyms, from the first user-scope entry that has a description. */
+  docs: Map<string, DocInfo>;
   sounds: Map<string, SoundInfo>;
   /** Lower-cased bank prefixes (`RolandTR808` → `rolandtr808`) derived from sample names. */
   banks: Set<string>;
@@ -61,18 +71,20 @@ export interface Reference {
 /** doc.json entries that belong to internal classes (DoughVoice, OLAProcessor, ...) are not user API. */
 const USER_SCOPES = new Set([undefined, 'Pattern', 'repl']);
 
-export function loadDoc(docPath: string): { names: Set<string>; synonyms: Map<string, string> } {
+export function loadDoc(docPath: string): { names: Set<string>; synonyms: Map<string, string>; docs: Map<string, DocInfo> } {
   const doc = JSON.parse(readFileSync(docPath, 'utf8')) as { docs: DocEntry[] };
   const names = new Set<string>();
   const syn = new Map<string, string>();
+  const docs = new Map<string, DocInfo>();
   for (const d of doc.docs) {
     if (!d.name || !USER_SCOPES.has(d.memberof)) continue;
     if (d.kind === 'package') continue;
     names.add(d.name);
+    if (d.description && !docs.has(d.name)) docs.set(d.name, { description: d.description, synonyms: d.synonyms ?? [] });
     for (const s of d.synonyms ?? []) if (!syn.has(s)) syn.set(s, d.name);
   }
   for (const n of names) syn.delete(n);
-  return { names, synonyms: syn };
+  return { names, synonyms: syn, docs };
 }
 
 export interface LoadReferenceOptions {
@@ -85,7 +97,7 @@ export interface LoadReferenceOptions {
 
 export function loadReference(o: LoadReferenceOptions): Reference {
   const pin = JSON.parse(readFileSync(path.join(o.refDir, 'pin.json'), 'utf8')) as Pin;
-  const { names, synonyms } = loadDoc(path.join(o.refDir, 'doc.json'));
+  const { names, synonyms, docs } = loadDoc(path.join(o.refDir, 'doc.json'));
   const soundsPath = path.join(o.refDir, 'sounds.json');
   if (!existsSync(soundsPath)) {
     throw new Error(`${soundsPath} is missing. Generate it with: bash tools/strudel-ref/generate-sounds.sh`);
@@ -106,6 +118,7 @@ export function loadReference(o: LoadReferenceOptions): Reference {
     pin,
     names,
     synonyms,
+    docs,
     sounds,
     banks,
     allowlist,

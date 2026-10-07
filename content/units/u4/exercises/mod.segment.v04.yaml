@@ -1,0 +1,30 @@
+id: mod.segment.v04
+skills: [mod.segment]
+type: match-by-ear
+difficulty: 3
+title: Steps up, steps down
+prompt: |
+  Listen to the target: a sixteenth-note sawtooth pulse on **c3**. Its low-pass
+  cutoff moves between about **300 and 3000 Hz** over a **two-bar** cycle, but
+  in steps rather than a glide. Loop it and work out:
+
+  1. How often does the cutoff change: every note, every beat, or every bar?
+  2. What is the overall shape over the two bars?
+
+  Then write it with a signal, `slow` and `segment`.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c3*16").s("sawtooth").lpf(tri.range(300, 3000).slow(2).segment(4))
+listen_for:
+  - The cutoff changes on every beat, so four steps per bar
+  - Bar 1 climbs through four levels, starting dark; bar 2 starts on the brightest level and steps back down (tri)
+  - No glide within a beat; all four sixteenths of a beat share one brightness
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: segment
+  - strudel-doc: tri
+  - strudel-doc: slow
+  - lexicon: dark
+  - lexicon: bright

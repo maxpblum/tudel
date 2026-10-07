@@ -1,0 +1,25 @@
+id: pit.modes.v04
+skills: [pit.modes]
+type: spec-to-code
+difficulty: 2
+title: Harmonic minor, then natural minor
+prompt: |
+  Play the degree line `"0 2 4 6 7 6 4 2"` in eighth notes on A3, two bars:
+
+  - bar 1 in **A harmonic minor**, with the raised seventh G sharp
+  - bar 2 in **A natural minor**, with G natural
+
+  Write the line once and pattern the scale name. A scale type with a space in
+  its name takes a colon instead.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("0 2 4 6 7 6 4 2").scale("A3:<harmonic:minor minor>").s("triangle")
+listen_for:
+  - Both bars arpeggiate A3 C4 E4 and turn around at A4
+  - Bar 1 has G sharp 4 on either side of A4, a semitone below it
+  - Bar 2 has G4 there instead, a whole step below A4
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: scale

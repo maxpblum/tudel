@@ -11,9 +11,9 @@ Data flows top to bottom:
 | `content/` | Loading `content/` from disk (`load.ts`), the line-based directive parser (`directives.ts`), directive-body schemas (`directive-bodies.ts`), validated-content types (`model.ts`), and **the one list of every code snippet** (`snippets.ts`) |
 | `harness/` | Headless Strudel: `evaluate.ts` (the real `repl()`, a fresh one per snippet, console capture, a run cache shared by all gates), `haps.ts` (MIDI pitch and onsets the way superdough reads haps), and the two esbuild seam modules `strudel-deps.ts` / `music-deps.ts` |
 | `code/` | Static analysis: `ast.ts` (acorn: free identifiers, called methods, `s()`/`bank()` literals, string tokens) and `mini.ts` (mini-notation words via Strudel's own parser) |
-| `ref/` | Loading the pinned reference data: `pin.json`, `doc.json` (names and synonyms), `sounds.json`, the allowlist |
+| `ref/` | Loading the pinned reference data: `pin.json`, `doc.json` (names, synonyms, descriptions), `sounds.json`, the allowlist |
 | `gates/` | One module per gate ([gates/README.md](gates/README.md)), plus `allowlist.json` and `prettier.config.json` |
-| `compile/` | The content compiler: `render.ts` (Shiki, Markdown with `{cite}`, Graphviz) and `bundle.ts` (Blocks, variants, rolls, content hash, schema validation) |
+| `compile/` | The content compiler: `render.ts` (Shiki, Markdown with `{cite}`, Graphviz) `bundle.ts` (Blocks, variants, rolls, content hash, schema validation) and `terms.ts` (Strudel terms derived from skill vocabulary and doc.json descriptions) |
 | `report.ts` | Text output for the run report and `--explain` |
 | `util/diff.ts` | Line diff used in snapshot, equivalence and formatter failures |
 | `types/shims.d.ts` | Strudel packages ship no types |

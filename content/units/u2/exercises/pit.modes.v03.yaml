@@ -1,0 +1,30 @@
+id: pit.modes.v03
+skills: [pit.modes]
+type: dictation
+difficulty: 3
+title: A dorian tune
+prompt: |
+  This two-bar tune is in **D dorian**, which has the same key signature as C
+  major. Write it as scale degrees with a dorian scale on D4. One bar is one
+  cycle.
+abc: |
+  X:1
+  M:4/4
+  L:1/8
+  K:Ddor
+  D E F G A B c A | G2 F2 E2 D2 |
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("<[0 1 2 3 4 5 6 4] [3 2 1 0]>").scale("D4:dorian").s("triangle")
+listen_for:
+  - Bar 1 climbs the mode from D4 to C5 in eighth notes, then falls back to A4
+  - The B is natural, the major sixth that sets dorian apart from D minor
+  - Bar 2 steps down from G4 to D4 in quarter notes
+verify:
+  cycles: 2
+  abc_agreement:
+    voice: 0
+    compare: [pitch, onset, duration]
+sources:
+  - strudel-doc: scale

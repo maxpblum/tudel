@@ -1,4 +1,4 @@
-import type { Bundle, BundleLesson, BundleSkill, BundleVariant, Unit } from '@tudel/content-schema';
+import type { Bundle, BundleLesson, ChordSymbolEntry, LexiconEntry, StrudelTerm, BundleSkill, BundleVariant, Unit } from '@tudel/content-schema';
 
 export interface ContentIndex {
   bundle: Bundle;
@@ -14,6 +14,9 @@ export interface ContentIndex {
   /** Variants that practise `skillId` at all: primary ones first, then secondary. */
   variantsForSkill(skillId: string): BundleVariant[];
   unitOfSkill(skillId: string): string | undefined;
+  lexicon(): LexiconEntry[];
+  chords(): ChordSymbolEntry[];
+  terms(): StrudelTerm[];
 }
 
 export function indexBundle(bundle: Bundle): ContentIndex {
@@ -50,5 +53,8 @@ export function indexBundle(bundle: Bundle): ContentIndex {
       return [...all.filter((v) => v.skills[0] === skillId).sort(order), ...all.filter((v) => v.skills[0] !== skillId).sort(order)];
     },
     unitOfSkill: (skillId) => skillMap.get(skillId)?.unit,
+    lexicon: () => bundle.lexicon,
+    chords: () => bundle.chords,
+    terms: () => bundle.terms,
   };
 }

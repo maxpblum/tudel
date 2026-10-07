@@ -1,0 +1,30 @@
+id: mod.perlin.v03
+skills: [mod.perlin, mod.range]
+type: match-by-ear
+difficulty: 3
+title: Drift or swing?
+prompt: |
+  Listen to the target: a sixteenth-note sawtooth line on **a3** through a
+  moving low-pass, somewhere between about **300 and 3000 Hz**. Loop it for
+  at least four bars and decide:
+
+  1. Is the motion regular (a sine or tri that repeats) or irregular?
+  2. Does it glide smoothly, or jump from note to note?
+  3. How often does it seem to change course?
+
+  Then write it. The cutoff is a frequency, so pick the mapping that gives each
+  octave equal weight.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("a3*16").s("sawtooth").lpf(perlin.rangex(300, 3000))
+listen_for:
+  - Irregular but smooth, so perlin
+  - It heads for a new level at every barline (no slow) - 300, about 990, about 2730 and about 490 Hz on the first four downbeats
+  - "rangex, because the cutoff is a frequency: with range the dark stretches would sound brief"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: perlin
+  - strudel-doc: rangex
+  - strudel-src: "packages/core/signal.mjs#L626-L635"

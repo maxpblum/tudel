@@ -1,0 +1,32 @@
+id: mod.signals.v03
+skills: [mod.signals]
+type: read-the-code
+difficulty: 2
+title: Predict the bar
+prompt: |
+  Read the code below before you play it. It drives two parameters with two
+  different signals. Write down your answers, then play it to check:
+
+  1. In which half of the bar is the sound bright?
+  2. On which eighth note is it loudest, and on which is it quietest?
+  3. Does the brightness change gradually or all at once?
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      note("e4*8")
+        .s("sawtooth")
+        .lpf(square.range(600, 3000))
+        .gain(tri.range(0.3, 0.9))
+listen_for:
+  - "Dark for beats 1 and 2, bright for beats 3 and 4: square is 0 for the first half of the bar, 1 for the second"
+  - "Quietest on the first eighth (gain 0.3), loudest on the fifth, beat 3 (gain 0.9): tri peaks at mid-bar"
+  - The brightness switches all at once on beat 3, exactly where the crescendo peaks; the loudness changes gradually
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: square
+  - strudel-doc: tri
+  - strudel-src: "packages/core/signal.mjs#L107-L107"
+  - strudel-src: "packages/core/signal.mjs#L124-L124"
+  - lexicon: bright
+  - lexicon: dark

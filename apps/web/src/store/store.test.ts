@@ -35,28 +35,47 @@ describe('events', () => {
 
 describe('migrations', () => {
   const v0 = { kind: 'rated', at: '2026-10-05T09:00:00.000Z', variantId: 'a.v01', skillId: 'a', rating: 'good' };
-  it('upgrades a v0 event to v1', () => {
+  it('upgrades a v0 event to the current version', () => {
     expect(needsMigration(v0)).toBe(true);
     expect(eventVersion(v0)).toBe(0);
     const m = migrateEvent(v0, 3);
     expect(m).toEqual({
-      type: 'rated', ts: T0, id: `v0-3-${T0.toString(36)}`, v: 1,
+      type: 'rated', ts: T0, id: `v0-3-${T0.toString(36)}`, v: LOG_VERSION,
       variantId: 'a.v01', skillId: 'a', rating: 3, sessionId: null, step: null,
     });
     expect(LogEvent.safeParse(m).success).toBe(true);
   });
-  it('fills elapsedMs for v0 reveals and leaves v1 alone', () => {
+  it('fills elapsedMs for v0 reveals and leaves current-version events alone', () => {
     const m = migrateEvent({ kind: 'revealed', at: '2026-10-05T09:00:00Z', variantId: 'a.v01' }, 0);
     expect(LogEvent.safeParse(m).success).toBe(true);
-    const v1 = sample()[0]!;
-    expect(migrateEvent(v1, 0)).toBe(v1);
-    expect(needsMigration(v1)).toBe(false);
+    const cur = sample()[0]!;
+    expect(migrateEvent(cur, 0)).toBe(cur);
+    expect(needsMigration(cur)).toBe(false);
   });
   it('rejects bad timestamps, missing migrations and newer versions', () => {
     expect(() => migrateEvent({ kind: 'rated', at: 'never' }, 0)).toThrow(/unparseable/);
     expect(() => migrateEvent({ v: 0 }, 0, {})).toThrow(/no migration from version 0/);
     expect(() => migrateEvent({ v: 99 }, 0)).toThrow(/newer/);
-    expect(Object.keys(migrations)).toEqual(['0']);
+    expect(Object.keys(migrations)).toEqual(['0', '1']);
+    expect(LOG_VERSION).toBe(2);
+  });
+  it('loads a v1 event unchanged apart from the version bump', () => {
+    const v1 = { type: 'override', id: 'o1', ts: T0, v: 1, skillId: 'a', action: 'retire' };
+    expect(needsMigration(v1)).toBe(true);
+    const m = migrateEvent(v1, 0);
+    expect(m).toEqual({ ...v1, v: 2 });
+    expect(LogEvent.safeParse(m).success).toBe(true);
+  });
+  it('migrates v0 straight through to v2', () => {
+    const m = migrateEvent({ kind: 'override', at: '2026-10-05T09:00:00Z', skillId: 'a', action: 'retire' }, 0);
+    expect(m).toMatchObject({ type: 'override', v: 2 });
+    expect(LogEvent.safeParse(m).success).toBe(true);
+  });
+  it('accepts the v2 additions: suspend and focus_changed', () => {
+    expect(LogEvent.safeParse(stamp({ type: 'override', skillId: 'a', action: 'suspend' }, 1, 'i')).success).toBe(true);
+    expect(LogEvent.safeParse(stamp({ type: 'focus_changed', unitId: 'u3a' }, 1, 'i')).success).toBe(true);
+    expect(LogEvent.safeParse(stamp({ type: 'focus_changed', unitId: null }, 1, 'i')).success).toBe(true);
+    expect(LogEvent.safeParse({ type: 'focus_changed', id: 'i', ts: 1, v: 2 }).success).toBe(false);
   });
 });
 
@@ -68,7 +87,7 @@ describe('export/import', () => {
     expect(doc.format).toBe(FILE_FORMAT);
     expect(doc.version).toBe(LOG_VERSION);
     const r = parseExport(text);
-    expect(r).toEqual({ ok: true, events, fromVersion: 1 });
+    expect(r).toEqual({ ok: true, events, fromVersion: 2 });
     expect(exportFileName(new Date(T0))).toBe('tudel-progress-2026-10-05.json');
   });
   it('imports and migrates a v0 file', () => {
@@ -84,8 +103,18 @@ describe('export/import', () => {
     if (r.ok) {
       expect(r.fromVersion).toBe(0);
       expect(r.events.map((e) => e.type)).toEqual(['override', 'rated']);
-      expect(r.events[1]).toMatchObject({ rating: 4, v: 1 });
+      expect(r.events[1]).toMatchObject({ rating: 4, v: 2 });
     }
+  });
+  it('imports a v1 file (events without their own v) and bumps it to v2', () => {
+    const text = JSON.stringify({
+      format: FILE_FORMAT,
+      version: 1,
+      events: [{ type: 'override', id: 'o1', ts: T0, skillId: 'a', action: 'mark_known' }],
+    });
+    const r = parseExport(text);
+    expect(r).toMatchObject({ ok: true, fromVersion: 1 });
+    if (r.ok) expect(r.events[0]).toMatchObject({ v: 2, action: 'mark_known' });
   });
   it('accepts the pre-rename format name', () => {
     const r = parseExport(JSON.stringify({ format: 'strudel-tutor-log', version: 1, events: [] }));
@@ -107,12 +136,29 @@ describe('export/import', () => {
   });
   it('rejects duplicate ids', () => {
     const [a] = sample();
-    const r = parseExport(JSON.stringify({ format: FILE_FORMAT, version: 1, events: [a, a] }));
+    const r = parseExport(JSON.stringify({ format: FILE_FORMAT, version: LOG_VERSION, events: [a, a] }));
     expect(r.ok).toBe(false);
   });
 });
 
 describe('EventLog (IndexedDB)', () => {
+  it('loads a stored v1 log, migrates it to v2 and rewrites the store', async () => {
+    const factory = new IDBFactory();
+    const db = await openEventDb('strudel-tutor', factory);
+    await db.append({ type: 'override', id: 'o1', ts: T0, v: 1, skillId: 'a', action: 'retire' });
+    await db.append({ type: 'settings_changed', id: 's1', ts: T0 + 1, v: 1, minutes: 25 });
+    db.close();
+    const { log, report } = await EventLog.open({ factory });
+    expect(report).toEqual({ migrated: 2, invalid: 0 });
+    expect(log.getEvents().map((e) => e.v)).toEqual([2, 2]);
+    await log.append({ type: 'focus_changed', unitId: 'u3a' });
+    log.close();
+    const { log: again, report: r2 } = await EventLog.open({ factory });
+    expect(r2).toEqual({ migrated: 0, invalid: 0 });
+    expect(again.getEvents()).toHaveLength(3);
+    again.close();
+  });
+
   it('persists appends across reopen, in order, and notifies subscribers', async () => {
     const factory = new IDBFactory();
     let t = T0;
@@ -163,13 +209,13 @@ describe('EventLog (IndexedDB)', () => {
     await db.append({ kind: 'rated', at: 'bad' });
     db.close();
     const { log, report } = await EventLog.open({ factory });
-    expect(report).toEqual({ migrated: 1, invalid: 2 });
+    expect(report).toEqual({ migrated: 2, invalid: 2 }); // the garbage v1 event migrates, then fails validation
     expect(log.getEvents()).toHaveLength(1);
-    expect(log.getEvents()[0]).toMatchObject({ type: 'override', v: 1 });
+    expect(log.getEvents()[0]).toMatchObject({ type: 'override', v: LOG_VERSION });
     log.close();
     const db2 = await openEventDb('strudel-tutor', factory);
     const raw = await db2.getAll();
     expect(raw).toHaveLength(3);
-    expect(raw[0]).toMatchObject({ v: 1 });
+    expect(raw[0]).toMatchObject({ v: LOG_VERSION });
   });
 });

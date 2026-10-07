@@ -4,7 +4,7 @@ One module per gate. Each returns a `GateResult` (`result.ts`): a list of `{item
 
 | Module | Gate |
 |---|---|
-| `l0-schema.ts` | L0: zod schemas (unknown fields are errors), ids, references, prerequisite cycles, ≥3 variants per skill, directive syntax and bodies. Produces the validated `ValidContent` every later gate uses |
+| `l0-schema.ts` | L0: zod schemas (unknown fields are errors), ids, references, prerequisite cycles, ≥3 variants per skill, directive syntax and bodies, optional chord-symbols file (unique symbols, known skills). Produces the validated `ValidContent` every later gate uses |
 | `l1-evaluate.ts` | L1: evaluation through the real repl, ≥1 event, control-object values, no Strudel console output |
 | `l2-vocabulary.ts` | L2: names in code and skill vocabularies vs `doc.json` and the allowlist; checks allowlist ADRs exist |
 | `l2b-sounds.ts` | L2b: sound and bank names vs `sounds.json`, statically and from events. `soundUse()` also gives the compiler `needsNetwork` |

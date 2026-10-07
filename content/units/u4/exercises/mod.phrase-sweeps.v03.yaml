@@ -1,0 +1,31 @@
+id: mod.phrase-sweeps.v03
+skills: [mod.phrase-sweeps, mod.range]
+type: match-by-ear
+difficulty: 3
+title: How long is the sweep?
+prompt: |
+  Listen to the target: an eighth-note sawtooth line on **e3** with a slowly
+  moving low-pass. Loop it for at least **sixteen bars**, counting bars as you
+  go, and work out:
+
+  1. Does it open or close, and does it reset or turn back?
+  2. How many bars does one sweep take?
+  3. Does the colour change evenly throughout, or mostly at one end?
+
+  The cutoff runs between about **300 and 4800 Hz**.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("e3*8").s("sawtooth").lpf(isaw.rangex(300, 4800).slow(8))
+listen_for:
+  - It starts bright and closes steadily, then snaps back to bright (isaw)
+  - The snap comes on the downbeat of bar 9, so one sweep lasts eight bars
+  - The darkening is even, about half an octave per bar (rangex); with range it would hardly change until the last bars, then darken fast
+verify:
+  cycles: 16
+sources:
+  - strudel-doc: isaw
+  - strudel-doc: rangex
+  - strudel-doc: slow
+  - lexicon: bright
+  - lexicon: dark

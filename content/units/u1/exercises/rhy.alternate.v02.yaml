@@ -1,0 +1,22 @@
+id: rhy.alternate.v02
+skills: [rhy.alternate]
+type: sweep
+difficulty: 2
+title: Diminution over four bars
+prompt: |
+  A four-bar build on one repeated note, **g4**, on a **triangle** wave: bar
+  1 in half notes, bar 2 in quarters, bar 3 in eighths, bar 4 in sixteenths,
+  then back to bar 1. Write it as one short string.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("g4*<2 4 8 16>").s("triangle")
+listen_for:
+  - The number of notes doubles at every barline, 2, 4, 8, then 16 per bar
+  - Each change happens exactly at a barline, in steps
+  - After bar 4 the phrase drops back to half notes
+verify:
+  cycles: 4
+sources:
+  - strudel-src: "packages/mini/krill.pegjs#L153-L154"
+  - strudel-src: "packages/mini/krill.pegjs#L122-L125"

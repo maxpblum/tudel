@@ -1,0 +1,28 @@
+id: pit.register-inversion.v01
+skills: [pit.register-inversion]
+type: spec-to-code
+difficulty: 2
+title: F major in three inversions
+prompt: |
+  Play an F major chord three times, one bar each, with a different bass note
+  each bar:
+
+  - bar 1: **F3** in the bass (root position, 5/3)
+  - bar 2: **A3** in the bass (first inversion, 6/3)
+  - bar 3: **C4** in the bass (second inversion, 6/4)
+
+  Use one chord symbol, and let `anchor` and `mode` choose the bass.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("F").anchor("<f3 a3 c4>").mode("above").voicing().s("triangle")
+listen_for:
+  - The lowest note climbs F3, A3, C4, one per bar
+  - Bar 1 is F3 C4 F4 A4, a root-position chord with the fifth just above the bass
+  - The whole chord rises with its bass, ending with F5 on top in bar 3
+verify:
+  cycles: 3
+sources:
+  - strudel-doc: anchor
+  - strudel-doc: mode
+  - strudel-src: "packages/tonal/tonleiter.mjs#L131-L137"

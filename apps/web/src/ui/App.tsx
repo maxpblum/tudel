@@ -1,6 +1,9 @@
 import { isFixtureContent } from '../content';
 import { DataPage } from './DataPage';
+import { ChordsPage, LexiconPage, TermsPage } from './GlossaryPages';
 import { LessonPage, LibraryPage, SkillPage, VariantPage } from './LibraryPages';
+import { MapPage } from './MapPage';
+import { SearchPage } from './SearchPage';
 import { SessionPage } from './SessionPage';
 import { SmokePage } from './SmokePage';
 import { TodayPage } from './TodayPage';
@@ -18,6 +21,11 @@ export function App() {
   else if (head === 'library') page = <LibraryPage />;
   else if (head === 'lesson' && a) page = <LessonPage lessonId={a} />;
   else if (head === 'variant' && a) page = <VariantPage variantId={a} />;
+  else if (head === 'map') page = <MapPage />;
+  else if (head === 'search') page = <SearchPage query={a ?? ''} />;
+  else if (head === 'glossary' && a === 'terms') page = <TermsPage name={b} />;
+  else if (head === 'glossary' && a === 'lexicon') page = <LexiconPage />;
+  else if (head === 'glossary' && a === 'chords') page = <ChordsPage />;
   else if (head === 'data') page = <DataPage />;
   else if (head === '__smoke') page = <SmokePage />;
   else page = <p className="page">Not found. <a href="#/">Today</a></p>;
@@ -48,6 +56,9 @@ export function App() {
         <nav>
           {nav('#/', 'Today', undefined)}
           {nav('#/library', 'Library', 'library')}
+          {nav('#/map', 'Map', 'map')}
+          {nav('#/glossary/terms', 'Glossary', 'glossary')}
+          {nav('#/search', 'Search', 'search')}
           {nav('#/data', 'Data', 'data')}
           <a href="https://github.com/maxpblum/tudel">Source</a>
         </nav>

@@ -1,0 +1,27 @@
+id: mod.phrase-sweeps.v01
+skills: [mod.phrase-sweeps]
+type: sweep
+difficulty: 3
+title: One arc per verse
+prompt: |
+  An eight-bar verse on an eighth-note sawtooth pulse on **c3**. The low-pass
+  cutoff makes **one arc per verse**: it starts at **300 Hz** on the downbeat
+  of bar 1, opens in a straight line to **3000 Hz** on the downbeat of
+  **bar 5**, closes in a straight line back to 300 Hz by bar 9, and does the
+  same in the next verse.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c3*8").s("sawtooth").lpf(tri.range(300, 3000).slow(8))
+listen_for:
+  - Darkest on the downbeats of bars 1 and 9, brightest on the downbeat of bar 5
+  - Opening and closing take four bars each, at an even rate in hertz
+  - "If the peak comes at bar 3, you used sine, which starts in the middle of its range; if it resets at bar 9, you used saw"
+verify:
+  cycles: 16
+sources:
+  - strudel-doc: tri
+  - strudel-doc: slow
+  - strudel-src: "packages/core/signal.mjs#L124-L124"
+  - lexicon: dark
+  - lexicon: bright

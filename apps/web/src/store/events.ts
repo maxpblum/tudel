@@ -1,12 +1,12 @@
 /**
- * The append-only event log's schema (version 1). Every learner action becomes one event; all app
+ * The append-only event log's schema (version 2). Every learner action becomes one event; all app
  * state (FSRS cards, sessions, rotation history) is derived by replaying these. See ADR 0101.
  *
  * Changing an event's shape requires bumping LOG_VERSION and adding a migration in migrations.ts.
  */
 import { z } from 'zod';
 
-export const LOG_VERSION = 1 as const;
+export const LOG_VERSION = 2 as const;
 
 export const Rating = z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]);
 /** 1 Again, 2 Hard, 3 Good, 4 Easy (same numbering as ts-fsrs `Rating`). */
@@ -29,7 +29,7 @@ export const Step = z.discriminatedUnion('kind', [
 ]);
 export type Step = z.infer<typeof Step>;
 
-export const OverrideAction = z.enum(['again_soon', 'retire', 'mark_known', 'restore']);
+export const OverrideAction = z.enum(['again_soon', 'retire', 'mark_known', 'suspend', 'restore']);
 export type OverrideAction = z.infer<typeof OverrideAction>;
 
 const base = { id: z.string().min(1), ts: z.number().finite(), v: z.literal(LOG_VERSION) };
@@ -45,6 +45,8 @@ export const LogEvent = z.discriminatedUnion('type', [
   z.object({ ...base, type: z.literal('rated'), ...where, variantId: z.string(), skillId: z.string(), rating: Rating }),
   z.object({ ...base, type: z.literal('step_skipped'), sessionId: z.string(), step: z.number().int().min(0) }),
   z.object({ ...base, type: z.literal('override'), skillId: z.string(), action: OverrideAction }),
+  /** The unit the learner wants new skills and practice from; null clears the focus. */
+  z.object({ ...base, type: z.literal('focus_changed'), unitId: z.string().nullable() }),
   z.object({ ...base, type: z.literal('settings_changed'), minutes: z.number().min(5).max(120) }),
 ]);
 export type LogEvent = z.infer<typeof LogEvent>;

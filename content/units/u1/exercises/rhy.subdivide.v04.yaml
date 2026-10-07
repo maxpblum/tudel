@@ -1,0 +1,26 @@
+id: rhy.subdivide.v04
+skills: [rhy.subdivide]
+type: read-the-code
+difficulty: 3
+title: Read the brackets
+prompt: |
+  Before you play this, write its rhythm down in note values, beat by beat.
+  Then play it and check.
+
+  :::code
+  note("g4 [a4 g4] [f4 e4 d4] [c4 [d4 c4]]").s("triangle")
+  :::
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      note("g4 [a4 g4] [f4 e4 d4] [c4 [d4 c4]]").s("triangle")
+listen_for:
+  - "Beat 1: a quarter note (g4)"
+  - "Beat 2: two eighths (a4, g4)"
+  - "Beat 3: an eighth-note triplet (f4, e4, d4)"
+  - "Beat 4: an eighth (c4), then two sixteenths (d4, c4)"
+verify:
+  cycles: 1
+sources:
+  - strudel-src: "packages/mini/krill.pegjs#L113-L113"
+  - strudel-src: "packages/mini/mini.mjs#L138-L141"

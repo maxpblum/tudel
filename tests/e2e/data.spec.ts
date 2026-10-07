@@ -17,7 +17,7 @@ test('export → import round trip into a fresh profile restores identical state
   const text = readFileSync(file, 'utf8');
   const doc = JSON.parse(text);
   expect(doc.format).toBe('tudel-log');
-  expect(doc.version).toBe(1);
+  expect(doc.version).toBe(2);
   expect(doc.events).toHaveLength(Number(count));
   await a.goto('./#/');
   const todayA = await a.getByTestId('today').innerText();

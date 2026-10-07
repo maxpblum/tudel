@@ -1,0 +1,35 @@
+id: mod.segment.v01
+skills: [mod.segment]
+type: dictation
+difficulty: 3
+title: A whole-tone run from one signal
+prompt: |
+  Write this bar with **one signal and `segment`**, not with a list of notes.
+  Use MIDI note numbers (60 is c4) and a triangle wave.
+
+  Hint: the notes climb in equal steps of 2 semitones. Work out how many steps
+  there are, and remember that each step takes the signal's value at its
+  start.
+abc: |
+  X:1
+  M:4/4
+  L:1/8
+  K:C
+  C D E ^F ^G ^A c d |
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note(saw.range(60, 76).segment(8)).s("triangle")
+listen_for:
+  - Eight even eighth notes climbing a whole-tone scale from c4 to d5
+  - "Eight steps of 2 semitones need a range 16 semitones wide, 60 to 76. The last step reads the saw at 7/8, which is 74 (d5); 76 itself is never sounded."
+  - The run starts again from c4 every bar
+verify:
+  cycles: 1
+  abc_agreement:
+    voice: 0
+    compare: [pitch, onset, duration]
+sources:
+  - strudel-doc: segment
+  - strudel-doc: note
+  - strudel-src: "packages/core/pattern.mjs#L2173-L2175"

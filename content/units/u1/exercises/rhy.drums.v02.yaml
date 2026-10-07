@@ -1,0 +1,24 @@
+id: rhy.drums.v02
+skills: [rhy.drums]
+type: describe-to-code
+difficulty: 1
+title: Backbeat with handclaps
+prompt: |
+  Write the backbeat of rock and soul on the **TR-808** at **100 BPM**: the
+  bass drum on the strong beats, 1 and 3, and a handclap on the weak beats,
+  2 and 4. One drum per beat.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(100 / 4)
+      s("bd cp bd cp").bank("RolandTR808")
+listen_for:
+  - Four hits per bar, alternating bass drum and clap
+  - The clap lands on beats 2 and 4
+  - Each beat lasts 60 / 100 = 0.6 s
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: bank
+  - strudel-doc: setcpm
+  - strudel-src: "website/src/pages/learn/samples.mdx#L25-L39"

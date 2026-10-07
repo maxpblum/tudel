@@ -1,0 +1,35 @@
+id: rhy.subdivide.v01
+skills: [rhy.subdivide]
+type: dictation
+difficulty: 2
+title: Hi-hats between the beats
+prompt: |
+  Write this one-bar beat on the **TR-909**. Same staff as before: bottom
+  space bass drum, third space snare, x above the staff closed hi-hat. Two
+  beats hold two hits each: use `*` or `[ ]` for them.
+abc: |
+  X:1
+  M:4/4
+  L:1/8
+  K:C clef=perc
+  F2 !style=x!g !style=x!g c2 !style=x!g F |
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      s("bd hh*2 sd [hh bd]").bank("RolandTR909")
+  - code: |
+      s("bd [hh hh] sd [hh bd]").bank("RolandTR909")
+    note: The same events. `hh*2` says "the same sound twice" more directly; `[ ]` is needed for beat 4, where the two hits differ.
+listen_for:
+  - Kick on beat 1 and snare on beat 3, each alone in its beat
+  - Two hi-hats split beat 2 into eighths
+  - "Beat 4: a hi-hat, then a kick on its second half, leading back to beat 1"
+verify:
+  cycles: 1
+  abc_agreement:
+    voice: 0
+    compare: [onset, duration]
+sources:
+  - strudel-src: "packages/mini/krill.pegjs#L113-L113"
+  - strudel-src: "packages/mini/krill.pegjs#L153-L154"
+  - strudel-doc: bank

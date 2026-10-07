@@ -1,0 +1,28 @@
+id: mod.signals.v04
+skills: [mod.signals]
+type: describe-to-code
+difficulty: 3
+title: A swell of brightness in every bar
+prompt: |
+  A sixteenth-note sawtooth line on **g3**. Each bar is one *messa di voce* of
+  brightness: **dark** on the downbeat, opening in a straight line to
+  **bright** at mid-bar (beat 3), then closing in a straight line back to dark
+  by the next downbeat. No sudden changes anywhere.
+
+  Any low end from about 200 to 500 Hz and any top from about 2000 to 4000 Hz
+  fits. The reference uses one value from each.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("g3*16").s("sawtooth").lpf(tri.range(300, 2500))
+listen_for:
+  - Darkest on each downbeat, brightest on beat 3
+  - The opening and the closing take equal time and move at an even rate (tri, not sine)
+  - No jump at the barline (not saw or isaw)
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: tri
+  - strudel-src: "packages/core/signal.mjs#L124-L124"
+  - lexicon: dark
+  - lexicon: bright

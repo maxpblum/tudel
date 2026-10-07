@@ -1,0 +1,44 @@
+id: pit.polyphony.v01
+skills: [pit.polyphony]
+type: dictation
+difficulty: 3
+title: Two parts in A minor
+prompt: |
+  Write this two-part phrase as a `stack` of two independent parts. One bar is
+  one cycle.
+
+  - **Upper part:** on `"triangle"`, as scale degrees in A harmonic minor with
+    the tonic on A4.
+  - **Bass:** on `"sawtooth"` with `.lpf(700)`, as note names.
+
+  The staff check compares the upper part.
+abc: |
+  X:1
+  M:4/4
+  L:1/8
+  K:Am
+  %%score {1 2}
+  V:1
+  A2 B c A2 c2 | d2 c B ^G4 |
+  V:2 clef=bass
+  A,4 F,4 | D,4 E,4 |
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      stack(
+        n("<[0 [1 2] 0 2] [3 [2 1] -1@2]>").scale("A4:harmonic:minor").s("triangle"),
+        note("<[a3 f3] [d3 e3]>").s("sawtooth").lpf(700),
+      )
+listen_for:
+  - The upper part moves in quarters and eighths, the bass only in half notes
+  - Bar 2 ends on G sharp 4 over E3, the leading tone over the dominant, which resolves to A when the phrase repeats
+  - Each part keeps its own sound, so the two lines stay distinct
+verify:
+  cycles: 2
+  abc_agreement:
+    voice: 0
+    compare: [pitch, onset, duration]
+    only_sounds: [triangle]
+sources:
+  - strudel-doc: stack
+  - strudel-doc: scale

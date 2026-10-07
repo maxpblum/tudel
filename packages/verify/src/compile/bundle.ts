@@ -19,6 +19,7 @@ import { hapBegin, hapEnd, hapMidi, onsetHaps } from '../harness/haps.js';
 import { soundUse } from '../gates/l2b-sounds.js';
 import type { Reference } from '../ref/reference.js';
 import { GateResult } from '../gates/result.js';
+import { deriveTerms } from './terms.js';
 import { highlight, htmlToText, renderDot, renderMarkdown, type CiteState } from './render.js';
 
 export function contentHash(root: string, files: string[]): string {
@@ -169,7 +170,7 @@ export async function buildBundle(c: ValidContent, ref: Reference, cache: RunCac
   }
 
   const bundle = {
-    schemaVersion: 1 as const,
+    schemaVersion: 2 as const,
     strudel: { commit: ref.pin.commit, npm: ref.pin.npm },
     contentHash: contentHash(c.root, c.files),
     units: [...c.units].sort((a, b) => a.order - b.order || (a.id < b.id ? -1 : 1)),
@@ -184,6 +185,8 @@ export async function buildBundle(c: ValidContent, ref: Reference, cache: RunCac
     lessons,
     variants,
     lexicon: c.lexicon,
+    chords: c.chords,
+    terms: deriveTerms(c.skills, ref),
   };
   const parsed = Bundle.safeParse(bundle);
   if (!parsed.success) {

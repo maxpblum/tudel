@@ -1,0 +1,29 @@
+id: mod.signal-speed.v03
+skills: [mod.signal-speed]
+type: match-by-ear
+difficulty: 3
+title: Count the ramps
+prompt: |
+  Listen to the target: a sixteenth-note **square**-wave line on **c4**
+  through a low-pass whose cutoff moves between about **600 and 3600 Hz**.
+  Loop it and work out:
+
+  1. The shape: a smooth swell, or a ramp that resets?
+  2. How many times per bar does the motion repeat?
+
+  Then write it.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c4*16").s("square").lpf(saw.range(600, 3600).fast(4))
+listen_for:
+  - A ramp that only opens, then snaps back dark (saw)
+  - It restarts on every beat, four times per bar, so the factor is 4
+  - Each ramp has four sixteenths, from dark to bright
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: saw
+  - strudel-doc: fast
+  - lexicon: bright
+  - lexicon: dark

@@ -1,0 +1,24 @@
+id: rhy.subdivide.v03
+skills: [rhy.subdivide]
+type: ear-dictation
+difficulty: 3
+title: One, two, three, four per beat
+prompt: |
+  Listen to one bar on a single pitch, **e4**, on a **square** wave. Each
+  beat is divided into a different number of equal notes. Write the bar.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("e4 e4*2 e4*3 e4*4").s("square")
+  - code: |
+      note("e4 [e4 e4] [e4 e4 e4] [e4 e4 e4 e4]").s("square")
+    note: The same events. `*n` is shorter for repeated notes.
+listen_for:
+  - "Beat 1: one quarter note"
+  - "Beat 2: two eighths. Beat 3: three triplet eighths"
+  - "Beat 4: four sixteenths, the fastest notes, leading back to the downbeat"
+verify:
+  cycles: 1
+sources:
+  - strudel-src: "packages/mini/krill.pegjs#L153-L154"
+  - strudel-src: "packages/mini/krill.pegjs#L113-L113"

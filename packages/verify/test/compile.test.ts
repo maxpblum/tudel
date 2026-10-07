@@ -1,6 +1,9 @@
 import { describe, expect, test } from 'vitest';
-import { readFileSync } from 'node:fs';
-import { Bundle } from '@tudel/content-schema';
+import { readFileSync, rmSync } from 'node:fs';
+import path from 'node:path';
+import { Bundle, type Skill } from '@tudel/content-schema';
+import { deriveTerms } from '../src/compile/terms.js';
+import type { Reference } from '../src/ref/reference.js';
 import { failures, gate, LESSONS, VARIANTS, workspace } from './helpers.js';
 
 describe('compiler', () => {
@@ -20,13 +23,43 @@ describe('compiler', () => {
     expect(o.ok).toBe(true);
     const text = readFileSync(ws.bundle, 'utf8');
     const b = Bundle.parse(JSON.parse(text));
-    expect(b.schemaVersion).toBe(1);
+    expect(b.schemaVersion).toBe(2);
     expect(b.strudel.commit).toMatch(/^f610965f/);
     expect(b.contentHash).toMatch(/^[0-9a-f]{64}$/);
     // byte-identical across runs (fresh workspace, same content)
     const ws2 = workspace();
     await ws2.verify();
     expect(readFileSync(ws2.bundle, 'utf8')).toBe(text);
+  });
+
+  test('chords are copied into the bundle; terms are derived from skill vocabulary', async () => {
+    const b = (await workspace().verify()).bundle!;
+    expect(b.chords.map((c) => c.symbol)).toEqual(['Csus4', 'Cmaj7']);
+    expect(b.chords[1]).toEqual({ symbol: 'Cmaj7', tones: ['C', 'E', 'G', 'B'], name: 'C major seventh', skills: ['fx.tone', 'fx.filter'] });
+    expect(b.terms.map((t) => t.name)).toEqual(['lpf', 'lpq', 'note', 's']);
+  });
+
+  test('chords is empty when chord-symbols.yaml is absent', async () => {
+    const ws = workspace();
+    rmSync(path.join(ws.content, 'glossary/chord-symbols.yaml'));
+    expect((await ws.verify()).bundle!.chords).toEqual([]);
+  });
+
+  test('terms: synopsis is the first sentence, skills are aggregated, output is sorted', () => {
+    const ref = {
+      docs: new Map([
+        ['s', { description: '<p>Select a <code>sound</code> by name. Use <em>n</em> too.</p>', synonyms: ['sound'] }],
+        ['lpf', { description: '<p>Applies the <strong>l</strong>ow-pass filter, e.g. at 800 Hz.</p>\n<p>More.</p>', synonyms: ['cutoff', 'lp'] }],
+      ]),
+      synonyms: new Map([['sound', 's']]),
+    } as unknown as Reference;
+    const skill = (id: string, vocabulary: string[]) => ({ id, vocabulary }) as unknown as Skill;
+    const terms = deriveTerms([skill('b.one', ['s', 'zzz']), skill('a.two', ['s', 'lpf', 's'])], ref);
+    expect(terms).toEqual([
+      { name: 'lpf', synopsis: 'Applies the low-pass filter, e.g. at 800 Hz.', synonyms: ['cutoff', 'lp'], skills: ['a.two'] },
+      { name: 's', synopsis: 'Select a sound by name.', synonyms: ['sound'], skills: ['b.one', 'a.two'] },
+      { name: 'zzz', synopsis: '', synonyms: [], skills: ['b.one'] },
+    ]);
   });
 
   test('content hash changes when any source file changes', async () => {

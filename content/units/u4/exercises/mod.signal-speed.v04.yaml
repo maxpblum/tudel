@@ -1,0 +1,30 @@
+id: mod.signal-speed.v04
+skills: [mod.signal-speed, rhy.cycles-tempo]
+type: spec-to-code
+difficulty: 3
+title: An eight-second sweep at 90 BPM
+prompt: |
+  Set the tempo to **90 BPM** in 4/4. Then play an eighth-note sawtooth pulse
+  on **c3** whose low-pass cutoff swings between **400 and 2400 Hz** with a
+  `sine`, so that one full swing (up, down, and back to the start) lasts
+  **exactly 8 seconds**.
+
+  Work out first how many seconds one bar lasts at this tempo, then how many
+  bars the swing needs.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(90 / 4)
+      note("c3*8").s("sawtooth").lpf(sine.range(400, 2400).slow(3))
+listen_for:
+  - "One bar is 60 ÷ 22.5 = 2.67 seconds, so 8 seconds is 8 ÷ 2.67 = 3 bars: slow(3)"
+  - The cutoff is back at its starting colour on the downbeat of bar 4, then of bar 7
+  - Brightest on beat 4 of bar 1 (three quarters of a bar in), darkest on beat 2 of bar 3 (2.25 bars in)
+verify:
+  cycles: 6
+sources:
+  - strudel-doc: setcpm
+  - strudel-doc: slow
+  - strudel-doc: sine
+  - lexicon: bright
+  - lexicon: dark

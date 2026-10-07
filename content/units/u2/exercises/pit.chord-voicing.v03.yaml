@@ -1,0 +1,22 @@
+id: pit.chord-voicing.v03
+skills: [pit.chord-voicing]
+type: spec-to-code
+difficulty: 1
+title: Minor, seventh, major, minor
+prompt: |
+  Play these four chords, one per bar, as chord symbols with `chord` and
+  `.voicing()`, on `"triangle"`: **D minor**, **G dominant seventh**,
+  **C major**, **A minor**.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<Dm G7 C Am>").voicing().s("triangle")
+listen_for:
+  - Each bar has one chord of four or five notes, held for the whole bar
+  - The G7 bar contains F4, the seventh, above G3 in the bass
+  - The C bar has E3 in the bass, the default voicing's first inversion
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: chord
+  - strudel-doc: voicing

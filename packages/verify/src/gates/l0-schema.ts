@@ -9,18 +9,14 @@
  */
 import path from 'node:path';
 import { z } from 'zod';
-import { LessonFrontmatter, LexiconFile, SkillsFile, Variant, type Skill } from '@tudel/content-schema';
+import { ChordSymbolsFile, LessonFrontmatter, LexiconFile, SkillsFile, Variant, type Skill } from '@tudel/content-schema';
 import type { RawContent } from '../content/load.js';
 import { parseDirectives, type Segment } from '../content/directives.js';
 import { BODY_SCHEMAS, formatZodError, parseBody } from '../content/directive-bodies.js';
-import type { ChordSymbolEntry, ValidContent, ValidLesson, ValidVariant } from '../content/model.js';
+import type { ValidContent, ValidLesson, ValidVariant } from '../content/model.js';
 import { GateResult } from './result.js';
 
 export const MIN_VARIANTS_PER_SKILL = 3;
-
-export const ChordSymbolsFile = z.object({
-  entries: z.array(z.looseObject({ symbol: z.string().min(1), tones: z.array(z.string().min(1)).min(1) })),
-});
 
 /**
  * Keys present in the input but dropped by zod's parse (zod objects strip unknown keys).
@@ -95,13 +91,16 @@ export function gateL0(raw: RawContent): { result: GateResult; content: ValidCon
     }
   }
 
-  // chord symbols (optional in M1)
+  // chord symbols (optional); skill ids are checked once the skill graph is known
   if (raw.chords) {
     if (raw.chords.error) r.fail('chord-symbols', raw.chords.error, raw.chords.file);
     else {
       const p = ChordSymbolsFile.safeParse(raw.chords.data);
       if (!p.success) r.fail('chord-symbols', `schema: ${formatZodError(p.error)}`, raw.chords.file);
-      else content.chords = p.data.entries as ChordSymbolEntry[];
+      else {
+        for (const k of strippedKeys(raw.chords.data, p.data)) r.fail('chord-symbols', `unknown field "${k}" (typo?)`, raw.chords.file);
+        content.chords = p.data.entries;
+      }
     }
   }
 
@@ -208,6 +207,16 @@ function integrity(r: GateResult, c: ValidContent) {
     state.set(id, 2);
   };
   for (const s of c.skills) if (!state.has(s.id)) visit(s.id);
+
+  // chord symbols: unique symbols, known skills
+  const chordFile = 'glossary/chord-symbols.yaml';
+  const chordSeen = new Set<string>();
+  for (const e of c.chords) {
+    if (chordSeen.has(e.symbol)) r.fail('chord-symbols', `duplicate chord symbol "${e.symbol}"`, chordFile);
+    chordSeen.add(e.symbol);
+    for (const sid of e.skills) if (!skills.has(sid)) r.fail('chord-symbols', `chord "${e.symbol}": skill "${sid}" does not exist`, chordFile);
+  }
+  if (c.chords.length) r.pass('chord-symbols', `schema ok (${c.chords.length} entries)`, chordFile);
 
   // variant skill references, placement, pool sizes
   const pool = new Map<string, string[]>(c.skills.map((s) => [s.id, []]));

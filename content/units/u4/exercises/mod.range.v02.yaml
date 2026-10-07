@@ -1,0 +1,25 @@
+id: mod.range.v02
+skills: [mod.range]
+type: sweep
+difficulty: 3
+title: One octave per bar
+prompt: |
+  An eighth-note sawtooth line on **e3**. Across each four-bar phrase the
+  low-pass cutoff rises from **250 Hz** to **4000 Hz**, gaining exactly **one
+  octave per bar**: 250, 500, 1000 and 2000 Hz on the four downbeats. Then it
+  resets to 250 Hz for the next phrase.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("e3*8").s("sawtooth").lpf(saw.rangex(250, 4000).slow(4))
+listen_for:
+  - A steady brightening through all four bars, with no bar that changes much more than the others
+  - Dark again on the downbeat of bar 5
+  - "If bar 1 changes far more than bar 4, you used range: switch to rangex"
+verify:
+  cycles: 8
+sources:
+  - strudel-doc: rangex
+  - strudel-doc: saw
+  - strudel-src: "packages/core/pattern.mjs#L1786-L1788"
+  - lexicon: dark

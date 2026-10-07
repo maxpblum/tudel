@@ -4,7 +4,7 @@ Read this first (`CLAUDE.md` and `GEMINI.md` import it). Then read `PROPOSAL.md`
 
 ## Invariants (never break these)
 
-1. **The milestones are gated.** M1, then M2, then M3. Work on a milestone starts only after the learner approves the previous one. M1 is awaiting the learner's trial.
+1. **The milestones are gated.** M1, then M2, then M3. Work on a milestone starts only after the learner approves the previous one. M1 was approved by the learner on 2026-10-06; M2 is in progress.
 2. **No editor or REPL in the app** (R-NO-EDITOR). There is a copy button on every code display. **No auto-grading** (R-GRADE).
 3. **The app reads only the verified bundle.** It never reads `content/`, and the verifier never imports app code.
 4. **Every Strudel snippet passes the gates.** Never present a Strudel function as existing unless `tools/strudel-ref/doc.json` (or an ADR-backed allowlist entry) says it does. Don't trust that something evaluated: the gates check names separately.

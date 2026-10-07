@@ -1,0 +1,27 @@
+id: rhy.cycles-tempo.v01
+skills: [rhy.cycles-tempo]
+type: spec-to-code
+difficulty: 1
+title: One beat per second
+prompt: |
+  Play one bar of four quarter notes, **c4 e4 g4 e4**, on a **triangle**
+  wave at **60 BPM**, so that each beat lasts exactly one second and the bar
+  lasts four seconds.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(60 / 4)
+      note("c4 e4 g4 e4").s("triangle")
+  - code: |
+      setcpm(15)
+      note("c4 e4 g4 e4").s("triangle")
+    note: The same tempo, 15 cycles per minute. Writing `60 / 4` shows the beats per minute and the four beats in the bar.
+listen_for:
+  - One note per second, steady against a clock or a metronome set to 60
+  - The four-note figure starts again every 4 seconds
+  - If it runs four times too fast, you wrote setcpm(60), which is 60 bars per minute (240 BPM)
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: setcpm
+  - strudel-src: "packages/core/repl.mjs#L132-L135"

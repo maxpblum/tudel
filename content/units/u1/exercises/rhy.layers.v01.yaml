@@ -1,0 +1,35 @@
+id: rhy.layers.v01
+skills: [rhy.layers]
+type: dictation
+difficulty: 2
+title: Kick, snare and hi-hats
+prompt: |
+  Write this beat on the **TR-909** as one string with a comma: a hi-hat
+  layer and a bass-drum-and-snare layer. Upper voice: closed hi-hat (x).
+  Lower voice: bass drum in the bottom space, snare in the third space.
+abc: |
+  X:1
+  M:4/4
+  L:1/8
+  K:C clef=perc
+  V:1 clef=perc stem=up
+  !style=x!g !style=x!g !style=x!g !style=x!g !style=x!g !style=x!g !style=x!g !style=x!g |
+  V:2 clef=perc stem=down
+  F2 c2 F F c2 |
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      s("bd sd [bd bd] sd, hh*8").bank("RolandTR909")
+listen_for:
+  - Eight even hi-hats across the bar
+  - Snare on beats 2 and 4; bass drum on beat 1 and twice in beat 3, in eighths
+  - Every drum hit lines up with a hi-hat
+verify:
+  cycles: 1
+  abc_agreement:
+    voice: 1
+    compare: [onset, duration]
+    only_sounds: [bd, sd]
+sources:
+  - strudel-src: "packages/mini/krill.pegjs#L178-L180"
+  - strudel-doc: bank

@@ -51,13 +51,13 @@ h3 { font-size: 1.05rem; margin: 0 0 0.5em; }
 
 .app { min-height: 100vh; }
 .topbar {
-  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 0.4rem 1rem; flex-wrap: wrap;
   padding: 0.7rem 1.25rem; border-bottom: 1px solid var(--line); background: var(--surface);
   position: sticky; top: 0; z-index: 5;
 }
 .brand { display: inline-flex; align-items: center; gap: 0.5em; font-weight: 700; text-decoration: none; color: var(--ink); letter-spacing: 0.01em; }
 .brand-avatar { height: 2em; aspect-ratio: 1; object-fit: cover; border-radius: 50%; }
-.topbar nav { display: flex; gap: 1.1rem; }
+.topbar nav { display: flex; gap: 0.4rem 1.1rem; flex-wrap: wrap; }
 .topbar nav a { text-decoration: none; color: var(--muted); padding: 0.2rem 0; border-bottom: 2px solid transparent; }
 .topbar nav a.active, .topbar nav a:hover { color: var(--ink); border-bottom-color: var(--accent); }
 main { max-width: 820px; margin: 0 auto; padding: 1rem 1.25rem 4rem; }
@@ -193,3 +193,35 @@ figcaption { font-size: 0.82rem; color: var(--muted); }
 .compare-grid > *, .compare-side, .code-block { min-width: 0; }
 main { overflow-wrap: anywhere; }
 .roll-caption { font-size: 0.78rem; color: var(--muted); margin-top: 0.5rem; }
+
+/* Skill statuses: shared by the library, skill page, focus chip and the skill map. */
+.status-new { color: var(--muted); }
+.status-learning { color: var(--warn-ink); }
+.status-review { color: var(--ok); }
+.status-retired, .status-known { color: var(--accent); }
+.status-suspended { color: var(--danger); font-style: italic; }
+.map-node rect { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+.map-node text { fill: var(--ink); font-size: 12px; }
+.map-node:hover rect, .map-node:focus rect { stroke: var(--accent); }
+.map-node.status-learning rect { fill: var(--warn-bg); stroke: var(--warn-ink); }
+.map-node.status-review rect { fill: var(--surface); stroke: var(--ok); }
+.map-node.status-retired rect, .map-node.status-known rect { fill: var(--accent-soft); stroke: var(--accent); }
+.map-node.status-suspended rect { stroke: var(--danger); stroke-dasharray: 4 3; }
+.map-node.status-new rect { stroke-dasharray: none; }
+.map-edge { fill: none; stroke: var(--muted); stroke-width: 1.2; opacity: 0.7; }
+.map-scroll { max-width: 100%; overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 0.5rem; }
+.map-legend { display: flex; gap: 0.9rem; flex-wrap: wrap; font-size: 0.85rem; margin: 0.5rem 0; }
+.focus-chip { display: inline-flex; gap: 0.6rem; align-items: center; background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 999px; padding: 0.15rem 0.4rem 0.15rem 0.9rem; margin: 0 0 0.8rem; }
+.unit-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.8rem; flex-wrap: wrap; }
+.unit-head h2 { margin: 0; }
+.search-form { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0.5rem 0 1rem; }
+.search-form input { flex: 1; min-width: 12rem; font: inherit; padding: 0.4rem 0.6rem; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); }
+.result-kind { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin-right: 0.4rem; }
+.glossary-tabs { display: flex; gap: 1rem; margin-bottom: 1rem; }
+.glossary-tabs a.active { font-weight: 600; }
+.glossary-entry { padding: 0.6rem 0; border-top: 1px solid var(--line); }
+.fluency { margin: 0.6rem 0; }
+.fluency svg { display: block; max-width: 100%; }
+.fluency-line { fill: none; stroke: var(--accent); stroke-width: 1.5; }
+.fluency-dot { fill: var(--accent); }
+a.vocab-link { text-decoration: none; }

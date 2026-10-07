@@ -115,4 +115,15 @@ test('fluency time excludes time the tab was closed', async ({ context }) => {
   expect(revealed).toHaveLength(1);
   expect(revealed[0]!.elapsedMs).not.toBeNull();
   expect(revealed[0]!.elapsedMs!).toBeLessThan(10 * 60_000);
+
+  // The reveal shows up as a fluency trend on its skill (U3a: the first new skill is snd.waveforms),
+  // and a skill with no reveals shows none.
+  await page2.goto('./#/library/skill/snd.waveforms');
+  await expect(page2.getByTestId('fluency')).toContainText('informational only, not used for scheduling');
+  await expect(page2.getByTestId('fluency-spark')).toBeVisible();
+  await expect(page2.getByTestId('fluency-last')).toHaveText(/^\d+\.\d s$/);
+  await expect(page2.getByTestId('fluency-median')).toHaveText(/^\d+\.\d s$/);
+  await page2.goto('./#/library/skill/snd.lowpass');
+  await expect(page2.getByTestId('skill-page')).toBeVisible();
+  await expect(page2.getByTestId('fluency')).toHaveCount(0);
 });

@@ -1,0 +1,32 @@
+id: mod.phrase-sweeps.v02
+skills: [mod.phrase-sweeps, rhy.alternate]
+type: sweep
+difficulty: 4
+title: The second verse opens further
+prompt: |
+  Two eight-bar verses on an eighth-note sawtooth pulse on **c3**. In each
+  verse the low-pass cutoff rises at an even rate from **300 Hz** and drops
+  back at the start of the next verse. In verse 1 (bars 1–8) it rises towards
+  **1500 Hz**; in verse 2 (bars 9–16) it rises towards **4000 Hz**. Then the
+  whole sixteen-bar form repeats.
+
+  Use one signal and pattern the top of its range.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c3*8").s("sawtooth").lpf(saw.slow(8).range(300, "<1500 4000>/8"))
+  - code: |
+      note("c3*8").s("sawtooth").lpf(saw.slow(8).range(300, "<1500!8 4000!8>"))
+    note: "Repeating each value eight times inside the angle brackets gives the same events. The /8 form says \"each value lasts eight bars\" directly."
+listen_for:
+  - Verse 1 opens only to a moderate brightness; verse 2 starts just as dark but becomes much brighter
+  - A drop back to dark at bars 9 and 17
+  - "If verse 2 sounds like verse 1, slow came after range: it also stretched \"<1500 4000>/8\", so 1500 Hz would last 64 bars"
+verify:
+  cycles: 32
+sources:
+  - strudel-doc: saw
+  - strudel-doc: slow
+  - strudel-doc: range
+  - lexicon: bright
+  - lexicon: dark

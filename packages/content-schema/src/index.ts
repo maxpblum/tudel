@@ -173,6 +173,23 @@ export const LexiconFile = z.object({ entries: z.array(LexiconEntry) });
 export type LexiconEntry = z.infer<typeof LexiconEntry>;
 
 // ---------------------------------------------------------------------------
+// Source layer: glossary/chord-symbols.yaml (optional)
+// ---------------------------------------------------------------------------
+
+export const ChordSymbolEntry = z.object({
+  /** Chord symbol as written on a lead sheet, e.g. "Cmaj7". Unique within the file. */
+  symbol: z.string().min(1),
+  /** Chord tones, spelled as `tonal` spells them (gate L8c), e.g. ["C", "E", "G", "B"]. */
+  tones: z.array(z.string().min(1)).min(1),
+  /** Plain-language name, e.g. "C major seventh". */
+  name: z.string().min(1),
+  /** Ids of the skills that use this chord symbol. */
+  skills: z.array(z.string().min(1)).min(1),
+});
+export const ChordSymbolsFile = z.object({ entries: z.array(ChordSymbolEntry) });
+export type ChordSymbolEntry = z.infer<typeof ChordSymbolEntry>;
+
+// ---------------------------------------------------------------------------
 // Bundle layer (what the app reads)
 // ---------------------------------------------------------------------------
 
@@ -305,8 +322,20 @@ export const BundleSkill = Skill.extend({
 });
 export type BundleSkill = z.infer<typeof BundleSkill>;
 
+/** A Strudel function the course teaches, derived from skills' `vocabulary` and doc.json. */
+export const StrudelTerm = z.object({
+  name: z.string(),
+  /** First sentence of the doc.json description, tags stripped. Empty if doc.json has no entry. */
+  synopsis: z.string(),
+  /** Alternative names from doc.json, e.g. `cutoff` for `lpf`. */
+  synonyms: z.array(z.string()),
+  /** Ids of every skill whose vocabulary lists the name. */
+  skills: z.array(Id),
+});
+export type StrudelTerm = z.infer<typeof StrudelTerm>;
+
 export const Bundle = z.object({
-  schemaVersion: z.literal(1),
+  schemaVersion: z.literal(2),
   strudel: z.object({ commit: z.string(), npm: z.record(z.string(), z.string()) }),
   /** Hash of all source content; changes whenever content changes. */
   contentHash: z.string(),
@@ -315,5 +344,9 @@ export const Bundle = z.object({
   lessons: z.array(BundleLesson),
   variants: z.array(BundleVariant),
   lexicon: z.array(LexiconEntry),
+  /** Empty if content/glossary/chord-symbols.yaml is absent. */
+  chords: z.array(ChordSymbolEntry),
+  /** One per distinct vocabulary name, sorted by name. */
+  terms: z.array(StrudelTerm),
 });
 export type Bundle = z.infer<typeof Bundle>;

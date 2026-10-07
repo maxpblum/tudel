@@ -1,0 +1,27 @@
+id: rhy.euclid.v02
+skills: [rhy.euclid]
+type: spec-to-code
+difficulty: 4
+title: Start the tresillo on its second hit
+prompt: |
+  The tresillo `(3,8)` has its hits on eighth-note slots 1, 4 and 7 (counting
+  from 1). On **a3** with a **square** wave, write a version that starts on
+  its *second* hit instead: the same gaps in the same circular order, shifted
+  so that slot 1 holds what was on slot 4. Use the rotation number.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("a3(3,8,5)").s("square")
+  - code: |
+      note("a3").euclidRot(3, 8, 5).s("square")
+    note: The same events with the method form. The bracket form is shorter.
+listen_for:
+  - Hits on slots 1, 4 and 6, so the gaps are 3, 2, then 3 eighths
+  - The short gap now falls in the middle of the bar instead of at the end
+  - Rotation moves hits later, so it takes 5 slots, not 3, to bring slot 4 round to slot 1 (4 + 5 = 9, which wraps to 1)
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: euclidRot
+  - strudel-src: "packages/core/euclid.mjs#L130-L136"
+  - strudel-src: "packages/core/util.mjs#L153-L153"

@@ -1,0 +1,32 @@
+id: pit.polyphony.v03
+skills: [pit.polyphony]
+type: read-the-code
+difficulty: 3
+title: Three parts, three speeds
+prompt: |
+  Read the code before you play it, and predict:
+
+  - which part moves fastest, and which slowest
+  - which part is lowest, and on which sound
+  - the bass notes, and the last note of the middle part
+
+  The one `.scale` after `stack` applies to all three parts. Then play it and
+  check.
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      stack(
+        n("4 3 2 3 4 5 4 3").s("triangle"),
+        n("2 0 1 -1").s("square").lpf(1200),
+        n("-7 -3").s("sawtooth").lpf(500),
+      ).scale("D4:harmonic:minor")
+listen_for:
+  - The top part, on the triangle, moves in eighth notes around A4
+  - The middle part, on the filtered square, moves in quarter notes, F4 D4 E4 C sharp 4
+  - The bass, on the filtered sawtooth, plays two half notes, D3 then A3: the tonic, then the dominant
+  - The middle part ends on the leading tone C sharp 4, which resolves to D4 when the bar repeats
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: stack
+  - strudel-doc: scale

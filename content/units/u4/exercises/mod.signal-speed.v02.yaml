@@ -1,0 +1,27 @@
+id: mod.signal-speed.v02
+skills: [mod.signal-speed]
+type: transform
+difficulty: 3
+title: The wobble that doesn't wobble
+prompt: |
+  The starter is meant to wobble the cutoff once per beat, but it sounds like
+  a fixed filter. Find out why, then fix it **without changing the signal**:
+  keep `sine.range(400, 2400).fast(4)` exactly as it is.
+
+  Change only the notes. Use the slowest even subdivision of the beat (the
+  fewest notes) that still gives every wobble at least four notes.
+starter: |
+  note("c3*8").s("sawtooth").lpf(sine.range(400, 2400).fast(4))
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c3*16").s("sawtooth").lpf(sine.range(400, 2400).fast(4))
+listen_for:
+  - "Why the starter failed: eighths read each wobble only at its start and its middle, where the sine is at its midpoint both times, so every note got 1400 Hz"
+  - With sixteenths, each beat cycles through 1400, 2400, 1400 and 400 Hz, an audible wah on every beat
+  - Four notes per wobble still sound stepped; that is expected
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: fast
+  - strudel-src: "packages/core/signal.mjs#L18-L21"

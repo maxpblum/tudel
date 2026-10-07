@@ -1,0 +1,22 @@
+id: pit.chords-mini.v02
+skills: [pit.chords-mini]
+type: spec-to-code
+difficulty: 2
+title: I vi IV V in G major
+prompt: |
+  Play the progression **I, vi, IV, V** in G major, one chord per beat, every
+  chord a root-position triad. Write the chords as scale degrees with the
+  tonic on **G3**, so the scale chooses each chord's quality.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("[0,2,4] [5,7,9] [3,5,7] [4,6,8]").scale("G3:major").s("triangle")
+listen_for:
+  - "I: G3 B3 D4, major"
+  - "vi: E4 G4 B4, minor, without your spelling it"
+  - "IV: C4 E4 G4, then V: D4 F sharp 4 A4, both major"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: n
+  - strudel-doc: scale

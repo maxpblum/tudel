@@ -1,0 +1,21 @@
+id: rhy.rests-lengths.v04
+skills: [rhy.rests-lengths]
+type: refactor
+difficulty: 1
+title: Say it with !
+prompt: |
+  This bar works, but the reader has to count the notes. Rewrite it with `!`
+  so that it plays exactly the same events.
+starter: |
+  note("g4 g4 g4 g4 g4 g4 c5 c5").s("triangle")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("g4!6 c5!2").s("triangle")
+listen_for:
+  - The same as the starter, six g4 eighths and then two c5 eighths
+  - Not g4*6 c5*2, which has only two steps and squeezes all six Gs into the first half of the bar
+verify:
+  cycles: 1
+sources:
+  - strudel-src: "packages/mini/krill.pegjs#L137-L145"

@@ -1,0 +1,25 @@
+id: rhy.euclid.v03
+skills: [rhy.euclid]
+type: refactor
+difficulty: 2
+title: A shorter tresillo bass
+prompt: |
+  Rewrite this bass line in the Euclidean `(k,n)` form, so that it plays
+  exactly the same events.
+starter: |
+  note("c3 ~ ~ c3 ~ ~ c3 ~").s("sawtooth")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c3(3,8)").s("sawtooth")
+  - code: |
+      note("c3").euclid(3, 8).s("sawtooth")
+    note: The same events with the method form. The bracket form keeps the rhythm inside the string.
+listen_for:
+  - The same three hits as the starter, on eighth-note slots 1, 4 and 7
+  - 3 hits spread over 8 slots, so (3,8)
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: euclid
+  - strudel-src: "packages/core/euclid.mjs#L43-L52"

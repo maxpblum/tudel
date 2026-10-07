@@ -1,0 +1,24 @@
+id: pit.modes.v02
+skills: [pit.modes]
+type: ear-dictation
+difficulty: 3
+title: Which mode in bar 2?
+prompt: |
+  The target plays one eighth-note degree line on C4 for two bars. Bar 1 is
+  **C major**. Bar 2 plays the same numbers in another mode on C, which
+  differs from major in one degree only. Write the line, and switch the mode
+  per bar inside the scale name.
+
+  The line starts on the tonic and goes up to the fifth degree and back.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("0 2 3 4 3 2 1 0").scale("C4:<major lydian>").s("triangle")
+listen_for:
+  - Bar 1 runs C4 E4 F4 G4 F4 E4 D4 C4
+  - In bar 2 both F's become F sharp, a raised fourth, so the mode is lydian
+  - Everything else, including the rhythm, is the same in both bars
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: scale

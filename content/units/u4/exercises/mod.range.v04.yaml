@@ -1,0 +1,30 @@
+id: mod.range.v04
+skills: [mod.range]
+type: match-by-ear
+difficulty: 3
+title: Even steps or even ratios?
+prompt: |
+  Listen to the target: an eighth-note sawtooth line on **a3**. Its cutoff
+  swings smoothly between **200 and 3200 Hz** once every **two bars**,
+  starting in the middle of its motion and opening first (a `sine`, slowed by
+  2).
+
+  Decide whether the mapping is `range` or `rangex`. Try both in your own tool
+  and compare: one lingers at the bright end and rushes past the dark end,
+  the other spends about equal time on every octave.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("a3*8").s("sawtooth").lpf(sine.rangex(200, 3200).slow(2))
+listen_for:
+  - The swing sounds even, with as much time near the dark end as near the bright end (rangex). With range it would stay bright for longer and dip only briefly into the dark.
+  - The first downbeat is at 800 Hz, two octaves above 200 Hz and two below 3200 Hz, rather than at 1700 Hz, halfway in hertz
+  - Brightest on beat 3 of bar 1, darkest on beat 3 of bar 2
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: rangex
+  - strudel-doc: sine
+  - strudel-src: "packages/core/pattern.mjs#L1786-L1788"
+  - lexicon: bright
+  - lexicon: dark

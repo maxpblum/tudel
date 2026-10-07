@@ -1,23 +1,41 @@
 import { useState } from 'react';
 import { content } from '../content';
 import { describeDue, statusOf } from '../srs';
-import { useDerived, useNow } from './appContext';
+import { fluencyBySkill } from '../session';
+import { useAppend, useDerived, useNow } from './appContext';
 import { ExerciseView } from './ExerciseView';
 import { LessonView } from './LessonView';
 import { OverridesMenu } from './OverridesMenu';
 import { href } from './router';
+import { SearchBox } from './SearchPage';
 
 export function LibraryPage() {
-  const { srs } = useDerived();
+  const { srs, focusUnit } = useDerived();
+  const append = useAppend();
   const now = useNow();
   return (
     <div className="page library" data-testid="library">
       <h1>Library</h1>
+      <SearchBox />
+      <p className="small">
+        <a href="#/map">Skill map</a> · <a href="#/glossary/terms">Glossary</a>
+      </p>
       {content.units.map((u) => {
         const skills = content.skills.filter((s) => s.unit === u.id);
         return (
           <section key={u.id} className="card unit" data-testid="unit">
-            <h2>{u.title}</h2>
+            <div className="unit-head">
+              <h2>{u.title}</h2>
+              <button
+                type="button"
+                className="btn btn-small"
+                data-testid={focusUnit === u.id ? 'clear-focus' : 'focus-unit'}
+                data-unit={u.id}
+                onClick={() => void append({ type: 'focus_changed', unitId: focusUnit === u.id ? null : u.id })}
+              >
+                {focusUnit === u.id ? 'Clear focus' : 'Focus on this unit'}
+              </button>
+            </div>
             <p className="muted">{u.summary}</p>
             <ul className="skill-list">
               {skills.map((s) => (
@@ -39,7 +57,7 @@ export function LibraryPage() {
 }
 
 export function SkillPage({ skillId }: { skillId: string }) {
-  const { srs, history } = useDerived();
+  const { srs, history, events } = useDerived();
   const now = useNow();
   const skill = content.skill(skillId);
   if (!skill) return <NotFound what="skill" />;
@@ -72,9 +90,10 @@ export function SkillPage({ skillId }: { skillId: string }) {
       <p className="vocab">
         Vocabulary:{' '}
         {skill.vocabulary.map((w) => (
-          <code key={w}>{w}</code>
+          <VocabItem key={w} word={w} />
         ))}
       </p>
+      <FluencyTrend data={fluencyBySkill(events, (id) => content.variant(id)?.skills[0])} skillId={skillId} />
       <aside className="idiom">
         <span className="idiom-label">Zen of Strudel</span> {skill.idiom_note}
       </aside>
@@ -106,6 +125,43 @@ export function SkillPage({ skillId }: { skillId: string }) {
           ))}
         </ul>
       </section>
+    </div>
+  );
+}
+
+function VocabItem({ word }: { word: string }) {
+  const known = content.terms().some((t) => t.name === word);
+  if (!known) return <code>{word}</code>;
+  return (
+    <a href={href('glossary', 'terms', word)} className="vocab-link" data-testid="vocab-link">
+      <code>{word}</code>
+    </a>
+  );
+}
+
+const fmtSecs = (ms: number) => `${(ms / 1000).toFixed(1)} s`;
+
+/** Reveal-time sparkline; informational only (never used for scheduling). Hidden without data. */
+export function FluencyTrend({ data, skillId }: { data: ReturnType<typeof fluencyBySkill>; skillId: string }) {
+  const f = data.get(skillId);
+  if (!f || f.points.length === 0) return null;
+  const W = 160;
+  const H = 36;
+  const max = Math.max(...f.points.map((p) => p.ms), 1);
+  const xy = f.points.map((p, i) => [f.points.length === 1 ? W / 2 : 3 + (i * (W - 6)) / (f.points.length - 1), H - 4 - (p.ms / max) * (H - 8)] as const);
+  const last = f.points.at(-1)!.ms;
+  return (
+    <div className="fluency" data-testid="fluency">
+      <div className="muted small">Fluency (time to reveal), informational only, not used for scheduling</div>
+      <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`Time to reveal over ${f.points.length} attempts, last ${fmtSecs(last)}, median ${fmtSecs(f.median)}`} data-testid="fluency-spark">
+        {xy.length > 1 && <polyline className="fluency-line" points={xy.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' ')} />}
+        {xy.map(([x, y], i) => (
+          <circle key={i} className="fluency-dot" cx={x} cy={y} r={2} />
+        ))}
+      </svg>
+      <div className="small">
+        Last <span data-testid="fluency-last">{fmtSecs(last)}</span> · median <span data-testid="fluency-median">{fmtSecs(f.median)}</span> · {f.points.length} attempt{f.points.length === 1 ? '' : 's'}
+      </div>
     </div>
   );
 }

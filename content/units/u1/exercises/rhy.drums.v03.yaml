@@ -1,0 +1,24 @@
+id: rhy.drums.v03
+skills: [rhy.drums]
+type: match-by-ear
+difficulty: 2
+title: Name the four drums
+prompt: |
+  The target plays one bar of four quarter notes on the **TR-909** at the
+  default tempo, a different drum on each beat. They are four of these five:
+  bass drum, snare, closed hi-hat, open hi-hat, handclap. Write the bar.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      s("bd hh sd oh").bank("RolandTR909")
+listen_for:
+  - "Beat 1: the lowest-pitched hit, the bass drum (bd)"
+  - "Beat 2: a short tick, the closed hi-hat (hh)"
+  - "Beat 3: the snare (sd), higher than the kick and noisier"
+  - "Beat 4: a hi-hat that rings on longer than the one on beat 2, the open hi-hat (oh)"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: s
+  - strudel-doc: bank
+  - strudel-src: "website/src/pages/learn/samples.mdx#L25-L39"

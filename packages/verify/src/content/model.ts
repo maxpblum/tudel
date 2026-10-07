@@ -1,5 +1,5 @@
 /** Validated content (the output of gate L0) that the other gates and the compiler consume. */
-import type { LexiconEntry, Skill, Unit, Variant } from '@tudel/content-schema';
+import type { ChordSymbolEntry, LexiconEntry, Skill, Unit, Variant } from '@tudel/content-schema';
 import type { Segment } from './directives.js';
 
 export interface ValidLesson {
@@ -16,11 +16,6 @@ export interface ValidVariant {
   unit: string;
   v: Variant;
   promptSegments: Segment[];
-}
-
-export interface ChordSymbolEntry {
-  symbol: string;
-  tones: string[];
 }
 
 export interface ValidContent {

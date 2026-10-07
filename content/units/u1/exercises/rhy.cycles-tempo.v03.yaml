@@ -1,0 +1,26 @@
+id: rhy.cycles-tempo.v03
+skills: [rhy.cycles-tempo]
+type: match-by-ear
+difficulty: 3
+title: Match the tempo
+prompt: |
+  The target repeats one bar on a **square** wave: **a4** on beat 1, then
+  three **e4**s, all quarter notes. Find its tempo by ear and write it with
+  `setcpm`. Start from `setcpm(120 / 4)` and tap along, or check against a
+  metronome. Anything within about 4 BPM of the reference is a match.
+
+  Don't use the slow-down control here: it changes the very tempo you are
+  matching.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(104 / 4)
+      note("a4 e4 e4 e4").s("square")
+listen_for:
+  - The high a4 marks every downbeat, so one bar is the a4 plus three e4s
+  - At the reference tempo a beat lasts 60 / 104 ≈ 0.58 s and a bar about 2.3 s
+  - If yours pulls ahead of the target, lower the BPM. If it falls behind, raise it.
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: setcpm

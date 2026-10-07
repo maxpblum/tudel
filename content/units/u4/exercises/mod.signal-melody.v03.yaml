@@ -1,0 +1,28 @@
+id: mod.signal-melody.v03
+skills: [mod.signal-melody]
+type: spec-to-code
+difficulty: 3
+title: A two-bar pentatonic arch
+prompt: |
+  Write a two-bar melody in **C minor pentatonic** (`"C4:minor:pentatonic"`,
+  degree 0 on c4), in **eighth notes**, on a triangle wave. It climbs one
+  degree per note from c4 through bar 1, reaches its peak, **g5 (degree 8)**,
+  on the downbeat of bar 2, and steps back down through bar 2. Then it
+  repeats.
+
+  Use one signal, stretched over two bars.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n(tri.range(0, 8).slow(2).segment(8)).scale("C4:minor:pentatonic").s("triangle")
+listen_for:
+  - "Bar 1: c4 eb4 f4 g4 bb4 c5 eb5 f5; bar 2: g5 f5 eb5 c5 bb4 g4 f4 eb4"
+  - "segment(8) after slow(2), so there are still eight notes per bar; segment(8) before slow(2) would give only four"
+  - The peak lands on the downbeat of bar 2, halfway through the two-bar arch
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: tri
+  - strudel-doc: slow
+  - strudel-doc: segment
+  - strudel-doc: scale

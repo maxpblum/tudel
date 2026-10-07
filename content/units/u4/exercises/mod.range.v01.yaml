@@ -1,0 +1,25 @@
+id: mod.range.v01
+skills: [mod.range]
+type: transform
+difficulty: 2
+title: Give every octave a bar
+prompt: |
+  The starter sweeps the cutoff from 200 to 3200 Hz over four bars, at an even
+  rate in hertz. Most of the change in colour happens in bar 1, and bars 3 and
+  4 barely seem to move. Change **one word** so that each of the four octaves
+  in the sweep gets one full bar.
+starter: |
+  note("c3*8").s("sawtooth").lpf(saw.range(200, 3200).slow(4))
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c3*8").s("sawtooth").lpf(saw.rangex(200, 3200).slow(4))
+listen_for:
+  - The colour changes at a steady pace through all four bars instead of mostly in bar 1
+  - The cutoff doubles every bar, 200, 400, 800 and 1600 Hz on the downbeats, then resets to dark at bar 5
+verify:
+  cycles: 8
+sources:
+  - strudel-doc: rangex
+  - strudel-src: "packages/core/pattern.mjs#L1786-L1788"
+  - lexicon: dark

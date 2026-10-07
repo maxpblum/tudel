@@ -2,7 +2,7 @@
  * Versioned migrations for the event log and export files. See ADR 0101.
  *
  * - Every stored event carries `v`. On load, events with `v < LOG_VERSION` are migrated in steps
- *   (v0 → v1 → …) and rewritten.
+ *   (v0 → v1 → v2 …) and rewritten.
  * - Export files carry `version`. Importing an older file migrates every event the same way.
  *
  * Version 0 never shipped: it is a deliberately different, older-looking shape used to test the
@@ -28,6 +28,8 @@ export const migrations: Record<number, Migration> = {
     if (kind === 'revealed' && out.elapsedMs === undefined) out.elapsedMs = null;
     return out;
   },
+  // v1 -> v2: `suspend` override action and `focus_changed` event were added; old events are unchanged.
+  1: (e) => ({ ...e, v: 2 }),
 };
 
 export function eventVersion(e: AnyEvent): number {

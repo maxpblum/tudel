@@ -1,0 +1,35 @@
+id: rhy.euclid.v01
+skills: [rhy.euclid]
+type: dictation
+difficulty: 3
+title: Five rimshots in sixteen
+prompt: |
+  Write this one-bar rimshot pattern on the **TR-808** (x in the third
+  space: rimshot). The hits are spread as evenly as possible over sixteen
+  sixteenth notes, so use the `(k,n)` form.
+abc: |
+  X:1
+  M:4/4
+  L:1/16
+  K:C clef=perc
+  !style=x!c z2 !style=x!c z2 !style=x!c z2 !style=x!c z2 !style=x!c z3 |
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      s("rim(5,16)").bank("RolandTR808")
+  - code: |
+      s("rim ~ ~ rim ~ ~ rim ~ ~ rim ~ ~ rim ~ ~ ~").bank("RolandTR808")
+    note: The same events, but the reader has to count sixteen steps. `(5,16)` says "five hits spread evenly over sixteen".
+listen_for:
+  - Five hits per bar, spaced 3, 3, 3, 3 and then 4 sixteenths apart
+  - The longest gap runs from the fifth hit back to the downbeat
+  - Strudel's source lists (5,16) as the bossa nova rhythm
+verify:
+  cycles: 1
+  abc_agreement:
+    voice: 0
+    compare: [onset, duration]
+sources:
+  - strudel-doc: euclid
+  - strudel-src: "packages/core/euclid.mjs#L114-L115"
+  - strudel-doc: bank

@@ -11,6 +11,8 @@
  * 3. Then one new skill whose prerequisites are met: its lesson, then 2–3 of its variants, and, only
  *    when no introduced skill has an unplanned variant left, more of its remaining variants.
  *
+ * With a `focusUnit` (the learner's focus), steps 2 and 3 draw only from that unit; step 1 is unchanged.
+ *
  * Fill steps are added only while they fit in the budget, so fill never pushes the estimate past
  * `minutes`. If the content runs out first, the estimate is simply shorter (shown honestly).
  */
@@ -31,6 +33,8 @@ export interface BuildInput {
   history: VariantHistory;
   now: Date;
   minutes?: number;
+  /** Restrict the new-skill pick and extra practice to this unit (due reviews still come from every unit). */
+  focusUnit?: string | null;
 }
 
 export interface SessionPlan {
@@ -50,9 +54,10 @@ function candidatesFor(content: ContentIndex, skillId: string): BundleVariant[] 
 }
 
 /** The next new skill: prioritized first, then curriculum order; prerequisites must be introduced. */
-export function nextNewSkill(content: ContentIndex, srs: SrsState): string | null {
+export function nextNewSkill(content: ContentIndex, srs: SrsState, focusUnit: string | null = null): string | null {
   const eligible = content.skills.filter(
     (s) =>
+      (!focusUnit || s.unit === focusUnit) &&
       statusOf(srs.get(s.id)) === 'new' &&
       s.prereqs.every((p) => isIntroduced(srs.get(p))) &&
       candidatesFor(content, s.id).length > 0,
@@ -87,20 +92,26 @@ export function unmetPrereqs(content: ContentIndex, srs: SrsState, skillId: stri
  * Skills eligible for extra practice: introduced (has a card), not parked, not due, with variants.
  * Least recently practised (last rating) first; ties in curriculum order.
  */
-export function practicePool(content: ContentIndex, srs: SrsState, now: Date, exclude: ReadonlySet<string> = new Set()): string[] {
+export function practicePool(
+  content: ContentIndex,
+  srs: SrsState,
+  now: Date,
+  exclude: ReadonlySet<string> = new Set(),
+  focusUnit: string | null = null,
+): string[] {
   const last = (id: string) => srs.get(id)?.ratings.at(-1)?.ts ?? -Infinity;
   return content.skills
     .filter((s) => {
       const st = srs.get(s.id);
-      return !exclude.has(s.id) && !!st?.card && !st.parked && !isDue(st, now) && candidatesFor(content, s.id).length > 0;
+      return (!focusUnit || s.unit === focusUnit) && !exclude.has(s.id) && !!st?.card && !st.parked && !isDue(st, now) && candidatesFor(content, s.id).length > 0;
     })
     .map((s) => s.id)
     .sort((a, b) => last(a) - last(b));
 }
 
-export function buildSession({ content, srs, history, now, minutes = DEFAULT_MINUTES }: BuildInput): SessionPlan {
+export function buildSession({ content, srs, history, now, minutes = DEFAULT_MINUTES, focusUnit = null }: BuildInput): SessionPlan {
   const used = new Set<string>();
-  const newSkillId = nextNewSkill(content, srs);
+  const newSkillId = nextNewSkill(content, srs, focusUnit);
   const newVariantCount = minutes >= 20 ? 3 : 2;
   let newCost = 0;
   if (newSkillId) {
@@ -151,7 +162,7 @@ export function buildSession({ content, srs, history, now, minutes = DEFAULT_MIN
   const fits = (cost: number) => estimated + newEstimate + cost <= minutes;
   const unplanned = (skillId: string) => candidatesFor(content, skillId).filter((v) => !used.has(v.id));
 
-  let pool = practicePool(content, srs, now, new Set([...dueOrder, ...(newSkillId ? [newSkillId] : [])]));
+  let pool = practicePool(content, srs, now, new Set([...dueOrder, ...(newSkillId ? [newSkillId] : [])]), focusUnit);
   while (pool.length && fits(COST.practice)) {
     for (const skillId of pool) {
       if (!fits(COST.practice)) break;

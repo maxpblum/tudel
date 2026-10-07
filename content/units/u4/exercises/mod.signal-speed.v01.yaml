@@ -1,0 +1,24 @@
+id: mod.signal-speed.v01
+skills: [mod.signal-speed]
+type: sweep
+difficulty: 2
+title: Two wobbles per bar
+prompt: |
+  A sixteenth-note sawtooth pulse on **c3**. The low-pass cutoff wobbles
+  smoothly between **400 and 2400 Hz**, **twice per bar** (once per half
+  note). Each wobble starts in the middle of its range and opens first.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c3*16").s("sawtooth").lpf(sine.range(400, 2400).fast(2))
+listen_for:
+  - Two complete swells per bar, brightest on the offbeat eighths after beats 1 and 3 (2400 Hz), darkest on the offbeats after beats 2 and 4 (400 Hz)
+  - Each wobble gets eight notes, so it sounds smooth rather than stepped
+  - "If you hear one wobble per bar, fast is missing; if you hear four, the factor is 4 instead of 2"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: fast
+  - strudel-doc: sine
+  - lexicon: bright
+  - lexicon: dark

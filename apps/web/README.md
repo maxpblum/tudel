@@ -10,4 +10,6 @@ The tudel app: a Vite + React + TypeScript SPA that reads only the verified cont
 | `pnpm e2e` | Builds, serves with `vite preview`, and runs Playwright (`tests/e2e`), including gate L6 |
 | `L6_OFFLINE=1 pnpm e2e` | Same, with L6 run offline: snippets that need the network are skipped |
 
+The app reads bundle schema v2 (`chords`, `terms`, `lexicon`) and event log v2 (`suspend` override, `focus_changed`). Routes: Today, session, library (with search and per-unit focus), `#/map` (skill DAG), `#/search/:q`, `#/glossary/{terms,lexicon,chords}`, data. See `src/ui/README.md`.
+
 Source folders each have a README: `src/{engine,srs,store,session,notation,ui,content}`. Decisions are in `docs/decisions/0100–0199`.

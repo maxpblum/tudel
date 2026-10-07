@@ -1,0 +1,32 @@
+id: pit.scale-degrees.v01
+skills: [pit.scale-degrees]
+type: dictation
+difficulty: 2
+title: A two-bar tune in G major, as degrees
+prompt: |
+  Write this two-bar tune in Strudel as **scale degrees** with `n` and
+  `scale`, not as note names. The tonic is G4 (the G above middle C), and one
+  bar is one cycle. Mind the key signature, and remember that the count starts
+  at 0 on the tonic.
+abc: |
+  X:1
+  M:4/4
+  L:1/4
+  K:G
+  G A B G | d2 B F |
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("<[0 1 2 0] [4@2 2 -1]>").scale("G4:major").s("triangle")
+listen_for:
+  - Bar 1 steps up from the tonic G4 to B4 and back to G4, in quarter notes
+  - Bar 2 opens with D5, the fifth degree (4), held for a half note
+  - The last note is F sharp 4, the leading tone below the tonic (-1), and it resolves to G4 when the tune repeats
+verify:
+  cycles: 2
+  abc_agreement:
+    voice: 0
+    compare: [pitch, onset, duration]
+sources:
+  - strudel-doc: n
+  - strudel-doc: scale

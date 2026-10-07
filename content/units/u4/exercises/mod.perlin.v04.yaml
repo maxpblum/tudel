@@ -1,0 +1,25 @@
+id: mod.perlin.v04
+skills: [mod.perlin]
+type: transform
+difficulty: 2
+title: From scatter to drift
+prompt: |
+  The starter gives every eighth note an unrelated cutoff, so the brightness
+  jumps around. Keep the range, but make the cutoff **drift smoothly**
+  instead, heading for a new level only **every four bars**.
+starter: |
+  note("e3*8").s("sawtooth").lpf(rand.range(300, 2000))
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("e3*8").s("sawtooth").lpf(perlin.range(300, 2000).slow(4))
+listen_for:
+  - Neighbouring notes now have nearly the same brightness
+  - The drift heads for a new level at the downbeats of bars 5, 9 and 13, and glides in between
+  - Still no regular repeating shape
+verify:
+  cycles: 16
+sources:
+  - strudel-doc: perlin
+  - strudel-doc: rand
+  - strudel-doc: slow

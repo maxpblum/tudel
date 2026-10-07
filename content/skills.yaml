@@ -12,6 +12,41 @@ units:
       with low-pass and high-pass filters, shape its articulation with an
       amplitude envelope and gain, and move the filter over bars.
 
+  - id: u1
+    title: Time & rhythm
+    milestone: M2
+    order: 1
+    summary: >-
+      Hear and write time the Strudel way: one cycle is one bar, tempo is set
+      with setcpm, and mini-notation divides, rests, lengthens, alternates and
+      layers steps. Drums with s and bank, Euclidean rhythms, drum dictation.
+
+  - id: u2
+    title: Pitch, voices & harmony basics
+    milestone: M2
+    order: 2
+    summary: >-
+      Write pitch as scale degrees, build chords in one line, derive parallel
+      voices with an interval offset, stack independent parts, and voice
+      chord symbols with control over inversion and register.
+
+  - id: u3b
+    title: Sound, continued
+    milestone: M2
+    order: 4
+    summary: >-
+      Extend the synth voice: filter envelopes and resonance, band-pass, FM
+      and its envelope, noise, and the space effects room and delay.
+
+  - id: u4
+    title: Time & modulation
+    milestone: M2
+    order: 5
+    summary: >-
+      Drive parameters with continuous signals: their shapes, ranges and
+      speeds, stepping them with segment, organic drift with perlin, signals
+      as melody, and sweeps aligned to bars and verses.
+
 skills:
   - id: snd.waveforms
     unit: u3a
@@ -80,3 +115,397 @@ skills:
       Patterns go anywhere a number goes: put the change inside the parameter
       (.lpf("<400 800>") or .lpf(sine.range(400, 2000).slow(4))) instead of
       copying the line once per bar.
+
+  - id: rhy.cycles-tempo
+    unit: u1
+    title: "Cycles, bars and tempo"
+    prereqs: []
+    summary: >-
+      Strudel counts time in cycles, and this course treats one cycle as one
+      bar of 4/4. The steps of a string share the cycle equally, and
+      setcpm(BPM / 4) sets the tempo.
+    vocabulary: [setcpm, note, s]
+    lesson: rhy.cycles-tempo.lesson
+    idiom_note: >-
+      Write the tempo as setcpm(BPM / 4) on the first line, so a reader sees
+      the beats per minute and the four beats per bar at once.
+
+  - id: rhy.drums
+    unit: u1
+    title: "Drum sounds and banks"
+    prereqs: [rhy.cycles-tempo]
+    summary: >-
+      Play drum samples by their short names (bd, sd, hh, cp and so on) with
+      s, and choose which drum machine's recordings to use with bank.
+    vocabulary: [s, bank]
+    lesson: rhy.drums.lesson
+    idiom_note: >-
+      Write the rhythm with the plain drum names and set the machine once with
+      .bank(...), instead of spelling RolandTR909_bd in every step.
+
+  - id: rhy.subdivide
+    unit: u1
+    title: "Subdivide with [ ] and *"
+    prereqs: [rhy.drums]
+    summary: >-
+      Fit several steps into the time of one with [ ], and repeat a step n
+      times inside its own slot with *n: eighths, triplets, sixteenths and
+      nested groups.
+    vocabulary: [s]
+    lesson: rhy.subdivide.lesson
+    idiom_note: >-
+      Write a repeated note as *n (hh*8, c4*3) and different notes in one beat
+      as [ ]; both mean "these share one step".
+
+  - id: rhy.rests-lengths
+    unit: u1
+    title: "Rests, lengths and repeats: ~ @ !"
+    prereqs: [rhy.subdivide]
+    summary: >-
+      Leave a step silent with ~, give a step n units of length with @n, and
+      repeat a step as n full steps with !n.
+    vocabulary: [s]
+    lesson: rhy.rests-lengths.lesson
+    idiom_note: >-
+      The bar never stretches: @ and ! share out a fixed cycle, so count the
+      units in the string to know each note's value.
+
+  - id: rhy.alternate
+    unit: u1
+    title: "Alternate per bar with < > and /"
+    prereqs: [rhy.subdivide]
+    summary: >-
+      Play one entry per cycle with <...>, placed only where the bars differ,
+      and stretch a step over n cycles with /n.
+    vocabulary: [s]
+    lesson: rhy.alternate.lesson
+    idiom_note: >-
+      Put < > around only the part that changes, as in "c4 e4 g4 <d5 c5>", so
+      the material the bars share is written once.
+
+  - id: rhy.layers
+    unit: u1
+    title: "Layer parts with , and stack"
+    prereqs: [rhy.subdivide]
+    summary: >-
+      Play sequences at the same time with a comma inside one string, or
+      combine whole patterns with stack so that one method applies to all of
+      them. Each layer divides the bar on its own, which gives polyrhythms.
+    vocabulary: [stack]
+    lesson: rhy.layers.lesson
+    idiom_note: >-
+      Use a comma for layers that share one sound setup, stack for patterns
+      that share the methods after it, and one $: line per independent part.
+
+  - id: rhy.euclid
+    unit: u1
+    title: "Euclidean rhythms"
+    prereqs: [rhy.rests-lengths]
+    summary: >-
+      Spread k hits as evenly as possible over n steps with (k,n), shift them
+      later with a rotation (k,n,r), or use the euclid and euclidRot methods.
+    vocabulary: [euclid, euclidRot]
+    lesson: rhy.euclid.lesson
+    idiom_note: >-
+      "bd(3,8)" says "tresillo" in one word; spell out the rests only when the
+      hits are not spread evenly.
+
+  - id: pit.scale-degrees
+    unit: u2
+    title: "Scale degrees with n and scale"
+    prereqs: [snd.waveforms, rhy.subdivide]
+    summary: >-
+      Write a melody as scale degrees counted from 0 with n, and name the key,
+      scale and register once with scale("C4:major").
+    vocabulary: [n, scale]
+    lesson: pit.scale-degrees.lesson
+    idiom_note: >-
+      Write the tune as degrees and the key as one scale name: changing key is
+      then a one-word edit, not a rewrite of every note.
+
+  - id: pit.modes
+    unit: u2
+    title: "Scales and modes per bar"
+    prereqs: [pit.scale-degrees, rhy.alternate]
+    summary: >-
+      Choose major, minor, harmonic minor or a church mode by name, and switch
+      the mode per bar with < > inside the scale name while the degree line
+      stays the same.
+    vocabulary: [scale]
+    lesson: pit.modes.lesson
+    idiom_note: >-
+      Pattern the scale, not the melody: scale("C4:<major minor>") gives modal
+      mixture bar by bar from one unchanged degree line.
+
+  - id: pit.chords-mini
+    unit: u2
+    title: "Chords in mini-notation"
+    prereqs: [pit.scale-degrees, rhy.layers]
+    summary: >-
+      Write block chords as comma-separated notes or scale degrees inside one
+      step, and invert them by moving a degree up or down an octave (7).
+    vocabulary: [note, n]
+    lesson: pit.chords-mini.lesson
+    idiom_note: >-
+      Write diatonic chords as degrees, n("[0,2,4] [3,5,7]"), so the scale
+      sets each chord's quality and a key change stays one word.
+
+  - id: pit.parallel
+    unit: u2
+    title: "Parallel voices from one line"
+    prereqs: [pit.chords-mini]
+    summary: >-
+      Derive parallel voices from one melodic line with add: degrees for
+      diatonic thirds and sixths that follow the key, semitones for an exact
+      interval.
+    vocabulary: [add]
+    lesson: pit.parallel.lesson
+    idiom_note: >-
+      Don't write the second voice: n("0 1 2 3".add("0,-2")) derives it, and
+      the add goes inside n(...), before scale.
+
+  - id: pit.polyphony
+    unit: u2
+    title: "Independent parts with stack"
+    prereqs: [pit.chords-mini, rhy.layers]
+    summary: >-
+      Combine independent lines, each with its own rhythm, scale and sound,
+      into one contrapuntal texture with stack.
+    vocabulary: [stack]
+    lesson: pit.polyphony.lesson
+    idiom_note: >-
+      add for voices that move together, stack for parts that move on their
+      own: one stack argument per part, each with its own s.
+
+  - id: pit.chord-voicing
+    unit: u2
+    title: "Chord symbols and voicing"
+    prereqs: [pit.chords-mini, rhy.alternate]
+    summary: >-
+      Write harmony as lead-sheet chord symbols with chord, and let voicing
+      realise each one as a piano voicing whose top note sits at or below C5.
+    vocabulary: [chord, voicing]
+    lesson: pit.chord-voicing.lesson
+    idiom_note: >-
+      Name the harmony, not the notes: chord("<C Am F G>").voicing() is one
+      line, where hand-spelled chords would need twenty note names.
+
+  - id: pit.register-inversion
+    unit: u2
+    title: "Inversion and register control"
+    prereqs: [pit.chord-voicing]
+    summary: >-
+      Set the register and the inversion of a voiced chord: anchor picks the
+      note to align to, and mode picks whether the top note (below), the bass
+      (above) or a root-position voicing (root) meets it.
+    vocabulary: [anchor, mode]
+    lesson: pit.register-inversion.lesson
+    idiom_note: >-
+      Steer voicing with anchor and mode instead of spelling notes: anchor the
+      soprano with mode("below"), or the bass with mode("above").
+
+  - id: pit.progressions
+    unit: u2
+    title: "Simple diatonic progressions"
+    prereqs: [pit.register-inversion, pit.modes]
+    summary: >-
+      Turn Roman-numeral progressions in major and minor keys into chord
+      symbols, one per bar, keep the top voice smooth with a fixed anchor, and
+      add a root bass in scale degrees with stack.
+    vocabulary: [chord, voicing]
+    lesson: pit.progressions.lesson
+    idiom_note: >-
+      One <...> of chord symbols is the whole progression; a fixed anchor, not
+      voicing's memory, is what keeps the soprano smooth.
+
+  - id: snd.filter-envelope
+    unit: u3b
+    title: "Filter envelopes and resonance"
+    prereqs: [snd.amp-envelope]
+    summary: >-
+      Move the low-pass cutoff on every note: lpenv sets how many octaves it
+      opens above lpf, and lpattack, lpdecay, lpsustain and lprelease shape the
+      movement. With a high lpq the moving peak squelches.
+    vocabulary: [lpenv, lpattack, lpdecay, lpsustain, lprelease]
+    lesson: snd.filter-envelope.lesson
+    idiom_note: >-
+      lpf is the floor and lpenv the depth in octaves: let the envelope shape
+      each note, and keep patterns and signals for change across bars.
+
+  - id: snd.bandpass
+    unit: u3b
+    title: "Band-pass filter"
+    prereqs: [snd.highpass]
+    summary: >-
+      Keep one region of the spectrum with bpf (its centre, in Hz) and narrow it
+      with bpq.
+    vocabulary: [bpf, bpq]
+    lesson: snd.bandpass.lesson
+    idiom_note: >-
+      One bpf is clearer than an lpf and hpf pair when you mean "only this
+      band".
+
+  - id: snd.fm
+    unit: u3b
+    title: "FM synthesis basics"
+    prereqs: [snd.amp-envelope]
+    summary: >-
+      Add partials to a sine with frequency modulation: fmh, the modulator's
+      frequency ratio, picks which partials (whole numbers keep them harmonic),
+      and fmi, the modulation index, how strong they are.
+    vocabulary: [fmi, fmh]
+    lesson: snd.fm.lesson
+    idiom_note: >-
+      Put FM on a sine so you hear only what the modulator adds; choose the
+      spectrum with fmh, then the brightness with fmi.
+
+  - id: snd.fm-envelope
+    unit: u3b
+    title: "FM envelopes"
+    prereqs: [snd.fm]
+    summary: >-
+      Shape the modulation index over each note with fmattack, fmdecay and
+      fmsustain, and choose the curve with fmenv, for struck, bell-like and
+      brassy sounds.
+    vocabulary: [fmenv, fmattack, fmdecay, fmsustain]
+    lesson: snd.fm-envelope.lesson
+    idiom_note: >-
+      Set only the FM stages you mean, and write fmsustain(0) for a struck sound
+      whose brightness dies away.
+
+  - id: snd.noise
+    unit: u3b
+    title: "Noise sources"
+    prereqs: [snd.bandpass, snd.amp-envelope]
+    summary: >-
+      Use white, pink and brown noise as sources with s, and add breath to a
+      waveform with noise.
+    vocabulary: [noise, s]
+    lesson: snd.noise.lesson
+    idiom_note: >-
+      Noise colours are sound names (s("pink")); breath on a pitched voice is a
+      parameter (.noise(0.2)), shaped by the same envelope.
+
+  - id: snd.room
+    unit: u3b
+    title: "Reverb with room"
+    prereqs: [snd.amp-envelope]
+    summary: >-
+      Place a sound in a space: room sets how much is sent to the reverb,
+      roomsize its decay time in seconds.
+    vocabulary: [room, roomsize]
+    lesson: snd.room.lesson
+    idiom_note: >-
+      Pattern room if the space should change, but set roomsize once per part:
+      one reverb is shared, and a new roomsize rebuilds it.
+
+  - id: snd.delay
+    unit: u3b
+    title: "Tempo-synced delay"
+    prereqs: [snd.room, rhy.subdivide]
+    summary: >-
+      Echo a sound in time with delay (send level), delaysync (echo spacing in
+      cycles) and delayfeedback (how much each echo repeats).
+    vocabulary: [delay, delaysync, delayfeedback]
+    lesson: snd.delay.lesson
+    idiom_note: >-
+      Time echoes in cycles with delaysync, so they stay on the grid when the
+      tempo changes: 3 / 16 is a dotted eighth in a 4/4 bar.
+
+  - id: mod.signals
+    unit: u4
+    title: "Signal shapes"
+    prereqs: [snd.filter-sweep]
+    summary: >-
+      Know the six basic signals (sine, cosine, saw, isaw, tri, square): each
+      runs from 0 to 1 once per cycle, and they differ in where the bar starts
+      and how the value moves.
+    vocabulary: [sine, cosine, saw, isaw, tri, square]
+    lesson: mod.signals.lesson
+    idiom_note: >-
+      Pick the shape for the start you want: on the downbeat sine is at its
+      middle, cosine and isaw at the top, saw, tri and square at the bottom.
+
+  - id: mod.range
+    unit: u4
+    title: "Mapping signals with range"
+    prereqs: [mod.signals]
+    summary: >-
+      Map a signal onto a parameter's values with range (even steps) or rangex
+      (even ratios), and use rangex for frequencies so each octave gets equal
+      time.
+    vocabulary: [range, rangex]
+    lesson: mod.range.lesson
+    idiom_note: >-
+      Sweep frequencies with rangex: the ear hears ratios, so a cutoff that
+      doubles at an even rate sounds even, and a linear range rushes through
+      the low octaves.
+
+  - id: mod.signal-speed
+    unit: u4
+    title: "Signal speed: slow and fast"
+    prereqs: [mod.signals, rhy.cycles-tempo]
+    summary: >-
+      Set how many bars one sweep lasts with slow, or how many wobbles fit in a
+      bar with fast, and give a fast signal enough notes to be heard.
+    vocabulary: [slow, fast]
+    lesson: mod.signal-speed.lesson
+    idiom_note: >-
+      A signal needs notes to carry it: each note reads it once, at its onset,
+      so give every wobble at least four notes.
+
+  - id: mod.segment
+    unit: u4
+    title: "Stepping signals with segment"
+    prereqs: [mod.signal-speed, rhy.subdivide]
+    summary: >-
+      Sample a continuous signal into n steps per cycle with segment, each step
+      holding the value from its start, to make notes or stepped parameters.
+    vocabulary: [segment]
+    lesson: mod.segment.lesson
+    idiom_note: >-
+      Write segment last: it counts steps per cycle of whatever it follows, so
+      saw.slow(4).segment(4) steps every beat, but saw.segment(4).slow(4) only
+      every bar.
+
+  - id: mod.perlin
+    unit: u4
+    title: "Organic drift with perlin and rand"
+    prereqs: [mod.range]
+    summary: >-
+      Add smooth random drift with perlin (a new level each cycle) and a fresh
+      random value on every note with rand. Both repeat exactly on every
+      playback.
+    vocabulary: [perlin, rand]
+    lesson: mod.perlin.lesson
+    idiom_note: >-
+      Use perlin for drift and rand for scatter, and remember that both depend
+      only on time: the same code gives the same "random" values every time.
+
+  - id: mod.signal-melody
+    unit: u4
+    title: "Signals as melody"
+    prereqs: [mod.segment, pit.scale-degrees]
+    summary: >-
+      Turn a stepped signal into scale degrees with n and scale: the shape
+      gives the contour, range the span in degrees, segment the notes per bar.
+    vocabulary: [segment, scale]
+    lesson: mod.signal-melody.lesson
+    idiom_note: >-
+      Write the contour once and let scale choose the pitches:
+      n(tri.range(0, 8).segment(8)).scale("C4:major") is an arch in eight
+      notes.
+
+  - id: mod.phrase-sweeps
+    unit: u4
+    title: "Sweeps over phrases and verses"
+    prereqs: [mod.signal-speed, rhy.alternate]
+    summary: >-
+      Align sweeps to 4- and 8-bar phrases with slow, place the peak with the
+      shape, and change the range per section with a patterned range.
+    vocabulary: [slow, range]
+    lesson: mod.phrase-sweeps.lesson
+    idiom_note: >-
+      Slow the signal before you range it: saw.slow(8).range(300,
+      "<1500 4000>/8") changes the range every verse, because slow stretches
+      everything written before it.

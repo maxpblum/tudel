@@ -1,0 +1,24 @@
+id: mod.segment.v02
+skills: [mod.segment]
+type: spec-to-code
+difficulty: 2
+title: One cutoff per beat
+prompt: |
+  A sixteenth-note sawtooth pulse on **c3**. The low-pass cutoff climbs in
+  **four steps per bar, one per beat**: **400, 1100, 1800 and 2500 Hz**, then
+  starts again at 400 Hz in the next bar. Get these values from a `saw` and
+  `segment`, not from a list.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c3*16").s("sawtooth").lpf(saw.range(400, 3200).segment(4))
+listen_for:
+  - Four sixteenths at each brightness, with a clear step up on every beat
+  - "The steps are 700 Hz apart, so the range is 4 × 700 = 2800 Hz wide: 400 to 3200 Hz. The value 3200 Hz is never reached, because beat 4 reads the saw at 3/4."
+  - Dark again on each downbeat
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: segment
+  - strudel-doc: saw
+  - lexicon: dark

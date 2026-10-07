@@ -189,7 +189,7 @@ const variants = [
 ];
 
 const bundle = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   strudel: { commit: 'f610965f', npm: { '@strudel/web': '1.3.0', '@strudel/core': '1.2.6' } },
   contentHash: 'fixture-0001',
   units,
@@ -201,6 +201,19 @@ const bundle = {
       term: 'warm', tendencies: ['lower lpf cutoff'], status: 'canonical', confidence: 'medium',
       sources: [{ title: 'Fixture source', url: 'https://example.org/warm' }],
     },
+  ],
+  chords: [
+    { symbol: 'Cmaj7', tones: ['C', 'E', 'G', 'B'], name: 'C major seventh', skills: ['fx.waveforms'] },
+  ],
+  terms: [
+    { name: 'attack', synopsis: 'Amplitude envelope attack time: Specifies how long it takes for the sound to reach its peak value, relative to the onset.', synonyms: ['att'], skills: ['fx.envelope'] },
+    { name: 'decay', synopsis: 'Amplitude envelope decay time: the time it takes after the attack time to reach the sustain level.', synonyms: ['dec'], skills: ['fx.envelope'] },
+    { name: 'lpf', synopsis: 'Applies the cutoff frequency of the low-pass filter.', synonyms: ['cutoff', 'ctf', 'lp'], skills: ['fx.lowpass'] },
+    { name: 'lpq', synopsis: 'Controls the low-pass q-value.', synonyms: ['resonance'], skills: ['fx.lowpass'] },
+    { name: 'note', synopsis: 'Plays the given note name or midi number.', synonyms: [], skills: ['fx.waveforms'] },
+    { name: 'release', synopsis: 'Amplitude envelope release time: The time it takes after the offset to go from sustain level to zero.', synonyms: ['rel'], skills: ['fx.envelope'] },
+    { name: 's', synopsis: 'Select a sound / sample by name.', synonyms: ['sound'], skills: ['fx.waveforms', 'fx.drums'] },
+    { name: 'sustain', synopsis: 'Amplitude envelope sustain level: The level which is reached after attack / decay, being sustained until the offset.', synonyms: ['sus'], skills: ['fx.envelope'] },
   ],
 };
 writeFileSync(new URL('../src/content/fixture.bundle.json', import.meta.url), JSON.stringify(bundle, null, 2) + '\n');

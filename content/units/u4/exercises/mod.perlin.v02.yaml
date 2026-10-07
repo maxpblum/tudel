@@ -1,0 +1,26 @@
+id: mod.perlin.v02
+skills: [mod.perlin]
+type: spec-to-code
+difficulty: 2
+title: An uneven touch
+prompt: |
+  Play this broken C major chord on a **triangle** wave, all eighth notes:
+  **c4 e4 g4 c5 g4 e4 c4 e4**. Give every note its own random **gain**
+  between **0.4 and 0.8**, as if each key were struck with a slightly
+  different weight.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c4 e4 g4 c5 g4 e4 c4 e4").s("triangle").gain(rand.range(0.4, 0.8))
+listen_for:
+  - Each note has its own loudness, with no smooth crescendo or diminuendo linking them (rand, not perlin)
+  - Bar 2 has a different set of levels from bar 1; the pattern of accents does not repeat every bar
+  - The very first note is always the quietest possible, 0.4, because rand is 0 at cycle 0
+  - Play it twice from the start; the "random" levels are the same each time
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: rand
+  - strudel-src: "packages/core/signal.mjs#L449-L449"
+  - strudel-src: "packages/core/signal.mjs#L237-L264"
+  - strudel-doc: gain

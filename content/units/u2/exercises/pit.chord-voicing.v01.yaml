@@ -1,0 +1,33 @@
+id: pit.chord-voicing.v01
+skills: [pit.chord-voicing]
+type: dictation
+difficulty: 3
+title: Name the chords, let voicing play them
+prompt: |
+  This is what `voicing` plays for four chord symbols, one per bar, in
+  G major. Name each chord from the staff (root and quality), then write the
+  symbols with `chord` and `.voicing()`, with the default settings. Your
+  result should match the staff note for note.
+abc: |
+  X:1
+  M:4/4
+  L:1/4
+  K:G
+  [G,DGB]4 | [E,B,EGB]4 | [A,CEAc]4 | [D,A,DFA]4 |
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<G Em Am D>").voicing().s("triangle")
+listen_for:
+  - "I, vi, ii, V in G major: G, Em, Am, D"
+  - All four chords have the root in the bass, G3, E3, A3, D3
+  - The top note stays between A4 and C5 throughout, the closest chord tone at or below C5
+verify:
+  cycles: 4
+  abc_agreement:
+    voice: 0
+    compare: [pitch, onset, duration]
+sources:
+  - strudel-doc: chord
+  - strudel-doc: voicing
+  - strudel-src: "packages/tonal/tonleiter.mjs#L139-L169"

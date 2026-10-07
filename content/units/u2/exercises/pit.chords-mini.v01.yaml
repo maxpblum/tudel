@@ -1,0 +1,33 @@
+id: pit.chords-mini.v01
+skills: [pit.chords-mini]
+type: dictation
+difficulty: 2
+title: Four block chords in F major
+prompt: |
+  Write this bar of block chords as **scale degrees** in F major, with the
+  tonic on F4. Each chord is one step: put its degrees inside square brackets,
+  separated by commas. Use inversions where the staff shows them; a degree
+  below the tonic is negative.
+abc: |
+  X:1
+  M:4/4
+  L:1/4
+  K:F
+  [FAc] [FAd] [FBd] [EGc] |
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("[0,2,4] [0,2,5] [0,3,5] [-1,1,4]").scale("F4:major").s("triangle")
+listen_for:
+  - Four quarter-note chords, three notes each, all starting together
+  - "F4 stays in the bass for three chords: I, then vi as a 6/3 (D minor over F), then IV as a 6/4"
+  - The last chord is V as a 6/3 (C major over E4), a half cadence that leads back to I
+verify:
+  cycles: 1
+  abc_agreement:
+    voice: 0
+    compare: [pitch, onset, duration]
+sources:
+  - strudel-doc: n
+  - strudel-doc: scale
+  - strudel-src: "packages/mini/krill.pegjs#L178-L180"

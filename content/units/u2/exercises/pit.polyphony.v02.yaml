@@ -1,0 +1,26 @@
+id: pit.polyphony.v02
+skills: [pit.polyphony]
+type: transform
+difficulty: 2
+title: Put a bass under the tune
+prompt: |
+  The starter is a two-bar tune in F major. Add an **independent bass** under
+  it with `stack`: a whole note F3 in bar 1 and a whole note C3 in bar 2, on
+  `"sawtooth"` with `.lpf(600)`. Leave the tune itself as it is.
+starter: |
+  n("<[0 2 4 2] [3 1 -1 0]>").scale("F4:major").s("triangle")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      stack(
+        n("<[0 2 4 2] [3 1 -1 0]>").scale("F4:major").s("triangle"),
+        note("<f3 c3>").s("sawtooth").lpf(600),
+      )
+listen_for:
+  - The tune is unchanged, four quarter notes per bar
+  - Under it, one bass note per bar, F3 then C3, each held for the whole bar
+  - The bass has its own sound, a filtered sawtooth under the triangle tune
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: stack

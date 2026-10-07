@@ -1,0 +1,27 @@
+id: pit.register-inversion.v02
+skills: [pit.register-inversion]
+type: match-by-ear
+difficulty: 3
+title: Root position all the way down
+prompt: |
+  The target plays C, Am, F, G, one bar each. Every chord is in **root
+  position**, and every bass note lies between C3 and A3. Start from
+  `chord("<C Am F G>").voicing()`, which puts the C chord in first inversion,
+  and find the `mode` and the `anchor` that match the target by ear.
+
+  More than one anchor gives the same notes: any anchor from A3 up to B3
+  works. The reference uses A3.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<C Am F G>").anchor("a3").mode("root").voicing().s("triangle")
+listen_for:
+  - The bass is the root of every chord, C3, A3, F3, G3
+  - The C, F and G chords have the same shape, root, fifth, octave, tenth, so their voices all move in parallel
+  - If your C chord has E3 in the bass, you are still in the default mode; if your A minor chord has A2 in the bass, an octave too low, your anchor is below A3
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: anchor
+  - strudel-doc: mode
+  - strudel-src: "packages/tonal/tonleiter.mjs#L159-L161"

@@ -1,0 +1,29 @@
+id: mod.signal-melody.v02
+skills: [mod.signal-melody]
+type: match-by-ear
+difficulty: 4
+title: Name the contour
+prompt: |
+  Listen to the target: eight eighth notes per bar in **C major**, on a
+  triangle wave, made from a stepped signal with
+  `n(...).scale("C4:major")`. The lowest note is c4 and the highest c5.
+  Loop it and work out:
+
+  1. Does the bar start on the lowest note, the highest, or in between?
+  2. Is the contour a ramp, an arch, or a wave?
+
+  Then write it. Remember that `scale` rounds a fractional degree up.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n(sine.range(0, 7).segment(8)).scale("C4:major").s("triangle")
+listen_for:
+  - "It starts in the middle, on g4: the sine is at 0.5, 0.5 × 7 = 3.5, rounded up to degree 4"
+  - "A wave: up to c5 on beat 2, down to c4 on beat 4, back up to e4 (g4 b4 c5 b4 g4 e4 c4 e4)"
+  - "range(0, 7), not (0, 8): with 8 the top would be degree 8, d5"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: sine
+  - strudel-doc: scale
+  - strudel-src: "packages/tonal/tonal.mjs#L36-L37"

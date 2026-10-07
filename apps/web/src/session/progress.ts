@@ -147,6 +147,13 @@ export function replayMinutes(events: readonly LogEvent[]): number {
   return m;
 }
 
+/** The focused unit from the latest focus_changed event (null: no focus). */
+export function replayFocus(events: readonly LogEvent[]): string | null {
+  let f: string | null = null;
+  for (const e of events) if (e.type === 'focus_changed') f = e.unitId;
+  return f;
+}
+
 /**
  * Fluency (prompt → reveal) is informational only and never feeds FSRS (PROPOSAL §14). Rule:
  * time counts only within one page lifetime. The clock starts when the exercise view is mounted
@@ -170,4 +177,30 @@ export function revealTimes(events: readonly LogEvent[]): { variantId: string; m
     if (e.type === 'revealed' && e.elapsedMs !== null && e.elapsedMs <= FLUENCY_MAX_MS) out.push({ variantId: e.variantId, ms: e.elapsedMs, ts: e.ts });
   }
   return out;
+}
+
+export interface SkillFluency {
+  /** Reveal times in log order. */
+  points: { ts: number; ms: number }[];
+  median: number;
+}
+
+/** Per skill, the chronological reveal times of its variants (primary skill) and their median. */
+export function fluencyBySkill(events: readonly LogEvent[], variantToSkill: (variantId: string) => string | undefined): Map<string, SkillFluency> {
+  const out = new Map<string, SkillFluency>();
+  for (const r of revealTimes(events)) {
+    const skillId = variantToSkill(r.variantId);
+    if (!skillId) continue;
+    let f = out.get(skillId);
+    if (!f) out.set(skillId, (f = { points: [], median: 0 }));
+    f.points.push({ ts: r.ts, ms: r.ms });
+  }
+  for (const f of out.values()) f.median = median(f.points.map((p) => p.ms));
+  return out;
+}
+
+function median(xs: number[]): number {
+  const s = [...xs].sort((a, b) => a - b);
+  const m = s.length >> 1;
+  return s.length % 2 ? s[m]! : (s[m - 1]! + s[m]!) / 2;
 }

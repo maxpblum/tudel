@@ -1,0 +1,32 @@
+id: rhy.alternate.v01
+skills: [rhy.alternate]
+type: dictation
+difficulty: 3
+title: Four bars with a fill
+prompt: |
+  Write this four-bar phrase on the **TR-909** (bottom space bass drum,
+  third space snare). Bars 1 to 3 are identical, and only beat 4 of bar 4
+  changes. Write the shared beats once and use `< >` for the beat that
+  changes.
+abc: |
+  X:1
+  M:4/4
+  L:1/4
+  K:C clef=perc
+  F c F c | F c F c | F c F c | F c F c/4c/4c/4c/4 |
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      s("bd sd bd <sd sd sd sd*4>").bank("RolandTR909")
+listen_for:
+  - "Bars 1 to 3: bass drum and snare alternate in quarter notes"
+  - "Bar 4: the last beat becomes four sixteenth-note snares, a fill into the repeat"
+  - The phrase lasts four bars, then starts again
+verify:
+  cycles: 4
+  abc_agreement:
+    voice: 0
+    compare: [onset, duration]
+sources:
+  - strudel-src: "packages/mini/krill.pegjs#L122-L125"
+  - strudel-doc: bank

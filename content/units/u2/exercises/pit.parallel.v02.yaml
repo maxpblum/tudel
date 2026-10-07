@@ -1,0 +1,31 @@
+id: pit.parallel.v02
+skills: [pit.parallel]
+type: dictation
+difficulty: 3
+title: A tune in thirds
+prompt: |
+  The lower voice of this bar follows the upper one a diatonic third below.
+  Write the upper voice once, as scale degrees in F major with the tonic on
+  F4, and derive the lower voice with `add`.
+abc: |
+  X:1
+  M:4/4
+  L:1/8
+  K:F
+  [cA] [dB] [cA] [BG] [AF] [GE] [AF]2 |
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("4 5 4 3 2 1 2@2".add("0,-2")).scale("F4:major").s("triangle")
+listen_for:
+  - The upper voice runs C5 D5 C5 B flat 4 A4 G4, then A4 as a quarter note
+  - The lower voice moves in parallel a third below, from A4 down to E4 and back to F4
+  - Both voices share one rhythm, because they come from one line
+verify:
+  cycles: 1
+  abc_agreement:
+    voice: 0
+    compare: [pitch, onset, duration]
+sources:
+  - strudel-doc: add
+  - strudel-doc: scale

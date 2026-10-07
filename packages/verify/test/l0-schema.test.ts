@@ -39,6 +39,9 @@ describe('L0 schema and skill graph', () => {
     ['bad YAML', (ws) => ws.write(`${VARIANTS}/fx.tone.v03.yaml`, 'id: [unclosed'), /YAML parse error/],
     ['.yml file is not silently skipped', (ws) => ws.write(`${VARIANTS}/fx.tone.v04.yml`, 'id: x'), /use the .yaml extension/],
     ['lesson without frontmatter', (ws) => ws.write(`${LESSONS}/extra.md`, 'Just text'), /missing YAML frontmatter/],
+    ['chord with an unknown skill', (ws) => ws.edit('glossary/chord-symbols.yaml', (s) => s.replace('skills: [fx.tone]', 'skills: [fx.nope]')), /chord "Csus4": skill "fx.nope" does not exist/],
+    ['duplicate chord symbol', (ws) => ws.edit('glossary/chord-symbols.yaml', (s) => s.replace('symbol: Cmaj7', 'symbol: Csus4')), /duplicate chord symbol "Csus4"/],
+    ['chord without skills', (ws) => ws.edit('glossary/chord-symbols.yaml', (s) => s.replace('skills: [fx.tone]', 'skills: []')), /chord-symbols|skills/],
     ['orphan lesson', (ws) => ws.write(`${LESSONS}/extra.md`, '---\nid: fx.extra\ntitle: X\nskill: fx.tone\n---\nText'), /orphan lesson/],
   ];
   for (const [name, mutate, re] of broken) {

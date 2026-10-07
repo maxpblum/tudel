@@ -97,6 +97,29 @@ describe('replaySrs', () => {
   });
 });
 
+describe('suspend', () => {
+  const ov = (skillId: string, action: 'suspend' | 'restore'): NewEvent => ({ type: 'override', skillId, action });
+  it('parks a skill as suspended: never due, status and description say so', () => {
+    const st = replaySrs(mkLog([[T0, rate('a', 1)], [T0 + MIN, ov('a', 'suspend')], [T0 + MIN, ov('n', 'suspend')]]));
+    expect(statusOf(st.get('a'))).toBe('suspended');
+    expect(statusOf(st.get('n'))).toBe('suspended');
+    expect(isDue(st.get('a'), new Date(T0 + 365 * DAY))).toBe(false);
+    expect(describeDue(st.get('a'), new Date(T0 + DAY))).toBe('suspended');
+  });
+  it('keeps isIntroduced card-based', () => {
+    const st = replaySrs(mkLog([[T0, rate('a', 3)], [T0, ov('a', 'suspend')], [T0, ov('n', 'suspend')], [T0, { type: 'override', skillId: 'k', action: 'mark_known' }]]));
+    expect(isIntroduced(st.get('a'))).toBe(true);
+    expect(isIntroduced(st.get('n'))).toBe(false);
+    expect(isIntroduced(st.get('k'))).toBe(true);
+  });
+  it('restore undoes it and the card comes back', () => {
+    const st = replaySrs(mkLog([[T0, rate('a', 1)], [T0 + MIN, ov('a', 'suspend')], [T0 + 2 * MIN, ov('a', 'restore')], [T0, ov('n', 'suspend')], [T0 + MIN, ov('n', 'restore')]]));
+    expect(statusOf(st.get('a'))).toBe('learning');
+    expect(isDue(st.get('a'), new Date(T0 + DAY))).toBe(true);
+    expect(statusOf(st.get('n'))).toBe('new');
+  });
+});
+
 describe('helpers', () => {
   it('detects two Agains in a row', () => {
     const two = replaySrs(mkLog([[T0, rate('a', 3)], [T0 + DAY, rate('a', 1)], [T0 + 2 * DAY, rate('a', 1)]])).get('a');

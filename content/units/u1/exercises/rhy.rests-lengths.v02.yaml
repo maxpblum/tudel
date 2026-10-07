@@ -1,0 +1,21 @@
+id: rhy.rests-lengths.v02
+skills: [rhy.rests-lengths]
+type: ear-dictation
+difficulty: 3
+title: Three uneven notes
+prompt: |
+  Listen to one bar of three notes, all on **a3**, on a **square** wave. They
+  are not equally long. Write their lengths with `@`.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("a3@3 a3@3 a3@2").s("square")
+listen_for:
+  - Each note is held until the next one starts, with no gaps
+  - The first two notes are equally long and the third is shorter
+  - "In eighths: 3 + 3 + 2 = 8, so a dotted quarter, a dotted quarter and a quarter"
+verify:
+  cycles: 1
+sources:
+  - strudel-src: "packages/mini/krill.pegjs#L134-L135"
+  - strudel-src: "packages/mini/mini.mjs#L124-L132"

@@ -1,0 +1,22 @@
+id: pit.parallel.v04
+skills: [pit.parallel]
+type: read-the-code
+difficulty: 3
+title: Major thirds by the semitone
+prompt: |
+  Read the code before you play it. The line is a C major scale fragment, and
+  `add` puts a second note above every note. Predict: which notes of the upper
+  voice fall **outside** C major? Then play it and check.
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      note("c4 d4 e4 f4 g4 f4 e4 d4".add("0,4")).s("triangle")
+listen_for:
+  - "Adding 4 to a note name adds 4 semitones: every upper note is exactly a major third above"
+  - "The upper voice is E4 F sharp 4 G sharp 4 A4 B4 A4 G sharp 4 F sharp 4"
+  - "F sharp and G sharp leave C major: above D and E, a diatonic third would be minor"
+  - "For thirds that stay in the key, add on scale degrees inside n(...) instead"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: add

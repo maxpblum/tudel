@@ -1,0 +1,31 @@
+id: mod.signals.v02
+skills: [mod.signals]
+type: match-by-ear
+difficulty: 3
+title: Which shape, and where does it start?
+prompt: |
+  Listen to the target: an eighth-note sawtooth line on **c4** whose low-pass
+  cutoff moves smoothly between about **500 and 3000 Hz**, once every **two
+  bars**. Loop it for at least four bars and decide:
+
+  1. Is the motion smooth, a ramp that resets, or a switch between two levels?
+  2. On the downbeat of bar 1, is the cutoff at its top, its bottom, or in the
+     middle?
+
+  Then write it with one of the six basic signals.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c4*8").s("sawtooth").lpf(cosine.range(500, 3000).slow(2))
+listen_for:
+  - Smooth, with no jumps, so it is sine or cosine (not saw, isaw or square)
+  - Brightest right on the first downbeat, so cosine (sine would start in the middle and get brighter first)
+  - Darkest on the downbeat of bar 2, bright again by bar 3
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: cosine
+  - strudel-src: "packages/core/signal.mjs#L91-L91"
+  - strudel-doc: slow
+  - lexicon: bright
+  - lexicon: dark

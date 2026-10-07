@@ -1,0 +1,22 @@
+id: pit.chord-voicing.v02
+skills: [pit.chord-voicing]
+type: ear-dictation
+difficulty: 3
+title: Four chords in F major
+prompt: |
+  The target plays four chords in **F major**, one per bar. Each is a major
+  or minor triad built on a degree of the scale, and the first is the tonic.
+  Name them, then write them as chord symbols with `chord` and `.voicing()`.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<F Dm Bb C>").voicing().s("triangle")
+listen_for:
+  - "I, vi, IV, V: F, Dm, Bb, C"
+  - The bass falls F3, D3, D3, then rises to E3, because the B flat and C chords come out in first inversion
+  - The top note moves C5, A4, B flat 4, C5
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: chord
+  - strudel-doc: voicing

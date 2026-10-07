@@ -1,5 +1,9 @@
 entries:
   - symbol: Csus4
     tones: [C, F, G]
+    name: C suspended fourth
+    skills: [fx.tone]
   - symbol: Cmaj7
     tones: [C, E, G, B]
+    name: C major seventh
+    skills: [fx.tone, fx.filter]

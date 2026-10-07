@@ -1,0 +1,25 @@
+id: rhy.layers.v04
+skills: [rhy.layers]
+type: read-the-code
+difficulty: 3
+title: Four against three
+prompt: |
+  Before you play this, work out where the two layers meet and sketch the
+  rhythm on two staves. Then play it and check.
+
+  :::code
+  note("c5*4, g4*3").s("triangle")
+  :::
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      note("c5*4, g4*3").s("triangle")
+listen_for:
+  - c5 plays four quarter notes; g4 plays three equal notes, each a third of the bar
+  - The layers meet only on the downbeat
+  - The second g4 comes a third of a beat after beat 2, the third g4 two thirds of a beat after beat 3
+verify:
+  cycles: 1
+sources:
+  - strudel-src: "packages/mini/krill.pegjs#L178-L180"
+  - strudel-src: "packages/mini/mini.mjs#L88-L89"

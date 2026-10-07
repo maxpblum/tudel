@@ -1,0 +1,25 @@
+id: pit.chords-mini.v03
+skills: [pit.chords-mini]
+type: transform
+difficulty: 3
+title: Every chord in first inversion
+prompt: |
+  The starter plays I, IV, V, I in root position. Put **every chord in first
+  inversion** (a 6/3): move each chord's root up an octave by adding 7 to that
+  degree, and keep the other two degrees. Then write each chord with its
+  numbers from low to high.
+starter: |
+  n("[0,2,4] [3,5,7] [4,6,8] [0,2,4]").scale("C4:major").s("triangle")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("[2,4,7] [5,7,10] [6,8,11] [2,4,7]").scale("C4:major").s("triangle")
+listen_for:
+  - Every chord now has its third in the bass, E4, A4, B4, E4
+  - Each root sits on top, C5, F5, G5, C5, an octave above where it was
+  - The texture is a chain of 6/3 chords, like fauxbourdon
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: n
+  - strudel-doc: scale

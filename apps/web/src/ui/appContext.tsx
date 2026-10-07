@@ -2,7 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, u
 import type { EventLog } from '../store/log';
 import type { LogEvent, NewEvent } from '../store/events';
 import { replaySrs, type SrsState } from '../srs';
-import { replayMinutes, replaySessions, variantHistory, type SessionsState, type VariantHistory } from '../session';
+import { replayFocus, replayMinutes, replaySessions, variantHistory, type SessionsState, type VariantHistory } from '../session';
 
 interface AppCtx {
   log: EventLog;
@@ -52,6 +52,8 @@ export interface Derived {
   sessions: SessionsState;
   history: VariantHistory;
   minutes: number;
+  /** Focused unit id, or null. */
+  focusUnit: string | null;
 }
 
 /** All state is derived by replaying the log (pure functions). */
@@ -64,6 +66,7 @@ export function useDerived(): Derived {
       sessions: replaySessions(events),
       history: variantHistory(events),
       minutes: replayMinutes(events),
+      focusUnit: replayFocus(events),
     }),
     [events],
   );

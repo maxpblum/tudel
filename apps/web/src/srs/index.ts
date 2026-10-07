@@ -16,7 +16,7 @@ export const scheduler = fsrs(
   }),
 );
 
-export type SkillStatus = 'new' | 'learning' | 'review' | 'retired' | 'known';
+export type SkillStatus = 'new' | 'learning' | 'review' | 'retired' | 'known' | 'suspended';
 
 export interface SkillSrs {
   skillId: string;
@@ -24,8 +24,8 @@ export interface SkillSrs {
   card: Card | null;
   /** Ratings in order, with timestamps. */
   ratings: { ts: number; rating: RatingValue; variantId: string }[];
-  /** Set by override `retire` / `mark_known`, cleared by `restore`. */
-  parked: 'retired' | 'known' | null;
+  /** Set by override `retire` / `mark_known` / `suspend`, cleared by `restore`. */
+  parked: 'retired' | 'known' | 'suspended' | null;
   /** Set by `again_soon` on a skill with no card: prefer it as the next new skill. */
   prioritized: boolean;
 }
@@ -69,6 +69,9 @@ export function replaySrs(events: readonly LogEvent[]): SrsState {
         case 'mark_known':
           s.parked = 'known';
           break;
+        case 'suspend':
+          s.parked = 'suspended';
+          break;
         case 'restore':
           s.parked = null;
           break;
@@ -92,10 +95,10 @@ export function isDue(s: SkillSrs | undefined, now: Date): boolean {
 
 /**
  * Prerequisite satisfaction: a prereq counts as met once it has been introduced (rated at least
- * once) or parked as retired/known (ADR 0100).
+ * once) or parked as retired/known (ADR 0100). A suspended skill counts only if it has a card.
  */
 export function isIntroduced(s: SkillSrs | undefined): boolean {
-  return !!s && (!!s.card || s.parked !== null);
+  return !!s && (!!s.card || s.parked === 'retired' || s.parked === 'known');
 }
 
 /** True if the last `n` ratings were all Again (relearning trigger, PROPOSAL §14). */
@@ -109,6 +112,7 @@ export function describeDue(s: SkillSrs | undefined, now: Date): string {
   const st = statusOf(s);
   if (st === 'retired') return 'retired';
   if (st === 'known') return 'marked known';
+  if (st === 'suspended') return 'suspended';
   if (!s?.card) return 'not started';
   const ms = s.card.due.getTime() - now.getTime();
   if (ms <= 0) return 'due now';

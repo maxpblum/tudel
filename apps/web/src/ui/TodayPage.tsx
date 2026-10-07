@@ -8,12 +8,12 @@ import { navigate } from './router';
 import { useGuard } from './useGuard';
 
 export function TodayPage() {
-  const { srs, sessions, history, minutes } = useDerived();
+  const { srs, sessions, history, minutes, focusUnit } = useDerived();
   const now = useNow();
   const append = useAppend();
   const { clock } = useApp();
   const [busy, guard] = useGuard();
-  const plan = useMemo(() => buildSession({ content, srs, history, now, minutes }), [srs, history, now, minutes]);
+  const plan = useMemo(() => buildSession({ content, srs, history, now, minutes, focusUnit }), [srs, history, now, minutes, focusUnit]);
   const active = sessions.active;
   const completedToday = sessions.all.filter((s) => s.completed && new Date(s.completedAt!).toDateString() === now.toDateString());
   // Only a session where something was actually done counts as "finished" (not an all-skipped one).
@@ -35,6 +35,14 @@ export function TodayPage() {
   return (
     <div className="page today" data-testid="today">
       <h1>Today</h1>
+      {focusUnit && (
+        <p className="focus-chip" data-testid="focus-chip">
+          Focus: <strong>{content.units.find((u) => u.id === focusUnit)?.title ?? focusUnit}</strong>
+          <button type="button" className="btn btn-small" data-testid="clear-focus" onClick={() => void append({ type: 'focus_changed', unitId: null })}>
+            Clear focus
+          </button>
+        </p>
+      )}
       {active && active.currentStep < active.steps.length ? (
         <section className="card hero">
           <p>
@@ -73,7 +81,7 @@ export function TodayPage() {
             <li>
               {newSkill ? (
                 <>
-                  New skill: <strong>{newSkill.title}</strong> (lesson + {plan.steps.filter((s) => s.kind === 'variant' && s.role === 'new').length} drills)
+                  New skill: <strong data-testid="plan-new-skill">{newSkill.title}</strong> (lesson + {plan.steps.filter((s) => s.kind === 'variant' && s.role === 'new').length} drills)
                 </>
               ) : (
                 <span className="muted">No new skill today</span>

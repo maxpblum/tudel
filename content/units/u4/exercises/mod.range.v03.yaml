@@ -1,0 +1,36 @@
+id: mod.range.v03
+skills: [mod.range]
+type: describe-to-code
+difficulty: 3
+title: A brass crescendo
+prompt: |
+  A brass player's crescendo gets **brighter** as it gets louder. Imitate one on
+  an eighth-note sawtooth line on **c3**, across a four-bar phrase that then
+  starts again:
+
+  - **gain** rises at an even rate from **0.2** to **0.8**;
+  - the low-pass cutoff opens from **300 Hz** to **4800 Hz**, one octave per
+    bar;
+  - both start at their lowest on the downbeat of bar 1 and reset together
+    at bar 5.
+
+  Use one signal shape for both, and choose `range` or `rangex` for each.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c3*8")
+        .s("sawtooth")
+        .lpf(saw.rangex(300, 4800).slow(4))
+        .gain(saw.range(0.2, 0.8).slow(4))
+listen_for:
+  - Quiet and dark on the downbeat of bar 1, loud and bright by the end of bar 4
+  - The brightening is spread evenly over the four bars (rangex on the frequency)
+  - Both drop back together on the downbeat of bar 5
+verify:
+  cycles: 8
+sources:
+  - strudel-doc: rangex
+  - strudel-doc: range
+  - strudel-doc: gain
+  - lexicon: bright
+  - lexicon: dark

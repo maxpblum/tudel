@@ -1,0 +1,32 @@
+id: rhy.cycles-tempo.v04
+skills: [rhy.cycles-tempo]
+type: dictation
+difficulty: 2
+title: A triplet across the bar
+prompt: |
+  Write this bar in Strudel on a **triangle** wave, at the tempo marked. The
+  triplet spans the whole bar.
+abc: |
+  X:1
+  M:4/4
+  L:1/4
+  Q:1/4=96
+  K:C
+  (3C2E2G2 |
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(96 / 4)
+      note("c4 e4 g4").s("triangle")
+listen_for:
+  - Three equal notes per bar, each a third of the bar (about 0.83 s at 96 BPM)
+  - c4, e4, g4 rising, then c4 again on the next downbeat
+  - After the downbeat, the notes fall between the clicks of a metronome at 96
+verify:
+  cycles: 1
+  abc_agreement:
+    voice: 0
+    compare: [pitch, onset, duration]
+sources:
+  - strudel-doc: setcpm
+  - strudel-src: "packages/mini/mini.mjs#L138-L141"

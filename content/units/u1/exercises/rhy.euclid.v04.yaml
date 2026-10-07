@@ -1,0 +1,25 @@
+id: rhy.euclid.v04
+skills: [rhy.euclid]
+type: ear-dictation
+difficulty: 3
+title: Five hits in eight
+prompt: |
+  Listen to one bar on **c5** (square wave). The notes sit on an eighth-note
+  grid, spread as evenly as their number allows. Write the bar twice: once
+  with `~` rests and once in the `(k,n)` form.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c5(5,8)").s("square")
+  - code: |
+      note("c5 ~ c5 c5 ~ c5 c5 ~").s("square")
+    note: The same events, written out with rests.
+listen_for:
+  - Five notes and three eighth rests per bar
+  - Gaps of 2, 1, 2, 1 and 2 eighths, the cinquillo
+  - Count the notes first (k = 5), then the grid (n = 8)
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: euclid
+  - strudel-src: "packages/core/euclid.mjs#L106-L107"

@@ -1,0 +1,22 @@
+id: rhy.rests-lengths.v03
+skills: [rhy.rests-lengths]
+type: spec-to-code
+difficulty: 2
+title: Rests in a drum groove
+prompt: |
+  One bar on an eighth-note grid, on the **TR-909**: bass drum on beat 1 and
+  on the second half of beat 3, snare on beats 2 and 4. Every other eighth is
+  silent.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      s("bd ~ sd ~ ~ bd sd ~").bank("RolandTR909")
+listen_for:
+  - Four hits and four silent eighths per bar
+  - Beat 3 itself is silent; the second kick comes half a beat later, just before the snare on beat 4
+  - The snare stays on beats 2 and 4
+verify:
+  cycles: 1
+sources:
+  - strudel-src: "packages/mini/mini.mjs#L157-L158"
+  - strudel-doc: bank
