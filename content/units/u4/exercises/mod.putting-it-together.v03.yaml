@@ -18,8 +18,7 @@ solutions:
       setcpm(116 / 4)
       stack(
         s("bd ~ bd ~, ~ sd ~ sd, hh*8").bank("RolandTR909"),
-        note("<d3 bb3 f3 c3>")
-          .ply(2)
+        note("<d3*2 bb3*2 f3*2 c3*2>")
           .s("sawtooth")
           .lpf(saw.range(400, 2400).slow(4))
           .gain(sine.range(0.4, 0.75).fast(4)),

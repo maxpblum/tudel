@@ -16,7 +16,7 @@ starter: |
   setcpm(116 / 4)
   stack(
     s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR808"),
-    note("<a3 f3 c3 g3>").ply(2).s("sawtooth").gain(0.6),
+    note("<a3*2 f3*2 c3*2 g3*2>").s("sawtooth").gain(0.6),
   )
 hide_reference_code_until_reveal: true
 solutions:
@@ -24,7 +24,7 @@ solutions:
       setcpm(116 / 4)
       stack(
         s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR808"),
-        note("<a3 f3 c3 g3>").ply(2).s("sawtooth").gain(0.6),
+        note("<a3*2 f3*2 c3*2 g3*2>").s("sawtooth").gain(0.6),
         chord("<Am F C G>").voicing().s("triangle").gain(0.45),
       )
     note: "One possible harmonic layer. The Am-F-C-G progression voiced on triangle wave at gain(0.45)."

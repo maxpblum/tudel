@@ -8,7 +8,7 @@ prompt: |
   Add a bass foundation to the `stack`:
 
   1. Play the chord roots in octave 3 (at or above C3) on `"sawtooth"`.
-  2. Give the bass rhythmic motion using `ply` or subdivided mini-notation.
+  2. Give the bass rhythmic motion using subdivided mini-notation (such as `*2` or `*4`).
   3. Filter the bass with `lpf` to tame higher harmonics, leaving space for the rich supersaw chords.
   4. Balance the bass level with `gain`.
 
@@ -30,7 +30,7 @@ solutions:
       setcpm(116 / 4)
       stack(
         s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR808"),
-        note("<a3 f3 c3 g3>").ply(2).s("sawtooth").lpf(550).gain(0.7),
+        note("<a3*2 f3*2 c3*2 g3*2>").s("sawtooth").lpf(550).gain(0.7),
         chord("<Am7 F^7 C^7 G>")
           .voicing()
           .s("supersaw")
@@ -55,6 +55,5 @@ verify:
 sources:
   - strudel-doc: stack
   - strudel-doc: note
-  - strudel-doc: ply
   - strudel-doc: lpf
   - strudel-doc: gain

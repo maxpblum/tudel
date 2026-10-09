@@ -18,8 +18,7 @@ Layering modulations across different time domains brings electronic soundscapes
 setcpm(120 / 4)
 stack(
   s("bd*2, ~ sd, hh*8").bank("RolandTR808"),
-  note("<a3 f3 c3 g3>")
-    .ply(8)
+  note("<a3*8 f3*8 c3*8 g3*8>")
     .add(note(perlin.range(-0.15, 0.15).slow(2)))
     .s("sawtooth")
     .lpf(saw.range(400, 2400).slow(4))

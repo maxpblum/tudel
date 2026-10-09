@@ -18,7 +18,7 @@ A professional neo-soul or synth-pop arrangement separates roles by octave:
 setcpm(112 / 4)
 stack(
   s("bd ~ bd ~, ~ sd ~ sd, hh*8").bank("RolandTR909"),
-  note("<c3 c3 c3 c3>").ply(4).s("sawtooth").lpf(600).gain(0.7),
+  note("c3*4").s("sawtooth").lpf(600).gain(0.7),
   chord("<C F Fm C>").voicing().s("supersaw").detune(0.15).lpf(2200).gain(0.4),
 )
 :::

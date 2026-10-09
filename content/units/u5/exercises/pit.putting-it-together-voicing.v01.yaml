@@ -16,7 +16,7 @@ starter: |
   setcpm(112 / 4)
   stack(
     s("bd ~ bd ~, ~ sd ~ sd, hh*8").bank("RolandTR909"),
-    note("c3").ply(2).s("sawtooth").lpf(600).gain(0.65),
+    note("c3*2").s("sawtooth").lpf(600).gain(0.65),
   )
 hide_reference_code_until_reveal: true
 solutions:
@@ -24,7 +24,7 @@ solutions:
       setcpm(112 / 4)
       stack(
         s("bd ~ bd ~, ~ sd ~ sd, hh*8").bank("RolandTR909"),
-        note("c3").ply(2).s("sawtooth").lpf(600).gain(0.65),
+        note("c3*2").s("sawtooth").lpf(600).gain(0.65),
         chord("<C F Fm C>").voicing().s("triangle").gain(0.5),
       )
     note: "One possible modal mixture progression. The 4-bar loop <C F Fm C> voicing the borrowed Fm chord in bar 3."
