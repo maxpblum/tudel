@@ -1,0 +1,48 @@
+id: swave.pads.v02
+skills: [swave.pads]
+type: transform
+difficulty: 3
+title: From organ chords to a synthwave pad
+prompt: |
+  The chords below are thin, static and dry: plain triads on a single
+  sawtooth, starting and stopping abruptly. Turn them into a synthwave pad
+  in four moves, keeping the roots:
+
+  1. Replace the triads with **Am9, F^7, Cadd9, G6**.
+  2. Use a `"supersaw"` with **7 voices**, detune **0.25 semitones**, spread
+     **0.8**.
+  3. Attack **0.6 seconds**, release **1.5 seconds**.
+  4. Put it on **orbit 2** with a reverb send of **0.5** and a
+     **6-second** room. Keep the low-pass at 1500 Hz.
+starter: |
+  chord("<Am F C G>").voicing().s("sawtooth").lpf(1500)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<Am9 F^7 Cadd9 G6>")
+        .voicing()
+        .s("supersaw")
+        .unison(7)
+        .detune(0.25)
+        .spread(0.8)
+        .attack(0.6)
+        .release(1.5)
+        .lpf(1500)
+        .orbit(2)
+        .room(0.5)
+        .roomsize(6)
+listen_for:
+  - "Richer chords: lowest notes A3, F3, E3, G3, top notes B4, C5, C5, B4"
+  - "Each chord swells in over more than half a second, and its tail overlaps the next chord"
+  - "A wide, gently beating sound in place of the single buzzy sawtooth"
+  - "A long reverb tail after each chord"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: voicing
+  - strudel-doc: unison
+  - strudel-doc: detune
+  - strudel-doc: orbit
+  - lexicon: thin
+  - lexicon: buzzy
+  - lexicon: wet

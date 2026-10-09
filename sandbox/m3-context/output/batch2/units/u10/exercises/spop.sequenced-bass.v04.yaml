@@ -1,0 +1,41 @@
+id: spop.sequenced-bass.v04
+skills: [spop.sequenced-bass]
+type: read-the-code
+difficulty: 3
+title: Predict the bass
+prompt: |
+  Read the code and predict, before you play it: how many notes per bar,
+  which pitches in bar 1 and bar 3, and how the line's tone changes on each
+  note. Then play it and check.
+
+  :::code
+  setcpm(120 / 4)
+  note("<e3 c3 g3 d3>")
+    .ply(8)
+    .add(note("[0 12 0 7]*2"))
+    .s("sawtooth")
+    .lpf(300)
+    .lpenv(4)
+    .lpdecay(0.15)
+  :::
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      setcpm(120 / 4)
+      note("<e3 c3 g3 d3>")
+        .ply(8)
+        .add(note("[0 12 0 7]*2"))
+        .s("sawtooth")
+        .lpf(300)
+        .lpenv(4)
+        .lpdecay(0.15)
+listen_for:
+  - "Eight notes per bar (eighth notes, 4 per second), not sixteen: ply(8)"
+  - "Bar 1: E3 E4 E3 B3, twice; bar 3: G3 G4 G3 D4, twice"
+  - "Each note flashes bright (the cutoff jumps 4 octaves, from 300 Hz to 4800 Hz) and darkens over 0.15 seconds"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: ply
+  - strudel-doc: add
+  - strudel-doc: lpenv

@@ -1,0 +1,40 @@
+id: spop.brass-stabs.v02
+skills: [spop.brass-stabs]
+type: describe-to-code
+difficulty: 3
+title: Horn punches between the beats
+prompt: |
+  Over the loop **E minor, C, G, D** at **126 BPM**, write **brassy**
+  synth stabs: short chord punches that fall between the beats, never on
+  them, two or three per bar. Each hit should speak with a quick bloom of
+  brightness and then fall back to a **dark**er tone, the way a horn
+  section's *fp* attack sounds. Keep them beside the drums in level, not
+  on top.
+
+  Your rhythm and envelope values may differ from the reference.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(126 / 4)
+      chord("<Em C G D>")
+        .struct("~ x ~ x ~ ~ ~ x")
+        .voicing()
+        .s("sawtooth")
+        .attack(0.01)
+        .lpf(450)
+        .lpenv(3)
+        .lpattack(0.05)
+        .lpdecay(0.25)
+        .gain(0.45)
+listen_for:
+  - "Every hit is off the beat (here the 'and' of 1, 2 and 4)"
+  - "The tone opens over a few hundredths of a second rather than appearing at full brightness"
+  - "The loudness is there from the start; only the brightness blooms"
+  - "Chords E minor, C, G, D"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: struct
+  - strudel-doc: lpattack
+  - lexicon: brassy
+  - lexicon: dark

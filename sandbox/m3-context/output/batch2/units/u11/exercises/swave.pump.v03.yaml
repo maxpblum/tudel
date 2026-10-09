@@ -1,0 +1,34 @@
+id: swave.pump.v03
+skills: [swave.pump]
+type: match-by-ear
+difficulty: 3
+title: Stepped or smooth?
+prompt: |
+  This pad pumps. Listen first to decide **how**: as a smooth swell inside
+  held chords, or as a chain of short, re-triggered chords that step up in
+  loudness? How many swells per bar, and how deep is each dip? Then
+  recreate it. The chords are **Em9, C^7, G^7, D6**, on a seven-voice
+  supersaw with detune 0.25 and a low-pass at 2000 Hz, at 100 BPM.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(100 / 4)
+      chord("<Em9 C^7 G^7 D6>")
+        .voicing()
+        .segment(16)
+        .gain(saw.range(0.1, 0.7).fast(4))
+        .s("supersaw")
+        .unison(7)
+        .detune(0.25)
+        .lpf(2000)
+listen_for:
+  - "Stepped: sixteen short chords per bar, each starting with its own attack"
+  - "Four steps up per beat, from very quiet (0.1) to 0.55, then back down on the next beat"
+  - "One swell per beat: four per bar"
+  - "Em9, C^7, G^7, D6, one per bar"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: segment
+  - strudel-doc: saw
+  - strudel-doc: range

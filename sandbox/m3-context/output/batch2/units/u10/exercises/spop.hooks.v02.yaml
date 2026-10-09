@@ -1,0 +1,33 @@
+id: spop.hooks.v02
+skills: [spop.hooks]
+type: transform
+difficulty: 3
+title: Dorian, with an answer in bar 4
+prompt: |
+  The starter is a hook in E natural minor. Make two changes:
+
+  1. Move it to **E Dorian**, so its sixth degree becomes C sharp.
+  2. On the **last bar of every four**, play the hook backwards
+     (retrograde). Do it on the degree string, before `n`.
+starter: |
+  setcpm(120 / 4)
+  n("0 2 3 5 4 ~ 2 0").scale("E4:minor").s("square").decay(0.2).sustain(0.3)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(120 / 4)
+      n("0 2 3 5 4 ~ 2 0".lastOf(4, (x) => x.rev()))
+        .scale("E4:dorian")
+        .s("square")
+        .decay(0.2)
+        .sustain(0.3)
+listen_for:
+  - "Bars 1 to 3: E4 G4 A4 C#5 B4, a rest, G4 E4"
+  - "Bar 4: the same notes backwards, E4 G4, a rest, B4 C#5 A4 G4 E4"
+  - "C sharp instead of C natural: the brighter Dorian sixth"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: lastOf
+  - strudel-doc: rev
+  - strudel-doc: scale

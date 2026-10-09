@@ -1,0 +1,38 @@
+id: chip.noise-drums.v01
+skills: [chip.noise-drums]
+type: spec-to-code
+difficulty: 2
+title: A three-piece chip kit
+prompt: |
+  Build a drum kit at **140 BPM** with no samples, one `$:` line per drum:
+
+  - **Kick** on beats 1 and 3: a triangle on **C3** whose pitch starts
+    **36 semitones** higher and falls to C3 in **0.05 seconds**, with an
+    amplitude decay of **0.15 seconds** and no sustain.
+  - **Snare** on beats 2 and 4: white noise, decay **0.15 seconds**, no
+    sustain, high-pass at **1500 Hz**, gain **0.35**.
+  - **Hi-hat** in eighth notes: white noise, decay **0.03 seconds**, no
+    sustain, high-pass at **7000 Hz**, gain **0.25**.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(140 / 4)
+      $: note("c3 ~ c3 ~")
+        .s("triangle")
+        .penv(36)
+        .pdecay(0.05)
+        .decay(0.15)
+        .sustain(0)
+      $: s("~ white ~ white").decay(0.15).sustain(0).hpf(1500).gain(0.35)
+      $: s("white*8").decay(0.03).sustain(0).hpf(7000).gain(0.25)
+listen_for:
+  - "A short thump on beats 1 and 3, with a click of falling pitch at its start"
+  - "A noisy snare with some body on beats 2 and 4"
+  - "Very short, ticking hats on every eighth note"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: penv
+  - strudel-doc: pdecay
+  - strudel-src: "packages/superdough/helpers.mjs#L326-L344"
+  - strudel-doc: decay

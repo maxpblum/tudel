@@ -1,0 +1,79 @@
+id: chip.project.v02
+skills: [chip.project]
+type: project
+difficulty: 5
+title: "Chiptune capstone: Boss battle"
+prompt: |
+  Write an original **boss-battle loop** at **180 BPM** in **C minor**: four
+  bars that repeat, then the same four bars **a semitone higher** for the
+  boss's second phase, eight bars in all. The harmony, one chord per bar, is
+  **Cm, Db, Cm, G**: i, the Phrygian bII (D flat, a semitone above the tonic,
+  for menace), i, and a major V whose B natural pulls hard back to C.
+
+  Build it in four checkpoints:
+
+  1. **Drum kit (noise channel).** One noise line in **sixteenth notes**:
+     hats with light and heavier accents, and a snare on beats 2 and 4.
+  2. **Bassline (triangle).** A relentless sixteenth-note bass on the roots
+     (C3, D flat 3, C3, G3), with an octave jump once per beat, and a
+     pitch-drop kick folded into **every** beat (four on the floor).
+  3. **Arpeggiated lead (both pulses).** Pulse 2: the chords as a frame-fast
+     arpeggio on a 50 % pulse, kept quiet. Pulse 1: an aggressive melody on
+     the thinnest pulse (12.5 %), with chromatic notes against the harmony
+     and a trill before the return to the tonic.
+  4. **Final multi-voice mix.** Put the three pitched channels in one
+     `stack` and lift it with a single `transpose` for bars 5 to 8; keep the
+     noise outside the stack (it has no pitch to transpose). Balance with
+     `gain`.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(180 / 4)
+      $: stack(
+        note("<[c5 ~ eb5 ~ g5 ~ f#5 g5] [ab5 ~ f5 ~ db5 ~ c5 db5] [c5 eb5 g5 c6 b5 c6 g5 eb5] [d5 ~ f5 ~ ab5 ~ [b5 c6]*4@2]>")
+          .s("pulse")
+          .pw(0.75)
+          .gain(0.45),
+        chord("<Cm Db Cm G>")
+          .voicing()
+          .arp("[0 1 2 3]*12")
+          .s("pulse")
+          .pw(0)
+          .gain(0.18),
+        note("<c3 db3 c3 g3>")
+          .ply(16)
+          .add(note("[0 0 12 0]*4"))
+          .s("triangle")
+          .penv("[36 0 0 0]*4")
+          .pdecay(0.04)
+          .gain(0.9),
+      ).transpose("<0!4 1!4>")
+      $: s("white*16")
+        .decay("[0.03 0.03 0.03 0.03 0.15 0.03 0.03 0.03]*2")
+        .sustain(0)
+        .hpf("[7000 7000 7000 7000 1500 7000 7000 7000]*2")
+        .gain("[0.3 0.12 0.2 0.12 0.4 0.12 0.2 0.12]*2")
+listen_for:
+  - "A driving 180 BPM loop: Cm, D flat, Cm, G, then the same a semitone higher (C sharp minor territory, spelled Dbm, D, Dbm, Ab)"
+  - "A thin, cutting 12.5 % lead with chromatic neighbours (F sharp against C minor, A flat against G) and a B-C trill into the repeat"
+  - "Sixteenth-note triangle bass with an octave jump on the third sixteenth of every beat and a thump on every beat"
+  - "Sixteenth-note noise with snares on beats 2 and 4"
+  - "The jump up a semitone at bar 5 arrives without preparation, raising the tension"
+rubric:
+  - "Checkpoint 1: one noise line in sixteenths with per-step decay, hpf and gain patterns; snare on beats 2 and 4"
+  - "Checkpoint 2: sixteenth-note triangle bass on the given roots, every note at or above C3, with an octave figure"
+  - "Checkpoint 2: a penv pitch-drop kick on every beat, with pdecay set, inside the bass line"
+  - "Checkpoint 3: the chords Cm, Db, Cm, G as a frame-fast arpeggio (20 or more notes per second) on one pulse, changing once per bar"
+  - "Checkpoint 3: an original lead on pw(0.75) with chromatic notes and at least one trill"
+  - "Checkpoint 4: the pitched channels are lifted together by one transpose (for example \"<0!4 1!4>\"), and the noise line is not transposed"
+  - "Checkpoint 4: four channels, one note at a time each; the lead is clearly on top"
+  - "No melody or riff quoted from an existing game"
+verify:
+  cycles: 8
+  equivalent_solutions: false
+sources:
+  - strudel-doc: transpose
+  - strudel-doc: pw
+  - strudel-doc: arp
+  - strudel-doc: penv
+  - lexicon: thin

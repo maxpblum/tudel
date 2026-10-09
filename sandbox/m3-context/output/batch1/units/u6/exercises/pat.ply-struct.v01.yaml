@@ -1,0 +1,22 @@
+id: pat.ply-struct.v01
+skills: [pat.ply-struct]
+type: transform
+difficulty: 1
+title: Double-tongue the bass line
+prompt: |
+  The starter is a bass line in quarter notes: F3 C4 A3 C4. Double-tongue
+  it: every note becomes two eighth notes of the same pitch, in the same
+  order. Add one method; don't change the degree string.
+starter: |
+  n("0 4 2 4").scale("F3:major").s("sawtooth").lpf(1200)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("0 4 2 4").scale("F3:major").s("sawtooth").lpf(1200).ply(2)
+listen_for:
+  - "Eight eighth notes: F3 F3 C4 C4 A3 A3 C4 C4"
+  - "Not fast(2), which would play F3 C4 A3 C4 twice"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: ply

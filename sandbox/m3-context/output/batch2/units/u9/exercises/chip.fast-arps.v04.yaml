@@ -1,0 +1,41 @@
+id: chip.fast-arps.v04
+skills: [chip.fast-arps]
+type: match-by-ear
+difficulty: 3
+title: Match the shimmering loop
+prompt: |
+  Recreate this loop: a frame-fast arpeggio of chord symbols on one pulse
+  channel over a triangle bass, at 150 BPM. It is in D minor and uses only
+  chords from D natural minor. Work out:
+
+  - the four chords (one per bar);
+  - the pulse width of the arpeggio (one of 50 %, 25 %, 12.5 %);
+  - how many notes per bar it plays (count the positions, then the repeats).
+
+  Use `chord(...).voicing()` with the default settings and `arp`.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(150 / 4)
+      stack(
+        chord("<Dm Bb C Dm>")
+          .voicing()
+          .arp("[0 1 2 3]*12")
+          .s("pulse")
+          .pw(0.75)
+          .gain(0.4),
+        note("<d3 bb3 c3 d3>").ply(8).s("triangle").gain(0.9),
+      )
+listen_for:
+  - "Dm, Bb, C, Dm: i, bVI, bVII, i in D minor"
+  - "A thin, nasal 12.5 % pulse on the arpeggio"
+  - "48 notes per bar (positions 0 1 2 3, twelve times): a fused, buzzing chord"
+  - "Triangle bass in eighth notes on the roots"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: arp
+  - strudel-doc: voicing
+  - strudel-doc: pw
+  - lexicon: thin
+  - lexicon: nasal

@@ -1,0 +1,29 @@
+id: pat.canon-imitation.v04
+skills: [pat.canon-imitation]
+type: creative
+difficulty: 3
+title: Your own round
+prompt: |
+  Compose a short canon of your own with `off`: one line, written once, and
+  a follower derived from it. Choose the length (one, two or four bars), the
+  delay, and the interval. Loop it and listen for the strong beats: where
+  do the two voices clash? Adjust the line or the delay until you like it.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("<[0 2 4 2] [3 5 4@2] [2 4 3 1] [0 -1 0@2]>".off(1, (x) => x.add(7)))
+        .scale("F4:major")
+        .s("triangle")
+    note: One example. A four-bar line in F major, answered an octave higher one bar later.
+listen_for:
+  - "The follower is the leader, transformed: nothing is copied out by hand"
+rubric:
+  - "The line is written once, as scale degrees inside n(...), and the follower comes from off"
+  - "The delay is not a whole number of loop lengths, so the voices really are offset"
+  - "The transposition is done on the degrees inside n(...), so the follower stays in the key"
+  - "No note goes below C3"
+  - "On most strong beats the two voices form consonances (thirds, sixths, octaves, fifths)"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: off

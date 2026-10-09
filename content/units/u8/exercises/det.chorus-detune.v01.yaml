@@ -1,0 +1,37 @@
+id: det.chorus-detune.v01
+skills: [det.chorus-detune]
+type: spec-to-code
+difficulty: 2
+title: The widest supersaw pad
+prompt: |
+  A pad alternating **D minor (d4 f4 a4)** and **B flat major (bb3 d4 f4)**,
+  one chord per bar, on `"supersaw"` with:
+
+  - **7** voices spread **25 cents** from lowest to highest
+  - the voices pushed **as far apart in stereo as possible**
+  - attack **0.4** seconds, release **1.2** seconds
+  - a low-pass at **1600 Hz**
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("<[d4,f4,a4] [bb3,d4,f4]>")
+        .s("supersaw")
+        .unison(7)
+        .detune(0.25)
+        .spread(1)
+        .attack(0.4)
+        .release(1.2)
+        .lpf(1600)
+listen_for:
+  - "25 cents is detune(0.25); spread(1) puts voices 1, 3, 5 and 7 hard right and voices 2, 4 and 6 hard left"
+  - "On headphones the chord fills both ears, but its centre stays in the middle"
+  - "A soft swell into each chord and a tail of a little over a second after it"
+  - "A gentle shimmer in both ears, but no sour pitches"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: spread
+  - strudel-doc: unison
+  - strudel-doc: detune
+  - strudel-src: "packages/superdough/worklets.mjs#L543-L572"
+  - lexicon: pad-like

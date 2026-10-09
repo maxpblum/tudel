@@ -1,0 +1,26 @@
+id: bus.stereo-pan.v03
+skills: [bus.stereo-pan]
+type: sweep
+difficulty: 3
+title: A slow walk from left to right
+prompt: |
+  Play the figure **e5 c5 g4 c5** as sixteenth-note plucks on a triangle wave
+  (`decay` 0.1 seconds, nothing held). Over **four bars**, move it at an even
+  speed from the **far left** to the **far right**, then jump back to the left
+  and start again. Use a signal, not a list of positions.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("[e5 c5 g4 c5]*4").s("triangle").decay(0.1).sustain(0).pan(saw.slow(4))
+listen_for:
+  - The figure starts at the far left on the downbeat of bar 1
+  - It is in the centre at the start of bar 3, and nearly at the far right by the end of bar 4
+  - At the loop it jumps back to the left, because saw drops from 1 to 0 at the end of its period
+  - Sixteenth notes give 64 positions over the four bars, so the movement sounds smooth
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: pan
+  - strudel-doc: saw
+  - strudel-src: "packages/core/signal.mjs#L35-L35"
+  - strudel-src: "packages/core/signal.mjs#L18-L21"

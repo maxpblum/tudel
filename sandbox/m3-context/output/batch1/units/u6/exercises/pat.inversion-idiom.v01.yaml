@@ -1,0 +1,26 @@
+id: pat.inversion-idiom.v01
+skills: [pat.inversion-idiom]
+type: transform
+difficulty: 2
+title: Invert about the first note
+prompt: |
+  The starter is a one-bar line in D dorian that starts on its tonic, D4.
+  Play its **tonal inversion** about that first note: every step up becomes
+  the same number of scale steps down, and the reverse. Change the degree
+  string with arithmetic; don't write the new degrees out by hand.
+starter: |
+  n("0 1 2 0 4 3 2@2").scale("D4:dorian").s("triangle")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("0 1 2 0 4 3 2@2".mul(-1)).scale("D4:dorian").s("triangle")
+listen_for:
+  - "The axis is degree 0, so 2 × 0 = 0 and multiplying by −1 is the whole reflection"
+  - "The inversion runs D4 C4 B3 D4 G3 A3 and a quarter-note B3"
+  - "B3 is natural, as D dorian requires, because the steps are counted in the scale"
+  - "Not invert: that swaps 1s and 0s in a rhythm and never changes pitch"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: mul
+  - strudel-doc: invert

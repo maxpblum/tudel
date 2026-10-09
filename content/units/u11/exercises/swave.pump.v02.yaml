@@ -1,0 +1,33 @@
+id: swave.pump.v02
+skills: [swave.pump]
+type: read-the-code
+difficulty: 3
+title: Why doesn't it pump?
+prompt: |
+  Someone wrote this to make a pad pump on every beat. Before you play it,
+  work out the gain of every chord in bar 1. Then explain why it doesn't
+  pump, and say the smallest change that makes it pump in four steps per
+  beat. Play it to check your prediction, then play your fix.
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      setcpm(100 / 4)
+      chord("<Am9 F^7 Cadd9 G6>")
+        .voicing()
+        .segment(4)
+        .gain(saw.range(0.2, 0.8).fast(4))
+        .s("supersaw")
+        .unison(7)
+        .detune(0.25)
+        .lpf(2000)
+listen_for:
+  - "Four repeated chords per bar, all equally quiet: every chord's gain is 0.2"
+  - "Reason: each chord reads the signal once, at its onset, and segment(4) puts every onset on a beat, exactly where saw.fast(4) restarts at 0"
+  - "Fix: segment(16), so each beat has four onsets reading 0.2, 0.35, 0.5 and 0.65"
+  - "With the fix, the chords pulse in sixteenths and swell in four steps across each beat"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: segment
+  - strudel-doc: saw
+  - strudel-doc: range

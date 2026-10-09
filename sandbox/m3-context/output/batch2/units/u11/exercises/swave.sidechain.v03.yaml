@@ -1,0 +1,46 @@
+id: swave.sidechain.v03
+skills: [swave.sidechain]
+type: ear-dictation
+difficulty: 4
+title: The kick that isn't on every beat
+prompt: |
+  Listen to this two-part loop at **100 BPM**: a TR-909 kick and a held
+  pad. The kick is not four-on-the-floor. Write down:
+
+  1. the kick's rhythm in eighth notes;
+  2. which part makes the other dip, and how the pumping follows the rhythm;
+  3. roughly how deep the dips are and how fast the pad recovers.
+
+  Then write the code. The pad is `chord("<Am9 F^7>").voicing()` on a
+  7-voice supersaw (detune 0.25, attack 0.3 seconds, release 1 second,
+  low-pass 2000 Hz).
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(100 / 4)
+      $: s("bd ~ ~ bd ~ ~ bd ~")
+        .bank("RolandTR909")
+        .duckorbit(2)
+        .duckdepth(0.7)
+        .duckattack(0.5)
+      $: chord("<Am9 F^7>")
+        .voicing()
+        .s("supersaw")
+        .unison(7)
+        .detune(0.25)
+        .attack(0.3)
+        .release(1)
+        .lpf(2000)
+        .orbit(2)
+        .gain(0.5)
+listen_for:
+  - "Kick on eighths 1, 4 and 7: a 3 + 3 + 2 grouping across the bar"
+  - "The pad dips exactly where the kick plays and nowhere else: three uneven pumps per bar, a sidechain rather than a drawn pump"
+  - "Deep dips (to about 0.16 of full level) and a slow recovery of about half a second, so the pad is still swelling when the next kick arrives after three eighths"
+  - "The chords change once per bar: Am9, F^7"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: duckorbit
+  - strudel-doc: duckdepth
+  - strudel-doc: duckattack

@@ -1,63 +1,553 @@
-# Every chord symbol used in the prose or code of the pitch and harmony unit
-# (ADR 0201 §6). Gate L8c checks `tones` against tonal's spelling of `symbol`.
 entries:
   - symbol: C
-    tones: [C, E, G]
+    tones:
+      - C
+      - E
+      - G
     name: C major
-    skills: [pit.chord-voicing, pit.register-inversion, pit.progressions]
+    skills:
+      - pit.chord-voicing
+      - pit.register-inversion
+      - pit.progressions
+      - chip.arcade-harmony
+      - chip.fast-arps
+      - chip.project
+      - chip.pulse-channels
+      - spop.brass-stabs
+      - spop.hooks
+      - spop.pads
+      - spop.project
+      - swave.pads
+      - zen.section-arrange
+      - zen.loop-layering
+      - zen.dramatic-arc
+      - zen.readability-refactor
+      - zen.consolidated-idioms
   - symbol: Dm
-    tones: [D, F, A]
+    tones:
+      - D
+      - F
+      - A
     name: D minor
-    skills: [pit.chord-voicing, pit.progressions]
+    skills:
+      - pit.chord-voicing
+      - pit.progressions
+      - chip.fast-arps
+      - chip.pulse-channels
+      - spop.brass-stabs
+      - spop.pads
+      - spop.project
+      - zen.section-arrange
+      - zen.dramatic-arc
+      - zen.readability-refactor
   - symbol: Em
-    tones: [E, G, B]
+    tones:
+      - E
+      - G
+      - B
     name: E minor
-    skills: [pit.chord-voicing, pit.progressions]
+    skills:
+      - pit.chord-voicing
+      - pit.progressions
+      - chip.arcade-harmony
+      - chip.project
+      - spop.brass-stabs
+      - spop.pads
+      - zen.loop-layering
+      - zen.readability-refactor
+      - zen.consolidated-idioms
   - symbol: F
-    tones: [F, A, C]
+    tones:
+      - F
+      - A
+      - C
     name: F major
-    skills: [pit.chord-voicing, pit.register-inversion, pit.progressions]
+    skills:
+      - pit.chord-voicing
+      - pit.register-inversion
+      - pit.progressions
+      - chip.arcade-harmony
+      - chip.fast-arps
+      - chip.project
+      - spop.brass-stabs
+      - spop.hooks
+      - spop.pads
+      - spop.project
+      - swave.pads
+      - zen.section-arrange
+      - zen.loop-layering
+      - zen.dramatic-arc
+      - zen.readability-refactor
+      - zen.consolidated-idioms
   - symbol: G
-    tones: [G, B, D]
+    tones:
+      - G
+      - B
+      - D
     name: G major
-    skills: [pit.chord-voicing, pit.register-inversion, pit.progressions]
+    skills:
+      - pit.chord-voicing
+      - pit.register-inversion
+      - pit.progressions
+      - chip.arcade-harmony
+      - chip.fast-arps
+      - chip.project
+      - spop.brass-stabs
+      - spop.hooks
+      - spop.pads
+      - spop.project
+      - swave.pads
+      - zen.section-arrange
+      - zen.loop-layering
+      - zen.dramatic-arc
+      - zen.readability-refactor
+      - zen.consolidated-idioms
   - symbol: Am
-    tones: [A, C, E]
+    tones:
+      - A
+      - C
+      - E
     name: A minor
-    skills: [pit.chord-voicing, pit.register-inversion, pit.progressions]
+    skills:
+      - pit.chord-voicing
+      - pit.register-inversion
+      - pit.progressions
+      - chip.arcade-harmony
+      - chip.fast-arps
+      - spop.brass-stabs
+      - spop.hooks
+      - spop.pads
+      - spop.project
+      - swave.pads
+      - zen.section-arrange
+      - zen.loop-layering
+      - zen.dramatic-arc
+      - zen.readability-refactor
+      - zen.consolidated-idioms
   - symbol: Bo
-    tones: [B, D, F]
+    tones:
+      - B
+      - D
+      - F
     name: B diminished
-    skills: [pit.chord-voicing, pit.progressions]
+    skills:
+      - pit.chord-voicing
+      - pit.progressions
   - symbol: Bdim
-    tones: [B, D, F]
+    tones:
+      - B
+      - D
+      - F
     name: B diminished (voicing's default dictionary has no dim, so write Bo)
-    skills: [pit.chord-voicing]
+    skills:
+      - pit.chord-voicing
   - symbol: D
-    tones: [D, F#, A]
+    tones:
+      - D
+      - F#
+      - A
     name: D major
-    skills: [pit.chord-voicing]
+    skills:
+      - pit.chord-voicing
+      - chip.arcade-harmony
+      - chip.project
+      - spop.brass-stabs
+      - spop.pads
+      - zen.loop-layering
+      - zen.dramatic-arc
+      - zen.readability-refactor
+      - zen.consolidated-idioms
   - symbol: E
-    tones: [E, G#, B]
+    tones:
+      - E
+      - G#
+      - B
     name: E major
-    skills: [pit.progressions]
+    skills:
+      - pit.progressions
+      - zen.section-arrange
+      - zen.dramatic-arc
   - symbol: Gm
-    tones: [G, Bb, D]
+    tones:
+      - G
+      - Bb
+      - D
     name: G minor
-    skills: [pit.progressions]
+    skills:
+      - pit.progressions
+      - zen.dramatic-arc
+      - zen.readability-refactor
   - symbol: Bb
-    tones: [Bb, D, F]
+    tones:
+      - Bb
+      - D
+      - F
     name: B flat major
-    skills: [pit.chord-voicing, pit.progressions]
+    skills:
+      - pit.chord-voicing
+      - pit.progressions
+      - chip.arcade-harmony
+      - chip.fast-arps
+      - spop.brass-stabs
+      - spop.pads
+      - spop.project
+      - zen.section-arrange
+      - zen.dramatic-arc
+      - zen.readability-refactor
   - symbol: G7
-    tones: [G, B, D, F]
+    tones:
+      - G
+      - B
+      - D
+      - F
     name: G dominant seventh
-    skills: [pit.chord-voicing, pit.progressions]
+    skills:
+      - pit.chord-voicing
+      - pit.progressions
   - symbol: C7
-    tones: [C, E, G, Bb]
+    tones:
+      - C
+      - E
+      - G
+      - Bb
     name: C dominant seventh
-    skills: [pit.progressions]
+    skills:
+      - pit.progressions
   - symbol: D7
-    tones: [D, F#, A, C]
+    tones:
+      - D
+      - F#
+      - A
+      - C
     name: D dominant seventh
-    skills: [pit.progressions]
+    skills:
+      - pit.progressions
+  - symbol: C^7
+    tones:
+      - C
+      - E
+      - G
+      - B
+    name: C major seventh (lead-sheet triangle; voicing's dictionary spells maj7 as
+      ^7)
+    skills:
+      - pit.extended-chords
+      - swave.pads
+      - swave.project
+      - swave.pump
+  - symbol: CM7
+    tones:
+      - C
+      - E
+      - G
+      - B
+    name: C major seventh (M7 is the dictionary's other accepted spelling)
+    skills:
+      - pit.extended-chords
+  - symbol: Cmaj7
+    tones:
+      - C
+      - E
+      - G
+      - B
+    name: C major seventh (not in voicing's default dictionary, so write C^7)
+    skills:
+      - pit.extended-chords
+  - symbol: F^7
+    tones:
+      - F
+      - A
+      - C
+      - E
+    name: F major seventh
+    skills:
+      - pit.extended-chords
+      - pit.genre-progressions
+      - swave.lead
+      - swave.pads
+      - swave.project
+      - swave.pump
+      - swave.sidechain
+  - symbol: Cm7
+    tones:
+      - C
+      - Eb
+      - G
+      - Bb
+    name: C minor seventh
+    skills:
+      - pit.extended-chords
+  - symbol: Dm7
+    tones:
+      - D
+      - F
+      - A
+      - C
+    name: D minor seventh
+    skills:
+      - pit.extended-chords
+      - pit.slash-chords
+  - symbol: Am7
+    tones:
+      - A
+      - C
+      - E
+      - G
+    name: A minor seventh
+    skills:
+      - pit.extended-chords
+      - pit.slash-chords
+      - pit.genre-progressions
+  - symbol: Gm7
+    tones:
+      - G
+      - Bb
+      - D
+      - F
+    name: G minor seventh
+    skills:
+      - pit.extended-chords
+  - symbol: Csus
+    tones:
+      - C
+      - F
+      - G
+    name: C suspended fourth
+    skills:
+      - pit.extended-chords
+  - symbol: Csus4
+    tones:
+      - C
+      - F
+      - G
+    name: C suspended fourth (not in voicing's default dictionary, so write Csus)
+    skills:
+      - pit.extended-chords
+  - symbol: Gsus
+    tones:
+      - G
+      - C
+      - D
+    name: G suspended fourth (same pitch classes as a C sus2)
+    skills:
+      - pit.extended-chords
+      - pit.slash-chords
+      - pit.genre-progressions
+  - symbol: Gsus4
+    tones:
+      - G
+      - C
+      - D
+    name: G suspended fourth (not in voicing's default dictionary, so write Gsus)
+    skills:
+      - pit.extended-chords
+  - symbol: C7sus
+    tones:
+      - C
+      - F
+      - G
+      - Bb
+    name: C seventh with suspended fourth
+    skills:
+      - pit.extended-chords
+  - symbol: G7sus
+    tones:
+      - G
+      - C
+      - D
+      - F
+    name: G seventh with suspended fourth
+    skills:
+      - pit.extended-chords
+      - pit.slash-chords
+      - pit.genre-progressions
+  - symbol: Cadd9
+    tones:
+      - C
+      - E
+      - G
+      - D
+    name: C major with added ninth
+    skills:
+      - pit.extended-chords
+      - pit.genre-progressions
+      - swave.lead
+      - swave.pads
+      - swave.project
+      - swave.pump
+      - swave.sidechain
+  - symbol: Fadd9
+    tones:
+      - F
+      - A
+      - C
+      - G
+    name: F major with added ninth
+    skills:
+      - pit.extended-chords
+      - pit.genre-progressions
+  - symbol: Fm
+    tones:
+      - F
+      - Ab
+      - C
+    name: F minor (iv borrowed from C minor)
+    skills:
+      - pit.modal-mixture
+  - symbol: Cm
+    tones:
+      - C
+      - Eb
+      - G
+    name: C minor
+    skills:
+      - pit.modal-mixture
+      - chip.project
+      - spop.brass-stabs
+      - spop.pads
+      - spop.project
+      - zen.dramatic-arc
+      - zen.readability-refactor
+  - symbol: Ab
+    tones:
+      - Ab
+      - C
+      - Eb
+    name: A flat major (♭VI borrowed from C minor)
+    skills:
+      - pit.modal-mixture
+      - chip.arcade-harmony
+      - spop.brass-stabs
+      - spop.pads
+      - spop.project
+      - zen.readability-refactor
+  - symbol: Eb
+    tones:
+      - Eb
+      - G
+      - Bb
+    name: E flat major (♭III borrowed from C minor)
+    skills:
+      - pit.modal-mixture
+      - chip.project
+      - spop.brass-stabs
+      - spop.pads
+      - spop.project
+      - zen.dramatic-arc
+      - zen.readability-refactor
+  - symbol: A
+    tones:
+      - A
+      - C#
+      - E
+    name: A major (Picardy third in A minor)
+    skills:
+      - pit.modal-mixture
+      - zen.dramatic-arc
+      - zen.readability-refactor
+  - symbol: Ab^7
+    tones:
+      - Ab
+      - C
+      - Eb
+      - G
+    name: Ab major seventh
+    skills:
+      - swave.project
+  - symbol: Am9
+    tones:
+      - A
+      - C
+      - E
+      - G
+      - B
+    name: A minor ninth
+    skills:
+      - swave.lead
+      - swave.pads
+      - swave.project
+      - swave.pump
+      - swave.sidechain
+  - symbol: D6
+    tones:
+      - D
+      - F#
+      - A
+      - B
+    name: D sixth
+    skills:
+      - swave.pads
+      - swave.project
+      - swave.pump
+  - symbol: Db
+    tones:
+      - Db
+      - F
+      - Ab
+    name: Db major
+    skills:
+      - chip.project
+  - symbol: Db^7
+    tones:
+      - Db
+      - F
+      - Ab
+      - C
+    name: Db major seventh
+    skills:
+      - swave.project
+  - symbol: Eb6
+    tones:
+      - Eb
+      - G
+      - Bb
+      - C
+    name: Eb sixth
+    skills:
+      - swave.project
+  - symbol: Em9
+    tones:
+      - E
+      - G
+      - B
+      - D
+      - F#
+    name: E minor ninth
+    skills:
+      - swave.pads
+      - swave.project
+      - swave.pump
+  - symbol: Fm9
+    tones:
+      - F
+      - Ab
+      - C
+      - Eb
+      - G
+    name: F minor ninth
+    skills:
+      - swave.project
+  - symbol: G6
+    tones:
+      - G
+      - B
+      - D
+      - E
+    name: G sixth
+    skills:
+      - swave.lead
+      - swave.pads
+      - swave.project
+      - swave.pump
+      - swave.sidechain
+  - symbol: G^7
+    tones:
+      - G
+      - B
+      - D
+      - F#
+    name: G major seventh
+    skills:
+      - swave.pads
+      - swave.project
+      - swave.pump

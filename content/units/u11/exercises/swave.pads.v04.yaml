@@ -1,0 +1,44 @@
+id: swave.pads.v04
+skills: [swave.pads]
+type: read-the-code
+difficulty: 3
+title: Two halls, one mix
+prompt: |
+  Read the code and predict, before you play it:
+
+  1. Which part has the longer reverb tail, and how long is each (in seconds)?
+  2. If you deleted both `.orbit(...)` calls, what would happen to the two
+     reverbs, and why?
+  3. How many oscillator voices sound at the start of bar 1 in the pad?
+  4. When does the pad's cutoff stop rising and start to fall?
+
+  Then play it and check.
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      setcpm(100 / 4)
+      $: chord("<Am9 F^7 Cadd9 G6>")
+        .voicing()
+        .s("supersaw")
+        .unison(7)
+        .detune(0.25)
+        .attack(0.6)
+        .release(1.5)
+        .lpf(sine.range(800, 2400).slow(8))
+        .orbit(2)
+        .room(0.5)
+        .roomsize(6)
+        .gain(0.5)
+      $: s("bd*4, ~ sd ~ sd").bank("RolandTR909").orbit(1).room(0.2).roomsize(1)
+listen_for:
+  - "The pad's tail lasts about 6 seconds, the drums' only about 1 second"
+  - "Without the orbits both parts would share one reverb, and the two roomsize values would rebuild it back and forth: the shared tail would keep switching size"
+  - "35 voices: 5 chord tones (A3 C4 E4 G4 B4) × 7 unison voices each"
+  - "The cutoff starts at 1600 Hz (the middle of the sine), peaks at 2400 Hz around bar 3, and is falling from there until about bar 7"
+verify:
+  cycles: 8
+sources:
+  - strudel-doc: orbit
+  - strudel-doc: roomsize
+  - strudel-src: "packages/superdough/superdoughoutput.mjs#L69-L93"
+  - strudel-doc: sine

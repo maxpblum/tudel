@@ -1,0 +1,324 @@
+# Batch 1 (M3, units u5-u8): append these entries to content/skills.yaml under units: and skills:.
+
+# Every vocabulary entry is a primary doc.json name.
+units:
+  - id: u5
+    title: Advanced harmony & voicing
+    milestone: M3
+    order: 6
+    summary: >-
+      Harmonise a melody on the anchor with mode duck and offset, write
+      seventh, sus and add9 chord symbols, build slash chords and pedal points
+      from voicing plus a separate bass, borrow chords from the parallel
+      minor, and play the four-chord loops of 80s pop.
+
+  - id: u6
+    title: Pattern transforms
+    milestone: M3
+    order: 7
+    summary: >-
+      The contrapuntist's toolkit as code: diminution and augmentation with
+      fast and slow, retrograde with rev and palindrome, canon with off,
+      doubling with superimpose and jux, phrase-level variation with every,
+      lastOf and when, melodic inversion by reflecting scale degrees, and
+      repeated notes and imposed rhythms with ply and struct.
+
+  - id: u7
+    title: Layering & buses
+    milestone: M3
+    order: 8
+    summary: >-
+      Mix several parts into one piece: route them to shared effect buses with
+      orbit, give each part its own send into a shared delay or reverb, or its
+      own space on a separate bus, place parts left to right with pan, and
+      balance them and shape their dynamics with gain.
+
+  - id: u8
+    title: Detune & wobble
+    milestone: M3
+    order: 9
+    summary: >-
+      Detuning as timbre and as out-of-tune: supersaw voices, detune in
+      semitones and cents, beating, slow pitch drift with signals, vibrato,
+      wide stereo pads, and an expressive 80s-style detuned lead.
+
+skills:
+  - id: pit.voicing-controls
+    unit: u5
+    title: "Harmonising a melody: anchor, duck and offset"
+    prereqs: [pit.progressions]
+    summary: >-
+      Put a melody on the anchor so it becomes each chord's top voice, remove
+      the doubled melody note from the chord with mode("duck"), and try
+      neighbouring dictionary voicings with offset, knowing that voicing has
+      no memory of the chord before.
+    vocabulary: [voicing, anchor, mode, offset]
+    lesson: pit.voicing-controls.lesson
+    idiom_note: >-
+      The anchor is the soprano: give it the tune, add mode("duck") when the
+      tune also plays as its own part, and let the anchor, not voicing's
+      memory, keep the top line smooth.
+
+  - id: pit.extended-chords
+    unit: u5
+    title: "Sevenths, sus and add9 chord symbols"
+    prereqs: [pit.progressions]
+    summary: >-
+      Write major seventh (C^7), minor seventh (Dm7), dominant seventh, sus
+      (Csus), 7sus and add9 chords in the spelling voicing's default
+      dictionary accepts, and get a sus2 from spelled notes or from the sus4
+      a fifth higher.
+    vocabulary: [chord, voicing]
+    lesson: pit.extended-chords.lesson
+    idiom_note: >-
+      Spell chords the dictionary's way: ^7 for a major seventh and sus for a
+      sus4; an unknown symbol plays nothing for that bar.
+
+  - id: pit.slash-chords
+    unit: u5
+    title: "Slash chords, inversions and pedal points"
+    prereqs: [pit.register-inversion, pit.extended-chords]
+    summary: >-
+      Play inversion slash chords (C/E, Am/G) with mode("above") and the bass
+      as the anchor, and foreign-bass chords and pedal points (F/G, G/C) as a
+      voiced upper chord stacked over a separate bass line.
+    vocabulary: [anchor, mode, stack]
+    lesson: pit.slash-chords.lesson
+    idiom_note: >-
+      A slash never goes inside chord(): anchor the bass with mode("above")
+      when it is a chord tone, and give it its own part when it is not.
+
+  - id: pit.modal-mixture
+    unit: u5
+    title: "Modal mixture: chords from the parallel minor"
+    prereqs: [pit.progressions, pit.modes]
+    summary: >-
+      Borrow iv, ♭VI, ♭VII and ♭III from the parallel minor in a major key,
+      hear the lowered degree each brings, and end a minor progression with a
+      Picardy third.
+    vocabulary: [chord, voicing]
+    lesson: pit.modal-mixture.lesson
+    idiom_note: >-
+      Borrowing is a change of symbol, not of key: swap F for Fm, or add Ab
+      and Bb, and the rest of the line stays as it is.
+
+  - id: pit.genre-progressions
+    unit: u5
+    title: "Four-chord loops of 80s pop"
+    prereqs: [pit.modal-mixture, pit.extended-chords]
+    summary: >-
+      Play I–V–vi–IV, its rotation vi–IV–I–V, the minor-key reading
+      i–♭VI–♭III–♭VII and the Aeolian vamp i–♭VII–♭VI–♭VII as one-bar chord
+      loops over an eighth-note root bass, and colour them with sevenths, sus
+      and add9.
+    vocabulary: [chord, voicing, setcpm]
+    lesson: pit.genre-progressions.lesson
+    idiom_note: >-
+      A pop loop is one <...> of four symbols; rotate it, recolour it, or put
+      a bass under it, and the rest of the song is arrangement.
+
+  - id: pat.speed-dir
+    unit: u6
+    title: "Diminution, augmentation and retrograde"
+    prereqs: [mod.signal-speed, pit.scale-degrees]
+    summary: >-
+      Play a melody in halved or doubled note values with fast and slow,
+      backwards with rev (each bar reversed in place), and forwards and
+      backwards in alternate bars with palindrome.
+    vocabulary: [fast, slow, rev, palindrome]
+    lesson: pat.speed-dir.lesson
+    idiom_note: >-
+      Write the subject once and transform it: .fast(2) is diminution,
+      .slow(2) augmentation, .rev() retrograde. Copying the notes out again
+      by hand hides that the lines are the same.
+
+  - id: pat.canon-imitation
+    unit: u6
+    title: "Canon and imitation with off"
+    prereqs: [pat.speed-dir, pit.parallel]
+    summary: >-
+      Build a canon from one line: off(time, f) plays the line together with
+      a copy delayed by time cycles and changed by f, such as a transposition
+      in degrees for a canon at the octave or the fifth.
+    vocabulary: [off]
+    lesson: pat.canon-imitation.lesson
+    idiom_note: >-
+      A round is one line plus one off: n("…".off(2, (x) => x.add(7))). Do
+      the add on the degrees inside n(...), where it changes the pitch.
+
+  - id: pat.superimpose
+    unit: u6
+    title: "Doubling with superimpose, answering with jux"
+    prereqs: [pat.canon-imitation]
+    summary: >-
+      Layer a changed copy of a line on top of it with no delay, as in
+      orchestral doubling (superimpose), or split the original and the copy
+      to the left and right speakers (jux).
+    vocabulary: [superimpose, jux]
+    lesson: pat.superimpose.lesson
+    idiom_note: >-
+      superimpose is off without the delay. Reach for it when the copy needs
+      its own rhythm or sound; a plain interval is shorter as add("0,7").
+
+  - id: pat.variation-every
+    unit: u6
+    title: "Phrase-level variation: every, lastOf and when"
+    prereqs: [pat.speed-dir, rhy.alternate]
+    summary: >-
+      Change a loop in chosen bars only: every (the same as firstOf) on the
+      first bar of each group of n bars, lastOf on the last bar, and when
+      wherever a pattern of 1s and 0s says 1, even within a bar.
+    vocabulary: [every, firstOf, lastOf, when]
+    lesson: pat.variation-every.lesson
+    idiom_note: >-
+      A phrase-ending variation is lastOf(4, …), not every(4, …): every
+      changes bar 1 of each group, the downbeat of the phrase.
+
+  - id: pat.inversion-idiom
+    unit: u6
+    title: "Melodic inversion by reflecting degrees"
+    prereqs: [pat.speed-dir, pit.parallel]
+    summary: >-
+      Turn a melody upside down by reflecting its scale degrees about an
+      axis with mul(-1) and add (tonal inversion), or its note numbers in
+      semitones (real inversion), and combine it with rev for the
+      retrograde inversion.
+    vocabulary: [mul]
+    lesson: pat.inversion-idiom.lesson
+    idiom_note: >-
+      Inversion is arithmetic: "…".mul(-1).add(2 × axis) on the degrees.
+      Strudel's invert flips 1s and 0s in a rhythm and does not touch pitch.
+
+  - id: pat.ply-struct
+    unit: u6
+    title: "Repeated notes and imposed rhythm: ply and struct"
+    prereqs: [pat.speed-dir, rhy.rests-lengths, pit.chord-voicing]
+    summary: >-
+      Repeat every note n times inside its own length with ply (where fast
+      repeats the whole bar), and give a pattern a new rhythm with struct;
+      flip a rhythm of 1s and 0s with invert for an interlocking hocket.
+    vocabulary: [ply, struct, invert]
+    lesson: pat.ply-struct.lesson
+    idiom_note: >-
+      ply(2) repeats each note, fast(2) repeats the bar. Write the rhythm
+      once with struct and let the harmony change underneath it.
+
+  - id: bus.stereo-pan
+    unit: u7
+    title: "Stereo placement with pan"
+    prereqs: [pit.polyphony, mod.range, pat.speed-dir]
+    summary: >-
+      Seat each part between the two speakers with pan (0 left, 0.5 centre,
+      1 right), alternate sides with a pattern, or move a part across the
+      stereo field with a signal. jux as a one-line stereo crab canon (the line against its own retrograde).
+    vocabulary: [pan, jux]
+    lesson: bus.stereo-pan.lesson
+    idiom_note: >-
+      Give each $: part its own seat with one .pan(...) at the end of its
+      chain; a pattern moves it by steps, a signal sweeps it, and short notes
+      make the sweep audible.
+
+  - id: bus.mixing-balance
+    unit: u7
+    title: "Balance and dynamics with gain"
+    prereqs: [snd.amp-envelope, pit.polyphony, mod.range]
+    summary: >-
+      Read gain in decibels (each halving is 6 dB down), set a hierarchy of
+      parts below the melody, keep the sum from overloading, and write
+      terraced dynamics with < > and hairpins with signals.
+    vocabulary: [gain, postgain]
+    lesson: bus.mixing-balance.lesson
+    idiom_note: >-
+      Balance in decibels, not by eye: set the melody first, then place every
+      other part a stated number of dB below it, and use rangex for a
+      crescendo that grows evenly.
+
+  - id: bus.orbit
+    unit: u7
+    title: "Effect buses with orbit"
+    prereqs: [snd.room, snd.delay, rhy.layers]
+    summary: >-
+      An orbit is a shared effect bus: one delay and one reverb that every
+      part on it feeds. All parts use orbit 1 unless told otherwise, so parts
+      that disagree about delaysync or roomsize must go to separate orbits.
+    vocabulary: [orbit, stack]
+    lesson: bus.orbit.lesson
+    idiom_note: >-
+      Parts that need different echo times or room sizes get different
+      orbits; write orbit once after stack for parts that share a space, or
+      on each $: line for parts that don't.
+
+  - id: bus.shared-effects
+    unit: u7
+    title: "Shared spaces: send levels and separate buses"
+    prereqs: [bus.orbit, bus.mixing-balance]
+    summary: >-
+      Put the parts of one ensemble in one space with one shared reverb and
+      delay, set how far back each part sits with its own send level, and
+      give a part that belongs somewhere else its own orbit.
+    vocabulary: [room, roomsize, delay, delaysync, orbit]
+    lesson: bus.shared-effects.lesson
+    idiom_note: >-
+      Write the space once (roomsize, delaysync after one stack on one
+      orbit) and vary only the sends (room, delay) per part.
+
+  - id: det.supersaw
+    unit: u8
+    title: "Supersaw: unison voices and detune"
+    prereqs: [snd.waveforms]
+    summary: >-
+      Play a note on several sawtooth voices at once with "supersaw": unison
+      sets how many, detune sets the total spread from lowest to highest voice
+      in semitones (0.1 = 10 cents). Small spreads shimmer; large ones sound
+      out of tune.
+    vocabulary: [detune, unison]
+    lesson: det.supersaw.lesson
+    idiom_note: >-
+      Think of detune in cents: detune(0.1) is 10 cents from the lowest voice
+      to the highest. Always set it explicitly, and write pitches with note,
+      because an unset detune reads n instead.
+
+  - id: det.pitch-drift
+    unit: u8
+    title: "Pitch drift and vibrato"
+    prereqs: [det.supersaw, mod.perlin, mod.signal-speed, pit.parallel]
+    summary: >-
+      Let the pitch wander slowly by adding a signal wrapped in note(...), which
+      each note reads at its onset, and make it waver inside every note with
+      vib (rate in Hz) and vibmod (depth in semitones).
+    vocabulary: [add, vib, vibmod]
+    lesson: det.pitch-drift.lesson
+    idiom_note: >-
+      Wrap the offset in note: .add(note(sine.range(-0.15, 0.15).slow(4)))
+      drifts, while .add(sine...) on a note pattern does nothing. Drift picks a
+      pitch per note; vib moves it inside the note.
+
+  - id: det.chorus-detune
+    unit: u8
+    title: "Wide detuned pads"
+    prereqs: [det.supersaw, det.pitch-drift, snd.amp-envelope]
+    summary: >-
+      Spread detuned voices across the stereo field: spread on "supersaw", or
+      detuned copies of any sound with superimpose and pan, or jux for hard
+      left and right. The chorus control does nothing in this engine.
+    vocabulary: [spread, superimpose, jux, pan]
+    lesson: det.chorus-detune.lesson
+    idiom_note: >-
+      Width comes from copies that are nearly, but not quite, the same: detune
+      them a few cents and send them to different sides. Set the original's pan
+      before superimpose, and the copy's inside it.
+
+  - id: det.detuned-lead
+    unit: u8
+    title: "An 80s detuned lead"
+    prereqs: [det.chorus-detune, snd.filter-envelope, snd.delay, pit.chords-mini]
+    summary: >-
+      Build an 80s analog-style lead and arpeggio: two or three slightly
+      detuned voices, broken chords with arp, a plucky filter envelope, a
+      synced echo, and a little drift and vibrato on the melody.
+    vocabulary: [arp]
+    lesson: det.detuned-lead.lesson
+    idiom_note: >-
+      Pads take many wide voices, leads take few narrow ones: unison(2) with
+      detune(0.12) keeps the pitch clear and still beats. Let arp read the
+      chord and keep the chord in one place.

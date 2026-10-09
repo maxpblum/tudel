@@ -1,0 +1,23 @@
+id: pat.ply-struct.v02
+skills: [pat.ply-struct, pat.speed-dir]
+type: match-by-ear
+difficulty: 2
+title: Repeat the note or repeat the bar?
+prompt: |
+  The target starts from the line `n("0 2 4 7")` in E minor, tonic on E4,
+  on `"triangle"`: four quarter notes, E4 G4 B4 E5. One method with one
+  number is added. Is it `ply` or `fast`, and with what number? Write the
+  target.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("0 2 4 7").scale("E4:minor").s("triangle").ply(3)
+listen_for:
+  - "Each pitch sounds three times in a row before the next: E4 E4 E4, G4 G4 G4, B4 B4 B4, E5 E5 E5"
+  - "Three notes per beat, eighth-note triplets, so the number is 3"
+  - "The order of the line is kept, so it is ply; fast(3) would run the whole arpeggio three times per bar"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: ply
+  - strudel-doc: fast

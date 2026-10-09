@@ -1,0 +1,37 @@
+id: chip.arcade-harmony.v03
+skills: [chip.arcade-harmony]
+type: transform
+difficulty: 3
+title: The final-lap lift
+prompt: |
+  The starter is a four-bar loop in A minor. Make it an **eight-bar** loop
+  in which bars 5 to 8 repeat bars 1 to 4 **a semitone higher**, without
+  rewriting any notes. Add one method to the end of the `stack`.
+starter: |
+  setcpm(150 / 4)
+  stack(
+    chord("<Am F G Am>").voicing().s("pulse").pw(0).gain(0.3),
+    note("<a3 f3 g3 a3>").ply(8).s("triangle").gain(0.9),
+  )
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(150 / 4)
+      stack(
+        chord("<Am F G Am>").voicing().s("pulse").pw(0).gain(0.3),
+        note("<a3 f3 g3 a3>").ply(8).s("triangle").gain(0.9),
+      ).transpose("<0!4 1!4>")
+  - code: |
+      setcpm(150 / 4)
+      stack(
+        chord("<Am F G Am>").voicing().s("pulse").pw(0).gain(0.3),
+        note("<a3 f3 g3 a3>").ply(8).s("triangle").gain(0.9),
+      ).transpose("<0 0 0 0 1 1 1 1>")
+listen_for:
+  - "Bars 1 to 4: Am, F, G, Am"
+  - "Bars 5 to 8: the same loop a semitone higher, Bbm, Gb, Ab, Bbm, with no transition"
+  - "Bar 9 drops back to A minor: the loop is now eight bars long"
+verify:
+  cycles: 8
+sources:
+  - strudel-doc: transpose

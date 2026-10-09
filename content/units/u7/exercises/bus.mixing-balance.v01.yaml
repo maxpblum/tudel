@@ -1,0 +1,36 @@
+id: bus.mixing-balance.v01
+skills: [bus.mixing-balance]
+type: transform
+difficulty: 2
+title: Bring the melody through
+prompt: |
+  All three parts play at the default gain, 0.8, and the chords cover the
+  melody. Balance them in decibels:
+
+  - Keep the **melody** at gain **0.8**.
+  - Put the **bass 6 dB below** the melody.
+  - Put the **chords 12 dB below** the melody.
+
+  Work out each gain first: every halving is 6 dB down. Add one `.gain(...)`
+  at the end of each line.
+starter: |
+  $: n("0 2 4 3 2 1 0 ~").scale("A4:minor").s("triangle")
+  $: chord("<Am Dm E Am>").voicing().s("sawtooth").lpf(1000)
+  $: n("<0 3 4 0>").scale("A3:minor").s("sawtooth").lpf(500)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      $: n("0 2 4 3 2 1 0 ~").scale("A4:minor").s("triangle").gain(0.8)
+      $: chord("<Am Dm E Am>").voicing().s("sawtooth").lpf(1000).gain(0.2)
+      $: n("<0 3 4 0>").scale("A3:minor").s("sawtooth").lpf(500).gain(0.4)
+listen_for:
+  - The melody, a4 c5 e5 d5 c5 b4 a4, now sits clearly on top
+  - The bass is still clearly audible under it
+  - "The chords become a background: five voices at 0.2 each"
+  - "The arithmetic: 0.8 halved once is 0.4 (6 dB down), halved twice is 0.2 (12 dB down)"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: gain
+  - strudel-src: "packages/superdough/superdough.mjs#L180-L182"
+  - strudel-src: "packages/superdough/superdough.mjs#L606-L611"

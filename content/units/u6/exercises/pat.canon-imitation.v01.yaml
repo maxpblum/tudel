@@ -1,0 +1,27 @@
+id: pat.canon-imitation.v01
+skills: [pat.canon-imitation]
+type: transform
+difficulty: 2
+title: Canon at the octave, one beat behind
+prompt: |
+  The starter is a one-bar line of eighth notes in G major. Turn it into a
+  two-voice canon with `off`: the follower plays the same line **one octave
+  higher** and **one beat later**. Keep everything else as it is.
+starter: |
+  n("0 2 4 2 3 1 -1 0").scale("G3:major").s("triangle")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("0 2 4 2 3 1 -1 0".off(1 / 4, (x) => x.add(7)))
+        .scale("G3:major")
+        .s("triangle")
+listen_for:
+  - "The leader runs G3 B3 D4 B3 C4 A3 F sharp 3 G3"
+  - "The follower plays the same line from G4, two eighth notes behind"
+  - "On the downbeat the follower is still finishing the previous bar (F sharp 4, G4): the loop has no silent start"
+  - "One beat is 1 / 4 of a cycle; 7 degrees is one octave in a seven-note scale"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: off
+  - strudel-doc: add

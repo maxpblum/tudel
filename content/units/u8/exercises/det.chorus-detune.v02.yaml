@@ -1,0 +1,31 @@
+id: det.chorus-detune.v02
+skills: [det.chorus-detune]
+type: transform
+difficulty: 2
+title: A sharp twin on the right
+prompt: |
+  Make the starter wide without changing its sound source: play the original
+  at **hard left** and a copy **8 cents sharp** at **hard right**, in a single
+  method call.
+starter: |
+  note("<[c4,e4,g4] [a3,c4,e4]>").s("sawtooth").attack(0.3).release(1).lpf(1500)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("<[c4,e4,g4] [a3,c4,e4]>")
+        .s("sawtooth")
+        .attack(0.3)
+        .release(1)
+        .lpf(1500)
+        .jux((x) => x.add(note(0.08)))
+listen_for:
+  - "jux plays the original at pan 0 and the changed copy at pan 1"
+  - "8 cents is 0.08 semitones, wrapped in note(...) so it actually shifts the pitch"
+  - "On speakers the two copies beat slowly, about 1.2 times per second on c4; on headphones each ear hears one plain sawtooth and the sound is very wide"
+  - '.detune(0.08) would not work here: "sawtooth" has a single voice and ignores it'
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: jux
+  - strudel-src: "packages/core/pattern.mjs#L2356-L2381"
+  - strudel-doc: add

@@ -1,0 +1,38 @@
+id: det.detuned-lead.v01
+skills: [det.detuned-lead]
+type: spec-to-code
+difficulty: 3
+title: Three against eight
+prompt: |
+  An arpeggio over **D minor (d4 f4 a4)** for one bar, then **B flat major
+  (bb3 d4 f4)** for one bar. Use `arp` to play the chord positions
+  **0 1 2 0 1 2 0 1** as eighth notes, so the three-note figure runs across
+  the four beats as 3 + 3 + 2. The sound:
+
+  - `"supersaw"` with **2** voices **10 cents** apart
+  - a plucky amplitude envelope: decay **0.15** seconds, sustain **0.2**
+  - a filter envelope that opens **2 octaves** above a **600 Hz** low-pass
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("<[d4,f4,a4] [bb3,d4,f4]>")
+        .arp("0 1 2 0 1 2 0 1")
+        .s("supersaw")
+        .unison(2)
+        .detune(0.1)
+        .decay(0.15)
+        .sustain(0.2)
+        .lpf(600)
+        .lpenv(2)
+listen_for:
+  - "Bar 1: D4 F4 A4 D4 F4 A4 D4 F4; bar 2: Bb3 D4 F4 Bb3 D4 F4 Bb3 D4"
+  - "The low note falls on beat 1, the and of beat 2 and beat 4: the 3 + 3 + 2 grouping"
+  - "Each note starts bright and closes quickly (the filter rises from 600 Hz to 2400 Hz), then fades to a lower level"
+  - "A gentle beating from two voices 10 cents apart, but every pitch is clear"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: arp
+  - strudel-src: "packages/core/pattern.mjs#L952-L970"
+  - strudel-doc: lpenv
+  - lexicon: plucky

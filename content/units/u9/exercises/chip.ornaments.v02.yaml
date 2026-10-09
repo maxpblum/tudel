@@ -1,0 +1,31 @@
+id: chip.ornaments.v02
+skills: [chip.ornaments]
+type: transform
+difficulty: 2
+title: Give the lead an echo channel
+prompt: |
+  Add an echo of this lead on the second pulse channel, the NES way: one
+  copy, a **sixteenth note** (a sixteenth of a bar) later, at **gain 0.2**,
+  and on a **50 % pulse** so it is hollower than the lead. Use `off`, and
+  keep the lead itself unchanged.
+starter: |
+  setcpm(150 / 4)
+  note("<[a4 c5 e5 a5] [g5 e5 d5 e5]>").s("pulse").gain(0.5)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(150 / 4)
+      note("<[a4 c5 e5 a5] [g5 e5 d5 e5]>")
+        .s("pulse")
+        .gain(0.5)
+        .off(1 / 16, (x) => x.gain(0.2).pw(0))
+listen_for:
+  - "Each note is followed a sixteenth later by a much quieter, hollower copy"
+  - "One echo per note, not a fading series of repeats (that would be delay)"
+  - "The lead's own level and tone are unchanged"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: "off"
+  - strudel-doc: pw
+  - lexicon: hollow

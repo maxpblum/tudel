@@ -1,0 +1,67 @@
+id: zen.readability-refactor.v01
+skills: [zen.readability-refactor]
+type: refactor
+difficulty: 3
+title: "From five masks to two sections"
+prompt: |
+  This 8-bar piece (a 4-bar verse, then a 4-bar chorus) works, but its
+  form is spread over five mask strings, the chord part is written twice,
+  and the tempo is hidden in `setcpm(30)`. Rewrite it so that:
+
+  - the tempo reads in BPM;
+  - the chord part is written once, and each section adds only what
+    differs (its cutoff);
+  - the verse and the chorus are named stacks, and the form is one
+    `arrange` line at the bottom.
+
+  It should sound exactly the same.
+starter: |
+  setcpm(30)
+  $: s("bd ~ ~ ~, ~ ~ sd ~").bank("RolandTR808").mask("<1 1 1 1 0 0 0 0>")
+  $: s("bd ~ bd ~, ~ sd ~ sd, hh*8")
+    .bank("RolandTR808")
+    .mask("<0 0 0 0 1 1 1 1>")
+  $: chord("<Em C G D>")
+    .voicing()
+    .s("triangle")
+    .lpf(1000)
+    .gain(0.5)
+    .mask("<1 1 1 1 0 0 0 0>")
+  $: chord("<Em C G D>")
+    .voicing()
+    .s("triangle")
+    .lpf(2500)
+    .gain(0.5)
+    .mask("<0 0 0 0 1 1 1 1>")
+  $: note("<e3 c3 g3 d3>")
+    .ply(8)
+    .s("sawtooth")
+    .lpf(800)
+    .gain(0.6)
+    .mask("<0 0 0 0 1 1 1 1>")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(120 / 4)
+      const chords = chord("<Em C G D>").voicing().s("triangle")
+      const verse = stack(
+        s("bd ~ ~ ~, ~ ~ sd ~").bank("RolandTR808"),
+        chords.lpf(1000).gain(0.5),
+      )
+      const chorus = stack(
+        s("bd ~ bd ~, ~ sd ~ sd, hh*8").bank("RolandTR808"),
+        chords.lpf(2500).gain(0.5),
+        note("<e3 c3 g3 d3>").ply(8).s("sawtooth").lpf(800).gain(0.6),
+      )
+      arrange([4, verse], [4, chorus])
+listen_for:
+  - "Same sound as before: a sparse verse with muffled chords for 4 bars, then a chorus with a fuller beat, brighter chords and an eighth-note bass"
+  - "setcpm(30) was 120 BPM: 30 cycles per minute times 4 beats per cycle"
+  - "Code check: the chords are written once; changing the progression is now a single edit"
+  - "Code check: the last line shows the form, 4 bars of verse and 4 of chorus"
+verify:
+  cycles: 8
+sources:
+  - strudel-doc: arrange
+  - strudel-doc: stack
+  - strudel-doc: setcpm

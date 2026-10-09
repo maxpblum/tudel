@@ -1,0 +1,33 @@
+id: pat.speed-dir.v01
+skills: [pat.speed-dir]
+type: transform
+difficulty: 3
+title: Retrograde of a two-bar line
+prompt: |
+  The starter is a two-bar line in G major: G4 A4 B4 D5 in quarter notes,
+  then C5 A4 and a half-note B4. Play its **retrograde**: the whole two-bar
+  line backwards, so the half-note B4 comes first and G4 comes last.
+
+  Adding `.rev()` to the starter is not enough. Play that first and listen
+  for what goes wrong, then fix it.
+starter: |
+  n("<[0 1 2 4] [3 1 2@2]>").scale("G4:major").s("triangle")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("0 1 2 4 3 1 2@2".rev().slow(2)).scale("G4:major").s("triangle")
+  - code: |
+      n("<[0 1 2 4] [3 1 2@2]>").scale("G4:major").s("triangle").revv()
+    note: revv reverses the whole pattern instead of each cycle.
+listen_for:
+  - "Bar 1: B4 (half note), A4, C5 in quarter notes"
+  - "Bar 2: D5 B4 A4 G4 in quarter notes, ending on the tonic"
+  - "Why .rev() on the starter fails: rev reverses each bar in place, so you hear D5 B4 A4 G4 first and the bars stay in their order"
+  - "The first solution writes the line in one cycle (eight units: quarters become eighths), reverses it, then stretches it over two bars with slow(2)"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: rev
+  - strudel-doc: slow
+  - strudel-doc: revv
+  - strudel-src: "packages/core/pattern.mjs#L2259-L2281"

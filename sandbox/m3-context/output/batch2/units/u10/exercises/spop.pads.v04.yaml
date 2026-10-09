@@ -1,0 +1,50 @@
+id: spop.pads.v04
+skills: [spop.pads]
+type: creative
+difficulty: 4
+title: Two beds, one harmony
+prompt: |
+  Over the loop **E minor, C, G, D** at **118 BPM**, write **two** beds that
+  play together: one held (a choir with `vowel` or a string machine with a
+  detuned supersaw) and one moving (an `arp` on the same voiced chords).
+  Balance them so the held bed supports the moving one without covering it.
+  The reference is one possible answer.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(118 / 4)
+      $: chord("<Em C G D>")
+        .voicing()
+        .s("sawtooth")
+        .attack(0.4)
+        .release(1)
+        .vowel("o")
+        .gain(0.3)
+      $: chord("<Em C G D>")
+        .voicing()
+        .arp("0 2 1 3 2 4 3 1")
+        .s("square")
+        .decay(0.15)
+        .sustain(0)
+        .lpf(2200)
+        .delay(0.3)
+        .delaysync(3 / 16)
+        .gain(0.45)
+listen_for:
+  - "A rounded 'o' choir holding E minor, C, G, D"
+  - "An eighth-note arpeggio on the same chords, clearly audible above the choir"
+  - "Both beds always agree on the harmony"
+rubric:
+  - "Both beds read the same chord symbols, voiced with voicing"
+  - "One held bed with a slow attack (vowel on sawtooth, or a detuned supersaw)"
+  - "One moving bed made with arp on the voiced chords, in a steady rhythm"
+  - "The moving bed is audible: the held bed's gain is lower, or its filter darker"
+  - "Every note at or above C3"
+verify:
+  cycles: 4
+  equivalent_solutions: false
+sources:
+  - strudel-doc: arp
+  - strudel-doc: vowel
+  - strudel-doc: voicing
+  - lexicon: pad-like

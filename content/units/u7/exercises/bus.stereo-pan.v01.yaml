@@ -1,0 +1,31 @@
+id: bus.stereo-pan.v01
+skills: [bus.stereo-pan]
+type: spec-to-code
+difficulty: 2
+title: Seat a string quartet
+prompt: |
+  Seat this four-part chorale like a string quartet, from left to right:
+  first violin at pan **0.2**, second violin at **0.4**, viola at **0.6**,
+  cello at **0.8**. One `$:` line per part:
+
+  - First violin: `n("<2 3 1 2>").scale("C5:major")` on `"triangle"`
+  - Second violin: `n("<0 0 -1 0>").scale("C5:major")` on `"triangle"`
+  - Viola: `n("<4 5 4 4>").scale("C4:major")` on `"triangle"`
+  - Cello: `n("<0 3 4 0>").scale("C3:major")` on `"sawtooth"`, low-passed at
+    600 Hz
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      $: n("<2 3 1 2>").scale("C5:major").s("triangle").pan(0.2)
+      $: n("<0 0 -1 0>").scale("C5:major").s("triangle").pan(0.4)
+      $: n("<4 5 4 4>").scale("C4:major").s("triangle").pan(0.6)
+      $: n("<0 3 4 0>").scale("C3:major").s("sawtooth").lpf(600).pan(0.8)
+listen_for:
+  - "Four whole-note chords, C, F, G, C: the top voice e5, f5, d5, e5 and the cello c3, f3, g3, c3"
+  - The top voice sounds from left of centre and the cello from right of centre. The inner voices sit between them
+  - No part comes from only one speaker. Even 0.2 and 0.8 leave some of each part in the other speaker
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: pan
+  - strudel-src: "packages/superdough/superdough.mjs#L842-L848"

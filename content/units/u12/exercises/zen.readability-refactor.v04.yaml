@@ -1,0 +1,77 @@
+id: zen.readability-refactor.v04
+skills: [zen.readability-refactor]
+type: read-the-code
+difficulty: 3
+title: "Read the form from the code"
+prompt: |
+  Without playing it, read this piece and write its form chart: each
+  section's name, its first and last bar, and the parts it contains. Then
+  answer:
+
+  1. How long is the whole form, in bars and in seconds at 90 BPM?
+  2. In which bars does the bell line play backwards?
+  3. The intro is 2 bars long, but its chord loop has 4 chords. Which
+     chords does the intro play the first time through the form? Which
+     does the outro (the intro's second entry) play, and why?
+
+  :::code
+  setcpm(90 / 4)
+  const bass = note("<c3 ab3 eb3 bb3>").s("sawtooth").lpf(600).gain(0.6)
+  const pad = chord("<Cm Ab Eb Bb>").voicing().s("triangle").gain(0.45)
+  const bell = n("4 ~ 2 ~ 0 ~ 2 ~")
+    .scale("C5:minor")
+    .s("sine")
+    .decay(0.4)
+    .sustain(0)
+    .gain(0.4)
+  const fill = (x) => x.rev()
+
+  const intro = pad
+  const verse = stack(s("bd ~ sd ~").bank("RolandTR808"), bass.ply(4), pad)
+  const chorus = stack(
+    s("bd*4, ~ cp ~ cp, hh*8").bank("RolandTR808"),
+    bass.ply(8),
+    pad,
+    bell.lastOf(4, fill),
+  )
+
+  arrange([2, intro], [8, verse], [8, chorus], [2, intro])
+  :::
+
+  Then play it, at least to bar 20, and check.
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      setcpm(90 / 4)
+      const bass = note("<c3 ab3 eb3 bb3>").s("sawtooth").lpf(600).gain(0.6)
+      const pad = chord("<Cm Ab Eb Bb>").voicing().s("triangle").gain(0.45)
+      const bell = n("4 ~ 2 ~ 0 ~ 2 ~")
+        .scale("C5:minor")
+        .s("sine")
+        .decay(0.4)
+        .sustain(0)
+        .gain(0.4)
+      const fill = (x) => x.rev()
+
+      const intro = pad
+      const verse = stack(s("bd ~ sd ~").bank("RolandTR808"), bass.ply(4), pad)
+      const chorus = stack(
+        s("bd*4, ~ cp ~ cp, hh*8").bank("RolandTR808"),
+        bass.ply(8),
+        pad,
+        bell.lastOf(4, fill),
+      )
+
+      arrange([2, intro], [8, verse], [8, chorus], [2, intro])
+listen_for:
+  - "Form: intro bars 1-2 (pad), verse bars 3-10 (kick, snare, quarter-note bass, pad), chorus bars 11-18 (fuller drums with claps and hats, eighth-note bass, pad, bell), outro bars 19-20 (pad)"
+  - "20 bars; at 90 BPM a bar lasts 4 × 60 / 90 ≈ 2.67 seconds, so the form lasts about 53 seconds"
+  - "The bell plays backwards in bars 14 and 18, the 4th and 8th bars of the chorus: lastOf counts the chorus's own bars"
+  - "The intro plays C minor, A flat. The outro also plays C minor, A flat: each entry in arrange runs its own clock, starting from its first bar"
+  - "On the second pass through the form, both intro entries continue at their third chord: E flat, B flat. That's the price of a 2-bar section around a 4-chord loop"
+verify:
+  cycles: 40
+sources:
+  - strudel-doc: arrange
+  - strudel-doc: lastOf
+  - strudel-src: "packages/core/pattern.mjs#L1469-L1473"

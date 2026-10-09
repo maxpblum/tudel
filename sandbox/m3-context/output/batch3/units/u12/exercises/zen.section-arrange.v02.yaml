@@ -1,0 +1,27 @@
+id: zen.section-arrange.v02
+skills: [zen.section-arrange]
+type: recall
+difficulty: 1
+title: "Eight bars of verse, eight of chorus"
+prompt: |
+  From memory: you have two sections named *verse* and *chorus*. Write the
+  one line that plays the verse for 8 bars, then the chorus for 8 bars,
+  then repeats. Then answer: how many bars long is the loop, and in which
+  bar does the chorus first begin?
+
+  (To hear your line, define any two short sections first, for example a
+  bass line each.)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      const verse = note("<a3 f3>").s("triangle")
+      const chorus = note("<c4 g3>").s("square").lpf(1200)
+      arrange([8, verse], [8, chorus])
+listen_for:
+  - "The line is arrange([8, verse], [8, chorus]): each pair is [bars, section]"
+  - "The loop is 8 + 8 = 16 bars long"
+  - "The chorus begins in bar 9; the verse returns in bar 17"
+verify:
+  cycles: 16
+sources:
+  - strudel-doc: arrange

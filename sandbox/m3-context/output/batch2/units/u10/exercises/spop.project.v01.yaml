@@ -1,0 +1,102 @@
+id: spop.project.v01
+skills: [spop.project]
+type: project
+difficulty: 4
+title: "Synth-pop capstone: Neon Factory"
+prompt: |
+  Build an **eight-bar synth-pop loop** in **A minor** at **120 BPM** on the
+  loop **A minor, F, C, G** (one chord per bar, played twice). Work in
+  checkpoints, and make sure each one sounds right before you add the next.
+  Keep every earlier part playing.
+
+  1. **Drum machine.** An 808 or 909 groove: bass drum and snare (or clap)
+     with the snare on 2 and 4, accented hi-hats from a `gain` pattern, and
+     a big, short "gated-style" snare room on its **own orbit**.
+  2. **Sequenced bass.** The chord roots in octave 3, one per bar in the
+     code, played as **sixteenths** with `ply`, with octave jumps from an
+     offset pattern and a short filter envelope on every note.
+  3. **Bed and brass.** A held bed (choir with `vowel`, or detuned
+     supersaw strings) on its own orbit with a longer reverb, plus
+     **brass stabs** on the same chords: a filter envelope with a non-zero
+     `lpattack`, placed off the beat with `struct`.
+  4. **Hook and final mix.** A one-bar modal hook in octave 5 with `n` and
+     `scale`, entering only in bars 5 to 8 (`mask`), varied in the last bar
+     of each phrase with `lastOf`. Then balance all parts with `gain`.
+
+  The reference is one possible answer; yours will differ.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(120 / 4)
+      $: s("bd ~ sd bd ~ bd sd ~").bank("RolandTR808")
+      $: s("hh*16").bank("RolandTR808").gain("[0.6 0.25 0.4 0.25]*4")
+      $: s("~ sd ~ sd").bank("RolandTR808").room(0.8).roomsize(0.4).orbit(2)
+      $: note("<a3 f3 c3 g3>")
+        .ply(16)
+        .add(note("[0 0 12 0]*4"))
+        .s("sawtooth")
+        .lpf(400)
+        .lpenv(3)
+        .lpdecay(0.1)
+        .gain(0.6)
+      $: chord("<Am F C G>")
+        .voicing()
+        .s("sawtooth")
+        .attack(0.4)
+        .release(1)
+        .vowel("a")
+        .room(0.4)
+        .roomsize(3)
+        .orbit(3)
+        .gain(0.3)
+      $: chord("<Am F C G>")
+        .struct("~ x ~ x ~ ~ x ~")
+        .voicing()
+        .s("sawtooth")
+        .attack(0.01)
+        .lpf(500)
+        .lpenv(3)
+        .lpattack(0.06)
+        .lpdecay(0.25)
+        .gain(0.35)
+      $: n("7 ~ 6 4 ~ 4 2 4".lastOf(4, (x) => x.rev()))
+        .scale("A4:minor")
+        .s("square")
+        .decay(0.2)
+        .sustain(0.3)
+        .lpf(3000)
+        .delay(0.3)
+        .delaysync(3 / 16)
+        .gain(0.4)
+        .mask("<0!4 1!4>")
+listen_for:
+  - "Bars 1 to 4: drums, bass, choir and stabs only; the hook enters in bar 5"
+  - "A booming 808 kick on 1, the 'and' of 2 and the 'and' of 3; a big snare whose room is gone before the next beat"
+  - "The bass ticks along in sixteenths, jumping an octave on the third sixteenth of each beat"
+  - "An 'ah' choir bed under off-beat brass stabs that bloom and fall back"
+  - "Hook A5, rest, G5 E5, rest, E5 C5 E5; bar 8 plays it backwards"
+  - "Every part audible: the bass under the bed, the hook above everything"
+rubric:
+  - "Checkpoint 1: drum-machine groove with snare or clap on 2 and 4, a hi-hat accent gain pattern, and the snare's short room on its own orbit"
+  - "Checkpoint 2: bass roots written once per bar, made into sixteenths with ply, with an octave offset pattern and a filter envelope (lpenv with a short lpdecay)"
+  - "Checkpoint 3: a held bed (vowel choir or detuned supersaw) on its own orbit with a longer roomsize than the snare's"
+  - "Checkpoint 3: brass stabs on the same chord symbols, using lpattack above 0 with lpenv, placed off the beat with struct before voicing"
+  - "Checkpoint 4: a one-bar hook in scale degrees with n and scale, in octave 5, in a named mode"
+  - "Checkpoint 4: mask brings the hook in for bars 5 to 8, and lastOf varies the last bar of each phrase"
+  - "Final mix: registers separated (bass octave 3, bed and stabs octaves 3 to 5, hook octave 5) and levels balanced so every part can be followed"
+  - "Every note at or above C3; only valid chord symbols (no maj7 or slash chords in chord)"
+  - "Original material: no riff, melody or drum pattern copied from an existing song"
+verify:
+  cycles: 8
+  equivalent_solutions: false
+sources:
+  - strudel-doc: bank
+  - strudel-doc: ply
+  - strudel-doc: lpattack
+  - strudel-doc: vowel
+  - strudel-doc: mask
+  - strudel-doc: lastOf
+  - strudel-doc: orbit
+  - lexicon: brassy
+  - lexicon: plucky
+  - lexicon: pad-like

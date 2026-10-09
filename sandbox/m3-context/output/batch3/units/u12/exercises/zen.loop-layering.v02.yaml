@@ -1,0 +1,39 @@
+id: zen.loop-layering.v02
+skills: [zen.loop-layering]
+type: read-the-code
+difficulty: 3
+title: "Who plays in which bar?"
+prompt: |
+  Read the code and fill in a cue sheet before you play it: for each of
+  bars 1 to 4, which parts sound, and which note does each pitched part
+  play? Pay attention to the bass: which of its four notes does it play
+  when its window opens?
+
+  :::code
+  seqPLoop(
+    [0, 4, note("<c4 e4 g4 c5>").s("triangle")],
+    [1, 3, note("<c3 g3 a3 f3>").s("sawtooth").lpf(600)],
+    [2, 4, s("hh*4").bank("RolandTR808")],
+  )
+  :::
+
+  Then play it and check.
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      seqPLoop(
+        [0, 4, note("<c4 e4 g4 c5>").s("triangle")],
+        [1, 3, note("<c3 g3 a3 f3>").s("sawtooth").lpf(600)],
+        [2, 4, s("hh*4").bank("RolandTR808")],
+      )
+listen_for:
+  - "Bar 1: the triangle alone, C4"
+  - "Bar 2: triangle E4, and the bass enters on G3, its second note, because a seqPLoop window follows the song's bar count"
+  - "Bar 3: triangle G4, bass A3, and quarter-note hi-hats join"
+  - "Bar 4: triangle C5 and hats; the bass has stopped, because its window ends at bar line 3"
+  - "The loop is 4 bars long: the last entry ends at 4"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: seqPLoop
+  - strudel-src: "packages/core/pattern.mjs#L1486-L1501"

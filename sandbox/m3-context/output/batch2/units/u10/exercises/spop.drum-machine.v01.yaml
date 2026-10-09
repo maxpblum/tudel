@@ -1,0 +1,33 @@
+id: spop.drum-machine.v01
+skills: [spop.drum-machine]
+type: spec-to-code
+difficulty: 2
+title: Four-on-the-floor on the 909
+prompt: |
+  Program a one-bar dance groove on the **TR-909** at **124 BPM**, one `$:`
+  line per drum:
+
+  - bass drum on all four beats
+  - clap on beats 2 and 4
+  - hi-hats on every sixteenth, with an **open** hi-hat on each off-beat
+    eighth (the "and" of every beat) and closed hats on the other sixteenths
+  - accents on the hats: gain **0.7** on the beat, **0.5** on the "and",
+    **0.3** on the two sixteenths in between
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(124 / 4)
+      $: s("bd*4").bank("RolandTR909")
+      $: s("~ cp ~ cp").bank("RolandTR909")
+      $: s("[hh hh oh hh]*4").bank("RolandTR909").gain("[0.7 0.3 0.5 0.3]*4")
+listen_for:
+  - "A steady bass drum on every beat at 124 BPM (just under half a second per beat)"
+  - "Claps on beats 2 and 4 only"
+  - "An open hi-hat on every off-beat, a 'tss' between the kicks"
+  - "The closed hats lean on the beat and fall away on the sixteenths between: strong, weak, medium, weak"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: bank
+  - strudel-doc: gain
+  - strudel-doc: setcpm

@@ -1,0 +1,25 @@
+id: bus.mixing-balance.v04
+skills: [bus.mixing-balance]
+type: describe-to-code
+difficulty: 2
+title: A Baroque echo
+prompt: |
+  Write a **Baroque echo**: a one-bar phrase played forte, then answered by
+  the same phrase played piano, as if by a second, distant group. The
+  dynamics are **terraced**: the level steps at the barline and holds for the
+  whole bar.
+
+  The phrase is `n("0 1 2 4 3 2 1 ~").scale("G4:major")` on `"triangle"`.
+  Make the forte bar gain 0.8 and the piano bar **12 dB** quieter.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("0 1 2 4 3 2 1 ~").scale("G4:major").s("triangle").gain("<0.8 0.2>")
+listen_for:
+  - "The phrase g4 a4 b4 d5 c5 b4 a4 plays loud in bar 1 and soft in bar 2, then repeats"
+  - The level steps at the barline and holds for the whole bar. A signal would give a hairpin instead
+  - 0.8 to 0.2 is a quarter of the amplitude, 12 dB down
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: gain

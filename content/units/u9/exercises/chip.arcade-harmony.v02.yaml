@@ -1,0 +1,32 @@
+id: chip.arcade-harmony.v02
+skills: [chip.arcade-harmony]
+type: dictation
+difficulty: 3
+title: The bass of a victory cadence
+prompt: |
+  This is the bass line of a four-bar victory cadence in **D major**. Write it
+  on the triangle with `note`. Then, in a comment or on paper, name the
+  chords it implies as Roman numerals and as chord symbols.
+abc: |
+  X:1
+  M:4/4
+  L:1/4
+  K:D
+  _B,_B,_B,_B, | =C=C=C=C | DDDD | D4 |
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("<[bb3*4] [c4*4] [d4*4] d4>").s("triangle")
+  - code: |
+      note("<bb3 c4 d4 d4>").ply("<4 4 4 1>").s("triangle")
+listen_for:
+  - "A bass climbing by whole steps: B flat 3, C4, D4, then a held D4"
+  - "The implied chords are bVI, bVII, I in D major: Bb, C, D"
+  - "B flat and C natural are both borrowed from D minor; the major tonic arrives like a fanfare"
+verify:
+  cycles: 4
+  abc_agreement:
+    voice: 0
+    compare: [pitch, onset, duration]
+sources:
+  - strudel-doc: note

@@ -1,0 +1,23 @@
+id: bus.stereo-pan.v02
+skills: [bus.stereo-pan]
+type: match-by-ear
+difficulty: 2
+title: Match the ping-pong
+prompt: |
+  Listen to the target: the figure **c5 g4 e5 g4**, played twice per bar as
+  eighth-note plucks on a triangle wave (`decay` 0.15 seconds, nothing held),
+  jumping between the speakers. Recreate the panning. The positions are 0,
+  0.5 or 1, and they change every note, every beat or every bar. Use headphones
+  if you can.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("[c5 g4 e5 g4]*2").s("triangle").decay(0.15).sustain(0).pan("[0 1]*2")
+listen_for:
+  - Two eighths in the left speaker only, then two in the right only, in turn on every beat
+  - "Beats 1 and 3 are on the left, beats 2 and 4 on the right. \"[0 1]*2\" fits two positions into each half bar, so each lasts a beat"
+  - Not "[0 1]*4", which changes side on every eighth note
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: pan

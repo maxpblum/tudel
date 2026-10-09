@@ -1,0 +1,27 @@
+id: pat.ply-struct.v04
+skills: [pat.ply-struct]
+type: spec-to-code
+difficulty: 3
+title: A two-note hocket
+prompt: |
+  Write a hocket with `stack`: an **E4** on `"triangle"` plays the rhythm
+  `"1 1 0 1 0 1 1 0"` (eighth notes) with `struct`, and a **B4** on
+  `"square"` plays exactly in the gaps. Derive the second rhythm from the
+  first with `invert` instead of writing it out.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      stack(
+        note("e4").s("triangle").struct("1 1 0 1 0 1 1 0"),
+        note("b4").s("square").struct("1 1 0 1 0 1 1 0".invert()),
+      )
+listen_for:
+  - "Eight eighth notes per bar with no gaps and no overlaps"
+  - "E4 on eighths 1, 2, 4, 6 and 7; B4 on eighths 3, 5 and 8"
+  - "Here invert flips a rhythm of 1s and 0s; it has nothing to do with melodic inversion"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: struct
+  - strudel-doc: invert
+  - strudel-src: "packages/core/pattern.mjs#L2202-L2210"

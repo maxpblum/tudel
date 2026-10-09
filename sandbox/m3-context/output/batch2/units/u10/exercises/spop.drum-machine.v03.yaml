@@ -1,0 +1,31 @@
+id: spop.drum-machine.v03
+skills: [spop.drum-machine]
+type: match-by-ear
+difficulty: 3
+title: Big snare, then gone
+prompt: |
+  Listen to the reference: an 808 groove at **112 BPM** with a large,
+  short snare in the style of 80s gated reverb. Recreate it. Work out the
+  bass drum and snare rhythm on an eighth-note grid, the hi-hat rhythm, and
+  how the snare's space is made. Keep the snare's space from affecting
+  anything else.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(112 / 4)
+      $: s("bd ~ ~ bd bd ~ ~ ~").bank("RolandTR808")
+      $: s("hh*8").bank("RolandTR808").gain("[0.6 0.3]*4")
+      $: s("~ sd ~ sd").bank("RolandTR808").room(0.9).roomsize(0.3).orbit(2)
+listen_for:
+  - "Bass drum on beat 1, the 'and' of 2 and beat 3"
+  - "Eighth-note hats, louder on the beat than on the 'and'"
+  - "The snare on 2 and 4 blooms into a loud room that has died away within about a third of a second, well before the next beat"
+  - "The kick and hats stay dry: the snare's reverb is on its own orbit"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: room
+  - strudel-doc: roomsize
+  - strudel-doc: orbit
+  - strudel-src: "packages/superdough/superdoughoutput.mjs#L69-L93"
+  - lexicon: wet

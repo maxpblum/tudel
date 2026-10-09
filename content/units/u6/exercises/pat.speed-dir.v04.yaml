@@ -1,0 +1,28 @@
+id: pat.speed-dir.v04
+skills: [pat.speed-dir]
+type: spec-to-code
+difficulty: 2
+title: Augmentation below, diminution above
+prompt: |
+  The subject is one bar in A minor, as scale degrees: `"0 2 4 2 [3 2] 1 0@2"`
+  (six eighth notes with two sixteenths in the fifth, then a quarter-note
+  ending). Write two `$:` parts on `"triangle"`:
+
+  1. the subject in **augmentation**, so that it takes two bars, with the
+     tonic on A3;
+  2. the subject in **diminution**, so that it plays twice per bar, with the
+     tonic on A4.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      $: n("0 2 4 2 [3 2] 1 0@2").scale("A3:minor").s("triangle").slow(2)
+      $: n("0 2 4 2 [3 2] 1 0@2").scale("A4:minor").s("triangle").fast(2)
+listen_for:
+  - "The lower part takes two bars: A3 C4 E4 C4 in quarter notes, D4 C4 in eighths, B3, then A3 as a half note"
+  - "The upper part runs the same shape four times in those two bars, in sixteenths with two thirty-second notes, from A4 up to E5"
+  - "The lower part's long A3 starts on beat 3 of bar 2, together with the last statement of the upper part"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: slow
+  - strudel-doc: fast

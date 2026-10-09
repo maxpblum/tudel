@@ -1,0 +1,145 @@
+# Batch 3: every symbol below already exists in content/glossary/chord-symbols.yaml.
+# Merge only the skills lists (ingest_batch2.mjs's merge logic does this).
+entries:
+- symbol: A
+  tones:
+  - A
+  - C#
+  - E
+  name: A major (Picardy third in A minor)
+  skills:
+  - zen.dramatic-arc
+  - zen.readability-refactor
+- symbol: Ab
+  tones:
+  - Ab
+  - C
+  - Eb
+  name: A flat major (♭VI borrowed from C minor)
+  skills:
+  - zen.readability-refactor
+- symbol: Am
+  tones:
+  - A
+  - C
+  - E
+  name: A minor
+  skills:
+  - zen.section-arrange
+  - zen.loop-layering
+  - zen.dramatic-arc
+  - zen.readability-refactor
+  - zen.consolidated-idioms
+- symbol: Bb
+  tones:
+  - Bb
+  - D
+  - F
+  name: B flat major
+  skills:
+  - zen.section-arrange
+  - zen.dramatic-arc
+  - zen.readability-refactor
+- symbol: C
+  tones:
+  - C
+  - E
+  - G
+  name: C major
+  skills:
+  - zen.section-arrange
+  - zen.loop-layering
+  - zen.dramatic-arc
+  - zen.readability-refactor
+  - zen.consolidated-idioms
+- symbol: Cm
+  tones:
+  - C
+  - Eb
+  - G
+  name: C minor
+  skills:
+  - zen.dramatic-arc
+  - zen.readability-refactor
+- symbol: D
+  tones:
+  - D
+  - F#
+  - A
+  name: D major
+  skills:
+  - zen.loop-layering
+  - zen.dramatic-arc
+  - zen.readability-refactor
+  - zen.consolidated-idioms
+- symbol: Dm
+  tones:
+  - D
+  - F
+  - A
+  name: D minor
+  skills:
+  - zen.section-arrange
+  - zen.dramatic-arc
+  - zen.readability-refactor
+- symbol: E
+  tones:
+  - E
+  - G#
+  - B
+  name: E major
+  skills:
+  - zen.section-arrange
+  - zen.dramatic-arc
+- symbol: Eb
+  tones:
+  - Eb
+  - G
+  - Bb
+  name: E flat major (♭III borrowed from C minor)
+  skills:
+  - zen.dramatic-arc
+  - zen.readability-refactor
+- symbol: Em
+  tones:
+  - E
+  - G
+  - B
+  name: E minor
+  skills:
+  - zen.loop-layering
+  - zen.readability-refactor
+  - zen.consolidated-idioms
+- symbol: F
+  tones:
+  - F
+  - A
+  - C
+  name: F major
+  skills:
+  - zen.section-arrange
+  - zen.loop-layering
+  - zen.dramatic-arc
+  - zen.readability-refactor
+  - zen.consolidated-idioms
+- symbol: G
+  tones:
+  - G
+  - B
+  - D
+  name: G major
+  skills:
+  - zen.section-arrange
+  - zen.loop-layering
+  - zen.dramatic-arc
+  - zen.readability-refactor
+  - zen.consolidated-idioms
+- symbol: Gm
+  tones:
+  - G
+  - Bb
+  - D
+  name: G minor
+  skills:
+  - zen.dramatic-arc
+  - zen.readability-refactor

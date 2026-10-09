@@ -1,0 +1,30 @@
+id: chip.noise-drums.v04
+skills: [chip.noise-drums]
+type: describe-to-code
+difficulty: 3
+title: A falling tom fill
+prompt: |
+  At 150 BPM, the first three beats of each bar are silent. On beat 4, three
+  chip toms play as a triplet, each lower than the last: **G3, E3, C3**. Each
+  tom is a triangle that swoops down quickly onto its pitch from an octave
+  above (taking a tenth of a second) and dies away within about an eighth of
+  a second.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(150 / 4)
+      note("~ ~ ~ [g3 e3 c3]")
+        .s("triangle")
+        .penv(12)
+        .pdecay(0.1)
+        .decay(0.12)
+        .sustain(0)
+listen_for:
+  - "Three short notes falling G3, E3, C3 as a triplet on beat 4"
+  - "Each note starts with an audible downward swoop of an octave, not a clean attack"
+  - "Each note is gone before the next one starts"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: penv
+  - strudel-doc: pdecay

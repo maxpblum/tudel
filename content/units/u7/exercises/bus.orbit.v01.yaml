@@ -1,0 +1,40 @@
+id: bus.orbit.v01
+skills: [bus.orbit]
+type: recall
+difficulty: 1
+title: Two rooms, two orbits
+prompt: |
+  First, from memory: which orbit does a part use when you don't write
+  `orbit`?
+
+  Then write these two parts as two `$:` lines, so that each keeps its own
+  space:
+
+  - **Drums:** `s("bd sd bd sd").bank("RolandTR909")` in a small room: send
+    level `room` 0.2, `roomsize` 1 second.
+  - **Pad:** `chord("<Dm7 G7>").voicing()` on `"triangle"` with a 0.3-second
+    `attack`, in a large church: `room` 0.7, `roomsize` 8 seconds.
+
+  Leave the drums on the default orbit and move the pad to **orbit 2**.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      $: s("bd sd bd sd").bank("RolandTR909").room(0.2).roomsize(1)
+      $: chord("<Dm7 G7>")
+        .voicing()
+        .s("triangle")
+        .attack(0.3)
+        .room(0.7)
+        .roomsize(8)
+        .orbit(2)
+listen_for:
+  - "The answer to the question: orbit 1. Every part without orbit shares it"
+  - The kick and snare keep a short, tight tail of about 1 second
+  - The pad's chords ring on for several seconds into the next bar
+  - On one orbit the two roomsize values would rebuild the shared reverb back and forth, and the drums would sometimes get the long tail
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: orbit
+  - strudel-src: "packages/superdough/superdough.mjs#L195-L195"
+  - strudel-src: "packages/superdough/superdoughoutput.mjs#L69-L93"

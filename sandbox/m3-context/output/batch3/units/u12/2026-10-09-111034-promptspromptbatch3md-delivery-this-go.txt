@@ -1,0 +1,1477 @@
+ ▐▛███▛█   Claude Code v2.1.295
+▝▜██████▀  Opus 5.5 · API Usage Billing
+ ▝▝   ▝▝   ~/Projects/tudel/sandbox/m3-context/output/batch3/units/u12
+
+
+❯ @prompts/PROMPT_BATCH_3.md <-- Delivery this. Go very light on testing; your  
+  job is to write well-researched content, do just barely enough verification   
+  to ensure that the _list of lessons and exercises_ still makes sense, and     
+  deliver a really good _first draft_ of those lessons and exercises. Don't     
+  check for minor mistakes or test failures; I'll use a cheaper model for that. 
+  You are purely the curriculum author.                                         
+  ⎿  Read prompts/PROMPT_BATCH_3.md (66 lines)
+
+  Searched for 1 pattern, read 1 file, listed 2 directories, ran 2 shell commands (ctrl+o to expand)
+
+● I've read the sandbox specs and the existing skill graph. Next I'm checking
+  how arrange and seqPLoop actually behave in the pinned Strudel source, then
+  I'll write the U12 content.
+
+  Ran 3 shell commands (ctrl+o to expand)
+
+● Quick eval of the clock behaviour of arrange vs seqPLoop, since the whole unit
+  hinges on it.
+
+  Ran 6 shell commands (ctrl+o to expand)
+
+● I've confirmed arrange gives each section its own clock starting at bar 1,
+  while seqPLoop uses the song's clock with loop length set by the last entry
+  written. Next, I'll check directive syntax and how signals and transpose
+  behave inside sections.
+
+  Ran 4 shell commands (ctrl+o to expand)
+
+● Verified: transpose on a drum part logs an error, so key lifts must apply only
+  to the pitched parts. Writing the skill graph now.
+
+● Write(~/Projects/tudel/sandbox/m3-context/output/batch3/skills.yaml)
+  ⎿  Wrote 96 lines to ../../skills.yaml
+       1 # Batch 3 (M3, unit u12): append these entries to content/skills
+         .yaml under units: and skills:.
+       2 
+       4 units:
+       5   - id: u12
+       6     title: "Form, arc & zen"
+       7     milestone: M3
+       9     summary: >-
+      10       From loops to pieces: write a song's form as a list of nam
+         ed sections
+     … +122 lines (ctrl+o to expand)
+
+● Write(lessons/section-arrange.md)
+  ⎿  Wrote 94 lines to lessons/section-arrange.md
+      1 ---
+      3 title: "Song sections in order with arrange"
+      4 skill: zen.section-arrange
+      6 
+      7 Almost every piece in this course so far has been a **loop**: one
+        rough. A song has **form**: an intro, a verse, a chorus, a breakd
+        own and an outro, each with a texture of its own, in an order the
+        plays whole sections one after another, each for as many cycles a
+        s you say {cite doc=arrange}.
+      9 ## One section after another
+     … +148 lines (ctrl+o to expand)
+
+● Update(lessons/section-arrange.md)
+  ⎿  Added 1 line, removed 1 line
+      25  }
+      26  :::
+      27  
+      28 -A method written after the closing parenthesis, here `.s("trian
+         -gle")`, applies to every section, just as a method after `stack
+         -(...)` applies to every part {cite doc=stack}. The two numbers 
+         -add up to the length of the whole form: 2 + 2 = 4 bars, 9.6 sec
+         -onds at the default 100 BPM… no: at the default tempo of 120 BP
+         -M, a bar lasts 2 seconds, so the form lasts 8 seconds.         
+      28 +A method written after the closing parenthesis, here `.s("trian
+         +gle")`, applies to every section, just as a method after `stack
+         +(...)` applies to every part {cite doc=stack}. The numbers add 
+         +up to the length of the whole form: 2 + 2 = 4 bars. At the defa
+         +ult tempo of 120 BPM a bar lasts 2 seconds, so the form repeats
+         + every 8 seconds.                                              
+      29  
+      30  ## Name the sections, then write the form
+      31  
+
+● Write(lessons/loop-layering.md)
+  ⎿  Wrote 70 lines to lessons/loop-layering.md
+      1 ---
+      3 title: "Staggered entrances with seqPLoop"
+      4 skill: zen.loop-layering
+      6 
+        ious one stops. Many builds don't work like that. In a fugal expo
+        sition the voices enter one by one and each keeps going after the
+        oins four bars later, then the pad, then the lead. The parts **ov
+        erlap**. For that, `seqPLoop` gives each part a window of its own
+        Loop}.
+      9 ## One window per part
+     … +112 lines (ctrl+o to expand)
+
+● Update(lessons/loop-layering.md)
+  ⎿  Added 2 lines
+      52  The loop's length is not the largest end you write. It is the *
+          *end of the last entry in the list** {cite src="packages/core/p
+          attern.mjs#L1486-L1501"}. Write the entries in any order and an
+           earlier, longer window can vanish:
+      53  
+      54  :::code
+      55 +const pad = chord("<Am F C G>").voicing().s("triangle")        
+      56 +const lead = note("e5 d5 c5 b4").s("square")                   
+      57  seqPLoop([0, 8, pad], [2, 4, lead])
+      58  :::
+      59  
+
+● Write(lessons/dramatic-arc.md)
+  ⎿  Wrote 159 lines to lessons/dramatic-arc.md
+      1 ---
+      3 title: "Shaping the arc: tension and release across sections"
+      4 skill: zen.dramatic-arc
+      5 ---
+      7 A list of sections is not yet a piece. What makes a form feel lik
+        e a journey is its **arc**: the music gathers intensity, holds ba
+        o shape a crescendo in the moment, so the arc has to be written i
+        nto the sections. This lesson plans an arc on paper first, then r
+        ealises it with tools the course has already taught.
+      9 ## Six dimensions of intensity
+     … +225 lines (ctrl+o to expand)
+
+● Update(lessons/dramatic-arc.md)
+  ⎿  Added 8 lines, removed 6 lines
+      143  
+      144  A final chorus can also go up a semitone, the "truck driver's 
+           modulation" of the arcade lessons. Transpose only the pitched 
+           parts: drum sounds have no pitch, and `transpose` on a drum pa
+           rt logs an error {cite doc=transpose}. Group the pitched parts
+            in an inner `stack` and transpose that:
+      145  
+      146 -:::code                                                       
+      147 -const lift = stack(                                           
+      148 -  kick,                                                       
+      149 -  snare,                                                      
+      150 -  hats,                                                       
+      151 -  stack(bass, pad(loop, 4000), lead).transpose(1),            
+      146 +:::play{label="The A-minor loop lifted to B flat minor; the dr
+          +ums stay untransposed"}                                       
+      147 +const drums = s("bd*4, ~ sd ~ sd").bank("RolandTR909")        
+      148 +const pitched = stack(                                        
+      149 +  note("<a3 f3 c3 g3>").ply(8).s("sawtooth").lpf(700).gain(0.6
+          +),                                                            
+      150 +  chord("<Am F C G>").voicing().s("triangle").gain(0.5),      
+      151  )
+      152 +stack(drums, pitched.transpose(1))                            
+      153  :::
+      154  
+      155 +In the full piece, that is `stack(kick, snare, hats, stack(bas
+          +s, pad(loop, 4000), lead).transpose(1))`.                     
+      156 +                                                              
+      157  A lift changes the harmony around it, too. The breakdown above
+            prepares A minor with its E pedal. Before a chorus in B flat 
+           minor, the pedal should be **F**, the new dominant, or the lif
+           t sounds like a wrong turn rather than a gear change.
+      158  
+      159  :::bridge{title="Boléro's last gear"}
+
+● Lessons 1–3 are drafted. Now the readability-refactor lesson.
+
+● Write(lessons/readability-refactor.md)
+  ⎿  Wrote 118 lines to lessons/readability-refactor.md
+       1 ---
+       3 title: "Refactoring a sprawling piece into a readable score"
+       5 ---
+       6 
+         a mask added, a callback nested inside another. After twenty min
+         d and, worse, hard to change while it plays. **Refactoring** mea
+         ame. This lesson names the usual signs of sprawl, shows the fix 
+         for each, and works through one piece from start to finish.
+       9 :::bridge{title="Preparing a score"}
+         e stru
+     … +164 lines (ctrl+o to expand)
+
+● Bash(cd /home/blampo/Projects/tudel/sandbox/m3-context/output/batch3/units/u12
+      /lessons && python3 - <<'EOF'
+      p='readability-refactor.md'…)
+  ⎿  54:5. **The layout doesn't follow the music.** Sound settings, rhythm
+     and form are interleaved line by line, so to find out what plays in ba
+     r 6 you have to read every line. *Fix:* order the file the way a score
+     … +4 lines (ctrl+o to expand)
+  ⎿  Updated lessons/readability-refactor.md (+2 -2)
+      51  2. **A part is copied with one change.** The two bass lines dif
+          fer only in `ply` and `lpf`. *Fix:* name what they share, and a
+          dd the differences where each is used.
+      52  3. **A callback inside a callback.** `(x) => x.rev().superimpos
+          e((y) => y.add(note(12)))` must be read inside out. *Fix:* give
+           each step a name: `octaveUp`, then `answer`. A named function 
+          reads like a word in a sentence: `lastOf(4, answer)` {cite doc=
+          lastOf}.
+      53  4. **Unexplained numbers.** `setcpm(25)` hides the tempo, and `
+          delaysync(0.1875)` hides the rhythm. *Fix:* write them the cour
+          se's way, `setcpm(100 / 4)` and `delaysync(3 / 16)`: 100 BPM in
+           four beats per bar, and an echo a dotted eighth later.
+      54 -5. **One fact in several places.** Here the chord loop appears 
+         -once as symbols and once as bass roots, which is fine, because 
+         -they are different musical facts. But if the chorus also had it
+         -s own copy of the pad, a change of chords would have to be made
+         - twice. *Fix:* store each fact under one name and use the name 
+         -everywhere.                                                    
+      54 +5. **The layout doesn't follow the music.** Sound settings, rhy
+         +thm and form are interleaved line by line, so to find out what 
+         +plays in bar 6 you have to read every line. *Fix:* order the fi
+         +le the way a score is ordered: tempo first, then the parts, the
+         +n the sections, and the form last.                             
+      55  
+      56  ## The same piece, refactored
+      57  
+     ...
+      107  
+      108  Names are the cheapest documentation there is. Call a part wha
+           t it does in the music: bass, chords, hook, pedal, riser. Avoi
+           d names that describe the code instead, such as saw1 or patter
+           n2. Name a function after its musical effect, so that answer, 
+           octaveUp and fill read like performance directions.
+      109  
+      110 -`const` and arrow functions are plain JavaScript. Strudel adds
+          - nothing to them, so they work anywhere in your code {cite doc
+          -=stack}.                                                      
+      110 +`const` and arrow functions are plain JavaScript. Strudel adds
+          + nothing to them, so they work anywhere in your code.         
+      111  
+      112  ## When not to refactor
+      113  
+
+● Write(lessons/consolidated-idioms.md)
+  ⎿  Wrote 147 lines to lessons/consolidated-idioms.md
+       1 ---
+       3 title: "The zen of Strudel: the course's idioms in one piece"
+       5 ---
+       6 
+         n way to write the thing just learned. Taken together, they come
+         ut that isn't the main point. Each one puts a musical decision i
+         le the music plays. This lesson collects them, each with the ear
+         lier idioms it grew out of, and ends with a piece that uses them
+       8 
+      10 A good conductor's beat is as small as it can be and still b
+     … +200 lines (ctrl+o to expand)
+
+● Bash(python3 - <<'EOF'
+      p='consolidated-idioms.md'…)
+  ⎿  106:  .lastOf(4, (x) => x.add(n(7)))
+     127:- **Another mode:** change `"E4:minor"` to `"E4:dorian"`. The melo
+     dy and its thirds follow; the C chord in the loop now rubs against the
+      melody's C sharp, which is the Dorian colour.
+  ⎿  Updated lessons/consolidated-idioms.md (+3 -3)
+      103    .gain(0.35)
+      104  // 5. Write once, derive: thirds from .add, the answer from la
+           stOf
+      105  const melody = n("<[0 ~ 2 4] [4 ~ 2 0] [2 4 5 4] [3@3 ~]>".add
+           ("0,2"))
+      106 -  .lastOf(4, (x) => x.add(note(12)))                          
+      106 +  .lastOf(4, (x) => x.add(n(7)))                              
+      107    .scale("E4:minor")
+      108    .s("square")
+      109    .decay(0.2)
+     ...
+      122  arrange([4, intro], [4, verse], [8, chorus])
+      123  :::
+      124  
+      125 -Now test the code the way a live set would. Each of these chan
+          -ges is one edit in one place:                                 
+      125 +Now test the code the way a live set would. Each change below 
+          +touches only the line that holds that musical decision:       
+      126  
+      127 -- **Another key:** change `"E4:minor"` and the bass roots, and
+          - the loop's symbols. That's three places, because bass, chords
+          - and melody are three musical facts.                          
+      127 +- **Another mode:** change `"E4:minor"` to `"E4:dorian"`. The 
+          +melody and its thirds follow; the C chord in the loop now rubs
+          + against the melody's C sharp, which is the Dorian colour.    
+      128  - **Another progression:** edit `loop`. The pad follows it.
+      129  - **A longer verse:** change `[4, verse]` to `[8, verse]`.
+      130  - **A darker chorus:** lower the pad's `rangex` ceiling.
+
+● Bash(python3 - <<'EOF'
+      p='consolidated-idioms.md'…)
+  ⎿  Updated lessons/consolidated-idioms.md (+1 -1)
+      124  
+      125  Now test the code the way a live set would. Each change below 
+           touches only the line that holds that musical decision:
+      126  
+      127 -- **Another mode:** change `"E4:minor"` to `"E4:dorian"`. The 
+          -melody and its thirds follow; the C chord in the loop now rubs
+          - against the melody's C sharp, which is the Dorian colour.    
+      127 +- **Another mode:** change `"E4:minor"` to `"E4:dorian"`. The 
+          +melody and its thirds follow: the C5 in bar 3 becomes C sharp 
+          +5, the raised sixth that gives Dorian its brighter colour, whi
+          +le the chords stay as they are.                               
+      128  - **Another progression:** edit `loop`. The pad follows it.
+      129  - **A longer verse:** change `[4, verse]` to `[8, verse]`.
+      130  - **A darker chorus:** lower the pad's `rangex` ceiling.
+
+● All five lessons are drafted. Now the 20 exercise variants, starting with
+  zen.section-arrange and zen.loop-layering.
+
+● Bash(mkdir -p /home/blampo/Projects/tudel/sandbox/m3-context/output/batch3/uni
+      ts/u12/exercises && cd
+      /home/blampo/Projects/tudel/sandbox/m3-context/output/batch3/uni…)
+  ⎿  zen.loop-layering.v01.yaml
+     zen.loop-layering.v02.yaml
+     zen.loop-layering.v03.yaml
+     … +5 lines (ctrl+o to expand)
+  ⎿  Created exercises/zen.section-arrange.v01.yaml (+69 -0)
+       1 +id: zen.section-arrange.v01                                    
+       2 +skills: [zen.section-arrange]                                  
+       3 +type: arrange                                                  
+       4 +difficulty: 2                                                  
+       5 +title: "Write the road map: intro, verse, chorus, outro"       
+       6 +prompt: |                                                      
+       7 +  The starter defines three sections in D minor at 110 BPM: a q
+         +uiet                                                           
+       8 +  `intro` (chords only), a `verse` and a fuller `chorus`. Don't
+         + change                                                        
+       9 +  them. Add one `arrange` line at the bottom that plays this fo
+         +rm:                                                            
+      10 +                                                               
+      11 +  | Section | Bars |                                           
+      12 +  |---|---|                                                    
+      13 +  | Intro | 2 |                                                
+      14 +  | Verse | 4 |                                                
+      15 +  | Chorus | 4 |                                               
+      16 +  | Verse | 4 |                                                
+      17 +  | Chorus | 4 |                                               
+      18 +  | Outro (the intro again) | 2 |                              
+      19 +                                                               
+      20 +  Before you play it, check that each section's length is a mul
+         +tiple of                                                       
+      21 +  every `< >` inside it, so the section starts on its first cho
+         +rd each time.                                                  
+      22 +starter: |                                                     
+      23 +  setcpm(110 / 4)                                              
+      24 +  const intro = chord("<Dm Bb>").voicing().s("triangle").lpf(90
+         +0).gain(0.5)                                                   
+      25 +  const verse = stack(                                         
+      26 +    s("bd ~ sd ~, hh*4").bank("RolandTR808"),                  
+      27 +    note("<d3 bb3>").ply(4).s("sawtooth").lpf(600).gain(0.6),  
+      28 +    chord("<Dm Bb>").voicing().s("triangle").gain(0.5),        
+      29 +  )                                                            
+      30 +  const chorus = stack(                                        
+      31 +    s("bd*4, ~ cp ~ cp, hh*8").bank("RolandTR808"),            
+      32 +    note("<f3 c3 d3 bb3>").ply(8).s("sawtooth").lpf(1000).gain(
+         +0.6),                                                          
+      33 +    chord("<F C Dm Bb>").voicing().s("supersaw").detune(0.2).ga
+         +in(0.4),                                                       
+      34 +  )                                                            
+      35 +hide_reference_code_until_reveal: true                         
+      36 +solutions:                                                     
+      37 +  - code: |                                                    
+      38 +      setcpm(110 / 4)                                          
+      39 +      const intro = chord("<Dm Bb>").voicing().s("triangle").lp
+         +f(900).gain(0.5)                                               
+      40 +      const verse = stack(                                     
+     … 29 more lines (ctrl+o to expand)
+  ⎿  Created exercises/zen.section-arrange.v02.yaml (+27 -0)
+       1 +id: zen.section-arrange.v02                                    
+       2 +skills: [zen.section-arrange]                                  
+       3 +type: recall                                                   
+       4 +difficulty: 1                                                  
+       5 +title: "Eight bars of verse, eight of chorus"                  
+       6 +prompt: |                                                      
+       7 +  From memory: you have two sections named `verse` and `chorus`
+         +. Write the                                                    
+       8 +  one line that plays the verse for 8 bars, then the chorus for
+         + 8 bars,                                                       
+       9 +  then repeats. Then answer: how many bars long is the loop, an
+         +d in which                                                     
+      10 +  bar does the chorus first begin?                             
+      11 +                                                               
+      12 +  (To hear your line, define any two short sections first, for 
+         +example a                                                      
+      13 +  bass line each.)                                             
+      14 +hide_reference_code_until_reveal: true                         
+      15 +solutions:                                                     
+      16 +  - code: |                                                    
+      17 +      const verse = note("<a3 f3>").s("triangle")              
+      18 +      const chorus = note("<c4 g3>").s("square").lpf(1200)     
+      19 +      arrange([8, verse], [8, chorus])                         
+      20 +listen_for:                                                    
+      21 +  - "The line is arrange([8, verse], [8, chorus]): each pair is
+         + [bars, section]"                                              
+      22 +  - "The loop is 8 + 8 = 16 bars long"                         
+      23 +  - "The chorus begins in bar 9; the verse returns in bar 17"  
+      24 +verify:                                                        
+      25 +  cycles: 16                                                   
+      26 +sources:                                                       
+      27 +  - strudel-doc: arrange                                       
+  ⎿  Created exercises/zen.section-arrange.v03.yaml (+40 -0)
+       1 +id: zen.section-arrange.v03                                    
+       2 +skills: [zen.section-arrange]                                  
+       3 +type: read-the-code                                            
+       4 +difficulty: 3                                                  
+       5 +title: "Which note starts each section?"                       
+       6 +prompt: |                                                      
+       7 +  Read the code and write down, before you play it, the note in
+         + each of                                                       
+       8 +  bars 1 to 12. Two things to work out: what the second section
+         + plays when                                                    
+       9 +  it first enters, and what it plays the second time round, giv
+         +en that it                                                     
+      10 +  lasts 3 bars but its `< >` has 4 steps. The last section is a
+         + bar of                                                        
+      11 +  rest.                                                        
+      12 +                                                               
+      13 +  :::code                                                      
+      14 +  arrange(                                                     
+      15 +    [2, note("<c4 d4>")],                                      
+      16 +    [3, note("<e4 f4 g4 a4>")],                                
+      17 +    [1, silence],                                              
+      18 +  ).s("triangle")                                              
+      19 +  :::                                                          
+      20 +                                                               
+      21 +  Then play it and check.                                      
+      22 +hide_reference_code_until_reveal: false                        
+      23 +solutions:                                                     
+      24 +  - code: |                                                    
+      25 +      arrange(                                                 
+      26 +        [2, note("<c4 d4>")],                                  
+      27 +        [3, note("<e4 f4 g4 a4>")],                            
+      28 +        [1, silence],                                          
+      29 +      ).s("triangle")                                          
+      30 +listen_for:                                                    
+      31 +  - "The form is 2 + 3 + 1 = 6 bars long, then repeats"        
+      32 +  - "First pass, bars 1-6: C4, D4, E4, F4, G4, rest. The second
+         + section starts on its own first step, E4, not on the step for 
+         +bar 3 of the song"                                             
+      33 +  - "Second pass, bars 7-12: C4, D4, A4, E4, F4, rest. The 3-ba
+         +r section picks up where it stopped, at its fourth step"       
+      34 +  - "The first section sounds the same on every pass, because i
+         +ts length (2 bars) is a multiple of its 2-step < >"            
+      35 +verify:                                                        
+      36 +  cycles: 12                                                   
+      37 +sources:                                                       
+      38 +  - strudel-doc: arrange                                       
+      39 +  - strudel-doc: silence                                       
+      40 +  - strudel-src: "packages/core/pattern.mjs#L1469-L1473"       
+  ⎿  Created exercises/zen.section-arrange.v04.yaml (+53 -0)
+       1 +id: zen.section-arrange.v04                                    
+       2 +skills: [zen.section-arrange]                                  
+       3 +type: transform                                                
+       4 +difficulty: 3                                                  
+       5 +title: "Add a B section: A A B A"                              
+       6 +prompt: |                                                      
+       7 +  The starter is a 4-bar A section in A minor at 96 BPM, loopin
+         +g on its own.                                                  
+       8 +  Turn it into a 16-bar song in the form **A A B A**:          
+       9 +                                                               
+      10 +  - Add a 4-bar section named `b` on the chords **F, G, C, E**,
+         + one per                                                       
+      11 +    bar, with a bass on their roots in octave 3 (the same sound
+         + and rhythm                                                    
+      12 +    as A's bass), the same drums, and eighth-note hi-hats added
+         + for lift.                                                     
+      13 +  - Write the form with `arrange` on the last line.            
+      14 +                                                               
+      15 +  The B section borrows the relative major's F, G and C, and it
+         +s last chord,                                                  
+      16 +  E, is the dominant of A minor. Listen to how it leads back in
+         +to the final A.                                                
+      17 +starter: |                                                     
+      18 +  setcpm(96 / 4)                                               
+      19 +  const drums = s("bd ~ sd ~").bank("RolandTR909")             
+      20 +  const a = stack(                                             
+      21 +    drums,                                                     
+      22 +    note("<a3 f3 c3 g3>").ply(4).s("sawtooth").lpf(700).gain(0.
+         +6),                                                            
+      23 +    chord("<Am F C G>").voicing().s("triangle").gain(0.5),     
+      24 +  )                                                            
+      25 +  arrange([4, a])                                              
+      26 +hide_reference_code_until_reveal: true                         
+      27 +solutions:                                                     
+      28 +  - code: |                                                    
+      29 +      setcpm(96 / 4)                                           
+      30 +      const drums = s("bd ~ sd ~").bank("RolandTR909")         
+      31 +      const a = stack(                                         
+      32 +        drums,                                                 
+      33 +        note("<a3 f3 c3 g3>").ply(4).s("sawtooth").lpf(700).gai
+         +n(0.6),                                                        
+      34 +        chord("<Am F C G>").voicing().s("triangle").gain(0.5), 
+      35 +      )                                                        
+      36 +      const b = stack(                                         
+      37 +        drums,                                                 
+      38 +        s("hh*8").bank("RolandTR909").gain(0.5),               
+      39 +        note("<f3 g3 c3 e3>").ply(4).s("sawtooth").lpf(700).gai
+         +n(0.6),                                                        
+      40 +        chord("<F G C E>").voicing().s("triangle").gain(0.5),  
+     … 13 more lines (ctrl+o to expand)
+  ⎿  Created exercises/zen.loop-layering.v01.yaml (+63 -0)
+       1 +id: zen.loop-layering.v01                                      
+       2 +skills: [zen.loop-layering]                                    
+       3 +type: arrange                                                  
+       4 +difficulty: 3                                                  
+       5 +title: "A 16-bar build, one entrance every four bars"          
+       6 +prompt: |                                                      
+       7 +  The starter defines four stems in A minor at 100 BPM. Don't c
+         +hange them.                                                    
+       8 +  Write a `seqPLoop` that builds a 16-bar intro from them:     
+       9 +                                                               
+      10 +  - the kick plays all 16 bars;                                
+      11 +  - the bass enters at bar 5;                                  
+      12 +  - the pad enters at bar 9;                                   
+      13 +  - the lead enters at bar 13.                                 
+      14 +                                                               
+      15 +  All four play to the end of bar 16, then the build starts aga
+         +in. Remember                                                   
+      16 +  that start and end are bar lines counted from 0, and write th
+         +e entry                                                        
+      17 +  that ends last at the bottom.                                
+      18 +starter: |                                                     
+      19 +  setcpm(100 / 4)                                              
+      20 +  const kick = s("bd*4").bank("RolandTR909")                   
+      21 +  const bass = note("<a3 f3 c3 g3>").ply(8).s("sawtooth").lpf(7
+         +00).gain(0.6)                                                  
+      22 +  const pad = chord("<Am F C G>")                              
+      23 +    .voicing()                                                 
+      24 +    .s("supersaw")                                             
+      25 +    .detune(0.2)                                               
+      26 +    .attack(0.4)                                               
+      27 +    .release(1)                                                
+      28 +    .gain(0.35)                                                
+      29 +  const lead = n("<[4@3 5] [4 2 0@2] [2@3 4] [6@2 7@2]>")      
+      30 +    .scale("A4:minor")                                         
+      31 +    .s("square")                                               
+      32 +    .lpf(3000)                                                 
+      33 +    .gain(0.3)                                                 
+      34 +hide_reference_code_until_reveal: true                         
+      35 +solutions:                                                     
+      36 +  - code: |                                                    
+      37 +      setcpm(100 / 4)                                          
+      38 +      const kick = s("bd*4").bank("RolandTR909")               
+      39 +      const bass = note("<a3 f3 c3 g3>").ply(8).s("sawtooth").l
+         +pf(700).gain(0.6)                                              
+      40 +      const pad = chord("<Am F C G>")                          
+     … 23 more lines (ctrl+o to expand)
+  ⎿  … 3 more files changed
+● Bash(python3 - <<'EOF'
+      p='zen.loop-layering.v04.yaml'…)
+  ⎿  37:  - "Bar 3: the tenor enters on its third note, A3, over F3 in the
+     bass: the F major chord, third in the loop. It fits, because both voic
+     es follow the song's bar count"
+  ⎿  Updated exercises/zen.loop-layering.v04.yaml (+1 -1)
+      34        seqPLoop([0, 8, bass], [2, 8, tenor], [4, 8, alto], [6, 8
+          , soprano])
+      35  listen_for:
+      36    - "Bars 1-2: the bass alone, D3 then B flat 3"
+      37 -  - "Bar 3: the tenor enters on A3 over the bass's F3: the F ma
+         -jor chord, the third of the loop, not the tenor's first note D 
+         -minor's A3. It fits, because both voices follow the song's bar 
+         -count"                                                         
+      37 +  - "Bar 3: the tenor enters on its third note, A3, over F3 in 
+         +the bass: the F major chord, third in the loop. It fits, becaus
+         +e both voices follow the song's bar count"                     
+      38    - "Bar 5: the alto enters on F4 over D3 and A3: D minor, the 
+          loop's first chord again"
+      39    - "Bar 7: the soprano enters on C5 then A4, over F; bar 8 end
+          s on C major"
+      40    - "Every vertical sonority is a complete or incomplete chord 
+          of the loop, because the windows open on a shared clock"
+
+● Bash(cat > zen.dramatic-arc.v01.yaml <<'EOF'
+      id: zen.dramatic-arc.v01…)
+  ⎿  12
+  ⎿  Created exercises/zen.dramatic-arc.v01.yaml (+81 -0)
+       1 +id: zen.dramatic-arc.v01                                       
+       2 +skills: [zen.dramatic-arc]                                     
+       3 +type: read-the-code                                            
+       4 +difficulty: 3                                                  
+       5 +title: "Trace the arc before you hear it"                      
+       6 +prompt: |                                                      
+       7 +  Read this 16-bar piece in D minor and sketch its arc on paper
+         + before you                                                    
+       8 +  play it: for each of the four sections, mark its intensity fr
+         +om 1 (calm)                                                    
+       9 +  to 5 (peak), and note which dimensions change (density, regis
+         +ter,                                                           
+      10 +  brightness, loudness, harmony). Then answer:                 
+      11 +                                                               
+      12 +  1. What does the bass do in the third section, and what does 
+         +that do to                                                     
+      13 +     the harmony?                                              
+      14 +  2. How does the cutoff of the bass move in that section?     
+      15 +  3. Why does bar 13 feel like an arrival rather than just the 
+         +next bar?                                                      
+      16 +                                                               
+      17 +  :::code                                                      
+      18 +  setcpm(96 / 4)                                               
+      19 +  const drums = s("bd*4, ~ sd ~ sd").bank("RolandTR808")       
+      20 +  const hats = s("hh*16").bank("RolandTR808").gain(0.4)        
+      21 +  const bass = note("<d3 bb3 f3 c3>").ply(8).s("sawtooth").lpf(
+         +600).gain(0.6)                                                 
+      22 +  const pad = (chords, cutoff) =>                              
+      23 +    chord(chords)                                              
+      24 +      .voicing()                                               
+      25 +      .s("supersaw")                                           
+      26 +      .detune(0.2)                                             
+      27 +      .lpf(cutoff)                                             
+      28 +      .gain(0.35)                                              
+      29 +  const pedal = note("a3")                                     
+      30 +    .ply(8)                                                    
+      31 +    .s("sawtooth")                                             
+      32 +    .lpf(saw.slow(4).rangex(300, 3000))                        
+      33 +    .gain(0.6)                                                 
+      34 +                                                               
+      35 +  arrange(                                                     
+      36 +    [4, pad("<Dm Bb F C>", 800)],                              
+      37 +    [4, stack(drums, bass, pad("<Dm Bb F C>", 1600))],         
+      38 +    [4, stack(pedal, pad("<Bb Gm Dm A>", 1600))],              
+      39 +    [4, stack(drums, hats, bass, pad("<Dm Bb F C>", 3200))],   
+      40 +  )                                                            
+     … 41 more lines (ctrl+o to expand)
+  ⎿  Created exercises/zen.dramatic-arc.v02.yaml (+62 -0)
+       1 +id: zen.dramatic-arc.v02                                       
+       2 +skills: [zen.dramatic-arc]                                     
+       3 +type: transform                                                
+       4 +difficulty: 4                                                  
+       5 +title: "Add a breakdown before the last chorus"                
+       6 +prompt: |                                                      
+       7 +  The starter's form, verse, chorus, chorus, runs out of steam:
+         + the second                                                    
+       8 +  chorus is just the first one again. Insert a 4-bar **breakdow
+         +n** between                                                    
+       9 +  the two choruses that lowers the density but raises the tensi
+         +on:                                                            
+      10 +                                                               
+      11 +  - no drums and no moving bass;                               
+      12 +  - a **dominant pedal**: E3 in eighth notes on the bass's sawt
+         +ooth, its                                                      
+      13 +    cutoff rising from 300 Hz to 3000 Hz over the four bars (`r
+         +angex`);                                                       
+      14 +  - the chords **F, D minor, A minor, E** over the pedal, on th
+         +e same pad;                                                    
+      15 +  - a **noise riser**: white noise in sixteenths with a short d
+         +ecay, its                                                      
+      16 +    cutoff rising from 400 Hz to 8000 Hz and its gain from 0.05
+         + to 0.4 over                                                   
+      17 +    the four bars.                                             
+      18 +                                                               
+      19 +  The form becomes verse, chorus, breakdown, chorus: 16 bars.  
+      20 +starter: |                                                     
+      21 +  setcpm(100 / 4)                                              
+      22 +  const drums = s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR909") 
+      23 +  const bass = note("<a3 f3 c3 g3>").ply(8).s("sawtooth").lpf(7
+         +00).gain(0.6)                                                  
+      24 +  const pad = (chords) =>                                      
+      25 +    chord(chords).voicing().s("supersaw").detune(0.2).lpf(2000)
+         +.gain(0.35)                                                    
+      26 +  const verse = stack(drums, bass)                             
+      27 +  const chorus = stack(drums, bass, pad("<Am F C G>"))         
+      28 +  arrange([4, verse], [4, chorus], [4, chorus])                
+      29 +hide_reference_code_until_reveal: true                         
+      30 +solutions:                                                     
+      31 +  - code: |                                                    
+      32 +      setcpm(100 / 4)                                          
+      33 +      const drums = s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR90
+         +9")                                                            
+      34 +      const bass = note("<a3 f3 c3 g3>").ply(8).s("sawtooth").l
+         +pf(700).gain(0.6)                                              
+      35 +      const pad = (chords) =>                                  
+      36 +        chord(chords).voicing().s("supersaw").detune(0.2).lpf(2
+         +000).gain(0.35)                                                
+      37 +      const pedal = note("e3")                                 
+      38 +        .ply(8)                                                
+      39 +        .s("sawtooth")                                         
+      40 +        .lpf(saw.slow(4).rangex(300, 3000))                    
+     … 22 more lines (ctrl+o to expand)
+  ⎿  Created exercises/zen.dramatic-arc.v03.yaml (+88 -0)
+       1 +id: zen.dramatic-arc.v03                                       
+       2 +skills: [zen.dramatic-arc]                                     
+       3 +type: creative                                                 
+       4 +difficulty: 4                                                  
+       5 +title: "A ternary piece: A, B, A intensified"                  
+       6 +prompt: |                                                      
+       7 +  Compose a 24-bar piece in **ternary form**, three sections of
+         + 8 bars,                                                       
+       8 +  following this architectural brief:                          
+       9 +                                                               
+      10 +  1. **A (bars 1-8):** the home key, minor, at a moderate inten
+         +sity:                                                          
+      11 +     drums, bass, a pad and a tune.                            
+      12 +  2. **B (bars 9-16):** a contrast. Move to another key area (t
+         +he relative                                                    
+      13 +     major, or the subdominant), and change the texture: thinne
+         +r or                                                           
+      14 +     denser, a different register or rhythm. End B on the **dom
+         +inant** of                                                     
+      15 +     the home key, so that it leads back.                      
+      16 +  3. **A′ (bars 17-24):** A returns, recognisably, but intensif
+         +ied in at                                                      
+      17 +     least two dimensions (density, register, brightness, loudn
+         +ess).                                                          
+      18 +                                                               
+      19 +  Include at least one change *within* a section made with a si
+         +gnal (a                                                        
+      20 +  section-length hairpin or riser). Lay the code out as parts, 
+         +then                                                           
+      21 +  sections, then the form on the last line. The reference is on
+         +e possible                                                     
+      22 +  answer.                                                      
+      23 +hide_reference_code_until_reveal: true                         
+      24 +solutions:                                                     
+      25 +  - code: |                                                    
+      26 +      setcpm(104 / 4)                                          
+      27 +      const kick = s("bd*4").bank("RolandTR909")               
+      28 +      const snare = s("~ sd ~ sd").bank("RolandTR909")         
+      29 +      const hats = s("hh*8").bank("RolandTR909").gain(0.4)     
+      30 +      const bassA = note("<g3 eb3 bb3 f3>").ply(8).s("sawtooth"
+         +).lpf(700).gain(0.6)                                           
+      31 +      const bassB = note("<c3 f3 bb3 d3>").ply(4).s("sawtooth")
+         +.lpf(500).gain(0.6)                                            
+      32 +      const pad = (chords, cutoff) =>                          
+      33 +        chord(chords)                                          
+      34 +          .voicing()                                           
+      35 +          .s("supersaw")                                       
+      36 +          .detune(0.2)                                         
+      37 +          .attack(0.4)                                         
+      38 +          .release(1)                                          
+      39 +          .lpf(cutoff)                                         
+      40 +          .room(0.4)                                           
+     … 48 more lines (ctrl+o to expand)
+  ⎿  Created exercises/zen.dramatic-arc.v04.yaml (+61 -0)
+       1 +id: zen.dramatic-arc.v04                                       
+       2 +skills: [zen.dramatic-arc]                                     
+       3 +type: sweep                                                    
+       4 +difficulty: 3                                                  
+       5 +title: "Four bars of build, then the drop"                     
+       6 +prompt: |                                                      
+       7 +  Write an 8-bar loop at 100 BPM in A minor: a 4-bar **build** 
+         +and a 4-bar                                                    
+       8 +  **drop**, with `arrange`.                                    
+       9 +                                                               
+      10 +  The build, with no kick and no snare:                        
+      11 +  - hi-hats that double in density every bar: 4, 8, 16, then 32
+         + per bar                                                       
+      12 +    (one `< >` inside the mini-notation);                      
+      13 +  - E3 in eighth notes on a sawtooth, its cutoff rising from 30
+         +0 Hz to                                                        
+      14 +    3000 Hz across the four bars;                              
+      15 +  - a white-noise riser in sixteenths (decay 0.1 s, no sustain)
+         +, its cutoff                                                   
+      16 +    rising from 400 Hz to 8000 Hz and its gain from 0.05 to 0.4
+         +.                                                              
+      17 +                                                               
+      18 +  Every sweep should take exactly the four bars of the build.  
+      19 +                                                               
+      20 +  The drop: 909 kick on every beat, snare on 2 and 4, eighth-no
+         +te hats; a                                                     
+      21 +  bass in eighths on A, F, C, G (octave 3, lpf 900 Hz); and a b
+         +right                                                          
+      22 +  supersaw on the chords A minor, F, C, G.                     
+      23 +hide_reference_code_until_reveal: true                         
+      24 +solutions:                                                     
+      25 +  - code: |                                                    
+      26 +      setcpm(100 / 4)                                          
+      27 +      const build = stack(                                     
+      28 +        s("hh*<4 8 16 32>").bank("RolandTR909").gain(0.4),     
+      29 +        note("e3")                                             
+      30 +          .ply(8)                                              
+      31 +          .s("sawtooth")                                       
+      32 +          .lpf(saw.slow(4).rangex(300, 3000))                  
+      33 +          .gain(0.6),                                          
+      34 +        s("white*16")                                          
+      35 +          .decay(0.1)                                          
+      36 +          .sustain(0)                                          
+      37 +          .lpf(saw.slow(4).rangex(400, 8000))                  
+      38 +          .gain(saw.slow(4).rangex(0.05, 0.4)),                
+      39 +      )                                                        
+      40 +      const drop = stack(                                      
+     … 21 more lines (ctrl+o to expand)
+
+● Bash(cat > zen.readability-refactor.v01.yaml <<'EOF'
+      id: zen.readability-refactor.v01…)
+  ⎿  16
+  ⎿  Created exercises/zen.readability-refactor.v01.yaml (+67 -0)
+       1 +id: zen.readability-refactor.v01                               
+       2 +skills: [zen.readability-refactor]                             
+       3 +type: refactor                                                 
+       4 +difficulty: 3                                                  
+       5 +title: "From five masks to two sections"                       
+       6 +prompt: |                                                      
+       7 +  This 8-bar piece (a 4-bar verse, then a 4-bar chorus) works, 
+         +but its                                                        
+       8 +  form is spread over five mask strings, the chord part is writ
+         +ten twice,                                                     
+       9 +  and the tempo is hidden in `setcpm(30)`. Rewrite it so that: 
+      10 +                                                               
+      11 +  - the tempo reads in BPM;                                    
+      12 +  - the chord part is written once, and each section adds only 
+         +what                                                           
+      13 +    differs (its cutoff);                                      
+      14 +  - the verse and the chorus are named stacks, and the form is 
+         +one                                                            
+      15 +    `arrange` line at the bottom.                              
+      16 +                                                               
+      17 +  It should sound exactly the same.                            
+      18 +starter: |                                                     
+      19 +  setcpm(30)                                                   
+      20 +  $: s("bd ~ ~ ~, ~ ~ sd ~").bank("RolandTR808").mask("<1 1 1 1
+         + 0 0 0 0>")                                                    
+      21 +  $: s("bd ~ bd ~, ~ sd ~ sd, hh*8")                           
+      22 +    .bank("RolandTR808")                                       
+      23 +    .mask("<0 0 0 0 1 1 1 1>")                                 
+      24 +  $: chord("<Em C G D>")                                       
+      25 +    .voicing()                                                 
+      26 +    .s("triangle")                                             
+      27 +    .lpf(1000)                                                 
+      28 +    .gain(0.5)                                                 
+      29 +    .mask("<1 1 1 1 0 0 0 0>")                                 
+      30 +  $: chord("<Em C G D>")                                       
+      31 +    .voicing()                                                 
+      32 +    .s("triangle")                                             
+      33 +    .lpf(2500)                                                 
+      34 +    .gain(0.5)                                                 
+      35 +    .mask("<0 0 0 0 1 1 1 1>")                                 
+      36 +  $: note("<e3 c3 g3 d3>")                                     
+      37 +    .ply(8)                                                    
+      38 +    .s("sawtooth")                                             
+      39 +    .lpf(800)                                                  
+      40 +    .gain(0.6)                                                 
+     … 27 more lines (ctrl+o to expand)
+  ⎿  Created exercises/zen.readability-refactor.v02.yaml (+44 -0)
+       1 +id: zen.readability-refactor.v02                               
+       2 +skills: [zen.readability-refactor]                             
+       3 +type: refactor                                                 
+       4 +difficulty: 3                                                  
+       5 +title: "Untangle the nested callbacks"                         
+       6 +prompt: |                                                      
+       7 +  This D dorian line has a variation in the last bar of every 4
+         +-bar                                                           
+       8 +  phrase, but the variation is written as three callbacks neste
+         +d inside                                                       
+       9 +  each other. Rewrite it with **named functions**, one per musi
+         +cal idea,                                                      
+      10 +  so the `lastOf` call reads like a performance direction. Sugg
+         +ested                                                          
+      11 +  names: `stutter` (each note played twice), `sparkle` (a fifth
+         + higher,                                                       
+      12 +  stuttering on beats 1 and 3) and `answer` (the line backwards
+         +, with the                                                     
+      13 +  sparkle on top). It should sound exactly the same.           
+      14 +starter: |                                                     
+      15 +  n(                                                           
+      16 +    "0 2 4 2 3 1 2 0".lastOf(4, (x) =>                         
+      17 +      x.rev().superimpose((y) => y.add(4).when("1 0 1 0", (z) =
+         +> z.ply(2))),                                                  
+      18 +    ),                                                         
+      19 +  )                                                            
+      20 +    .scale("D4:dorian")                                        
+      21 +    .s("triangle")                                             
+      22 +    .gain(0.6)                                                 
+      23 +hide_reference_code_until_reveal: true                         
+      24 +solutions:                                                     
+      25 +  - code: |                                                    
+      26 +      const stutter = (x) => x.ply(2)                          
+      27 +      const sparkle = (x) => x.add(4).when("1 0 1 0", stutter) 
+      28 +      const answer = (x) => x.rev().superimpose(sparkle)       
+      29 +      n("0 2 4 2 3 1 2 0".lastOf(4, answer))                   
+      30 +        .scale("D4:dorian")                                    
+      31 +        .s("triangle")                                         
+      32 +        .gain(0.6)                                             
+      33 +listen_for:                                                    
+      34 +  - "Bars 1-3 of each phrase: the plain line, D4 F4 A4 F4 G4 E4
+         + F4 D4"                                                        
+      35 +  - "Bar 4: the line backwards, with a second voice four scale 
+         +steps (a fifth) above, and that voice's notes doubled in beats 
+         +1 and 3"                                                       
+      36 +  - "Exactly the same sound as the nested version"             
+      37 +  - "Code check: the lastOf call reads lastOf(4, answer), and e
+         +ach function does one thing"                                   
+      38 +verify:                                                        
+      39 +  cycles: 4                                                    
+      40 +sources:                                                       
+     … 4 more lines (ctrl+o to expand)
+  ⎿  Created exercises/zen.readability-refactor.v03.yaml (+75 -0)
+       1 +id: zen.readability-refactor.v03                               
+       2 +skills: [zen.readability-refactor]                             
+       3 +type: refactor                                                 
+       4 +difficulty: 2                                                  
+       5 +title: "One progression, written once"                         
+       6 +prompt: |                                                      
+       7 +  Three parts of this synth-pop bed (a pad, an arpeggio and off
+         +-beat stabs)                                                   
+       8 +  all play the same progression, and it is typed out three time
+         +s. Rewrite                                                     
+       9 +  the code so the progression is stored once under the name `lo
+         +op` and                                                        
+      10 +  each part uses the name. Then prove it works: change the prog
+         +ression to                                                     
+      11 +  **D minor, B flat, G minor, A** by editing that one line.    
+      12 +starter: |                                                     
+      13 +  setcpm(118 / 4)                                              
+      14 +  $: chord("<Dm Bb F C>")                                      
+      15 +    .voicing()                                                 
+      16 +    .s("supersaw")                                             
+      17 +    .detune(0.2)                                               
+      18 +    .attack(0.4)                                               
+      19 +    .release(1)                                                
+      20 +    .gain(0.3)                                                 
+      21 +  $: n("0 1 2 3 2 1 2 3")                                      
+      22 +    .chord("<Dm Bb F C>")                                      
+      23 +    .voicing()                                                 
+      24 +    .s("square")                                               
+      25 +    .decay(0.15)                                               
+      26 +    .sustain(0)                                                
+      27 +    .lpf(2500)                                                 
+      28 +    .gain(0.3)                                                 
+      29 +  $: chord("<Dm Bb F C>")                                      
+      30 +    .struct("~ x ~ x")                                         
+      31 +    .voicing()                                                 
+      32 +    .s("sawtooth")                                             
+      33 +    .decay(0.2)                                                
+      34 +    .sustain(0)                                                
+      35 +    .lpf(1800)                                                 
+      36 +    .gain(0.35)                                                
+      37 +hide_reference_code_until_reveal: true                         
+      38 +solutions:                                                     
+      39 +  - code: |                                                    
+      40 +      setcpm(118 / 4)                                          
+     … 35 more lines (ctrl+o to expand)
+  ⎿  Created exercises/zen.readability-refactor.v04.yaml (+77 -0)
+       1 +id: zen.readability-refactor.v04                               
+       2 +skills: [zen.readability-refactor]                             
+       3 +type: read-the-code                                            
+       4 +difficulty: 3                                                  
+       5 +title: "Read the form from the code"                           
+       6 +prompt: |                                                      
+       7 +  Without playing it, read this piece and write its form chart:
+         + each                                                          
+       8 +  section's name, its first and last bar, and the parts it cont
+         +ains. Then                                                     
+       9 +  answer:                                                      
+      10 +                                                               
+      11 +  1. How long is the whole form, in bars and in seconds at 90 B
+         +PM?                                                            
+      12 +  2. In which bars does the bell line play backwards?          
+      13 +  3. The intro is 2 bars long, but its chord loop has 4 chords.
+         + Which                                                         
+      14 +     chords does the intro play the first time through the form
+         +? Which                                                        
+      15 +     does the outro (the intro's second entry) play, and why?  
+      16 +                                                               
+      17 +  :::code                                                      
+      18 +  setcpm(90 / 4)                                               
+      19 +  const bass = note("<c3 ab3 eb3 bb3>").s("sawtooth").lpf(600).
+         +gain(0.6)                                                      
+      20 +  const pad = chord("<Cm Ab Eb Bb>").voicing().s("triangle").ga
+         +in(0.45)                                                       
+      21 +  const bell = n("4 ~ 2 ~ 0 ~ 2 ~")                            
+      22 +    .scale("C5:minor")                                         
+      23 +    .s("sine")                                                 
+      24 +    .decay(0.4)                                                
+      25 +    .sustain(0)                                                
+      26 +    .gain(0.4)                                                 
+      27 +  const fill = (x) => x.rev()                                  
+      28 +                                                               
+      29 +  const intro = pad                                            
+      30 +  const verse = stack(s("bd ~ sd ~").bank("RolandTR808"), bass.
+         +ply(4), pad)                                                   
+      31 +  const chorus = stack(                                        
+      32 +    s("bd*4, ~ cp ~ cp, hh*8").bank("RolandTR808"),            
+      33 +    bass.ply(8),                                               
+      34 +    pad,                                                       
+      35 +    bell.lastOf(4, fill),                                      
+      36 +  )                                                            
+      37 +                                                               
+      38 +  arrange([2, intro], [8, verse], [8, chorus], [2, intro])     
+      39 +  :::                                                          
+      40 +                                                               
+     … 37 more lines (ctrl+o to expand)
+
+● Bash(cat > zen.consolidated-idioms.v01.yaml <<'EOF'
+      id: zen.consolidated-idioms.v01…)
+  ⎿  20
+  ⎿  Created exercises/zen.consolidated-idioms.v01.yaml (+64 -0)
+       1 +id: zen.consolidated-idioms.v01                                
+       2 +skills: [zen.consolidated-idioms]                              
+       3 +type: refactor                                                 
+       4 +difficulty: 3                                                  
+       5 +title: "Clean up a first draft"                                
+       6 +prompt: |                                                      
+       7 +  This first draft of a 110 BPM loop in A minor breaks several 
+         +of the                                                         
+       8 +  course's idioms. Find them all, then rewrite it in **two** `$
+         +:` lines,                                                      
+       9 +  one for the chords and one for the melody:                   
+      10 +                                                               
+      11 +  - the tempo should read in BPM;                              
+      12 +  - the harmony should be named, not spelled: chord symbols in 
+         +one `< >`;                                                     
+      13 +  - the second melody line is the first one a third higher: der
+         +ive it                                                         
+      14 +    instead of copying it, writing the melody as scale degrees;
+      15 +  - the echo time should read as a fraction of a bar;          
+      16 +  - each chain should follow the house order: notes, sound, fil
+         +ters,                                                          
+      17 +    effects, gain.                                             
+      18 +                                                               
+      19 +  The melody should sound exactly the same. The chords will be 
+         +voiced by                                                      
+      20 +  the dictionary, so their spacing may differ a little from the
+      21 +  hand-spelled ones.                                           
+      22 +starter: |                                                     
+      23 +  setcpm(27.5)                                                 
+      24 +  $: note("[a3,c4,e4]").s("triangle").gain(0.4).mask("<1 0 0 0>
+         +")                                                             
+      25 +  $: note("[f3,a3,c4]").s("triangle").gain(0.4).mask("<0 1 0 0>
+         +")                                                             
+      26 +  $: note("[c4,e4,g4]").s("triangle").gain(0.4).mask("<0 0 1 0>
+         +")                                                             
+      27 +  $: note("[g3,b3,d4]").s("triangle").gain(0.4).mask("<0 0 0 1>
+         +")                                                             
+      28 +  $: note("a4 c5 e5 c5")                                       
+      29 +    .s("square")                                               
+      30 +    .gain(0.3)                                                 
+      31 +    .lpf(2000)                                                 
+      32 +    .delay(0.4)                                                
+      33 +    .delaysync(0.1875)                                         
+      34 +  $: note("c5 e5 g5 e5")                                       
+      35 +    .s("square")                                               
+      36 +    .gain(0.3)                                                 
+      37 +    .lpf(2000)                                                 
+      38 +    .delay(0.4)                                                
+      39 +    .delaysync(0.1875)                                         
+      40 +hide_reference_code_until_reveal: true                         
+     … 24 more lines (ctrl+o to expand)
+  ⎿  Created exercises/zen.consolidated-idioms.v02.yaml (+41 -0)
+       1 +id: zen.consolidated-idioms.v02                                
+       2 +skills: [zen.consolidated-idioms]                              
+       3 +type: recall                                                   
+       4 +difficulty: 2                                                  
+       5 +title: "Five idioms in one line"                               
+       6 +prompt: |                                                      
+       7 +  From memory, without looking anything up, write one melody li
+         +ne that:                                                       
+       8 +                                                               
+       9 +  1. plays at **96 BPM**, with the tempo written the course's w
+         +ay;                                                            
+      10 +  2. is written as the scale degrees **0 2 4 2** in **D minor**
+         + from D4;                                                      
+      11 +  3. plays **backwards in the last bar** of every 4-bar phrase;
+      12 +  4. is **doubled an octave higher**;                          
+      13 +  5. on a square wave filtered at 2400 Hz, with **dotted-eighth
+         + echoes**                                                      
+      14 +     that stay in time at any tempo.                           
+      15 +                                                               
+      16 +  Each requirement is one idiom from earlier in the course. Wri
+         +te the                                                         
+      17 +  methods in the house order.                                  
+      18 +hide_reference_code_until_reveal: true                         
+      19 +solutions:                                                     
+      20 +  - code: |                                                    
+      21 +      setcpm(96 / 4)                                           
+      22 +      n("0 2 4 2".lastOf(4, (x) => x.rev()))                   
+      23 +        .scale("D4:minor")                                     
+      24 +        .superimpose((x) => x.add(note(12)))                   
+      25 +        .s("square")                                           
+      26 +        .lpf(2400)                                             
+      27 +        .delay(0.3)                                            
+      28 +        .delaysync(3 / 16)                                     
+      29 +listen_for:                                                    
+      30 +  - "Tempo: setcpm(96 / 4), four beats per cycle"              
+      31 +  - "Bars 1-3: D4 F4 A4 F4 with D5 F5 A5 F5 above; bar 4: the s
+         +ame backwards"                                                 
+      32 +  - "lastOf, not every: every would vary the first bar of the p
+         +hrase"                                                         
+      33 +  - "The octave is note(12) wrapped in note, so it adds to the 
+         +pitch: add(12) on its own would do nothing"                    
+      34 +  - "delaysync(3 / 16): a dotted eighth is 3 sixteenths of a ba
+         +r"                                                             
+      35 +verify:                                                        
+      36 +  cycles: 4                                                    
+      37 +sources:                                                       
+      38 +  - strudel-doc: setcpm                                        
+      39 +  - strudel-doc: lastOf                                        
+      40 +  - strudel-doc: superimpose                                   
+     … 1 more lines (ctrl+o to expand)
+  ⎿  Created exercises/zen.consolidated-idioms.v03.yaml (+104 -0)
+        1 +id: zen.consolidated-idioms.v03                               
+        2 +skills: [zen.consolidated-idioms]                             
+        3 +type: creative                                                
+        4 +difficulty: 5                                                 
+        5 +title: "Your graduation piece"                                
+        6 +prompt: |                                                     
+        7 +  Write a complete piece of **24 to 32 bars** in one of the co
+          +urse's three                                                  
+        8 +  genres: chiptune, synth-pop or synthwave. It should be a pie
+          +ce you'd be                                                   
+        9 +  happy to play for someone, and code you'd be happy to hand t
+          +o another                                                     
+       10 +  live coder.                                                 
+       11 +                                                              
+       12 +  The music:                                                  
+       13 +  - at least **three sections** with a clear arc, the peak nea
+          +r the end;                                                    
+       14 +  - the genre's sound: for chiptune, pulse waves, a triangle b
+          +ass and noise                                                 
+       15 +    drums on four monophonic channels; for synth-pop, a drum m
+          +achine,                                                       
+       16 +    sequenced bass, brass or pads and a hook; for synthwave, a
+          + driving bass,                                                
+       17 +    a detuned pumping pad and a lead with echoes.             
+       18 +                                                              
+       19 +  The code:                                                   
+       20 +  - tempo first, then named parts, then sections, then the for
+          +m on the                                                      
+       21 +    last line;                                                
+       22 +  - every musical fact (the chord loop, each part's sound) wri
+          +tten once;                                                    
+       23 +  - the course's idioms where they fit: chord symbols or scale
+          + degrees,                                                     
+       24 +    derived voices, patterns inside parameters, time in fracti
+          +ons of a                                                      
+       25 +    bar, orbits for different spaces.                         
+       26 +                                                              
+       27 +  The reference, a chiptune piece, is one possible answer.    
+       28 +hide_reference_code_until_reveal: true                        
+       29 +solutions:                                                    
+       30 +  - code: |                                                   
+       31 +      setcpm(140 / 4)                                         
+       32 +      // Channel 1: pulse lead                                
+       33 +      const lead = n("<[0 2 4 7] [5@2 4 2] [3 4 5 3] [4@3 ~]>"
+          +)                                                             
+       34 +        .scale("C5:major")                                    
+       35 +        .s("pulse")                                           
+       36 +        .decay(0.15)                                          
+       37 +        .sustain(0.5)                                         
+       38 +        .gain(0.3)                                            
+       39 +      const fanfare = note(                                   
+       40 +        "<[c5 eb5 ab5 eb5] [d5 f5 bb5 f5] [c5 e5 g5 c6] [c6@3 
+          +~]>",                                                         
+     … 64 more lines (ctrl+o to expand)
+  ⎿  Created exercises/zen.consolidated-idioms.v04.yaml (+60 -0)
+       1 +id: zen.consolidated-idioms.v04                                
+       2 +skills: [zen.consolidated-idioms]                              
+       3 +type: transform                                                
+       4 +difficulty: 3                                                  
+       5 +title: "Four edits mid-set"                                    
+       6 +prompt: |                                                      
+       7 +  The starter is a tidy 8-bar piece. Imagine you are playing it
+         + live, and                                                     
+       8 +  make these four changes, each in as few places as possible:  
+       9 +                                                               
+      10 +  1. Put the hook in **Dorian** instead of natural minor.      
+      11 +  2. Make the verse **8 bars** long instead of 4.              
+      12 +  3. Make the chorus pad **brighter (3000 Hz)** than the verse 
+         +pad                                                            
+      13 +     (1500 Hz), without writing the pad out twice. Hint: turn `
+         +pad` into a                                                    
+      14 +     function of its cutoff.                                   
+      15 +  4. Make the hook play **backwards in the last bar** of the ch
+         +orus.                                                          
+      16 +                                                               
+      17 +  Then count how many lines each change touched.               
+      18 +starter: |                                                     
+      19 +  setcpm(100 / 4)                                              
+      20 +  const loop = "<Am F C G>"                                    
+      21 +  const drums = s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR909") 
+      22 +  const bass = note("<a3 f3 c3 g3>").ply(8).s("sawtooth").lpf(7
+         +00).gain(0.6)                                                  
+      23 +  const pad = chord(loop).voicing().s("supersaw").detune(0.2).l
+         +pf(1500).gain(0.35)                                            
+      24 +  const hook = n("4 ~ 5 4 2 ~ 0 2")                            
+      25 +    .scale("A4:minor")                                         
+      26 +    .s("square")                                               
+      27 +    .lpf(3000)                                                 
+      28 +    .gain(0.3)                                                 
+      29 +  const verse = stack(drums, bass, pad)                        
+      30 +  const chorus = stack(drums, bass, pad, hook)                 
+      31 +  arrange([4, verse], [4, chorus])                             
+      32 +hide_reference_code_until_reveal: true                         
+      33 +solutions:                                                     
+      34 +  - code: |                                                    
+      35 +      setcpm(100 / 4)                                          
+      36 +      const loop = "<Am F C G>"                                
+      37 +      const drums = s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR90
+         +9")                                                            
+      38 +      const bass = note("<a3 f3 c3 g3>").ply(8).s("sawtooth").l
+         +pf(700).gain(0.6)                                              
+      39 +      const pad = (cutoff) =>                                  
+      40 +        chord(loop).voicing().s("supersaw").detune(0.2).lpf(cut
+         +off).gain(0.35)                                                
+     … 20 more lines (ctrl+o to expand)
+
+● All 20 variants are written. Now a light sanity pass: evaluate every playable
+  snippet and solution, looking for errors, warnings, missing events, and notes
+  below C3.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● Everything checks out cleanly with no notes below C3. Now I'll spot-check the
+  three riskiest claims: whether the refactors are truly equivalent, and how the
+  intro/outro clocks behave.
+
+  Ran 2 shell commands (ctrl+o to expand)
+
+● Confirmed. Last deliverable: the glossary additions, listing which chord
+  symbols each new skill uses.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● Bash(cd /home/blampo/Projects/tudel && head -15
+      sandbox/m3-context/output/batch2/glossary/chord-symbols.yaml; mkdir -p
+      sandbox/m3-context/output/batch3/glossary && p…)
+  ⎿  # Batch 2 additions. Symbols already in content/glossary are included
+     only so ingest merges their skills.
+     entries:
+     … +29 lines (ctrl+o to expand)
+  ⎿  Shell cwd was reset to /home/blampo/Projects/tudel/sandbox/m3-context
+  ⎿  Created ~/Projects/tudel/sandbox/m3-context/output/batch3/glossary/cho
+     rd-symbols.yaml (+145 -0)
+        1 +# Batch 3: every symbol below already exists in content/glossa
+          +ry/chord-symbols.yaml.                                        
+        2 +# Merge only the skills lists (ingest_batch2.mjs's merge logic
+          + does this).                                                  
+        3 +entries:                                                      
+        4 +- symbol: A                                                   
+        5 +  tones:                                                      
+        6 +  - A                                                         
+        7 +  - C#                                                        
+        8 +  - E                                                         
+        9 +  name: A major (Picardy third in A minor)                    
+       10 +  skills:                                                     
+       11 +  - zen.dramatic-arc                                          
+       12 +  - zen.readability-refactor                                  
+       13 +- symbol: Ab                                                  
+       14 +  tones:                                                      
+       15 +  - Ab                                                        
+       16 +  - C                                                         
+       17 +  - Eb                                                        
+       18 +  name: A flat major (♭VI borrowed from C minor)              
+       19 +  skills:                                                     
+       20 +  - zen.readability-refactor                                  
+       21 +- symbol: Am                                                  
+       22 +  tones:                                                      
+       23 +  - A                                                         
+       24 +  - C                                                         
+       25 +  - E                                                         
+       26 +  name: A minor                                               
+       27 +  skills:                                                     
+       28 +  - zen.section-arrange                                       
+       29 +  - zen.loop-layering                                         
+       30 +  - zen.dramatic-arc                                          
+       31 +  - zen.readability-refactor                                  
+       32 +  - zen.consolidated-idioms                                   
+       33 +- symbol: Bb                                                  
+       34 +  tones:                                                      
+       35 +  - Bb                                                        
+       36 +  - D                                                         
+       37 +  - F                                                         
+       38 +  name: B flat major                                          
+       39 +  skills:                                                     
+       40 +  - zen.section-arrange                                       
+     … 105 more lines (ctrl+o to expand)
+
+● Glossary written. One quick check for gate L8, which rejects bare names in
+  backticks that aren't Strudel functions:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● A handful of user-defined names (pad, const, verse…) are in backticks and
+  would trip gate L8. I'm switching them to italics now, since that's cheap.
+
+● Bash(cd /home/blampo/Projects/tudel/sandbox/m3-context/output/batch3/units/u12
+      && for w in pad answer sparkle stutter intro verse b const octaveUp
+      chorus loop; do gr…)
+  ⎿  exercises/zen.section-arrange.v04.yaml:10:  - Add a 4-bar section name
+     d *b* on the chords **F, G, C, E**, one per
+     lessons/readability-refactor.md:110:*const* and arrow functions are pl
+     … +9 lines (ctrl+o to expand)
+  ⎿  Updated exercises/zen.consolidated-idioms.v04.yaml (+1 -1)
+      10    1. Put the hook in **Dorian** instead of natural minor.
+      11    2. Make the verse **8 bars** long instead of 4.
+      12    3. Make the chorus pad **brighter (3000 Hz)** than the verse 
+          pad
+      13 -     (1500 Hz), without writing the pad out twice. Hint: turn `
+         -pad` into a                                                    
+      13 +     (1500 Hz), without writing the pad out twice. Hint: turn *
+         +pad* into a                                                    
+      14       function of its cutoff.
+      15    4. Make the hook play **backwards in the last bar** of the ch
+          orus.
+      16  
+  ⎿  Updated lessons/dramatic-arc.md (+1 -1)
+      67  
+      68  ## The reference piece
+      69  
+      70 -The code is laid out in the order of the plan: the parts first,
+         - then the sections built from them, and the form on the last li
+         -ne. `pad` is a small function, a recipe with blanks: give it a 
+         -chord loop and a cutoff, and it returns the pad playing that lo
+         -op at that brightness. The readability lesson returns to this. 
+      70 +The code is laid out in the order of the plan: the parts first,
+         + then the sections built from them, and the form on the last li
+         +ne. *pad* is a small function, a recipe with blanks: give it a 
+         +chord loop and a cutoff, and it returns the pad playing that lo
+         +op at that brightness. The readability lesson returns to this. 
+      71  
+      72  :::play{label="20-bar arc in A minor: intro, verse, chorus, bre
+          akdown over an E pedal, final chorus"}
+      73  setcpm(100 / 4)
+  ⎿  Updated exercises/zen.readability-refactor.v02.yaml (+2 -2)
+       8    phrase, but the variation is written as three callbacks neste
+          d inside
+       9    each other. Rewrite it with **named functions**, one per musi
+          cal idea,
+      10    so the `lastOf` call reads like a performance direction. Sugg
+          ested
+      11 -  names: `stutter` (each note played twice), `sparkle` (a fifth
+         - higher,                                                       
+      12 -  stuttering on beats 1 and 3) and `answer` (the line backwards
+         -, with the                                                     
+      11 +  names: *stutter* (each note played twice), *sparkle* (a fifth
+         + higher,                                                       
+      12 +  stuttering on beats 1 and 3) and *answer* (the line backwards
+         +, with the                                                     
+      13    sparkle on top). It should sound exactly the same.
+      14  starter: |
+      15    n(
+  ⎿  Updated lessons/readability-refactor.md (+3 -3)
+      49  
+      50  1. **The form is scattered.** The verse's length is written in 
+          five mask strings. Making the verse eight bars long means editi
+          ng all five, and one missed string breaks the piece. *Fix:* bui
+          ld each section as a named `stack` and write the form once, wit
+          h `arrange` {cite doc=arrange}.
+      51  2. **A part is copied with one change.** The two bass lines dif
+          fer only in `ply` and `lpf`. *Fix:* name what they share, and a
+          dd the differences where each is used.
+      52 -3. **A callback inside a callback.** `(x) => x.rev().superimpos
+         -e((y) => y.add(note(12)))` must be read inside out. *Fix:* give
+         - each step a name: `octaveUp`, then `answer`. A named function 
+         -reads like a word in a sentence: `lastOf(4, answer)` {cite doc=
+         -lastOf}.                                                       
+      52 +3. **A callback inside a callback.** `(x) => x.rev().superimpos
+         +e((y) => y.add(note(12)))` must be read inside out. *Fix:* give
+         + each step a name: *octaveUp*, then *answer*. A named function 
+         +reads like a word in a sentence: `lastOf(4, answer)` {cite doc=
+         +lastOf}.                                                       
+      53  4. **Unexplained numbers.** `setcpm(25)` hides the tempo, and `
+          delaysync(0.1875)` hides the rhythm. *Fix:* write them the cour
+          se's way, `setcpm(100 / 4)` and `delaysync(3 / 16)`: 100 BPM in
+           four beats per bar, and an echo a dotted eighth later.
+      54  5. **The layout doesn't follow the music.** Sound settings, rhy
+          thm and form are interleaved line by line, so to find out what 
+          plays in bar 6 you have to read every line. *Fix:* order the fi
+          le the way a score is ordered: tempo first, then the parts, the
+          n the sections, and the form last.
+      55  
+     ...
+      85  arrange([4, verse], [4, chorus])
+      86  :::
+      87  
+      88 -It plays the same events as the sprawling version. Now the ques
+         -tions are easy: the last line says the verse is four bars and t
+         -he chorus four bars, and the `chorus` stack lists its four part
+         -s. The `lastOf(4, …)` inside the chorus counts the chorus's own
+         - bars, because each `arrange` section runs on its own clock, so
+         - the answer always falls on the chorus's fourth bar.           
+      88 +It plays the same events as the sprawling version. Now the ques
+         +tions are easy: the last line says the verse is four bars and t
+         +he chorus four bars, and the *chorus* stack lists its four part
+         +s. The `lastOf(4, …)` inside the chorus counts the chorus's own
+         + bars, because each `arrange` section runs on its own clock, so
+         + the answer always falls on the chorus's fourth bar.           
+      89  
+      90  The file now reads top to bottom like a score:
+      91  
+     ...
+      107  
+      108  Names are the cheapest documentation there is. Call a part wha
+           t it does in the music: bass, chords, hook, pedal, riser. Avoi
+           d names that describe the code instead, such as saw1 or patter
+           n2. Name a function after its musical effect, so that answer, 
+           octaveUp and fill read like performance directions.
+      109  
+      110 -`const` and arrow functions are plain JavaScript. Strudel adds
+          - nothing to them, so they work anywhere in your code.         
+      110 +*const* and arrow functions are plain JavaScript. Strudel adds
+          + nothing to them, so they work anywhere in your code.         
+      111  
+      112  ## When not to refactor
+      113  
+  ⎿  Updated exercises/zen.section-arrange.v01.yaml (+1 -1)
+       5  title: "Write the road map: intro, verse, chorus, outro"
+       6  prompt: |
+       7    The starter defines three sections in D minor at 110 BPM: a q
+          uiet
+       8 -  `intro` (chords only), a `verse` and a fuller `chorus`. Don't
+         - change                                                        
+       8 +  *intro* (chords only), a *verse* and a fuller *chorus*. Don't
+         + change                                                        
+       9    them. Add one `arrange` line at the bottom that plays this fo
+          rm:
+      10  
+      11    | Section | Bars |
+  ⎿  … 5 more files changed
+
+● Last step: a short facts file for whoever runs verification, matching the
+  earlier batches.
+
+● Write(~/Projects/tudel/sandbox/m3-context/output/batch3/VERIFIED_FACTS.md)
+  ⎿  Wrote 23 lines to ../../VERIFIED_FACTS.md
+      1 # Batch 3: verified facts (adds to batch1/batch2 VERIFIED_FACTS.m
+      2 
+      3 Checked on 2026-10-09 against the pinned clone and by `node .cach
+      4 
+      5 ## arrange (`packages/core/pattern.mjs#L1469-L1473`)
+        ` weighted by cycles, then `.slow(total)`.
+      7 - **Each section runs its own clock.** Its cycles count only whil
+         continues where it stopped on the next pass. Evaluated: `arrange
+        ([2, note("c4")], [3, note("<e4 f4 g4 a4>")])` → bars 3-5 are E4 
+      8 - The same const used in two entries gets two independent clocks.
+     … +36 lines (ctrl+o to expand)
+
+● The Batch 3 first draft (unit U12, "Form, arc & zen") is in output/batch3/. It
+  has 5 skills with a lesson each, 4 exercise variants per skill (20 total),
+  and two supporting files: a glossary merge file and VERIFIED_FACTS.md for
+  whoever runs verification.
+
+  The skills and how they connect
+  - zen.section-arrange: parts are named and grouped into named sections (built
+    with stack), and a single arrange line at the bottom gives the form, like
+    the road map on a band chart.
+  - zen.loop-layering: seqPLoop written as a conductor's cue sheet, one row per
+    part, for staggered entrances. The exercises include a build-up and a
+    chorale whose voices enter from the bass up.
+  - zen.dramatic-arc: six things that raise or lower intensity: density,
+    register, brightness, loudness, harmony and key. Sections act like terraced
+    dynamics and signals like hairpins. The main example is a 20-bar piece whose
+    breakdown is a dominant pedal over a cadential six-four, set up like a
+    retransition in sonata form. Also covered: a noise riser, the semitone lift,
+    and Boléro's late key change.
+  - zen.readability-refactor: five signs of sprawling code, each with its fix,
+    and one piece refactored step by step. The code is laid out like a score:
+    tempo, then parts, then sections, then the form.
+  - zen.consolidated-idioms: the course's idiom notes reduced to nine
+    principles, a 16-bar example piece, and a self-review checklist.
+
+  The exercises cover all four types the brief asked for (arrange, refactor,
+  read-the-code, creative), plus recall, transform, sweep and spec-to-code. The
+  final creative variant is a "graduation piece" in the learner's choice of
+  genre, with a chiptune reference answer.
+
+  Two Strudel behaviours the lessons are built on. I checked both in the pinned
+  source and by running them; STRUDEL_API_M3.md gets them wrong or leaves them
+  out:
+  - Different clocks: arrange gives each section its own clock, so a section
+    starts on its own first step. seqPLoop uses the song's bar count, so a part
+    can come in partway through its pattern. The lessons contrast the two
+    directly, and this is why a 4-bar riser inside a 4-bar section always starts
+    from the bottom.
+  - Loop length: seqPLoop's loop length is the end of the last entry you write,
+    not the largest end. Writing the entries out of order can make a part
+    disappear entirely.
+
+  Checks I ran:
+  - All 34 playable snippets and reference solutions run with no warnings and no
+    notes below C3.
+  - In four refactor cases (three exercises and the lesson's before/after), the
+    messy starter and the clean solution produce exactly the same notes.
+  - Every chord symbol used is already in the glossary.
+
+  Not done, as you asked; these are for the cheaper pass:
+  - Formatting and line wrapping (the Prettier gate).
+  - pnpm verify and the snapshots.
+  - The style QA pass from STYLE_TIPS.md.
+  - The adversarial review that AGENTS.md wants recorded in docs/qa/reviews/.
+
+  Nothing has been copied into content/ yet. The glossary file only adds the new
+  skill ids to existing symbols, which the batch 2 ingest script's merge logic
+  already handles.
+
+✻ Cooked for 15m 28s · done 11:09 AM

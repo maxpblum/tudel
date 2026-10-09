@@ -1,0 +1,82 @@
+id: chip.project.v03
+skills: [chip.project]
+type: project
+difficulty: 4
+title: "Chiptune capstone: Title-screen fanfare"
+prompt: |
+  Write an original **eight-bar title-screen fanfare** in **F major** at
+  **130 BPM**. The harmony, one chord per bar, is **F, Bb, F, C, F, Bb, Db,
+  Eb**: a plain I-IV-I-V phrase answered by a phrase that swerves to the
+  borrowed bVI and bVII, so the loop's return to F is a victory cadence.
+
+  This cue spends its channels differently from a level theme: there is no
+  arpeggio channel. The **second pulse is the lead's echo**, and the
+  **triangle carries the harmony** as a broken-chord bass.
+
+  1. **Drum kit (noise channel).** A march snare on beats 2 and 4 for bars 1
+     to 7, then a sixteenth-note **snare roll with a crescendo** across bar
+     8 into the repeat.
+  2. **Bassline (triangle).** Each chord as root, fifth and octave
+     (for example F3 C4 F4), broken in eighth notes in the order low, middle,
+     high, middle. All notes at or above C3.
+  3. **Arpeggiated lead (pulse 1).** A fanfare melody built on the chord
+     tones (arpeggio-shaped, like a bugle call), with triplet "tonguing"
+     figures, a trill on the last bar, and vibrato on its long notes.
+  4. **Final multi-voice mix (pulse 2).** Add the echo channel with `off`: a
+     copy a sixteenth note later, much quieter, on a 50 % pulse. Balance the
+     four channels.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(130 / 4)
+      $: note(`<
+        [c5 [c5 c5 c5] f5@2 a5@4]
+        [bb5@2 a5 g5 f5@2 d5@2]
+        [c5 [c5 c5 c5] f5@2 a5 c6 a5 f5]
+        [g5@4 e5@2 c5@2]
+        [a5 [a5 a5 a5] c6@2 a5@2 f5@2]
+        [d6@2 c6 bb5 a5@2 f5@2]
+        [ab5@2 f5 ab5 db6@4]
+        [bb5@2 g5 bb5 [[eb6 f6]*4]@4]
+      >`)
+        .s("pulse")
+        .vib(6)
+        .vibmod("<0 0 0 [0.3@4 0@4] 0 0 [0@4 0.3@4] 0>")
+        .gain(0.45)
+        .off(1 / 16, (x) => x.gain(0.15).pw(0))
+      $: note(`<
+        [f3,c4,f4] [bb3,f4,bb4] [f3,c4,f4] [c3,g3,c4]
+        [f3,c4,f4] [bb3,f4,bb4] [db3,ab3,db4] [eb3,bb3,eb4]
+      >`)
+        .arp("0 1 2 1 0 1 2 1")
+        .s("triangle")
+        .gain(0.9)
+      $: s("<[~ white ~ white]!7 [white*16]>")
+        .decay(0.1)
+        .sustain(0)
+        .hpf(1500)
+        .gain("<0.35!7 [0.15 0.2 0.25 0.3 0.35 0.4 0.45 0.5]>")
+listen_for:
+  - "A bright, march-like fanfare: F, Bb, F, C, then F, Bb, D flat, E flat, and a triumphant return to F"
+  - "Triple-tongued repeated notes (C5 C5 C5) leading into leaps up the chord, like a bugle call"
+  - "Each lead note followed a sixteenth later by a quiet, hollow echo"
+  - "The triangle outlines each chord low, middle, high, middle in eighth notes"
+  - "Bar 8: a snare roll growing louder into the repeat, under an E flat 6 - F6 trill"
+rubric:
+  - "Checkpoint 1: snare on beats 2 and 4 for seven bars, and a sixteenth-note roll with rising gain in bar 8"
+  - "Checkpoint 2: the triangle plays each chord's root, fifth and octave as broken eighth notes (arp on stacked notes), every note at or above C3"
+  - "Checkpoint 3: an original fanfare melody shaped on the chord tones, with repeated-note triplets and at least one trill"
+  - "Checkpoint 3: vibrato only on long notes"
+  - "Checkpoint 4: an echo channel made with off, one quieter copy a sixteenth note later on a different pulse width"
+  - "Checkpoint 4: four channels in total; nothing plays block chords"
+  - "The given progression, with bVI-bVII in bars 7 and 8 resolving to I on the repeat"
+  - "No melody quoted from an existing game"
+verify:
+  cycles: 8
+  equivalent_solutions: false
+sources:
+  - strudel-doc: "off"
+  - strudel-doc: arp
+  - strudel-doc: vib
+  - lexicon: bright
+  - lexicon: hollow

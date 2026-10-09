@@ -1,0 +1,26 @@
+id: bus.stereo-pan.v04
+skills: [bus.stereo-pan]
+type: read-the-code
+difficulty: 2
+title: A crab canon across the speakers
+prompt: |
+  Before you play this, predict what comes out of each speaker, note by note.
+  Then play it, with headphones if you can, and check.
+
+  :::code
+  n("0 1 2 4").scale("C4:major").s("triangle").jux(rev)
+  :::
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      n("0 1 2 4").scale("C4:major").s("triangle").jux(rev)
+listen_for:
+  - "Left speaker: the line as written, c4 d4 e4 g4, in quarter notes"
+  - "Right speaker: its retrograde at the same time, g4 e4 d4 c4"
+  - "Beats 2 and 3 swap the same two notes between the speakers: d4 left against e4 right, then e4 left against d4 right"
+  - jux plays the original panned to 0 and the changed copy panned to 1
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: jux
+  - strudel-src: "packages/core/pattern.mjs#L2356-L2381"

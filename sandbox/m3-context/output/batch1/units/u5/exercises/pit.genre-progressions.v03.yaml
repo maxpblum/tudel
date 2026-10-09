@@ -1,0 +1,24 @@
+id: pit.genre-progressions.v03
+skills: [pit.genre-progressions]
+type: transform
+difficulty: 2
+title: From i–♭VI–♭III–♭VII to the Aeolian vamp
+prompt: |
+  The starter plays **i–♭VI–♭III–♭VII** in D minor. Turn it into the
+  **Aeolian vamp i–♭VII–♭VI–♭VII**, still in D minor and one chord per bar.
+  Change only the chord symbols.
+starter: |
+  chord("<Dm Bb F C>").voicing().s("triangle")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<Dm C Bb C>").voicing().s("triangle")
+listen_for:
+  - "Dm, C, Bb, C"
+  - "No chord has C sharp, so nothing leads up to D: the loop rocks between the tonic and the two major chords a whole tone and a major third below it"
+  - "The top voice is A4, C5, B flat 4, C5"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: chord
+  - strudel-doc: voicing

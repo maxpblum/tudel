@@ -1,0 +1,64 @@
+id: zen.consolidated-idioms.v01
+skills: [zen.consolidated-idioms]
+type: refactor
+difficulty: 3
+title: "Clean up a first draft"
+prompt: |
+  This first draft of a 110 BPM loop in A minor breaks several of the
+  course's idioms. Find them all, then rewrite it in **two** `$:` lines,
+  one for the chords and one for the melody:
+
+  - the tempo should read in BPM;
+  - the harmony should be named, not spelled: chord symbols in one `< >`;
+  - the second melody line is the first one a third higher: derive it
+    instead of copying it, writing the melody as scale degrees;
+  - the echo time should read as a fraction of a bar;
+  - each chain should follow the house order: notes, sound, filters,
+    effects, gain.
+
+  The melody should sound exactly the same. The chords will be voiced by
+  the dictionary, so their spacing may differ a little from the
+  hand-spelled ones.
+starter: |
+  setcpm(27.5)
+  $: note("[a3,c4,e4]").s("triangle").gain(0.4).mask("<1 0 0 0>")
+  $: note("[f3,a3,c4]").s("triangle").gain(0.4).mask("<0 1 0 0>")
+  $: note("[c4,e4,g4]").s("triangle").gain(0.4).mask("<0 0 1 0>")
+  $: note("[g3,b3,d4]").s("triangle").gain(0.4).mask("<0 0 0 1>")
+  $: note("a4 c5 e5 c5")
+    .s("square")
+    .gain(0.3)
+    .lpf(2000)
+    .delay(0.4)
+    .delaysync(0.1875)
+  $: note("c5 e5 g5 e5")
+    .s("square")
+    .gain(0.3)
+    .lpf(2000)
+    .delay(0.4)
+    .delaysync(0.1875)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(110 / 4)
+      $: chord("<Am F C G>").voicing().s("triangle").gain(0.4)
+      $: n("0 2 4 2".add("0,2"))
+        .scale("A4:minor")
+        .s("square")
+        .lpf(2000)
+        .delay(0.4)
+        .delaysync(3 / 16)
+        .gain(0.3)
+listen_for:
+  - "The same four-bar loop, A minor, F, C, G, at 110 BPM (27.5 cycles per minute × 4)"
+  - "The melody in parallel thirds, A4 C5 E5 C5 under C5 E5 G5 E5, with dotted-eighth echoes (0.1875 = 3 / 16 of a bar)"
+  - "Code check: six lines became two; changing the key of the melody is now one word in scale"
+  - "Code check: each chain ends with gain, after the filter and the delay"
+verify:
+  cycles: 4
+  equivalent_solutions: false
+sources:
+  - strudel-doc: setcpm
+  - strudel-doc: voicing
+  - strudel-doc: scale
+  - strudel-doc: delaysync

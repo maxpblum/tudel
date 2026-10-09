@@ -1,0 +1,30 @@
+id: det.supersaw.v03
+skills: [det.supersaw]
+type: read-the-code
+difficulty: 3
+title: Where are the voices?
+prompt: |
+  Read the code before you play it, and predict:
+
+  - how many oscillators sound on each note, and how many cents each one sits
+    above or below the written note
+  - how many times per second the highest and lowest voice beat against each
+    other on c4 (261.63 Hz), and whether that is faster or slower on c5
+
+  Use the beat rate = upper frequency − lower frequency, with the upper one at
+  261.63 × 2^(cents / 1200) Hz. Then play it and check.
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      note("c4 e4 g4 c5").s("supersaw").unison(3).detune(0.3)
+listen_for:
+  - "Three voices per note, at -15, 0 and +15 cents: detune(0.3) is the total spread of 30 cents, split evenly"
+  - "The middle voice is exactly on the written note"
+  - "On c4 the outer pair, 30 cents apart, beats about 4.6 times per second; on c5 the same 30 cents beat twice as fast, about 9 times per second"
+  - "Neighbouring voices, 15 cents apart, beat about 2.3 times per second on c4"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: unison
+  - strudel-doc: detune
+  - strudel-src: "packages/superdough/worklets.mjs#L38-L49"

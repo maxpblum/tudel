@@ -1,0 +1,38 @@
+id: spop.brass-stabs.v03
+skills: [spop.brass-stabs]
+type: match-by-ear
+difficulty: 4
+title: Thick brass on the loop
+prompt: |
+  Listen to the reference stabs over **A minor, F, C, G**, one chord per bar
+  at **120 BPM**. Recreate them: the hit rhythm on an eighth-note grid, the
+  oscillator (one voice or several slightly detuned voices?), and the shape
+  of the filter's opening. Close is good enough: aim to match the rhythm
+  exactly and the timbre by ear.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(120 / 4)
+      chord("<Am F C G>")
+        .struct("x ~ ~ x ~ ~ x ~")
+        .voicing()
+        .s("supersaw")
+        .unison(2)
+        .detune(0.1)
+        .attack(0.01)
+        .lpf(400)
+        .lpenv(4)
+        .lpattack(0.08)
+        .lpdecay(0.3)
+        .gain(0.5)
+listen_for:
+  - "Hits on beat 1, the 'and' of 2 and beat 4 (3 + 3 + 2)"
+  - "A slight beating inside each chord: two voices about 10 cents apart, not a single plain sawtooth"
+  - "A slower, wider bloom than a pluck: the cutoff rises 4 octaves, from 400 Hz to 6400 Hz, over 80 ms"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: struct
+  - strudel-doc: lpattack
+  - strudel-doc: detune
+  - lexicon: brassy

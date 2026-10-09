@@ -1,0 +1,40 @@
+id: det.detuned-lead.v02
+skills: [det.detuned-lead, det.pitch-drift]
+type: match-by-ear
+difficulty: 4
+title: Name the lead's ingredients
+prompt: |
+  Listen to the target lead line in A minor on `"supersaw"`. Loop it and
+  decide:
+
+  1. Few voices or many? Is the pitch clear, or smeared?
+  2. Is there vibrato? If so, roughly how fast (swings per second) and how
+     deep (in cents)?
+  3. Is the tone open and bright, or softened by a low-pass?
+
+  The notes: in bar 1, **a4** (half note), then **c5** and **b4** (quarter
+  notes); in bar 2, **a4** (dotted half) and **e4** (quarter). Then write the
+  sound.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("<[a4@2 c5 b4] [a4@3 e4]>")
+        .s("supersaw")
+        .unison(2)
+        .detune(0.15)
+        .vib(5)
+        .vibmod(0.2)
+        .lpf(2000)
+listen_for:
+  - "Two voices 15 cents apart: a clear pitch with a slow beating, not a smeared cluster"
+  - "Vibrato at 5 Hz, ±20 cents (vibmod 0.2), present from the start of every note"
+  - "A moderate low-pass at 2000 Hz takes the edge off the sawtooth without making it dark"
+  - "Two voices at 0.1 to 0.2 semitones and vibrato at 4 to 6 Hz with depth 0.15 to 0.3 all sound close"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: unison
+  - strudel-doc: detune
+  - strudel-doc: vib
+  - strudel-doc: vibmod
+  - lexicon: dark

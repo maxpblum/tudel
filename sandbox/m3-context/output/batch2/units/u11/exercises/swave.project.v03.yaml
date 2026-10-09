@@ -1,0 +1,104 @@
+id: swave.project.v03
+skills: [swave.project]
+type: project
+difficulty: 5
+title: "Synthwave capstone: Darksynth Chase"
+prompt: |
+  Build an original **eight-bar darksynth cue in F minor at 118 BPM**: the
+  darker, harder end of synthwave (think of a chase scene rather than a
+  cruise). Same four checkpoints, pushed harder.
+
+  **Plan first.** Chord loop: **Fm9, Db^7, Ab^7, Eb6**, one per bar. Orbits:
+  drums on **1**, pad and bass on **2**, lead on **3**.
+
+  **Checkpoint 1: Drums.** TR-909, kick on every beat, snare on 2 and 4,
+  **sixteenth-note hats** with an accent on each beat. The kick ducks orbit
+  2 **deeply** (close to silence) with a **short** recovery: at 118 BPM a
+  beat lasts about 0.51 seconds. In the fourth bar of each phrase, end with
+  a snare fill on beat 4.
+
+  **Checkpoint 2: Rolling bass.** The roots F, Db, Ab, Eb at or above C3,
+  as a **gallop** (sixteenths that leave out the first sixteenth of each
+  beat), brighter and more aggressive than in the lesson. On orbit 2.
+
+  **Checkpoint 3: Pumping pad.** The four chords on a seven-voice supersaw,
+  detuned a little more than usual for a darker, slightly sour edge, on
+  orbit 2 so it pumps hard with the kick.
+
+  **Checkpoint 4: Lead.** An original lead from bar 5, **lower and
+  buzzier** than the lesson's (around octave 4), with a dotted-eighth echo
+  and its own hall on orbit 3.
+
+  **Final mix.** Dense and loud, but the kick must still punch through:
+  check that the deep duck clears space for it.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(118 / 4)
+      $: s("bd*4")
+        .bank("RolandTR909")
+        .duckorbit(2)
+        .duckdepth(0.9)
+        .duckattack(0.25)
+      $: s("~ sd ~ <sd sd sd [sd sd sd sd]>").bank("RolandTR909")
+      $: s("hh*16").bank("RolandTR909").gain("[1 0.5 0.7 0.5]*4")
+      $: note("<f3 db3 ab3 eb3>")
+        .struct("[~ x x x]*4")
+        .s("sawtooth")
+        .lpf(600)
+        .lpenv(4)
+        .lpdecay(0.07)
+        .orbit(2)
+        .gain(0.7)
+      $: chord("<Fm9 Db^7 Ab^7 Eb6>")
+        .voicing()
+        .s("supersaw")
+        .unison(7)
+        .detune(0.35)
+        .spread(0.9)
+        .attack(0.2)
+        .release(0.8)
+        .lpf(1600)
+        .orbit(2)
+        .room(0.4)
+        .roomsize(4)
+        .gain(0.45)
+      $: note("<[f4@2 ab4 c5] [db5@3 c5] [ab4@2 g4 eb4] [f4@2 ~@2]>")
+        .mask("<0 0 0 0 1 1 1 1>")
+        .s("sawtooth")
+        .attack(0.02)
+        .release(0.3)
+        .lpf(3500)
+        .orbit(3)
+        .delay(0.35)
+        .delaysync(3 / 16)
+        .delayfeedback(0.4)
+        .room(0.3)
+        .roomsize(3)
+        .gain(0.55)
+listen_for:
+  - "Fast and driving: kick on every beat, accented sixteenth-note hats, a snare fill on beat 4 of bar 4 (and bar 8)"
+  - "A galloping bass that answers each kick with three bright, ticking sixteenths: F, Db, Ab, Eb"
+  - "The pad almost disappears on every kick and snaps back within half a beat: a hard pump"
+  - "Pad: Fm9, Db^7, Ab^7, Eb6 with a darker, slightly sour shimmer"
+  - "From bar 5, a buzzy lead in octave 4 with short echoes"
+rubric:
+  - "Tempo set with setcpm(118 / 4) and the loop Fm9, Db^7, Ab^7, Eb6, one chord per bar"
+  - "Drums: four-on-the-floor kick, snare on 2 and 4, accented sixteenth-note hats, a fill at the end of each four-bar phrase"
+  - "Deep, fast ducking: duckdepth of about 0.8 or more and duckattack of about half a beat or less, aimed at orbit 2"
+  - "Bass: gallop rhythm (struct with the first sixteenth of each beat empty), roots once per bar, every note at or above C3, on orbit 2"
+  - "Pad: seven-voice supersaw with detune above the usual 0.25 but still recognisably in tune, on orbit 2"
+  - "Lead: original, around octave 4, buzzier than the lesson's (single sawtooth, brighter filter), with a delaysync echo and reverb on orbit 3, entering in bar 5"
+  - "The kick still cuts through the dense mix"
+verify:
+  cycles: 8
+  equivalent_solutions: false
+sources:
+  - strudel-doc: duckorbit
+  - strudel-doc: duckdepth
+  - strudel-doc: struct
+  - strudel-doc: mask
+  - strudel-doc: detune
+  - lexicon: dark
+  - lexicon: buzzy
+  - lexicon: bright

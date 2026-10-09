@@ -1,0 +1,27 @@
+id: pit.extended-chords.v01
+skills: [pit.extended-chords]
+type: spec-to-code
+difficulty: 2
+title: ii7, V7, Imaj7 in F major
+prompt: |
+  Play **ii7, V7, Imaj7, Imaj7** in F major, one chord per bar, with `chord`
+  and `.voicing()` on `"triangle"`, with the default settings. First name
+  each chord: ii7 is built on the second degree with a minor seventh, V7 is
+  the dominant seventh, and Imaj7 is the tonic with a major seventh. Spell
+  the major seventh the way the dictionary accepts it.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<Gm7 C7 F^7 F^7>").voicing().s("triangle")
+listen_for:
+  - "Gm7, C7, F^7, F^7"
+  - "Gm7 is G3 B flat 3 D4 F4 B flat 4, in root position with the seventh, F4, inside the chord"
+  - "C7 is E3 B flat 3 E4 G4 C5: its third is in the bass, so in figured-bass terms it is a 6/5"
+  - "F^7 is F3 C4 E4 A4 C5, with the major seventh, E4, in the middle of the chord"
+  - "If bar 3 is silent and the console says unknown chord, you wrote maj7: the dictionary spells it ^7"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: chord
+  - strudel-doc: voicing
+  - strudel-src: "packages/tonal/ireal.mjs#L51-L52"

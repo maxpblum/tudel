@@ -1,0 +1,26 @@
+id: spop.drum-machine.v04
+skills: [spop.drum-machine]
+type: refactor
+difficulty: 2
+title: One hat line, one accent pattern
+prompt: |
+  The code below writes accented sixteenth-note hi-hats as three separate
+  lines, one per accent level. Rewrite it as **one** line: the hits in the
+  sound pattern, the accents in a `gain` pattern. It should sound the same.
+starter: |
+  $: s("hh ~ ~ ~ hh ~ ~ ~ hh ~ ~ ~ hh ~ ~ ~").bank("RolandTR808").gain(0.8)
+  $: s("~ ~ hh ~ ~ ~ hh ~ ~ ~ hh ~ ~ ~ hh ~").bank("RolandTR808").gain(0.55)
+  $: s("~ hh ~ hh ~ hh ~ hh ~ hh ~ hh ~ hh ~ hh").bank("RolandTR808").gain(0.3)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      s("hh*16").bank("RolandTR808").gain("[0.8 0.3 0.55 0.3]*4")
+listen_for:
+  - "Sixteen hats per bar, loudest on each beat, medium on each 'and', softest in between"
+  - "Exactly the same sound as the three-line version"
+  - "Code check: one line; the accent shape is written once and repeated four times with *4"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: gain
+  - strudel-doc: bank

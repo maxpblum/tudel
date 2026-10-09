@@ -1,0 +1,36 @@
+id: swave.rolling-bass.v04
+skills: [swave.rolling-bass]
+type: match-by-ear
+difficulty: 3
+title: The slow build
+prompt: |
+  Recreate this eight-bar bass at **100 BPM**. It plays one root per bar for a
+  four-chord loop in D minor, in a rhythm from this lesson, on a filtered
+  sawtooth with a filter envelope. Listen to the whole eight bars: something
+  about the colour changes slowly across them. Name the roots, the rhythm,
+  and what is moving, then write it.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(100 / 4)
+      note("<d3 bb3 f3 c3>")
+        .ply(8)
+        .add(note("[0 12]*4"))
+        .s("sawtooth")
+        .lpf(sine.range(300, 1000).slow(8))
+        .lpenv(3)
+        .lpdecay(0.1)
+listen_for:
+  - "Roots D3, Bb3, F3, C3, one per bar (Dm, Bb, F, C), repeated twice"
+  - "Octave pulse: every other eighth jumps up an octave"
+  - "The bass gets brighter, then darker again, over the eight bars: the starting cutoff moves between 300 and 1000 Hz"
+  - "Each note still ticks with a short filter envelope on top of the slow change"
+verify:
+  cycles: 8
+sources:
+  - strudel-doc: ply
+  - strudel-doc: add
+  - strudel-doc: sine
+  - strudel-doc: range
+  - lexicon: bright
+  - lexicon: dark

@@ -1,0 +1,27 @@
+id: chip.fast-arps.v01
+skills: [chip.fast-arps]
+type: spec-to-code
+difficulty: 2
+title: Four chords, one channel
+prompt: |
+  At **150 BPM**, play the progression **C, F, G, C** (one chord per bar) on
+  a single 25 % pulse channel as a frame-fast arpeggio. Write each chord as
+  four stacked notes in close position: **C4 E4 G4 C5**, **C4 F4 A4 C5**,
+  **B3 D4 G4 B4**, **C4 E4 G4 C5**. Cycle through positions **0 1 2 3**,
+  **12 times per bar** (48 notes per bar, 30 per second). Gain 0.45.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(150 / 4)
+      note("<[c4,e4,g4,c5] [c4,f4,a4,c5] [b3,d4,g4,b4] [c4,e4,g4,c5]>")
+        .arp("[0 1 2 3]*12")
+        .s("pulse")
+        .gain(0.45)
+listen_for:
+  - "Each bar sounds like one buzzing, shimmering chord, not a melody"
+  - "C major, F major (second inversion), G major (first inversion), C major"
+  - "The top note stays near C5: C5, C5, B4, C5"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: arp

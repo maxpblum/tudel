@@ -1,0 +1,32 @@
+id: det.pitch-drift.v04
+skills: [det.pitch-drift]
+type: read-the-code
+difficulty: 4
+title: One long note, four short ones
+prompt: |
+  Read the code before you play it. `saw` rises from 0 to 1 over each bar.
+  Predict:
+
+  - the pitch of the half note, and whether it bends while it sounds
+  - the pitches of the four sixteenths, in cents above a4
+  - what happens on the downbeat of bar 2
+
+  Then play it and check.
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      note("a4 a4*4")
+        .add(note(saw.range(0, 1)))
+        .s("triangle")
+listen_for:
+  - "The half note reads the signal once, at its onset, where saw is 0: a steady a4 with no bend"
+  - "The sixteenths start at 1/2, 5/8, 3/4 and 7/8 of the bar, so they sit 50, 62.5, 75 and 87.5 cents above a4: four small steps up"
+  - "On the next downbeat saw is back at 0, so bar 2 starts on a plain a4 again"
+  - "Drift only shows between onsets; to move the pitch inside a note, use vib and vibmod"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: saw
+  - strudel-doc: add
+  - strudel-src: "packages/core/signal.mjs#L18-L21"
+  - strudel-src: "packages/superdough/synth.mjs#L530-L531"

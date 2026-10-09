@@ -1,0 +1,100 @@
+id: swave.project.v02
+skills: [swave.project]
+type: project
+difficulty: 4
+title: "Synthwave capstone: Sunset Drive"
+prompt: |
+  Build an original **eight-bar "sunset drive" cue in C major at 88 BPM**:
+  slower, warmer and more relaxed than night-time synthwave. Same four
+  checkpoints, with a different character at each.
+
+  **Plan first.** Chord loop: **C^7, Am9, F^7, G6**, one per bar. Orbits:
+  drums on **1**, pad on **2**, lead on **3**. In this cue the pumping is
+  **drawn**, not sidechained: it should breathe gently on every beat.
+
+  **Checkpoint 1: Drums.** A relaxed groove on the TR-808: kick on beats 1
+  and 3, snare (or clap) on 2 and 4, eighth-note hats played softly, with
+  the snare given a little reverb.
+
+  **Checkpoint 2: Rolling bass.** The roots C, A, F, G at or above C3, in
+  **octave pulse**, on a darker filtered sawtooth than in the lesson (a
+  lower cutoff and a smaller filter envelope), so it is **warm** rather than
+  ticking.
+
+  **Checkpoint 3: Pumping pad.** The four chords on a seven-voice supersaw
+  with a slow attack and a long release, in a long hall, pumping once per
+  beat with `tremolosync`, with a floor of about half its level so the
+  breathing stays gentle.
+
+  **Checkpoint 4: Lead.** An original lead of long notes from bar 5, with a
+  soft attack, vibrato, a dotted-eighth echo and its own hall.
+
+  **Final mix.** Everything a little softer than in a night-drive cue; the
+  pad and lead carry the mood, the drums keep time.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(88 / 4)
+      $: s("bd ~ bd ~, ~ cp ~ cp").bank("RolandTR808").room(0.15)
+      $: s("hh*8").bank("RolandTR808").gain("[0.5 0.3]*4")
+      $: note("<c3 a3 f3 g3>")
+        .ply(8)
+        .add(note("[0 12]*4"))
+        .s("sawtooth")
+        .lpf(300)
+        .lpenv(1.5)
+        .lpdecay(0.15)
+        .gain(0.7)
+      $: chord("<C^7 Am9 F^7 G6>")
+        .voicing()
+        .s("supersaw")
+        .unison(7)
+        .detune(0.2)
+        .spread(0.8)
+        .attack(0.8)
+        .release(2)
+        .lpf(1600)
+        .tremolosync(4)
+        .tremolodepth(0.5)
+        .orbit(2)
+        .room(0.6)
+        .roomsize(7)
+        .gain(0.5)
+      $: note("<[g5@3 e5] [e5@2 d5 c5] [c5@2 a4 c5] [d5@2 ~@2]>")
+        .mask("<0 0 0 0 1 1 1 1>")
+        .s("sawtooth")
+        .vib(4.5)
+        .vibmod(0.1)
+        .attack(0.1)
+        .release(0.6)
+        .lpf(2200)
+        .orbit(3)
+        .delay(0.45)
+        .delaysync(3 / 16)
+        .delayfeedback(0.5)
+        .room(0.5)
+        .roomsize(5)
+        .gain(0.45)
+listen_for:
+  - "A slow, relaxed groove: kick on 1 and 3, claps on 2 and 4, soft hats with an accent on each beat"
+  - "A warm, round octave-pulse bass: C, A, F, G, darker than a night-drive bass"
+  - "Pad: C^7, Am9, F^7, G6 with B4, B4, C5, B4 on top, swelling gently on every beat but never dropping below about half level"
+  - "From bar 5 a soft-edged lead, with echoes between the beats and a long tail"
+rubric:
+  - "Tempo set with setcpm(88 / 4) and the loop C^7, Am9, F^7, G6, one chord per bar"
+  - "Drums on a TR-808 bank with a half-time feel (kick on 1 and 3) and soft hats"
+  - "Bass: roots once per bar in octave pulse, every note at or above C3, darker than in the lesson (lower lpf or smaller lpenv)"
+  - "Pad: seven-voice supersaw, detune of 0.3 or less, attack of 0.5 seconds or more, long hall on its own orbit"
+  - "Pumping drawn with tremolosync(4) (or gain(saw...) on segment(16)), with tremolodepth well below 1 so it never goes silent"
+  - "Lead: original, mostly long notes, entering in bar 5, with vibrato, delaysync echo and reverb on its own orbit"
+  - "Overall level and attack softer than a night-drive cue: no part sounds harsh or buzzy"
+verify:
+  cycles: 8
+  equivalent_solutions: false
+sources:
+  - strudel-doc: tremolosync
+  - strudel-doc: tremolodepth
+  - strudel-doc: mask
+  - strudel-doc: delaysync
+  - lexicon: warm
+  - lexicon: buzzy

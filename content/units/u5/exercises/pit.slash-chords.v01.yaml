@@ -1,0 +1,31 @@
+id: pit.slash-chords.v01
+skills: [pit.slash-chords]
+type: spec-to-code
+difficulty: 3
+title: A falling bass under F, C/E, Dm, F/C
+prompt: |
+  Play **F | C/E | Dm | F/C** in F major, one chord per bar, so that the bass
+  falls by step: F3, E3, D3, C3. Every slash bass here is a chord tone, so
+  you need only one `chord` line with `.voicing()` on `"triangle"`. Let the
+  bass line be the anchor, and pick the mode that puts the anchor at the
+  bottom.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<F C Dm F>")
+        .anchor("<f3 e3 d3 c3>")
+        .mode("above")
+        .voicing()
+        .s("triangle")
+listen_for:
+  - The lowest note falls F3, E3, D3, C3, one step per bar
+  - "In figured-bass terms: 5/3, 6/3, 5/3, then a 6/4 to end on"
+  - "The chords are F3 C4 F4 A4, E3 G3 C4 E4 G4, D3 F3 A3 D4 F4 and C3 F3 A3 C4 F4"
+  - "If you wrote `chord(\"C/E\")`, it stops with Invalid argument: inside the quotes, a slash means slow down"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: anchor
+  - strudel-doc: mode
+  - strudel-src: "packages/tonal/tonleiter.mjs#L148-L169"
+  - strudel-src: "packages/mini/krill.pegjs#L150-L151"

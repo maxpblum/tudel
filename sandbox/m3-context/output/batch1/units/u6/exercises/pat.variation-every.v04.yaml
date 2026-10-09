@@ -1,0 +1,33 @@
+id: pat.variation-every.v04
+skills: [pat.variation-every]
+type: creative
+difficulty: 3
+title: A phrase with a beginning and an end
+prompt: |
+  Write a one-bar riff of your own and turn its loop into four-bar phrases
+  that are audibly shaped: mark the **first** bar of each phrase with one
+  transform and the **last** bar with another. Pick transforms from this
+  unit (`rev`, `fast`, an octave with `add`, and so on). Loop it for at
+  least eight bars and check that you can hear where each phrase starts and
+  ends.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("0 2 4 2 3 1 2 4".every(4, (x) => x.add(7)).lastOf(4, (x) => x.rev()))
+        .scale("E4:minor")
+        .s("triangle")
+    note: One example. Bar 1 of each phrase is an octave higher, bar 4 is the riff backwards, which ends on the tonic E4 where the riff itself ends on B4.
+listen_for:
+  - "The first bar of each phrase stands out from bars 2 and 3"
+  - "The fourth bar sounds like an ending, not like one more repetition"
+rubric:
+  - "The riff is written once"
+  - "every (or firstOf) changes bar 1 of each group of four, and lastOf changes bar 4"
+  - "Arithmetic on pitch is done on the degrees inside n(...)"
+  - "No note goes below C3"
+  - "Over eight bars, the two phrases are audible as two phrases"
+verify:
+  cycles: 8
+sources:
+  - strudel-doc: every
+  - strudel-doc: lastOf

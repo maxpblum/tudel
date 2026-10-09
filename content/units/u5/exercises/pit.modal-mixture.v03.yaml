@@ -1,0 +1,25 @@
+id: pit.modal-mixture.v03
+skills: [pit.modal-mixture]
+type: transform
+difficulty: 2
+title: End on a Picardy third
+prompt: |
+  The starter plays i, iv, V, i in A minor. End it the way many Baroque
+  minor-key pieces end: borrow the **major** tonic from A major for the last
+  chord. Change only the last symbol.
+starter: |
+  chord("<Am Dm E Am>").voicing().s("triangle")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<Am Dm E A>").voicing().s("triangle")
+listen_for:
+  - "Am, Dm, E, A"
+  - "The last chord is C sharp 3 A3 C sharp 4 E4 A4, with its major third in the bass. The event list names C sharp as Db, because voicing spells black keys as flats"
+  - "The G sharp 4 of the E chord rises to A4, and the C sharp now sounds bright against the C natural of bar 1"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: chord
+  - strudel-doc: voicing
+  - strudel-src: "packages/tonal/tonleiter.mjs#L74-L78"

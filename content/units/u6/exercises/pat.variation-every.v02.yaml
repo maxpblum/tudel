@@ -1,0 +1,34 @@
+id: pat.variation-every.v02
+skills: [pat.variation-every]
+type: transform
+difficulty: 2
+title: The fill in the wrong bar
+prompt: |
+  The starter is meant to play a drum fill, the pattern twice as fast, at the
+  **end** of every four-bar phrase. Count the bars while it plays: where does
+  the fill land? Fix it so the fill comes in bar 4, 8, 12…
+starter: |
+  s("bd hh sd hh")
+    .bank("RolandTR909")
+    .every(4, (x) => x.fast(2))
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      s("bd hh sd hh")
+        .bank("RolandTR909")
+        .lastOf(4, (x) => x.fast(2))
+  - code: |
+      s("bd hh sd hh")
+        .bank("RolandTR909")
+        .when("<0 0 0 1>", (x) => x.fast(2))
+    note: The same events, with the bar chosen by a pattern of 1s and 0s.
+listen_for:
+  - "In the starter the fill opens each phrase: every is another name for firstOf, which changes the first bar of each group"
+  - "Fixed, bars 1 to 3 play bass drum, hi-hat, snare, hi-hat in quarter notes, and bar 4 plays that twice in eighths"
+  - "After the fill, the next phrase starts on a plain bar"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: every
+  - strudel-doc: lastOf
+  - strudel-src: "packages/core/pattern.mjs#L2022-L2026"

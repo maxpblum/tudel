@@ -1,0 +1,56 @@
+id: bus.shared-effects.v01
+skills: [bus.shared-effects]
+type: arrange
+difficulty: 3
+title: One room for the band, an echo bus for the lead
+prompt: |
+  Here are three stems, dry. Route them into a mix:
+
+  1. **Drums and chords play in one room** with a 2-second reverb. The drums
+     sit close (send 0.1), the chords farther back (send 0.5). Write the
+     `roomsize` only once, after a `stack` of these two parts.
+  2. **The lead gets eighth-note echoes** (`delaysync` 1/8 cycle, send 0.5)
+     that the other parts must not share. Put it on its own orbit.
+
+  Keep every sound setting in the stems as it is.
+starter: |
+  $: s("bd [~ bd] sd ~").bank("RolandTR909")
+  $: chord("<Em C G D>").voicing().s("triangle")
+  $: n("0 ~ 2 4 ~ 2 1 ~")
+    .scale("E4:minor")
+    .s("square")
+    .decay(0.1)
+    .sustain(0)
+    .lpf(1800)
+    .gain(0.35)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      $: stack(
+        s("bd [~ bd] sd ~").bank("RolandTR909").room(0.1),
+        chord("<Em C G D>").voicing().s("triangle").room(0.5),
+      ).roomsize(2)
+      $: n("0 ~ 2 4 ~ 2 1 ~")
+        .scale("E4:minor")
+        .s("square")
+        .decay(0.1)
+        .sustain(0)
+        .lpf(1800)
+        .delay(0.5)
+        .delaysync(1 / 8)
+        .orbit(2)
+        .gain(0.35)
+listen_for:
+  - The kick and snare sound close and nearly dry. The chords carry a soft wash behind them
+  - Both share one 2-second tail, set once by the roomsize after the stack
+  - Each lead note is followed by echoes an eighth note apart, each about 6 dB quieter than the one before (default feedback 0.5)
+  - The drums and chords have no echoes. They send nothing to a delay, and the lead's delay is on orbit 2
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: orbit
+  - strudel-doc: stack
+  - strudel-doc: room
+  - strudel-doc: delaysync
+  - strudel-src: "packages/superdough/superdough.mjs#L929-L955"
+  - strudel-src: "packages/superdough/superdough.mjs#L193-L193"

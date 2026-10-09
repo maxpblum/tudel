@@ -1,0 +1,26 @@
+id: pat.canon-imitation.v02
+skills: [pat.canon-imitation]
+type: spec-to-code
+difficulty: 3
+title: Canon at the fifth below
+prompt: |
+  The subject is two bars in D minor, tonic on D4: D4 F4 A4 G4 in quarter
+  notes, then F4 E4 and a half-note D4. Write it as scale degrees with
+  `< >`, one bracket per bar, and add a follower with `off` that enters
+  **half a bar** later, **a fifth lower** (count the fifth in scale degrees).
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("<[0 2 4 3] [2 1 0@2]>".off(1 / 2, (x) => x.sub(4)))
+        .scale("D4:minor")
+        .s("triangle")
+listen_for:
+  - "A fifth is four degrees down, so the follower starts on G3: G3 B flat 3 D4 C4, then B flat 3 A3 G3"
+  - "It enters on beat 3 of bar 1, against the leader's A4"
+  - "At the start of every pass, the follower's half-note G3 from the previous pass sounds under the leader's D4 and F4"
+  - "If the follower sounds a fourth lower (A3), you subtracted 3 instead of 4"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: off
+  - strudel-doc: sub

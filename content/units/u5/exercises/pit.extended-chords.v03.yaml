@@ -1,0 +1,24 @@
+id: pit.extended-chords.v03
+skills: [pit.extended-chords]
+type: transform
+difficulty: 2
+title: Add the diatonic sevenths
+prompt: |
+  The starter plays I, vi, IV, V in C major as triads. Turn each chord into
+  its **diatonic seventh chord**: add the seventh above the root that the
+  C major scale gives. Change only the chord symbols.
+starter: |
+  chord("<C Am F G>").voicing().s("triangle")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<C^7 Am7 F^7 G7>").voicing().s("triangle")
+listen_for:
+  - "C^7, Am7, F^7, G7: major sevenths on I and IV, a minor seventh on vi, the dominant seventh on V"
+  - "The top voice is B4, C5, C5, B4. In bar 1, B4, the major seventh, is on top"
+  - "The sevenths are B4, G4, E4 and F4. In bars 1 and 3 the seventh is major, a semitone short of the octave; in bars 2 and 4 it is minor, a whole tone short"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: chord
+  - strudel-doc: voicing

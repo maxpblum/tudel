@@ -1,0 +1,38 @@
+id: spop.hooks.v03
+skills: [spop.hooks]
+type: ear-dictation
+difficulty: 4
+title: Name the mode
+prompt: |
+  Listen to the hook over its four-chord loop at **120 BPM**. Write down
+  the hook's pitches and rhythm, then name its mode: which note gives it
+  away? Then write the hook in Strudel with `n` and `scale`, and the chord
+  loop under it with `chord` and `voicing`.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(120 / 4)
+      $: n("4 ~ 6 4 3 2 ~ 0")
+        .scale("G4:mixolydian")
+        .s("square")
+        .decay(0.2)
+        .sustain(0.3)
+        .lpf(3000)
+        .gain(0.5)
+      $: chord("<G F C G>")
+        .voicing()
+        .s("sawtooth")
+        .attack(0.3)
+        .release(0.8)
+        .vowel("a")
+        .gain(0.35)
+listen_for:
+  - "Hook: D5, rest, F5, D5, C5, B4, rest, G4 in eighth notes"
+  - "F natural over a G major tonic: the lowered seventh of G Mixolydian"
+  - "Loop: G, F, C, G (I, bVII, IV, I), with no F sharp leading tone anywhere"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: scale
+  - strudel-doc: chord
+  - strudel-doc: voicing

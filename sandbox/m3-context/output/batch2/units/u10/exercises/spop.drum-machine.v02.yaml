@@ -1,0 +1,31 @@
+id: spop.drum-machine.v02
+skills: [spop.drum-machine]
+type: dictation
+difficulty: 3
+title: A syncopated 808 backbeat
+prompt: |
+  Write this two-bar bass drum and snare part on the **TR-808** in one
+  mini-notation line (bottom space bass drum, third space snare). Both bars
+  are the same, so write one bar. Count the eighths: which bass drums fall
+  on a beat, and which on an "and"?
+abc: |
+  X:1
+  M:4/4
+  L:1/8
+  K:C clef=perc
+  F z c F z F c z | F z c F z F c z |
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      s("bd ~ sd bd ~ bd sd ~").bank("RolandTR808")
+listen_for:
+  - "Snare on beats 2 and 4"
+  - "Bass drum on beat 1, then on the 'and' of 2 and the 'and' of 3: the two off-beat kicks push the bar forward"
+  - "The 808's long, booming bass drum"
+verify:
+  cycles: 2
+  abc_agreement:
+    voice: 0
+    compare: [onset, duration]
+sources:
+  - strudel-doc: bank

@@ -1,0 +1,24 @@
+id: pat.variation-every.v03
+skills: [pat.variation-every]
+type: read-the-code
+difficulty: 3
+title: Half a bar, every other bar
+prompt: |
+  Read the code before you play it. The line is a C major scale up to G4 and
+  back down in eighth notes. Predict: in which bars, and on which beats, does
+  the transform apply, and which notes do you hear there? Then play it.
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      n("0 1 2 3 4 3 2 1".when("<0 [0 1]>", (x) => x.add(2)))
+        .scale("C4:major")
+        .s("triangle")
+listen_for:
+  - "Bar 1 is unchanged: C4 D4 E4 F4 G4 F4 E4 D4"
+  - "Bar 2: the first half is unchanged, the second half is a third higher: B4 A4 G4 F4 instead of G4 F4 E4 D4"
+  - "Why: < > picks 0 in bar 1 and [0 1] in bar 2, and [0 1] is 1 only in the second half of the bar"
+  - "every and lastOf can only choose whole bars; when can choose part of one"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: when

@@ -1,0 +1,24 @@
+id: pit.genre-progressions.v02
+skills: [pit.genre-progressions]
+type: ear-dictation
+difficulty: 3
+title: Which loop is it?
+prompt: |
+  The target is one of the four-chord loops from the lesson, in **F major**,
+  one chord per bar, with only triads from the key. It starts on a minor
+  chord. Name the loop in Roman numerals, then write it with `chord` and
+  `.voicing()` on `"triangle"`, with the default settings.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<Dm Bb F C>").voicing().s("triangle")
+listen_for:
+  - "vi–IV–I–V in F major: Dm, Bb, F, C"
+  - "Heard with D as home, the same chords are i–♭VI–♭III–♭VII in D minor"
+  - "The bass is D3, D3, F3, E3: the B flat and C chords come out in first inversion"
+  - "The top voice is A4, B flat 4, C5, C5"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: chord
+  - strudel-doc: voicing

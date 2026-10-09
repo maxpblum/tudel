@@ -1,0 +1,26 @@
+id: pat.speed-dir.v02
+skills: [pat.speed-dir]
+type: read-the-code
+difficulty: 3
+title: An arch in every bar
+prompt: |
+  Read the code before you play it. The line is D4 E4 F4 A4, one bar of
+  quarter notes in D minor. Predict what one bar sounds like, and whether
+  bar 2 differs from bar 1. Then play it and check.
+
+  Then predict the order swapped, `.fast(2).palindrome()`, and play that too.
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      n("0 1 2 4").scale("D4:minor").s("triangle").palindrome().fast(2)
+listen_for:
+  - "Every bar is an arch in eighth notes: D4 E4 F4 A4, then A4 F4 E4 D4"
+  - "Bar 2 is the same as bar 1"
+  - "Why: palindrome makes a two-bar pattern (forwards, then backwards), and fast(2) fits both of its bars into one"
+  - "Swapped, .fast(2).palindrome() plays the line twice forwards in bar 1 and twice backwards in bar 2: palindrome now reverses whole bars of the already-fast pattern"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: palindrome
+  - strudel-doc: fast
+  - strudel-src: "packages/core/pattern.mjs#L2340-L2347"

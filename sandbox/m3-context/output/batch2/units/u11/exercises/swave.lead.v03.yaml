@@ -1,0 +1,58 @@
+id: swave.lead.v03
+skills: [swave.lead]
+type: transform
+difficulty: 4
+title: Ready for the last chorus
+prompt: |
+  The lead below shares the default orbit with everything else and plays
+  as a single line. Prepare it for the final, biggest section of the track:
+
+  1. **Double it an octave below**, as a copy that plays at the same time.
+  2. Give it **its own orbit, 3**, with a reverb send of **0.4** and a
+     **5-second** hall, so its space is its own.
+
+  Keep everything else as it is.
+starter: |
+  setcpm(100 / 4)
+  note("<[e5@3 g5] [a5@2 g5 e5] [g5@2 d5 c5] [d5@2 ~@2]>")
+    .s("sawtooth")
+    .vib(5)
+    .vibmod(0.1)
+    .attack(0.05)
+    .release(0.5)
+    .lpf(2800)
+    .delay(0.4)
+    .delaysync(3 / 16)
+    .delayfeedback(0.45)
+    .gain(0.5)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(100 / 4)
+      note("<[e5@3 g5] [a5@2 g5 e5] [g5@2 d5 c5] [d5@2 ~@2]>")
+        .superimpose((x) => x.add(note(-12)))
+        .s("sawtooth")
+        .vib(5)
+        .vibmod(0.1)
+        .attack(0.05)
+        .release(0.5)
+        .lpf(2800)
+        .orbit(3)
+        .delay(0.4)
+        .delaysync(3 / 16)
+        .delayfeedback(0.45)
+        .room(0.4)
+        .roomsize(5)
+        .gain(0.5)
+listen_for:
+  - "Every note doubled an octave below: E5 with E4, A5 with A4, down to C5 with C4"
+  - "A fuller, heavier line, not a shriller one"
+  - "A long reverb tail after each phrase, on top of the dotted-eighth echoes"
+  - "Code check: superimpose before the sound settings, so both copies get them; orbit(3) with room and roomsize"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: superimpose
+  - strudel-doc: orbit
+  - strudel-doc: room
+  - strudel-doc: roomsize

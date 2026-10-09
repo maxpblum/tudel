@@ -1,0 +1,44 @@
+id: zen.readability-refactor.v02
+skills: [zen.readability-refactor]
+type: refactor
+difficulty: 3
+title: "Untangle the nested callbacks"
+prompt: |
+  This D dorian line has a variation in the last bar of every 4-bar
+  phrase, but the variation is written as three callbacks nested inside
+  each other. Rewrite it with **named functions**, one per musical idea,
+  so the `lastOf` call reads like a performance direction. Suggested
+  names: *stutter* (each note played twice), *sparkle* (a fifth higher,
+  stuttering on beats 1 and 3) and *answer* (the line backwards, with the
+  sparkle on top). It should sound exactly the same.
+starter: |
+  n(
+    "0 2 4 2 3 1 2 0".lastOf(4, (x) =>
+      x.rev().superimpose((y) => y.add(4).when("1 0 1 0", (z) => z.ply(2))),
+    ),
+  )
+    .scale("D4:dorian")
+    .s("triangle")
+    .gain(0.6)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      const stutter = (x) => x.ply(2)
+      const sparkle = (x) => x.add(4).when("1 0 1 0", stutter)
+      const answer = (x) => x.rev().superimpose(sparkle)
+      n("0 2 4 2 3 1 2 0".lastOf(4, answer))
+        .scale("D4:dorian")
+        .s("triangle")
+        .gain(0.6)
+listen_for:
+  - "Bars 1-3 of each phrase: the plain line, D4 F4 A4 F4 G4 E4 F4 D4"
+  - "Bar 4: the line backwards, with a second voice four scale steps (a fifth) above, and that voice's notes doubled in beats 1 and 3"
+  - "Exactly the same sound as the nested version"
+  - "Code check: the lastOf call reads lastOf(4, answer), and each function does one thing"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: lastOf
+  - strudel-doc: superimpose
+  - strudel-doc: when
+  - strudel-doc: ply

@@ -1,0 +1,31 @@
+id: det.pitch-drift.v02
+skills: [det.pitch-drift]
+type: transform
+difficulty: 2
+title: Make the tape sag
+prompt: |
+  Add a slow, regular pitch drift to the starter: a sine that swings
+  between **20 cents flat** and **20 cents sharp**, one full swing every
+  **4 bars**. Keep everything else.
+
+  Remember what happens when you add a bare number to a note pattern, and
+  which name the offset needs.
+starter: |
+  note("c4 eb4 g4 eb4").s("sawtooth").lpf(1200)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c4 eb4 g4 eb4")
+        .add(note(sine.range(-0.2, 0.2).slow(4)))
+        .s("sawtooth")
+        .lpf(1200)
+listen_for:
+  - "20 cents is 0.2 semitones, so range(-0.2, 0.2), wrapped in note(...)"
+  - "Bar 1 starts in tune (the sine starts at its middle), bar 2 starts 20 cents sharp, bar 3 in tune, bar 4 20 cents flat"
+  - "The change is gradual, a little on every note, never a jump"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: add
+  - strudel-doc: sine
+  - strudel-src: "packages/core/pattern.mjs#L1007-L1018"

@@ -1,0 +1,28 @@
+id: spop.sequenced-bass.v01
+skills: [spop.sequenced-bass]
+type: spec-to-code
+difficulty: 2
+title: Sixteenths under A minor, F, C, G
+prompt: |
+  Write a sequenced bass at **120 BPM** for the loop **A minor, F, C, G**,
+  one chord per bar. Each bar plays its chord's root as **16 sixteenth
+  notes**, in octave 3. Write each root only once.
+
+  The sound: `"sawtooth"`, a low-pass at **400 Hz** whose envelope opens
+  **3 octaves** and closes within **0.1 seconds** on every note.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(120 / 4)
+      note("<a3 f3 c3 g3>").ply(16).s("sawtooth").lpf(400).lpenv(3).lpdecay(0.1)
+listen_for:
+  - "Sixteen even notes per bar, 8 notes per second"
+  - "Roots A3, F3, C3, G3, one bar each"
+  - "Each note ticks: a flash of brightness (up to 3200 Hz) that closes almost at once"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: ply
+  - strudel-doc: lpenv
+  - strudel-doc: lpdecay
+  - lexicon: plucky

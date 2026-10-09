@@ -1,0 +1,32 @@
+id: det.pitch-drift.v03
+skills: [det.pitch-drift]
+type: match-by-ear
+difficulty: 3
+title: Count the vibrato
+prompt: |
+  Listen to the target: a slow triangle melody in G minor with vibrato. Loop
+  it and estimate:
+
+  1. The vibrato **rate**: tap along with the swings for one second, or count
+     them over one bar (one bar lasts 2 seconds at the default tempo).
+  2. The **depth**: is it a narrow shimmer (about ±10 cents), a moderate
+     singer's vibrato (about ±25 cents), or a wide wobble (about ±50 cents)?
+  3. Does the vibrato start straight away, or bloom in later?
+
+  Then write it. The notes are **g4** for three beats and **a4** for one in
+  bar 1, then **bb4** and **a4** as half notes in bar 2.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("<[g4@3 a4] [bb4@2 a4@2]>").s("triangle").vib(6).vibmod(0.25)
+listen_for:
+  - "6 swings per second, 12 per bar: vib(6)"
+  - "±25 cents, a moderate singer-like depth: vibmod(0.25), measured in semitones"
+  - "The vibrato is at full depth from the very start of every note; Strudel's vib does not bloom"
+  - "Rates from 5 to 7 Hz and depths from 0.2 to 0.3 semitones sound close; without vibmod the depth would be 0.5 semitones, much wider"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: vib
+  - strudel-doc: vibmod
+  - strudel-src: "packages/superdough/helpers.mjs#L346-L364"

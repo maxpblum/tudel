@@ -1,0 +1,34 @@
+id: chip.arcade-harmony.v01
+skills: [chip.arcade-harmony]
+type: spec-to-code
+difficulty: 2
+title: The Aeolian loop in E minor
+prompt: |
+  Write the loop **i, bVI, bVII, i** in **E minor**, one chord per bar, at
+  150 BPM, as two parts in a `stack`:
+
+  - the chords as symbols with `chord` and `.voicing()` on a 50 % pulse
+    (`pw(0)`), gain 0.3;
+  - the roots on the triangle in octave 3, repeated as quarter notes, gain
+    0.9.
+
+  First turn each numeral into a chord symbol: in E minor the sixth and
+  seventh degrees are already the "flat" ones, so bVI and bVII are simply
+  the chords on C and D.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(150 / 4)
+      stack(
+        chord("<Em C D Em>").voicing().s("pulse").pw(0).gain(0.3),
+        note("<e3 c3 d3 e3>").ply(4).s("triangle").gain(0.9),
+      )
+listen_for:
+  - "Em, C, D, Em: minor, major, major, minor"
+  - "No leading tone (D sharp) anywhere: D to Em is a whole-step rise, not a dominant resolution"
+  - "The bass moves E3, C3, D3, E3 in quarter notes"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: chord
+  - strudel-doc: voicing

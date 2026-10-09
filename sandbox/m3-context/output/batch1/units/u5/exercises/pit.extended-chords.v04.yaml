@@ -1,0 +1,27 @@
+id: pit.extended-chords.v04
+skills: [pit.extended-chords]
+type: ear-dictation
+difficulty: 3
+title: Sus or add9?
+prompt: |
+  The target plays four chords, one per bar. Bars 1 and 2 have the root C,
+  and bars 3 and 4 have the root F. Bars 2 and 4 are plain major triads. Bar
+  1 and bar 3 each add a colour: one is a **sus** chord (the fourth replaces
+  the third), and the other an **add9** chord (the ninth is added, and the
+  third stays). Find out which is which, then write the four symbols with
+  `chord` and `.voicing()` on `"triangle"`, with the default settings.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<Csus C Fadd9 F>").voicing().s("triangle")
+listen_for:
+  - "Csus, C, Fadd9, F"
+  - "Bar 1, C4 F4 G4 C5, has no E at all, and the F4 falls to E4 in bar 2: a 4–3 suspension and its resolution"
+  - "Bar 3, F3 C4 G4 A4 C5, keeps its third, A4, with G4 a whole tone below it. In bar 4, F4 replaces that G4"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: chord
+  - strudel-doc: voicing
+  - strudel-src: "packages/tonal/ireal.mjs#L28-L28"
+  - strudel-src: "packages/tonal/ireal.mjs#L48-L48"

@@ -1,0 +1,37 @@
+id: pit.slash-chords.v04
+skills: [pit.slash-chords]
+type: read-the-code
+difficulty: 4
+title: Name the slash chords
+prompt: |
+  This line uses `mode("above")`, so each anchor is that bar's bass note.
+  Before you play it, write the four chords as slash chords, the way a lead
+  sheet would (C/E, not C first inversion), and give each its figured-bass
+  name. Then play it and check.
+
+  :::code
+  chord("<F Dm7 Bb C7>")
+    .anchor("<a3 c4 bb3 bb3>")
+    .mode("above")
+    .voicing()
+    .s("triangle")
+  :::
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      chord("<F Dm7 Bb C7>")
+        .anchor("<a3 c4 bb3 bb3>")
+        .mode("above")
+        .voicing()
+        .s("triangle")
+listen_for:
+  - "F/A, a 6/3: A3 C4 F4 A4 C5"
+  - "Dm7/C, a 4/2, with the seventh in the bass: C4 F4 A4 C5 D5"
+  - "Bb, root position: B flat 3 F4 B flat 4 D5"
+  - "C7/Bb, a 4/2: B flat 3 E4 G4 B flat 4 C5. When the line loops, the B flat in the bass falls to A3 under F/A, the way the seventh in the bass of a V4/2 resolves to I6"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: anchor
+  - strudel-doc: mode
+  - strudel-src: "packages/tonal/tonleiter.mjs#L148-L169"

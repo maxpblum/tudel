@@ -1,0 +1,66 @@
+id: det.detuned-lead.v04
+skills: [det.detuned-lead]
+type: creative
+difficulty: 4
+title: Your own 80s cue
+prompt: |
+  Write an original four-bar cue in the 80s analog style: a sequenced
+  arpeggio under a slower detuned lead, in a minor key. Your own chords and
+  your own melody; don't quote any existing theme (the *Stranger Things*
+  title music included).
+
+  Start from the techniques in this unit: `arp` on stacked chords, few
+  slightly detuned voices, a filter envelope, a synced echo, and a small
+  amount of drift or vibrato on the lead. The reference is one possible
+  answer.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(90 / 4)
+      stack(
+        note("<[e3,g3,b3] [c3,e3,g3] [d3,f#3,a3] [b3,d#4,f#4]>")
+          .arp("0 1 2 1 2 0 2 1")
+          .s("supersaw")
+          .unison(2)
+          .detune(0.1)
+          .decay(0.18)
+          .sustain(0.25)
+          .lpf(450)
+          .lpenv(3)
+          .lpdecay(0.12)
+          .delay(0.35)
+          .delaysync(3 / 16),
+        note("<[b4@3 a4] [g4@2 e4@2] [f#4@3 a4] [b4@4]>")
+          .add(note(perlin.range(-0.1, 0.1).slow(2)))
+          .s("supersaw")
+          .unison(3)
+          .detune(0.14)
+          .vib(4.5)
+          .vibmod(0.12)
+          .attack(0.08)
+          .release(0.4)
+          .lpf(2200)
+          .gain(0.55),
+      )
+listen_for:
+  - "A steady eighth-note arpeggio in E minor, with a major dominant (B major, D sharp) in bar 4"
+  - "Each arpeggio note plucks: bright at the start, closing within about 0.1 seconds, with dotted-eighth echoes between"
+  - "The lead is clearly pitched, with a light vibrato and a drift of at most 10 cents"
+  - "The two parts are clearly separate in register: arpeggio in octaves 3 and 4, lead in octave 4 near the top"
+rubric:
+  - "Original chords and melody; nothing quoted from an existing theme"
+  - "An arpeggio made with arp on stacked chords, every note at or above C3"
+  - "Detune that is heard as movement, not as wrong notes: 2 or 3 voices and detune of about 0.2 or less on the lead"
+  - "A filter envelope or short amplitude envelope that makes the arpeggio plucky"
+  - "A tempo-synced echo (delaysync) on at least one part"
+  - "Drift (add(note(...)) with a slow signal) or vibrato (vib, vibmod) on the lead, small enough to stay in tune"
+verify:
+  cycles: 4
+  equivalent_solutions: false
+sources:
+  - strudel-doc: arp
+  - strudel-doc: detune
+  - strudel-doc: vib
+  - strudel-doc: delaysync
+  - lexicon: plucky
+  - lexicon: bright

@@ -1,0 +1,36 @@
+id: swave.pump.v04
+skills: [swave.pump]
+type: sweep
+difficulty: 3
+title: Deeper every bar
+prompt: |
+  Make a held pad pump once per beat, with the pump getting **deeper bar by
+  bar** over four bars: dips to 0.8 of full level in bar 1, then 0.6, 0.4 and
+  0.2 in bar 4 (a phrase that tightens into the next section). Use the loop
+  **Am9, F^7, Cadd9, G6** on a seven-voice supersaw, detune 0.25, attack
+  0.3 seconds, release 1 second, low-pass 2000 Hz, at 100 BPM.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(100 / 4)
+      chord("<Am9 F^7 Cadd9 G6>")
+        .voicing()
+        .s("supersaw")
+        .unison(7)
+        .detune(0.25)
+        .attack(0.3)
+        .release(1)
+        .lpf(2000)
+        .tremolosync(4)
+        .tremolodepth("<0.2 0.4 0.6 0.8>")
+listen_for:
+  - "Bar 1: a gentle pulse, barely dipping"
+  - "Each bar the dips get deeper; by bar 4 the pad almost disappears on each beat (floor 0.2)"
+  - "Held chords throughout, each with a smooth swell per beat"
+  - "Code check: the depth is a pattern, \"<0.2 0.4 0.6 0.8>\", one value per bar; floor = 1 − depth"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: tremolosync
+  - strudel-doc: tremolodepth
+  - strudel-src: "packages/superdough/superdough.mjs#L804-L804"

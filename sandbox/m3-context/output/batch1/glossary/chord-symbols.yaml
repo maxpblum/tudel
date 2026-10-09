@@ -1,0 +1,90 @@
+# New chord symbols used in the prose or code of the advanced harmony unit.
+# Append these entries to content/glossary/chord-symbols.yaml (symbols already
+# there, such as C, F, G, Am, Dm, Bb, C7, G7, D, E, are not repeated).
+# Gate L8c checks `tones` against tonal's spelling of `symbol`. Slash chords
+# are not listed: they cannot be written inside chord("...").
+entries:
+  - symbol: C^7
+    tones: [C, E, G, B]
+    name: C major seventh (lead-sheet triangle; voicing's dictionary spells maj7 as ^7)
+    skills: [pit.extended-chords]
+  - symbol: CM7
+    tones: [C, E, G, B]
+    name: C major seventh (M7 is the dictionary's other accepted spelling)
+    skills: [pit.extended-chords]
+  - symbol: Cmaj7
+    tones: [C, E, G, B]
+    name: C major seventh (not in voicing's default dictionary, so write C^7)
+    skills: [pit.extended-chords]
+  - symbol: F^7
+    tones: [F, A, C, E]
+    name: F major seventh
+    skills: [pit.extended-chords, pit.genre-progressions]
+  - symbol: Cm7
+    tones: [C, Eb, G, Bb]
+    name: C minor seventh
+    skills: [pit.extended-chords]
+  - symbol: Dm7
+    tones: [D, F, A, C]
+    name: D minor seventh
+    skills: [pit.extended-chords, pit.slash-chords]
+  - symbol: Am7
+    tones: [A, C, E, G]
+    name: A minor seventh
+    skills: [pit.extended-chords, pit.slash-chords, pit.genre-progressions]
+  - symbol: Gm7
+    tones: [G, Bb, D, F]
+    name: G minor seventh
+    skills: [pit.extended-chords]
+  - symbol: Csus
+    tones: [C, F, G]
+    name: C suspended fourth
+    skills: [pit.extended-chords]
+  - symbol: Csus4
+    tones: [C, F, G]
+    name: C suspended fourth (not in voicing's default dictionary, so write Csus)
+    skills: [pit.extended-chords]
+  - symbol: Gsus
+    tones: [G, C, D]
+    name: G suspended fourth (same pitch classes as a C sus2)
+    skills: [pit.extended-chords, pit.slash-chords, pit.genre-progressions]
+  - symbol: Gsus4
+    tones: [G, C, D]
+    name: G suspended fourth (not in voicing's default dictionary, so write Gsus)
+    skills: [pit.extended-chords]
+  - symbol: C7sus
+    tones: [C, F, G, Bb]
+    name: C seventh with suspended fourth
+    skills: [pit.extended-chords]
+  - symbol: G7sus
+    tones: [G, C, D, F]
+    name: G seventh with suspended fourth
+    skills: [pit.extended-chords, pit.slash-chords, pit.genre-progressions]
+  - symbol: Cadd9
+    tones: [C, E, G, D]
+    name: C major with added ninth
+    skills: [pit.extended-chords, pit.genre-progressions]
+  - symbol: Fadd9
+    tones: [F, A, C, G]
+    name: F major with added ninth
+    skills: [pit.extended-chords, pit.genre-progressions]
+  - symbol: Fm
+    tones: [F, Ab, C]
+    name: F minor (iv borrowed from C minor)
+    skills: [pit.modal-mixture]
+  - symbol: Cm
+    tones: [C, Eb, G]
+    name: C minor
+    skills: [pit.modal-mixture]
+  - symbol: Ab
+    tones: [Ab, C, Eb]
+    name: A flat major (♭VI borrowed from C minor)
+    skills: [pit.modal-mixture]
+  - symbol: Eb
+    tones: [Eb, G, Bb]
+    name: E flat major (♭III borrowed from C minor)
+    skills: [pit.modal-mixture]
+  - symbol: A
+    tones: [A, C#, E]
+    name: A major (Picardy third in A minor)
+    skills: [pit.modal-mixture]

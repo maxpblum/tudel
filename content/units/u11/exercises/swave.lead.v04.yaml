@@ -1,0 +1,95 @@
+id: swave.lead.v04
+skills: [swave.lead]
+type: creative
+difficulty: 4
+title: Your own lead over the night drive
+prompt: |
+  Write an original four-bar synthwave lead over the pad and bass in the
+  starter code (keep them unchanged and add your lead as a third part). Your own melody;
+  don't quote any existing synthwave track.
+
+  Aim for the lesson's style: few, long notes leaning on the chords'
+  sevenths and ninths, a breath at the end of the phrase, a clear pitch
+  with light vibrato, a dotted-eighth echo, and a hall of its own.
+
+  The reference is one possible answer.
+starter: |
+  setcpm(100 / 4)
+  $: chord("<Am9 F^7 Cadd9 G6>")
+    .voicing()
+    .s("supersaw")
+    .unison(7)
+    .detune(0.25)
+    .attack(0.6)
+    .release(1.5)
+    .lpf(1800)
+    .orbit(2)
+    .room(0.5)
+    .roomsize(6)
+    .gain(0.45)
+  $: note("<a3 f3 c3 g3>")
+    .ply(8)
+    .s("sawtooth")
+    .lpf(400)
+    .lpenv(3)
+    .lpdecay(0.1)
+    .orbit(2)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(100 / 4)
+      $: chord("<Am9 F^7 Cadd9 G6>")
+        .voicing()
+        .s("supersaw")
+        .unison(7)
+        .detune(0.25)
+        .attack(0.6)
+        .release(1.5)
+        .lpf(1800)
+        .orbit(2)
+        .room(0.5)
+        .roomsize(6)
+        .gain(0.45)
+      $: note("<a3 f3 c3 g3>")
+        .ply(8)
+        .s("sawtooth")
+        .lpf(400)
+        .lpenv(3)
+        .lpdecay(0.1)
+        .orbit(2)
+      $: note("<[b4@2 c5 e5] [e5@3 c5] [d5@2 e5 g5] [g5@2 ~@2]>")
+        .s("supersaw")
+        .unison(2)
+        .detune(0.1)
+        .vib(5)
+        .vibmod(0.1)
+        .attack(0.05)
+        .release(0.5)
+        .lpf(2800)
+        .orbit(3)
+        .delay(0.4)
+        .delaysync(3 / 16)
+        .delayfeedback(0.45)
+        .room(0.4)
+        .roomsize(5)
+        .gain(0.5)
+listen_for:
+  - "A lead clearly above the pad's top note (around C5), with long notes and a rest at the end"
+  - "Notes that sound settled over each chord: B4 is the ninth of Am9, E5 the seventh of F^7, D5 the ninth of Cadd9"
+  - "Dotted-eighth echoes and a long tail filling the rest"
+  - "The lead keeps its own space: the pad's long hall and the lead's hall don't fight"
+rubric:
+  - "Original melody; nothing quoted from an existing track"
+  - "Mostly long notes (half notes or longer), with at least one rest where the echoes are heard"
+  - "Every note at or above C3, and the lead sits above the pad's top voice most of the time"
+  - "Some notes on chord sevenths or ninths, not only roots and fifths"
+  - "A clear pitch: sawtooth, or a supersaw with 2 or 3 voices and detune of about 0.15 or less"
+  - "A tempo-synced echo (delaysync) and a reverb, on an orbit other than the pad's"
+verify:
+  cycles: 4
+  equivalent_solutions: false
+sources:
+  - strudel-doc: delaysync
+  - strudel-doc: orbit
+  - strudel-doc: vib
+  - lexicon: wet

@@ -1,0 +1,43 @@
+id: bus.orbit.v02
+skills: [bus.orbit]
+type: read-the-code
+difficulty: 3
+title: The part that didn't ask for an echo time
+prompt: |
+  The first part asks for echoes an eighth note apart. The second part sends
+  to the delay too, but sets no `delaysync`. Before you play it, predict how
+  far apart the echoes will be, beat by beat. Then play it and check.
+
+  :::code
+  $: note("c5 ~ ~ ~ e5 ~ ~ ~")
+    .s("triangle")
+    .decay(0.1)
+    .sustain(0)
+    .delay(0.5)
+    .delaysync(1 / 8)
+  $: note("~ ~ g4 ~ ~ ~ g4 ~").s("triangle").decay(0.1).sustain(0).delay(0.5)
+  :::
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      $: note("c5 ~ ~ ~ e5 ~ ~ ~")
+        .s("triangle")
+        .decay(0.1)
+        .sustain(0)
+        .delay(0.5)
+        .delaysync(1 / 8)
+      $: note("~ ~ g4 ~ ~ ~ g4 ~").s("triangle").decay(0.1).sustain(0).delay(0.5)
+listen_for:
+  - The notes fall on the beats, c5, g4, e5, g4, one per beat
+  - "After c5 (beat 1) and e5 (beat 3), the echoes come an eighth note apart"
+  - "After each g4 (beats 2 and 4), all the echoes in the line, the c5's and e5's included, come a dotted eighth apart"
+  - "Why: both parts are on orbit 1 and share one delay line. A note that sends to the delay sets its time, and an unset delaysync means the default, 3/16 of a cycle"
+  - "Fixes: .orbit(2) on the second part (its own delay), or .delaysync(1 / 8) on it too (one shared echo time)"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: orbit
+  - strudel-doc: delaysync
+  - strudel-src: "packages/superdough/superdough.mjs#L481-L483"
+  - strudel-src: "packages/superdough/superdough.mjs#L929-L936"
+  - strudel-src: "packages/superdough/superdoughoutput.mjs#L53-L67"

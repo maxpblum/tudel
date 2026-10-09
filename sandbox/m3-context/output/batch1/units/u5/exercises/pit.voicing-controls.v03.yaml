@@ -1,0 +1,25 @@
+id: pit.voicing-controls.v03
+skills: [pit.voicing-controls]
+type: transform
+difficulty: 3
+title: A lower soprano without moving the anchor
+prompt: |
+  The starter plays i, iv, V, i in A minor. With the default anchor, C5, its
+  top voice is C5, A4, B4, C5. Change it to **A4, F4, G sharp 4, A4**, one
+  note per bar, without setting `anchor` or `mode`. Use the control that
+  picks a neighbouring voicing from the dictionary.
+starter: |
+  chord("<Am Dm E Am>").voicing().s("triangle")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<Am Dm E Am>").offset(-1).voicing().s("triangle")
+listen_for:
+  - "The top voice is now A4, F4, G sharp 4, A4. The event list names G sharp as Ab4, because voicing spells black keys as flats"
+  - "Every chord now has E3 or D3 in the bass: E3 A3 C4 E4 A4, D3 F3 A3 D4 F4, E3 B3 E4 Ab4, E3 A3 C4 E4 A4"
+  - "If the chords jumped up an octave, you used a positive offset: offset(1) adds 12 semitones"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: offset
+  - strudel-src: "packages/tonal/tonleiter.mjs#L163-L169"

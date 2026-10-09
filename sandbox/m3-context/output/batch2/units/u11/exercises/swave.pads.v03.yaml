@@ -1,0 +1,39 @@
+id: swave.pads.v03
+skills: [swave.pads]
+type: match-by-ear
+difficulty: 4
+title: Match the pad
+prompt: |
+  Recreate this four-bar pad in A minor. Listen for: which chords (the roots
+  are A, F, C, G, but listen for the added colour tones), how the chords
+  begin and end, how blurred or sour the detune is, how wide it is, and
+  whether there is a reverb. The filter is fixed: a low-pass at 1800 Hz.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<Am9 F^7 Cadd9 G6>")
+        .voicing()
+        .s("supersaw")
+        .unison(7)
+        .detune(0.6)
+        .spread(1)
+        .attack(1)
+        .release(2)
+        .lpf(1800)
+        .orbit(2)
+        .room(0.6)
+        .roomsize(8)
+listen_for:
+  - "Am9, F^7, Cadd9, G6 with the default voicing"
+  - "A very slow swell: about one second to full level, and a two-second fade"
+  - "Clearly sour detune (60 cents from lowest to highest voice): more than a blur, a deliberately seasick colour"
+  - "Very wide: the voices reach both speakers"
+  - "A long, wet tail of about eight seconds"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: detune
+  - strudel-doc: spread
+  - strudel-doc: attack
+  - strudel-doc: roomsize
+  - lexicon: wet

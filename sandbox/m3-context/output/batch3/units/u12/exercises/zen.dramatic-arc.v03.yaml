@@ -1,0 +1,88 @@
+id: zen.dramatic-arc.v03
+skills: [zen.dramatic-arc]
+type: creative
+difficulty: 4
+title: "A ternary piece: A, B, A intensified"
+prompt: |
+  Compose a 24-bar piece in **ternary form**, three sections of 8 bars,
+  following this architectural brief:
+
+  1. **A (bars 1-8):** the home key, minor, at a moderate intensity:
+     drums, bass, a pad and a tune.
+  2. **B (bars 9-16):** a contrast. Move to another key area (the relative
+     major, or the subdominant), and change the texture: thinner or
+     denser, a different register or rhythm. End B on the **dominant** of
+     the home key, so that it leads back.
+  3. **A′ (bars 17-24):** A returns, recognisably, but intensified in at
+     least two dimensions (density, register, brightness, loudness).
+
+  Include at least one change *within* a section made with a signal (a
+  section-length hairpin or riser). Lay the code out as parts, then
+  sections, then the form on the last line. The reference is one possible
+  answer.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(104 / 4)
+      const kick = s("bd*4").bank("RolandTR909")
+      const snare = s("~ sd ~ sd").bank("RolandTR909")
+      const hats = s("hh*8").bank("RolandTR909").gain(0.4)
+      const bassA = note("<g3 eb3 bb3 f3>").ply(8).s("sawtooth").lpf(700).gain(0.6)
+      const bassB = note("<c3 f3 bb3 d3>").ply(4).s("sawtooth").lpf(500).gain(0.6)
+      const pad = (chords, cutoff) =>
+        chord(chords)
+          .voicing()
+          .s("supersaw")
+          .detune(0.2)
+          .attack(0.4)
+          .release(1)
+          .lpf(cutoff)
+          .room(0.4)
+          .roomsize(4)
+          .orbit(2)
+          .gain(0.35)
+      const tune = n("<[4@2 3 2] [0@3 ~] [2 4 5 4] [3@3 ~]>")
+        .scale("G4:minor")
+        .s("square")
+        .lpf(2800)
+        .delay(0.3)
+        .delaysync(3 / 16)
+        .orbit(3)
+        .gain(0.3)
+
+      const a = stack(kick, snare, bassA, pad("<Gm Eb Bb F>", 1500), tune)
+      const b = stack(
+        snare,
+        bassB,
+        pad("<Cm F Bb D>", saw.slow(8).rangex(600, 3000)),
+      )
+      const aPrime = stack(
+        kick,
+        snare,
+        hats,
+        bassA,
+        pad("<Gm Eb Bb F>", 3000),
+        tune.superimpose((x) => x.add(note(12))),
+      )
+
+      arrange([8, a], [8, b], [8, aPrime])
+listen_for:
+  - "A: G minor, eighth-note bass, the tune over G minor, E flat, B flat, F"
+  - "B: no kick, quarter-note bass, chords C minor, F, B flat, D: toward B flat major, ending on D, the dominant of G minor"
+  - "In B the pad brightens bar by bar over all eight bars, a slow hairpin from the signal"
+  - "A′: the tune is back, doubled an octave higher, with hats added and the pad at its brightest"
+rubric:
+  - "Three sections of 8 bars in the order A, B, A′, written with arrange on the last line"
+  - "B is in a different key area and has a different texture from A"
+  - "B ends on the dominant of the home key and leads back to A′"
+  - "A′ is recognisably A, intensified in at least two dimensions"
+  - "At least one change within a section comes from a signal (a hairpin or riser)"
+  - "Code layout: tempo, then named parts, then sections, then the form; nothing written twice"
+  - "Every note at or above C3"
+verify:
+  cycles: 24
+  equivalent_solutions: false
+sources:
+  - strudel-doc: arrange
+  - strudel-doc: rangex
+  - strudel-doc: superimpose

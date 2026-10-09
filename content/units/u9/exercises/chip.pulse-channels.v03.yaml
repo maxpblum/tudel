@@ -1,0 +1,45 @@
+id: chip.pulse-channels.v03
+skills: [chip.pulse-channels]
+type: transform
+difficulty: 3
+title: Reduce a synth sketch to four channels
+prompt: |
+  The starter is a two-bar sketch on sawtooths: a melody, block chords and a
+  bass. Rewrite it for the four-channel console band, with one `$:` line per
+  channel and **one note at a time on every line**:
+
+  1. **Lead:** the melody, unchanged, on a 25 % pulse at gain 0.5.
+  2. **Harmony:** the block chords can't stay. Replace them with a single
+     line on a 50 % pulse at gain 0.3 that plays the chord's **third, then
+     its fifth**, as two half notes per bar (E4 G4 under C, F4 A4 under Dm).
+  3. **Bass:** the roots on the triangle, repeated as quarter notes, gain 0.9.
+  4. **Noise:** closed hi-hats in eighth notes: white noise, decay 0.03
+     seconds, no sustain, high-pass at 7000 Hz, gain 0.25.
+starter: |
+  setcpm(140 / 4)
+  stack(
+    note("<[c5 e5 g5 e5] [d5 f5 a5 f5]>").s("sawtooth"),
+    chord("<C Dm>").voicing().s("sawtooth"),
+    note("<c3 d3>").s("sawtooth"),
+  )
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(140 / 4)
+      $: note("<[c5 e5 g5 e5] [d5 f5 a5 f5]>").s("pulse").pw(0.5).gain(0.5)
+      $: note("<[e4 g4] [f4 a4]>").s("pulse").pw(0).gain(0.3)
+      $: note("<c3 d3>").ply(4).s("triangle").gain(0.9)
+      $: s("white*8").decay(0.03).sustain(0).hpf(7000).gain(0.25)
+listen_for:
+  - "Four separate single lines: no line ever plays two notes at once"
+  - "The lead (25 %) is brighter and more nasal than the hollow 50 % harmony line under it"
+  - "The harmony plays E4 G4 in bar 1 and F4 A4 in bar 2, a third and fifth under each melody bar"
+  - "A round triangle bass on C3, then D3, in quarter notes"
+  - "Ticking hats in eighth notes, no low thump"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: pw
+  - strudel-doc: ply
+  - lexicon: hollow
+  - lexicon: nasal

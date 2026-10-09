@@ -1,0 +1,34 @@
+id: pit.genre-progressions.v01
+skills: [pit.genre-progressions]
+type: spec-to-code
+difficulty: 3
+title: I–V–vi–IV in G major over a pulsing bass
+prompt: |
+  At **112 BPM**, play the loop **I–V–vi–IV** in G major, one chord per bar.
+  Use `stack` with two parts:
+
+  - the chords, with `chord` and `.voicing()` on `"sawtooth"`, `.lpf(1600)`
+    and `.gain(0.5)`
+  - a bass on the chord roots, eight eighth notes per bar, on `"sawtooth"`
+    with `.lpf(500)`, with every note between C3 and B3
+
+  Set the tempo first, with this course's convention for 4/4.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(112 / 4)
+      stack(
+        chord("<G D Em C>").voicing().s("sawtooth").lpf(1600).gain(0.5),
+        note("<g3*8 d3*8 e3*8 c3*8>").s("sawtooth").lpf(500),
+      )
+listen_for:
+  - "G, D, Em, C, each for one bar"
+  - "The bass plays eight even notes per bar on G3, D3, E3, C3"
+  - "In bars 1 to 3 the bass doubles the lowest note of the voicing. In bar 4 the C chord's voicing starts on E3, and the bass C3 sounds a third below it"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: setcpm
+  - strudel-doc: chord
+  - strudel-doc: voicing
+  - strudel-doc: stack

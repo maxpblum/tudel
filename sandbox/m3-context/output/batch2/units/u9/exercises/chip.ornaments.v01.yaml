@@ -1,0 +1,38 @@
+id: chip.ornaments.v01
+skills: [chip.ornaments]
+type: spec-to-code
+difficulty: 3
+title: Ornament a plain phrase
+prompt: |
+  The plain phrase, in C major at 150 BPM on a 25 % pulse, is
+
+  `note("<[e5 d5 c5 g4] [a4 b4 c5@2]>")`
+
+  Ornament it without changing its rhythmic grid:
+
+  1. On beat 1 of bar 1, a **grace note** F5 that takes a quarter of the beat
+     before the E5.
+  2. On beat 3 of bar 1, replace C5 with a **trill** C5 D5 of eight notes.
+  3. On beat 2 of bar 2, a **turn** around B4: C5 B4 A4 B4 in four equal notes.
+  4. **Vibrato** on the final half note only: 6 Hz, 0.3 semitones.
+
+  Gain 0.5.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(150 / 4)
+      note("<[[f5 e5@3] d5 [c5 d5]*4 g4] [a4 [c5 b4 a4 b4] c5@2]>")
+        .s("pulse")
+        .vib(6)
+        .vibmod("<0 [0 0 0.3@2]>")
+        .gain(0.5)
+listen_for:
+  - "Bar 1: a quick F5 into E5, then D5, a fast C5-D5 trill on beat 3, then G4"
+  - "Bar 2: A4, a four-note turn C5 B4 A4 B4, then a held C5 that wavers"
+  - "Only the final C5 has vibrato; every other note is steady"
+  - "The beats still fall where they did in the plain phrase"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: vib
+  - strudel-doc: vibmod

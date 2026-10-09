@@ -1,0 +1,32 @@
+id: chip.fast-arps.v03
+skills: [chip.fast-arps]
+type: read-the-code
+difficulty: 3
+title: Where did the harmony go?
+prompt: |
+  Someone wanted a fast arpeggio over the progression C, Am, F, G (one chord
+  per bar) and wrote this. Before you play it, work out which notes sound in
+  bar 1 and in what order. Then play it, and say how to fix it.
+
+  :::code
+  note("<[c4,e4,g4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4]>")
+    .arp("0 1 2")
+    .fast(4)
+    .s("pulse")
+  :::
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      note("<[c4,e4,g4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4]>")
+        .arp("0 1 2")
+        .fast(4)
+        .s("pulse")
+listen_for:
+  - "Every bar is the same: C4 E4 G4, A3 C4 E4, F3 A3 C4, G3 B3 D4, twelve notes per bar"
+  - "fast(4) squeezes four cycles into one bar, so the < > that should change chords once per bar changes them every beat"
+  - "The fix: put the speed inside the arp pattern, .arp(\"[0 1 2]*4\"), and remove .fast(4)"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: fast
+  - strudel-doc: arp

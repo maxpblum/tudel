@@ -1,0 +1,64 @@
+id: zen.loop-layering.v01
+skills: [zen.loop-layering]
+type: arrange
+difficulty: 3
+title: "A 16-bar build, one entrance every four bars"
+prompt: |
+  The starter defines four stems in A minor at 100 BPM. Don't change them.
+  Write a `seqPLoop` that builds a 16-bar intro from them:
+
+  - the kick plays all 16 bars;
+  - the bass enters at bar 5;
+  - the pad enters at bar 9;
+  - the lead enters at bar 13.
+
+  All four play to the end of bar 16, then the build starts again. Remember
+  that start and end are bar lines counted from 0, and write the entry
+  that ends last at the bottom.
+starter: |
+  setcpm(100 / 4)
+  const kick = s("bd*4").bank("RolandTR909")
+  const bass = note("<a3 f3 c3 g3>").ply(8).s("sawtooth").lpf(700).gain(0.6)
+  const pad = chord("<Am F C G>")
+    .voicing()
+    .s("supersaw")
+    .detune(0.2)
+    .attack(0.4)
+    .release(1)
+    .gain(0.35)
+  const lead = n("<[4@3 5] [4 2 0@2] [2@3 4] [6@2 7@2]>")
+    .scale("A4:minor")
+    .s("square")
+    .lpf(3000)
+    .gain(0.3)
+  kick
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(100 / 4)
+      const kick = s("bd*4").bank("RolandTR909")
+      const bass = note("<a3 f3 c3 g3>").ply(8).s("sawtooth").lpf(700).gain(0.6)
+      const pad = chord("<Am F C G>")
+        .voicing()
+        .s("supersaw")
+        .detune(0.2)
+        .attack(0.4)
+        .release(1)
+        .gain(0.35)
+      const lead = n("<[4@3 5] [4 2 0@2] [2@3 4] [6@2 7@2]>")
+        .scale("A4:minor")
+        .s("square")
+        .lpf(3000)
+        .gain(0.3)
+      seqPLoop([0, 16, kick], [4, 16, bass], [8, 16, pad], [12, 16, lead])
+listen_for:
+  - "Bars 1-4: kick alone, four to the bar"
+  - "Bar 5: the bass enters on A3, the first root of its loop, because 4 bars of song time have passed and its 4-step < > is back at the start"
+  - "Bar 9: the pad enters on A minor, in step with the bass"
+  - "Bar 13: the lead enters, and all four parts play to the end of bar 16"
+  - "Bar 17: back to the kick alone"
+verify:
+  cycles: 16
+sources:
+  - strudel-doc: seqPLoop
+  - strudel-src: "packages/core/pattern.mjs#L1486-L1501"

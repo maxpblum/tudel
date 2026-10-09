@@ -1,0 +1,29 @@
+id: pat.canon-imitation.v03
+skills: [pat.canon-imitation]
+type: transform
+difficulty: 2
+title: The canon that isn't
+prompt: |
+  The starter is meant to be a canon at the octave, but it sounds like a
+  plain octave doubling: both voices move together. Explain why, then fix
+  it so the follower enters **two beats** after the leader, still an octave
+  higher.
+starter: |
+  n("0 2 4 7 4 2 0@2".off(1, (x) => x.add(7)))
+    .scale("C4:major")
+    .s("triangle")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("0 2 4 7 4 2 0@2".off(1 / 2, (x) => x.add(7)))
+        .scale("C4:major")
+        .s("triangle")
+listen_for:
+  - "Why the starter failed: the line is one bar long, so a copy delayed by one whole bar (1 cycle) lands exactly on the next repetition of itself"
+  - "Two beats is half a cycle: 1 / 2"
+  - "Now the follower's C5 E5 G5 C6 sounds against the leader's G4 E4 C4, all C major triad tones"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: off
+  - strudel-src: "packages/core/pattern.mjs#L2236-L2238"

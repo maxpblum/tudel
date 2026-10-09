@@ -1,0 +1,41 @@
+id: zen.consolidated-idioms.v02
+skills: [zen.consolidated-idioms]
+type: recall
+difficulty: 2
+title: "Five idioms in one line"
+prompt: |
+  From memory, without looking anything up, write one melody line that:
+
+  1. plays at **96 BPM**, with the tempo written the course's way;
+  2. is written as the scale degrees **0 2 4 2** in **D minor** from D4;
+  3. plays **backwards in the last bar** of every 4-bar phrase;
+  4. is **doubled an octave higher**;
+  5. on a square wave filtered at 2400 Hz, with **dotted-eighth echoes**
+     that stay in time at any tempo.
+
+  Each requirement is one idiom from earlier in the course. Write the
+  methods in the house order.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(96 / 4)
+      n("0 2 4 2".lastOf(4, (x) => x.rev()))
+        .scale("D4:minor")
+        .superimpose((x) => x.add(note(12)))
+        .s("square")
+        .lpf(2400)
+        .delay(0.3)
+        .delaysync(3 / 16)
+listen_for:
+  - "Tempo: setcpm(96 / 4), four beats per cycle"
+  - "Bars 1-3: D4 F4 A4 F4 with D5 F5 A5 F5 above; bar 4: the same backwards"
+  - "lastOf, not every: every would vary the first bar of the phrase"
+  - "The octave is note(12) wrapped in note, so it adds to the pitch: add(12) on its own would do nothing"
+  - "delaysync(3 / 16): a dotted eighth is 3 sixteenths of a bar"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: setcpm
+  - strudel-doc: lastOf
+  - strudel-doc: superimpose
+  - strudel-doc: delaysync

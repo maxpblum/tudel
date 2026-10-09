@@ -1,0 +1,28 @@
+id: pit.slash-chords.v03
+skills: [pit.slash-chords]
+type: spec-to-code
+difficulty: 3
+title: Bb/C resolving to F
+prompt: |
+  Play the soft dominant **Bb/C**, then **F**, one bar each. The upper
+  chords are Bb and F, voiced with `chord` and `.voicing()` on `"triangle"`
+  and kept above C4 with `.anchor("c4").mode("above")`. The bass is a
+  separate part on `"sawtooth"` with `.lpf(600)`: C3 in bar 1, F3 in bar 2.
+  Combine the two with `stack`.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      stack(
+        chord("<Bb F>").anchor("c4").mode("above").voicing().s("triangle"),
+        note("<c3 f3>").s("sawtooth").lpf(600),
+      )
+listen_for:
+  - "Bar 1 is C3 under B flat 3 F4 B flat 4 D5. C is not in a B flat triad, so it needs its own part"
+  - "Bar 2 is F3 under C4 F4 A4 C5 F5"
+  - "Bb/C is IV over the dominant's root in F major. It has no E, the leading tone, so it pulls to F more gently than C7"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: stack
+  - strudel-doc: anchor
+  - strudel-doc: mode

@@ -1,0 +1,38 @@
+id: chip.noise-drums.v03
+skills: [chip.noise-drums]
+type: refactor
+difficulty: 3
+title: Hats and snare on one noise channel
+prompt: |
+  The starter spends two lines on noise: hats and snare. On the console they
+  shared a single noise channel, so they could never sound at once. Rewrite
+  them as **one** `s("white*8")` line in which the decay, high-pass and gain
+  change per step: hat settings on six of the eighths, snare settings on
+  the eighths that fall on beats 2 and 4. On those two steps the snare
+  replaces the hat.
+starter: |
+  $: s("white*8").decay(0.03).sustain(0).hpf(7000).gain(0.3)
+  $: s("~ white ~ white").decay(0.15).sustain(0).hpf(1500).gain(0.4)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      s("white*8")
+        .decay("0.03 0.03 0.15 0.03 0.03 0.03 0.15 0.03")
+        .sustain(0)
+        .hpf("7000 7000 1500 7000 7000 7000 1500 7000")
+        .gain("0.3 0.3 0.4 0.3 0.3 0.3 0.4 0.3")
+  - code: |
+      s("white*8")
+        .decay("[0.03 0.03 0.15 0.03]*2")
+        .sustain(0)
+        .hpf("[7000 7000 1500 7000]*2")
+        .gain("[0.3 0.3 0.4 0.3]*2")
+listen_for:
+  - "The same groove as the starter, but on beats 2 and 4 you hear only the snare, no hat on top"
+  - "Never more than one noise hit at a time"
+  - "Code check: one line, with the per-step differences written as patterns"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: decay
+  - strudel-doc: hpf

@@ -1,0 +1,67 @@
+● Batch 2 is drafted in output/batch2/: 3 units, 18 skills, 18 lessons and 69
+  exercise variants. As you asked, I kept checking to a minimum. I didn't run
+  pnpm verify and didn't do the style QA pass or the adversarial review. A
+  script confirmed the structure: every skill has its lesson and at least 3
+  variants, every prerequisite exists, ids match filenames, the YAML parses, and
+  each type has its required fields (rubric, starter, abc).
+
+  ┌───────────┬─────────────────────────────────────────────────────────────┐
+  │   Unit    │                  Skills, in teaching order                  │
+  ├───────────┼─────────────────────────────────────────────────────────────┤
+  │           │ Pulse waves and the four-channel band → drums from noise    │
+  │ u9        │ and pitch drops → arcade progressions (bVI–bVII–I, the      │
+  │ Chiptune  │ semitone lift) → fast arpeggios → ornaments (grace notes,   │
+  │           │ trills, slides, echo channel) → project                     │
+  ├───────────┼─────────────────────────────────────────────────────────────┤
+  │ u10       │ 808/909 drum machine with a gated-style snare → 16th-note   │
+  │ Synth-pop │ sequenced bass → brass stabs → choir, string and            │
+  │           │ arpeggiated beds → modal hooks → project                    │
+  ├───────────┼─────────────────────────────────────────────────────────────┤
+  │ u11       │ Eighth-note rolling bass → detuned supersaw pads → pumping  │
+  │ Synthwave │ with gain signals and tremolo → sidechain with duckorbit →  │
+  │           │ soaring lead with echo and a big room → project             │
+  └───────────┴─────────────────────────────────────────────────────────────┘
+
+  Each technique skill has 4 variants of mixed types, at least one of them
+  ear-based. Each project skill has 3 variants. The .project.v01 files follow
+  the brief's checkpoints and include reference code and a rubric. The v02/v03
+  files are alternative briefs, such as a boss battle, a sunset drive and a
+  darksynth chase.
+
+  Other files:
+  - skills.yaml: the unit and skill entries to add.
+  - glossary/chord-symbols.yaml: 10 new symbols, such as Am9, Em9, G6 and Ab^7.
+    It also lists existing symbols so the ingest step merges their skill lists.
+    I spelled the tones myself because the local tonal package wouldn't load.
+  - VERIFIED_FACTS.md: what I checked in the pinned Strudel source:
+    - pw sets the pulse's duty cycle as (1 − pw) / 2, so the default 0.5 is
+      already a 25 % pulse.
+    - tremolosync's default shape rises through each beat, which gives a
+      ready-made pump.
+    - duckattack is actually the recovery time.
+    - Strudel has no noise gate, so the gated snare is described as an
+      approximation.
+
+  For the cheaper verification pass:
+  - The ingest script (ingest_batch1.mjs) hard-codes Batch 1's paths and QA
+    files, so it needs a Batch 2 version.
+  - Lexicon gaps: prompts and lessons use quality words with no timbre-lexicon
+    entry: round, shimmering, punch, zap, lush, wide, sour, driving, pumping,
+    soaring, aggressive, harsh. Each needs an entry with a real source, or
+    rewording.
+  - Unchecked formats:
+    - markdown tables in some lessons
+    - :::signal with a fractional period
+    - a starter on a creative variant (swave.lead.v04)
+    - one dictation that relies on key-signature accidentals
+      (chip.arcade-harmony.v02)
+    - some project melody strings longer than 80 characters (Prettier)
+  - Unopened claims: the history notes come from general knowledge, such as
+    gated reverb's origin and Dare being made on a Linn LM-1. The u9 lessons
+    also link three Wikipedia pages that weren't opened.
+  - One change I made to skills.yaml: the synthwave lead lesson reuses the pitch
+    scoop from the chiptune unit, so I added chip.ornaments to swave.lead's
+    prerequisites.
+
+  The project's rules also ask for an adversarial review in docs/qa/reviews/ for
+  content changes. I left that out to match your scope.

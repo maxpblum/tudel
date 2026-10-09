@@ -1,0 +1,36 @@
+id: pit.voicing-controls.v01
+skills: [pit.voicing-controls]
+type: spec-to-code
+difficulty: 3
+title: Harmonise a tune without doubling it
+prompt: |
+  Harmonise this tune in F major, one note per bar: **C5, D5, B flat 4, A4**,
+  over the chords **F, Bb, C7, F**. Each tune note is a tone of its chord.
+
+  Use `stack` with two parts:
+
+  - the tune on `"square"` with `.lpf(2000)` and `.gain(0.4)`
+  - the chords with `chord` and `.voicing()` on `"triangle"`, anchored to the
+    tune, with the tune's note taken out of each chord so it isn't doubled
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      stack(
+        note("<c5 d5 bb4 a4>").s("square").lpf(2000).gain(0.4),
+        chord("<F Bb C7 F>")
+          .anchor("<c5 d5 bb4 a4>")
+          .mode("duck")
+          .voicing()
+          .s("triangle"),
+      )
+listen_for:
+  - The tune C5, D5, B flat 4, A4 is the highest note in every bar, and no chord voice plays it with it
+  - "The chords are F3 C4 F4 A4, then B flat 3 F4 B flat 4, then E3 B flat 3 C4 E4, then F3 C4 F4"
+  - In bar 3 the chord keeps B flat 3, an octave below the tune's B flat 4. Duck removes only a voice at exactly the anchor's pitch
+  - "If each chord's top note sounds together with the tune, the mode is still below: add `.mode(\"duck\")`"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: mode
+  - strudel-doc: anchor
+  - strudel-src: "packages/tonal/tonleiter.mjs#L172-L174"

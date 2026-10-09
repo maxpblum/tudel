@@ -1,0 +1,62 @@
+id: zen.dramatic-arc.v02
+skills: [zen.dramatic-arc]
+type: transform
+difficulty: 4
+title: "Add a breakdown before the last chorus"
+prompt: |
+  The starter's form, verse, chorus, chorus, runs out of steam: the second
+  chorus is just the first one again. Insert a 4-bar **breakdown** between
+  the two choruses that lowers the density but raises the tension:
+
+  - no drums and no moving bass;
+  - a **dominant pedal**: E3 in eighth notes on the bass's sawtooth, its
+    cutoff rising from 300 Hz to 3000 Hz over the four bars (`rangex`);
+  - the chords **F, D minor, A minor, E** over the pedal, on the same pad;
+  - a **noise riser**: white noise in sixteenths with a short decay, its
+    cutoff rising from 400 Hz to 8000 Hz and its gain from 0.05 to 0.4 over
+    the four bars.
+
+  The form becomes verse, chorus, breakdown, chorus: 16 bars.
+starter: |
+  setcpm(100 / 4)
+  const drums = s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR909")
+  const bass = note("<a3 f3 c3 g3>").ply(8).s("sawtooth").lpf(700).gain(0.6)
+  const pad = (chords) =>
+    chord(chords).voicing().s("supersaw").detune(0.2).lpf(2000).gain(0.35)
+  const verse = stack(drums, bass)
+  const chorus = stack(drums, bass, pad("<Am F C G>"))
+  arrange([4, verse], [4, chorus], [4, chorus])
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(100 / 4)
+      const drums = s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR909")
+      const bass = note("<a3 f3 c3 g3>").ply(8).s("sawtooth").lpf(700).gain(0.6)
+      const pad = (chords) =>
+        chord(chords).voicing().s("supersaw").detune(0.2).lpf(2000).gain(0.35)
+      const pedal = note("e3")
+        .ply(8)
+        .s("sawtooth")
+        .lpf(saw.slow(4).rangex(300, 3000))
+        .gain(0.6)
+      const riser = s("white*16")
+        .decay(0.1)
+        .sustain(0)
+        .lpf(saw.slow(4).rangex(400, 8000))
+        .gain(saw.slow(4).rangex(0.05, 0.4))
+      const verse = stack(drums, bass)
+      const chorus = stack(drums, bass, pad("<Am F C G>"))
+      const breakdown = stack(pedal, pad("<F Dm Am E>"), riser)
+      arrange([4, verse], [4, chorus], [4, breakdown], [4, chorus])
+listen_for:
+  - "Bars 9-12: the drums and the moving bass drop out; E3 repeats in eighths and grows brighter"
+  - "Over the pedal: F (a semitone clash with the E), D minor, A minor over E (the cadential six-four), then E major"
+  - "The noise riser grows louder and brighter through the four bars, peaking just before bar 13"
+  - "Bar 13: the full chorus lands on A minor. The second chorus now sounds like an arrival, though its code is unchanged"
+  - "The riser starts from the bottom on every pass, because arrange restarts the breakdown's clock and saw.slow(4) spans exactly its four bars"
+verify:
+  cycles: 16
+sources:
+  - strudel-doc: arrange
+  - strudel-doc: rangex
+  - strudel-src: "packages/core/pattern.mjs#L1469-L1473"

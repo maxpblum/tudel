@@ -1,0 +1,23 @@
+id: pat.superimpose.v03
+skills: [pat.superimpose]
+type: match-by-ear
+difficulty: 3
+title: Two sides of the room
+prompt: |
+  Listen on **headphones**. The target is one bar in A minor, tonic on A4,
+  with the rising line `"0 2 1 3 2 4 3 5"` in eighth notes on `"triangle"`,
+  plus one method. Something different happens in each ear. Name the method
+  and the transform, and write the target.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("0 2 1 3 2 4 3 5").scale("A4:minor").s("triangle").jux(rev)
+listen_for:
+  - "Left ear: the line as written, rising in thirds, A4 C5 B4 D5 C5 E5 D5 F5"
+  - "Right ear: the same line backwards, F5 D5 E5 C5 D5 B4 C5 A4"
+  - "jux puts the original hard left and the transformed copy hard right; rev is the transform"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: jux
+  - strudel-doc: rev

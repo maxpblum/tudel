@@ -1,0 +1,27 @@
+id: pit.voicing-controls.v02
+skills: [pit.voicing-controls]
+type: read-the-code
+difficulty: 3
+title: Which bars does duck thin out?
+prompt: |
+  Before you play this, work out for each bar whether `mode("duck")` removes a
+  note from the chord, and which one. Remember that duck removes a voice only
+  if it lands exactly on the anchor's pitch. Then play it and check.
+
+  :::code
+  chord("<C C F C>").anchor("<e5 d5 c5 c5>").mode("duck").voicing().s("triangle")
+  :::
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      chord("<C C F C>").anchor("<e5 d5 c5 c5>").mode("duck").voicing().s("triangle")
+listen_for:
+  - "Bar 1: E5 is a tone of C, so it becomes the top voice and is removed. The chord is C4 G4 C5, three notes"
+  - "Bar 2: D5 is not a tone of C, so nothing equals the anchor and nothing is removed. The chord is E3 C4 E4 G4 C5, topped by C5, a whole tone below the anchor"
+  - "Bar 3: C5 is a tone of F and is removed. The chord is F3 C4 F4 A4"
+  - "Bar 4: C5 is removed, but C4 stays, because duck matches the exact pitch, not the letter name. The chord is E3 C4 E4 G4"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: mode
+  - strudel-src: "packages/tonal/tonleiter.mjs#L148-L174"

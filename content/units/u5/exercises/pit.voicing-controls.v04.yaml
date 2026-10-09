@@ -1,0 +1,21 @@
+id: pit.voicing-controls.v04
+skills: [pit.voicing-controls]
+type: recall
+difficulty: 1
+title: The mode that leaves the melody note out
+prompt: |
+  Play an **F** major chord with `chord` and `.voicing()` on `"triangle"`,
+  anchored on **C5**, with the C5 itself taken out of the chord, so that a
+  melody could sit on that C5 alone.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("F").anchor("c5").mode("duck").voicing().s("triangle")
+listen_for:
+  - "Four notes, F3 C4 F4 A4: the default voicing F3 C4 F4 A4 C5 without its top C5"
+  - "Code check: `mode(\"duck\")`. The default mode, below, would keep C5 on top"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: mode
+  - strudel-src: "packages/tonal/tonleiter.mjs#L131-L137"

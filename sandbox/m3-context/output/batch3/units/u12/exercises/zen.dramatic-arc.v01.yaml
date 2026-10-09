@@ -1,0 +1,81 @@
+id: zen.dramatic-arc.v01
+skills: [zen.dramatic-arc]
+type: read-the-code
+difficulty: 3
+title: "Trace the arc before you hear it"
+prompt: |
+  Read this 16-bar piece in D minor and sketch its arc on paper before you
+  play it: for each of the four sections, mark its intensity from 1 (calm)
+  to 5 (peak), and note which dimensions change (density, register,
+  brightness, loudness, harmony). Then answer:
+
+  1. What does the bass do in the third section, and what does that do to
+     the harmony?
+  2. How does the cutoff of the bass move in that section?
+  3. Why does bar 13 feel like an arrival rather than just the next bar?
+
+  :::code
+  setcpm(96 / 4)
+  const drums = s("bd*4, ~ sd ~ sd").bank("RolandTR808")
+  const hats = s("hh*16").bank("RolandTR808").gain(0.4)
+  const bass = note("<d3 bb3 f3 c3>").ply(8).s("sawtooth").lpf(600).gain(0.6)
+  const pad = (chords, cutoff) =>
+    chord(chords)
+      .voicing()
+      .s("supersaw")
+      .detune(0.2)
+      .lpf(cutoff)
+      .gain(0.35)
+  const pedal = note("a3")
+    .ply(8)
+    .s("sawtooth")
+    .lpf(saw.slow(4).rangex(300, 3000))
+    .gain(0.6)
+
+  arrange(
+    [4, pad("<Dm Bb F C>", 800)],
+    [4, stack(drums, bass, pad("<Dm Bb F C>", 1600))],
+    [4, stack(pedal, pad("<Bb Gm Dm A>", 1600))],
+    [4, stack(drums, hats, bass, pad("<Dm Bb F C>", 3200))],
+  )
+  :::
+
+  Then play it and check.
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      setcpm(96 / 4)
+      const drums = s("bd*4, ~ sd ~ sd").bank("RolandTR808")
+      const hats = s("hh*16").bank("RolandTR808").gain(0.4)
+      const bass = note("<d3 bb3 f3 c3>").ply(8).s("sawtooth").lpf(600).gain(0.6)
+      const pad = (chords, cutoff) =>
+        chord(chords)
+          .voicing()
+          .s("supersaw")
+          .detune(0.2)
+          .lpf(cutoff)
+          .gain(0.35)
+      const pedal = note("a3")
+        .ply(8)
+        .s("sawtooth")
+        .lpf(saw.slow(4).rangex(300, 3000))
+        .gain(0.6)
+
+      arrange(
+        [4, pad("<Dm Bb F C>", 800)],
+        [4, stack(drums, bass, pad("<Dm Bb F C>", 1600))],
+        [4, stack(pedal, pad("<Bb Gm Dm A>", 1600))],
+        [4, stack(drums, hats, bass, pad("<Dm Bb F C>", 3200))],
+      )
+listen_for:
+  - "Section 1 (bars 1-4), intensity about 1: the pad alone, dark at 800 Hz"
+  - "Section 2 (bars 5-8), about 3: drums and eighth-note bass, the pad at 1600 Hz"
+  - "Section 3 (bars 9-12): the drums stop, so the density drops, but the tension rises. The bass holds A3, the dominant of D minor, under B flat, G minor, D minor (a cadential six-four over A) and A major"
+  - "In section 3 the bass's cutoff rises from 300 Hz to 3000 Hz over the four bars, starting again from the bottom on the section's first bar: a riser"
+  - "Section 4 (bars 13-16), intensity 5: everything at once, sixteenth hats, the pad brightest at 3200 Hz. Bar 13's D minor resolves four bars of dominant, so it lands as an arrival"
+verify:
+  cycles: 16
+sources:
+  - strudel-doc: arrange
+  - strudel-doc: rangex
+  - strudel-src: "packages/core/pattern.mjs#L1469-L1473"

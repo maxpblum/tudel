@@ -1,0 +1,31 @@
+id: swave.rolling-bass.v01
+skills: [swave.rolling-bass]
+type: spec-to-code
+difficulty: 2
+title: Eighth-note drive in E minor
+prompt: |
+  Write a synthwave bass at **105 BPM** for the loop **Em, C, G, D**, one
+  chord per bar. Play only the roots, **e3, c3, g3, d3**, written once each,
+  and make each one repeat as **eighth notes**. The sound:
+
+  - `"sawtooth"`
+  - a low-pass at **500 Hz**
+  - a filter envelope that opens **2 octaves** above it and closes in
+    **0.1 seconds**
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(105 / 4)
+      note("<e3 c3 g3 d3>").ply(8).s("sawtooth").lpf(500).lpenv(2).lpdecay(0.1)
+listen_for:
+  - "Eight even notes per bar on one pitch: E3, then C3, G3, D3"
+  - "Each note starts bright (the cutoff jumps to 2000 Hz) and darkens within the first third of the note"
+  - "A steady, driving pulse with no change of rhythm from bar to bar"
+  - "Code check: the four roots are written once, in < >, and ply(8) makes the eighths"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: ply
+  - strudel-doc: lpenv
+  - strudel-doc: lpdecay
+  - lexicon: bright

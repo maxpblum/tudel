@@ -1,0 +1,30 @@
+id: pat.variation-every.v01
+skills: [pat.variation-every]
+type: spec-to-code
+difficulty: 2
+title: Drop the octave at the phrase end
+prompt: |
+  Loop the riff `"0 2 4 7 4 2 4 2"` (scale degrees, eighth notes) in G minor,
+  tonic on G4, on `"triangle"`. In a four-bar phrase, bars 1 to 3 play it as
+  written, and **bar 4** plays it **one octave lower**, so that each phrase
+  ends low. Use one transform method; don't write bar 4 out.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("0 2 4 7 4 2 4 2".lastOf(4, (x) => x.sub(7)))
+        .scale("G4:minor")
+        .s("triangle")
+  - code: |
+      n("0 2 4 7 4 2 4 2".when("<0 0 0 1>", (x) => x.sub(7)))
+        .scale("G4:minor")
+        .s("triangle")
+    note: when with a four-bar pattern of 1s and 0s does the same as lastOf(4, …).
+listen_for:
+  - "Bars 1 to 3: G4 B flat 4 D5 G5 D5 B flat 4 D5 B flat 4"
+  - "Bar 4: the same riff from G3, an octave lower"
+  - "If the low bar comes first in each phrase, you used every (firstOf), which changes bar 1"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: lastOf
+  - strudel-doc: when

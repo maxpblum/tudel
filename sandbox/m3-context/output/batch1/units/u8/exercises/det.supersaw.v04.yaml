@@ -1,0 +1,26 @@
+id: det.supersaw.v04
+skills: [det.supersaw]
+type: transform
+difficulty: 2
+title: The detune that did nothing
+prompt: |
+  The starter asks for a spread of 0.15 semitones, but it sounds like one
+  plain sawtooth. Explain why to yourself, then fix it so the same notes play
+  on **5** voices spread **15 cents** from lowest to highest.
+starter: |
+  note("a3 c4 e4 a4").s("sawtooth").detune(0.15)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("a3 c4 e4 a4").s("supersaw").detune(0.15)
+listen_for:
+  - 'detune only acts on sounds with several voices; "sawtooth" is a single oscillator and ignores it'
+  - "After the fix each note has a gentle shimmer: voices at -7.5, -3.75, 0, +3.75 and +7.5 cents"
+  - "Adding .unison(5) changes nothing: 5 is the default"
+  - "The loudness stays about the same, because supersaw scales its level by 1 / √voices"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: detune
+  - strudel-src: "packages/superdough/synth.mjs#L521-L536"
+  - strudel-src: "packages/superdough/synth.mjs#L187-L194"

@@ -1,0 +1,29 @@
+id: chip.arcade-harmony.v04
+skills: [chip.arcade-harmony]
+type: ear-dictation
+difficulty: 3
+title: Name the adventure loop
+prompt: |
+  A four-bar loop plays in **G major**, chords on a pulse and roots on a
+  triangle. Write down the four chords as Roman numerals and as symbols,
+  then write the code: chords with `chord(...).voicing()` on a 50 % pulse at
+  gain 0.35, roots on the triangle, one per bar.
+
+  One chord is not in G major. Which, and what mode does that note suggest?
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      stack(
+        chord("<G F C G>").voicing().s("pulse").pw(0).gain(0.35),
+        note("<g3 f3 c3 g3>").s("triangle").gain(0.9),
+      )
+listen_for:
+  - "I, bVII, IV, I: G, F, C, G"
+  - "The F major chord has F natural, the lowered seventh of G: the Mixolydian colour"
+  - "No minor chords: bright and open, an 'adventure' loop"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: chord
+  - strudel-doc: voicing
+  - lexicon: bright

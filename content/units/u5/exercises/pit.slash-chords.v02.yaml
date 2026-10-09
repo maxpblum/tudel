@@ -1,0 +1,30 @@
+id: pit.slash-chords.v02
+skills: [pit.slash-chords]
+type: transform
+difficulty: 3
+title: A tonic pedal in A minor
+prompt: |
+  The starter plays i, iv, V, i in A minor, with each chord's lowest note at
+  or just below C4. Add a
+  **tonic pedal**: an A3 bass, struck once per bar for all four bars, on
+  `"sawtooth"` with `.lpf(600)`, as a separate part under the chords. Don't
+  change the chord line.
+starter: |
+  chord("<Am Dm E Am>").anchor("c4").mode("above").voicing().s("triangle")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      stack(
+        chord("<Am Dm E Am>").anchor("c4").mode("above").voicing().s("triangle"),
+        note("a3").s("sawtooth").lpf(600),
+      )
+listen_for:
+  - "As slash chords: Am, Dm/A, E/A, Am"
+  - "In bar 2 the D minor chord already starts on A3 (A3 D4 F4 A4 D5), so Dm/A is an inversion, a 6/4"
+  - "In bar 3, E/A is a true foreign bass: B3 E4 G sharp 4 B4 E5 over A3. That clash is the pedal's tension, and it clears when Am returns"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: stack
+  - strudel-doc: anchor
+  - strudel-doc: mode

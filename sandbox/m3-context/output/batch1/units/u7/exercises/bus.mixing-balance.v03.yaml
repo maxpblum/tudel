@@ -1,0 +1,30 @@
+id: bus.mixing-balance.v03
+skills: [bus.mixing-balance]
+type: sweep
+difficulty: 3
+title: An even diminuendo
+prompt: |
+  Play the figure **g4 c5 e5 c5**, twice per bar, as eighth-note plucks on a
+  triangle wave (`decay` 0.2 seconds, nothing held). Over **four bars**, make
+  a diminuendo from gain **0.8** down to gain **0.1** that loses the **same
+  number of decibels in every bar**. Then let it start again from loud.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("[g4 c5 e5 c5]*2")
+        .s("triangle")
+        .decay(0.2)
+        .sustain(0)
+        .gain(isaw.rangex(0.1, 0.8).slow(4))
+listen_for:
+  - Bar 1 starts at gain 0.8, and the level falls steadily to near 0.1 at the end of bar 4, 18 dB in all
+  - Each bar is about 4.5 dB quieter than the one before, so the fade sounds even
+  - "isaw falls from 1 to 0 over its period, and rangex makes the fall a straight line in decibels. With range, the first two bars would lose only 5 dB and the last two 13 dB"
+  - At the loop the level jumps back to 0.8
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: rangex
+  - strudel-doc: isaw
+  - strudel-src: "packages/core/pattern.mjs#L1786-L1788"
+  - strudel-src: "packages/core/signal.mjs#L56-L56"

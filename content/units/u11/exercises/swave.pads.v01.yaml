@@ -1,0 +1,47 @@
+id: swave.pads.v01
+skills: [swave.pads]
+type: describe-to-code
+difficulty: 3
+title: A warm wall in E minor
+prompt: |
+  Write a synthwave pad for the loop **Em9, C^7, G^7, D6**, one chord per bar,
+  at **95 BPM**. It should be **warm** and **pad-like**: chords that swell in
+  over about half a second and fade over about a second and a half, wide in
+  stereo and gently blurred by many slightly detuned voices (seven voices,
+  about a quarter of a semitone from lowest to highest), not sour. The
+  brightness should rise and fall slowly over eight bars, roughly between
+  700 and 2000 Hz. Put it in a long hall (about 6 seconds) on a bus of its
+  own.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(95 / 4)
+      chord("<Em9 C^7 G^7 D6>")
+        .voicing()
+        .s("supersaw")
+        .unison(7)
+        .detune(0.25)
+        .spread(0.8)
+        .attack(0.5)
+        .release(1.5)
+        .lpf(sine.range(700, 2000).slow(8))
+        .orbit(2)
+        .room(0.5)
+        .roomsize(6)
+        .gain(0.5)
+listen_for:
+  - "Em9, C^7, G^7, D6: the top voice moves B4, B4, B4, B4, a held common tone over the changing chords"
+  - "Each chord swells in and the previous one is still fading as the next arrives"
+  - "A soft beating shimmer inside each chord, but every chord sounds in tune"
+  - "The pad grows brighter and darker again over eight bars, chord by chord"
+  - "A long reverb tail behind the chords"
+verify:
+  cycles: 8
+sources:
+  - strudel-doc: unison
+  - strudel-doc: detune
+  - strudel-doc: spread
+  - strudel-doc: roomsize
+  - lexicon: warm
+  - lexicon: pad-like
+  - lexicon: wet

@@ -1,0 +1,104 @@
+id: zen.consolidated-idioms.v03
+skills: [zen.consolidated-idioms]
+type: creative
+difficulty: 5
+title: "Your graduation piece"
+prompt: |
+  Write a complete piece of **24 to 32 bars** in one of the course's three
+  genres: chiptune, synth-pop or synthwave. It should be a piece you'd be
+  happy to play for someone, and code you'd be happy to hand to another
+  live coder.
+
+  The music:
+  - at least **three sections** with a clear arc, the peak near the end;
+  - the genre's sound: for chiptune, pulse waves, a triangle bass and noise
+    drums on four monophonic channels; for synth-pop, a drum machine,
+    sequenced bass, brass or pads and a hook; for synthwave, a driving bass,
+    a detuned pumping pad and a lead with echoes.
+
+  The code:
+  - tempo first, then named parts, then sections, then the form on the
+    last line;
+  - every musical fact (the chord loop, each part's sound) written once;
+  - the course's idioms where they fit: chord symbols or scale degrees,
+    derived voices, patterns inside parameters, time in fractions of a
+    bar, orbits for different spaces.
+
+  The reference, a chiptune piece, is one possible answer.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(140 / 4)
+      // Channel 1: pulse lead
+      const lead = n("<[0 2 4 7] [5@2 4 2] [3 4 5 3] [4@3 ~]>")
+        .scale("C5:major")
+        .s("pulse")
+        .decay(0.15)
+        .sustain(0.5)
+        .gain(0.3)
+      const fanfare = note(
+        "<[c5 eb5 ab5 eb5] [d5 f5 bb5 f5] [c5 e5 g5 c6] [c6@3 ~]>",
+      )
+        .s("pulse")
+        .decay(0.15)
+        .sustain(0.5)
+        .gain(0.3)
+      // Channel 2: thin pulse arpeggios
+      const arps = (chords) =>
+        note(chords)
+          .arp("[0 1 2]*4")
+          .s("pulse")
+          .pw(0.75)
+          .decay(0.1)
+          .sustain(0)
+          .gain(0.25)
+      const homeArps = arps("<[c4,e4,g4] [a3,c4,e4] [f3,a3,c4] [g3,b3,d4]>")
+      const victoryArps = arps(
+        "<[ab3,c4,eb4] [bb3,d4,f4] [c4,e4,g4] [c4,e4,g4]>",
+      )
+      // Channel 3: triangle bass
+      const bass = (roots) =>
+        note(roots).struct("x x ~ x x ~ x ~").s("triangle").gain(0.6)
+      // Channel 4: noise drums, kick from a triangle pitch drop
+      const drums = stack(
+        note("c3 ~ c3 ~")
+          .s("triangle")
+          .penv(36)
+          .pdecay(0.06)
+          .decay(0.15)
+          .sustain(0),
+        s("~ white ~ white").decay(0.15).sustain(0).gain(0.4),
+        s("white*8").hpf(7000).decay(0.03).sustain(0).gain(0.3),
+      )
+
+      const intro = stack(homeArps, bass("<c3 a3 f3 g3>"))
+      const theme = stack(drums, homeArps, bass("<c3 a3 f3 g3>"), lead)
+      const victory = stack(drums, victoryArps, bass("<ab3 bb3 c3 c3>"), fanfare)
+      const finalLap = stack(
+        drums,
+        stack(homeArps, bass("<c3 a3 f3 g3>"), lead).transpose(1),
+      )
+
+      arrange([4, intro], [8, theme], [8, victory], [8, finalLap])
+listen_for:
+  - "Intro (4 bars): fast thin arpeggios and a bouncing triangle bass on C, A minor, F, G"
+  - "Theme (8 bars): the chip drums and the pulse lead enter"
+  - "Victory (8 bars): the borrowed A flat and B flat chords rise to C under a fanfare, the bVI-bVII-I cadence"
+  - "Final lap (8 bars): the theme a semitone higher, in D flat; the drums are not transposed"
+rubric:
+  - "24 to 32 bars in at least three sections, written with arrange or seqPLoop on the last line"
+  - "A clear arc: intensity rises to a peak near the end"
+  - "The sound and texture belong recognisably to the chosen genre"
+  - "Tempo first, then named parts, then sections, then the form"
+  - "No musical fact is written twice; repeated material is named or derived"
+  - "At least four of the course's idioms in use (for example chord symbols or scale degrees, a derived voice, a patterned parameter, time in fractions of a bar, orbits)"
+  - "Balanced by ear after all parts are in; every note at or above C3"
+verify:
+  cycles: 28
+  equivalent_solutions: false
+sources:
+  - strudel-doc: arrange
+  - strudel-doc: arp
+  - strudel-doc: pw
+  - strudel-doc: penv
+  - strudel-doc: transpose

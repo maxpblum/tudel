@@ -1,0 +1,43 @@
+id: bus.shared-effects.v02
+skills: [bus.shared-effects]
+type: describe-to-code
+difficulty: 2
+title: Piano near, choir far, one church
+prompt: |
+  Two parts play in the **same resonant church**:
+
+  - A **piano-like** part close to you: the quarter-note figure
+    `n("<[0 2 4 2] [-2 0 2 0] [-4 -2 0 -2] [-3 -1 1 -1]>").scale("C4:major")`
+    as plucks on `"triangle"` (`decay` 0.2 seconds, nothing held).
+  - A **choir-like** pad far back: `chord("<C Am F G>").voicing()` on
+    `"triangle"`, swelling in over 0.4 seconds and fading over 1 second.
+
+  Make the church's reverb long, and write it once for both parts. Then set
+  the distances with the sends only. Any `roomsize` from about 5 to 8 seconds
+  fits, with a piano send of about 0.1 to 0.2 and a choir send of about 0.6
+  to 0.8. The reference uses one value from each range.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      stack(
+        n("<[0 2 4 2] [-2 0 2 0] [-4 -2 0 -2] [-3 -1 1 -1]>")
+          .scale("C4:major")
+          .s("triangle")
+          .decay(0.2)
+          .sustain(0)
+          .room(0.15),
+        chord("<C Am F G>").voicing().s("triangle").attack(0.4).release(1).room(0.7),
+      ).roomsize(6)
+listen_for:
+  - The plucks sound clear and near. Each has only a faint tail
+  - The chords sound distant, with almost as much reverb as direct sound
+  - Both tails take the same time to fade (about 6 seconds in the reference), because they share one reverb on one orbit
+  - Only room differs between the parts. roomsize is written once, after the stack
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: room
+  - strudel-doc: roomsize
+  - strudel-doc: stack
+  - strudel-src: "packages/superdough/superdough.mjs#L950-L952"
+  - strudel-src: "packages/superdough/helpers.mjs#L15-L20"

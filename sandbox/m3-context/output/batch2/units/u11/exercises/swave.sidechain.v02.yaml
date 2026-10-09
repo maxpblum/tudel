@@ -1,0 +1,26 @@
+id: swave.sidechain.v02
+skills: [swave.sidechain]
+type: recall
+difficulty: 2
+title: The misnamed control
+prompt: |
+  Write a TR-909 kick on every beat that ducks **orbit 3**, with the ducked
+  orbit taking **0.2 seconds** to come back to full level. Use the default
+  depth.
+
+  (Which of the duck controls sets the *recovery* time? Its name suggests
+  something else.)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      s("bd*4").bank("RolandTR909").duckorbit(3).duckattack(0.2)
+listen_for:
+  - "Four kicks per bar (anything on orbit 3 would drop almost to silence on each kick and return within 0.2 seconds)"
+  - "Code check: duckattack(0.2) sets the recovery; duckonset sets how fast the level falls, default 0 seconds"
+  - "Code check: duckorbit(3) is written on the kick, the trigger, not on the part that ducks"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: duckorbit
+  - strudel-doc: duckattack
+  - strudel-doc: duckonset

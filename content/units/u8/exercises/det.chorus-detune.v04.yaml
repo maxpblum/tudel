@@ -1,0 +1,27 @@
+id: det.chorus-detune.v04
+skills: [det.chorus-detune]
+type: read-the-code
+difficulty: 3
+title: Where did the left copy go?
+prompt: |
+  The author of this code wanted the copy hard left and the original hard
+  right. Read it and predict where each layer actually sounds, and whether
+  you will still hear the 10-cent beating. Then play it and check.
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      note("c4 e4 g4 e4")
+        .s("sawtooth")
+        .lpf(1200)
+        .superimpose((x) => x.add(note(0.1)).pan(0))
+        .pan(1)
+listen_for:
+  - "Both layers sound hard right: the final .pan(1) sets pan on every event, including the copy, and replaces its pan(0)"
+  - "The beating is clear, because both copies come from the same speaker: about 1.5 times per second on c4"
+  - "To get what the author wanted, put .pan(1) before superimpose"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: superimpose
+  - strudel-doc: pan
+  - strudel-src: "packages/core/controls.mjs#L41-L49"

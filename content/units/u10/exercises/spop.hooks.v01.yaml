@@ -1,0 +1,31 @@
+id: spop.hooks.v01
+skills: [spop.hooks]
+type: dictation
+difficulty: 3
+title: A Dorian hook from the staff
+prompt: |
+  Write this one-bar hook with `n` and `scale` on `"square"`. The key
+  signature is A Dorian (one sharp), so every F is F sharp. Work out the
+  scale degrees first (A is 0), then choose the scale name and octave that
+  make degree 0 the A just above middle C.
+abc: |
+  X:1
+  M:4/4
+  L:1/8
+  K:ADor
+  A c e f e c z e |
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("0 2 4 5 4 2 ~ 4").scale("A4:dorian").s("square")
+listen_for:
+  - "A4 C5 E5 F#5 E5 C5, a rest, E5: eighth notes"
+  - "The F sharp (degree 5, a major sixth above A) gives the bittersweet Dorian colour"
+verify:
+  cycles: 1
+  abc_agreement:
+    voice: 0
+    compare: [pitch, onset, duration]
+sources:
+  - strudel-doc: scale
+  - strudel-doc: n

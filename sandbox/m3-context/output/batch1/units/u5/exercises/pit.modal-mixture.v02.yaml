@@ -1,0 +1,26 @@
+id: pit.modal-mixture.v02
+skills: [pit.modal-mixture]
+type: ear-dictation
+difficulty: 3
+title: Two borrowed chords in D major
+prompt: |
+  The target plays four chords in **D major**, one per bar, each in root
+  position, so the lowest note is always the root. Bars 1 and 4 are the
+  tonic. Bars 2 and 3 are **major** triads borrowed from D minor: one on the
+  lowered sixth degree, one on the lowered seventh. Find their order by ear,
+  then write the four symbols with `chord` and `.voicing()` on `"triangle"`.
+  Put every root in the bass with `mode("root")` and an anchor of D4.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<D Bb C D>").anchor("d4").mode("root").voicing().s("triangle")
+listen_for:
+  - "I, ♭VI, ♭VII, I in D major: D, Bb, C, D"
+  - "The bass climbs by whole tones, B flat 3, C4, D4, to the tonic"
+  - "No chord contains C sharp, the leading tone. The arrival on D comes from the rising bass"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: chord
+  - strudel-doc: mode
+  - strudel-src: "packages/tonal/tonleiter.mjs#L159-L161"

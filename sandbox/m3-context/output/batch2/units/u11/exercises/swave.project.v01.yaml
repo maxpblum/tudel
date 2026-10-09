@@ -1,0 +1,120 @@
+id: swave.project.v01
+skills: [swave.project]
+type: project
+difficulty: 5
+title: "Synthwave capstone: Midnight Drive"
+prompt: |
+  Build an original **eight-bar synthwave cue in E minor at 104 BPM**, in
+  four checkpoints. Play the piece after every checkpoint; each layer should
+  sound right before you add the next. Your own melody and your own choices
+  throughout: the reference is one possible answer.
+
+  **Plan first.** Chord loop, one chord per bar: **Em9, C^7, G^7, D6**.
+  Orbits: drums on **1**, pad and bass on **2**, lead on **3**.
+
+  **Checkpoint 1: Drums.** TR-909 (or TR-808): kick on every beat, snare on
+  beats 2 and 4, eighth-note hats. In the **fourth bar of each four-bar
+  phrase** the kick leaves out beat 4. The kick **ducks orbit 2**; choose a
+  depth and a recovery time of about two thirds of a beat (a beat lasts
+  about 0.58 seconds at 104 BPM).
+
+  **Checkpoint 2: Rolling bass.** The roots E, C, G, D, written once each, at
+  or above C3, as eighth notes or an octave pulse on a filtered sawtooth
+  with a short filter envelope. On orbit 2, so it pumps with the pad.
+
+  **Checkpoint 3: Pumping detuned pad.** The four chords voiced with
+  `chord(...).voicing()` on a supersaw with **seven voices**, a detune that
+  blurs without sounding sour, a slow attack and longer release, a cutoff
+  that moves over the eight bars, and a long hall. On orbit 2. Check that
+  pad and bass now dip on every kick, and hold steady where the kick drops
+  out.
+
+  **Checkpoint 4: Lead, echoes and room.** An original lead of long notes,
+  entering in **bar 5** (use `mask`), on a clear-pitched sound with light
+  vibrato, a dotted-eighth `delaysync` echo, and its own hall on orbit 3.
+
+  **Final mix.** Balance with `gain`: kick and snare in front, bass audible
+  on laptop speakers, pad a wide wall behind, lead on top. Then check the
+  rubric.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(104 / 4)
+      $: s("bd*4")
+        .lastOf(4, (x) => x.struct("x x x ~"))
+        .bank("RolandTR909")
+        .duckorbit(2)
+        .duckdepth(0.6)
+        .duckattack(0.38)
+      $: s("~ sd ~ sd, hh*8").bank("RolandTR909").room(0.1).gain(0.8)
+      $: note("<e3 c3 g3 d3>")
+        .ply(8)
+        .add(note("[0 12]*4"))
+        .s("sawtooth")
+        .lpf(400)
+        .lpenv(3)
+        .lpdecay(0.1)
+        .orbit(2)
+        .gain(0.65)
+      $: chord("<Em9 C^7 G^7 D6>")
+        .voicing()
+        .s("supersaw")
+        .unison(7)
+        .detune(0.25)
+        .spread(0.8)
+        .attack(0.6)
+        .release(1.5)
+        .lpf(sine.range(900, 2400).slow(8))
+        .orbit(2)
+        .room(0.5)
+        .roomsize(6)
+        .gain(0.45)
+      $: note("<[b4@3 e5] [g5@2 f#5 e5] [d5@3 b4] [a4@2 ~@2]>")
+        .mask("<0 0 0 0 1 1 1 1>")
+        .s("supersaw")
+        .unison(2)
+        .detune(0.1)
+        .vib(5)
+        .vibmod(0.1)
+        .attack(0.05)
+        .release(0.5)
+        .lpf(2800)
+        .orbit(3)
+        .delay(0.4)
+        .delaysync(3 / 16)
+        .delayfeedback(0.45)
+        .room(0.4)
+        .roomsize(5)
+        .gain(0.5)
+listen_for:
+  - "Bars 1–4: drums, octave-pulse bass and pad; pad and bass dip on every kick and swell back within about two thirds of a beat"
+  - "Beat 4 of bar 4 (and of bar 8): no kick, and the pad holds steady into the next bar"
+  - "Pad: Em9, C^7, G^7, D6 with B4 held on top through all four chords, wide and gently beating"
+  - "Bars 5–8: the lead enters above the pad and does not pump; the F sharp over C^7 gives a bright, Lydian colour"
+  - "Dotted-eighth echoes and a long tail fill the half-bar rest at the end of bar 8"
+  - "The pad's cutoff moves over the eight bars, so the second phrase sounds brighter than the first"
+rubric:
+  - "Tempo set with setcpm(104 / 4); one chord per bar in the order Em9, C^7, G^7, D6, with valid chord symbols"
+  - "Drums: kick on every beat with a dropout in the fourth bar of each phrase (lastOf or < >), snare on 2 and 4, eighth-note hats"
+  - "The kick carries duckorbit(2) with a depth and a recovery time (duckattack) chosen for the tempo, and is not itself on orbit 2"
+  - "Bass: roots written once per bar, repeated as eighths (ply or struct), on a filtered sawtooth with a short filter envelope, every note at or above C3, on orbit 2"
+  - "Pad: chord(...).voicing() on a supersaw with seven voices and a detune between about 0.15 and 0.35, attack of at least 0.3 seconds, release longer than the attack, on orbit 2"
+  - "Pad: a cutoff that moves over several bars (a slow signal in lpf) and its own roomsize on orbit 2"
+  - "Pump: pad and bass audibly dip on each kick and recover before the next beat; the lead does not pump"
+  - "Lead: original melody of mostly long notes, entering in bar 5 (mask or equivalent), with vibrato, a delaysync echo and a reverb on orbit 3"
+  - "Each orbit has one roomsize; no two parts with different spaces share an orbit"
+  - "Balance: every part audible on laptop speakers; nothing drowns the kick and snare"
+verify:
+  cycles: 8
+  equivalent_solutions: false
+sources:
+  - strudel-doc: duckorbit
+  - strudel-doc: duckattack
+  - strudel-doc: lastOf
+  - strudel-doc: mask
+  - strudel-doc: supersaw
+  - strudel-doc: detune
+  - strudel-doc: delaysync
+  - strudel-doc: orbit
+  - lexicon: bright
+  - lexicon: wet

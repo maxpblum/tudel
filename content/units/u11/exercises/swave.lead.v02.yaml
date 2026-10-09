@@ -1,0 +1,37 @@
+id: swave.lead.v02
+skills: [swave.lead]
+type: dictation
+difficulty: 3
+title: A lead from the staff
+prompt: |
+  Write this four-bar lead, one `< >` step per bar, with long notes as `@`
+  weights. Play it on a `"sawtooth"` with attack **0.05 seconds**, release
+  **0.5 seconds** and a low-pass at **2800 Hz**, and add a dotted-eighth
+  echo (send **0.4**) so the rest in bar 4 is not silent.
+abc: |
+  X:1
+  M:4/4
+  L:1/4
+  K:Dm
+  a3 g | f2 e d | e2 c A | d2 z2 |
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("<[a5@3 g5] [f5@2 e5 d5] [e5@2 c5 a4] [d5@2 ~@2]>")
+        .s("sawtooth")
+        .attack(0.05)
+        .release(0.5)
+        .lpf(2800)
+        .delay(0.4)
+        .delaysync(3 / 16)
+listen_for:
+  - "A5 held for three beats, G5; F5 for two beats, E5, D5; E5 for two beats, C5, A4; D5 for two beats, then rest"
+  - "A falling line in D minor that comes to rest on the tonic"
+  - "Echoes between the beats, continuing through the final rest"
+verify:
+  cycles: 4
+  abc_agreement:
+    voice: 0
+    compare: [pitch, onset, duration]
+sources:
+  - strudel-doc: delaysync

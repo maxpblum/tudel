@@ -1,0 +1,26 @@
+id: pat.superimpose.v01
+skills: [pat.superimpose]
+type: spec-to-code
+difficulty: 2
+title: A quieter double an octave below
+prompt: |
+  The melody is one bar in A minor, tonic on A4: scale degrees
+  `"4 3 2 1 [0 1] 2 0@2"` on `"triangle"`. Double it with `superimpose`:
+  the copy plays **one octave lower**, on a **square** wave, at **gain 0.4**.
+  Transpose the copy in semitones.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("4 3 2 1 [0 1] 2 0@2")
+        .scale("A4:minor")
+        .s("triangle")
+        .superimpose((x) => x.transpose(-12).s("square").gain(0.4))
+listen_for:
+  - "The melody E5 D5 C5 B4, A4 B4 (sixteenths), C5, A4 (quarter) on the triangle"
+  - "The same notes an octave lower, E4 down to A3, sounding at exactly the same moments, with a buzzier square tone underneath"
+  - "superimpose comes after s, so the copy has an s to replace; transpose works on the finished notes, where add(-12) would not"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: superimpose
+  - strudel-doc: transpose

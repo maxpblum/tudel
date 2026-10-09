@@ -1,0 +1,27 @@
+id: chip.pulse-channels.v04
+skills: [chip.pulse-channels]
+type: describe-to-code
+difficulty: 2
+title: A slowly turning pulse
+prompt: |
+  In the style of the Commodore 64: a bass line holds one note per bar,
+  **C4, A flat 3, B flat 3, G3**, on the pulse oscillator. Its pitch never
+  moves, but its tone keeps turning slowly from hollow to nasal and back,
+  completing one full turn every **2 seconds**, with a fairly deep sweep
+  (about 0.4).
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("<c4 ab3 bb3 g3>").s("pulse").pwrate(0.5).pwsweep(0.4).gain(0.6)
+listen_for:
+  - "One held note per bar: C4, A flat 3, B flat 3, G3"
+  - "The tone changes continuously inside each note, like a vowel slowly changing, while the pitch stays put"
+  - "One full cycle of the change every 2 seconds (0.5 Hz)"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: pwrate
+  - strudel-doc: pwsweep
+  - strudel-src: "packages/superdough/synth.mjs#L299-L310"
+  - lexicon: hollow
+  - lexicon: nasal

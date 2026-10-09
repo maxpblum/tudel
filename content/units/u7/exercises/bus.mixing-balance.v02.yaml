@@ -1,0 +1,22 @@
+id: bus.mixing-balance.v02
+skills: [bus.mixing-balance]
+type: recall
+difficulty: 1
+title: Twenty decibels down
+prompt: |
+  From memory: what `gain` is 20 dB below gain 1?
+
+  Play the arpeggio `note("c4 e4 g4 c5")` on `"triangle"` at that level.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c4 e4 g4 c5").s("triangle").gain(0.1)
+listen_for:
+  - "Code check: gain(0.1). 20 × log10(0.1) = −20 dB"
+  - The arpeggio is much quieter than at the default 0.8, which is 18 dB louder
+  - Each tenth is another 20 dB down. gain 0.01 would be −40 dB
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: gain
+  - strudel-src: "packages/superdough/superdough.mjs#L65-L69"

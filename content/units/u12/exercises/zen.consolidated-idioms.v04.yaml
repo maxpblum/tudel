@@ -1,0 +1,65 @@
+id: zen.consolidated-idioms.v04
+skills: [zen.consolidated-idioms]
+type: transform
+difficulty: 3
+title: "Four edits mid-set"
+prompt: |
+  The starter is a tidy 8-bar piece. Imagine you are playing it live, and
+  make these four changes, each in as few places as possible:
+
+  1. Put the hook in **Dorian** instead of natural minor.
+  2. Make the verse **8 bars** long instead of 4.
+  3. Make the chorus pad **brighter (3000 Hz)** than the verse pad
+     (1500 Hz), without writing the pad out twice. Hint: turn *pad* into a
+     function of its cutoff.
+  4. Make the hook play **backwards in the last bar** of the chorus.
+
+  Then count how many lines each change touched.
+starter: |
+  setcpm(100 / 4)
+  const loop = "<Am F C G>"
+  const drums = s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR909")
+  const bass = note("<a3 f3 c3 g3>").ply(8).s("sawtooth").lpf(700).gain(0.6)
+  const pad = chord(loop).voicing().s("supersaw").detune(0.2).lpf(1500).gain(0.35)
+  const hook = n("4 ~ 5 4 2 ~ 0 2")
+    .scale("A4:minor")
+    .s("square")
+    .lpf(3000)
+    .gain(0.3)
+  const verse = stack(drums, bass, pad)
+  const chorus = stack(drums, bass, pad, hook)
+  arrange([4, verse], [4, chorus])
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(100 / 4)
+      const loop = "<Am F C G>"
+      const drums = s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR909")
+      const bass = note("<a3 f3 c3 g3>").ply(8).s("sawtooth").lpf(700).gain(0.6)
+      const pad = (cutoff) =>
+        chord(loop).voicing().s("supersaw").detune(0.2).lpf(cutoff).gain(0.35)
+      const hook = n("4 ~ 5 4 2 ~ 0 2")
+        .scale("A4:dorian")
+        .s("square")
+        .lpf(3000)
+        .gain(0.3)
+      const verse = stack(drums, bass, pad(1500))
+      const chorus = stack(
+        drums,
+        bass,
+        pad(3000),
+        hook.lastOf(4, (x) => x.rev()),
+      )
+      arrange([8, verse], [4, chorus])
+listen_for:
+  - "The hook's F becomes F sharp (Dorian's raised sixth), heard on degree 5 in beat 2"
+  - "Eight bars of verse (the loop twice) before the chorus; the form is now 12 bars"
+  - "The pad opens up audibly when the chorus arrives"
+  - "In bar 4 of the chorus (bar 12 of the form) the hook runs backwards"
+  - "Code check: changes 1, 2 and 4 each touched one line; change 3 touched the pad's definition and the two places it is used"
+verify:
+  cycles: 12
+sources:
+  - strudel-doc: scale
+  - strudel-doc: arrange
+  - strudel-doc: lastOf

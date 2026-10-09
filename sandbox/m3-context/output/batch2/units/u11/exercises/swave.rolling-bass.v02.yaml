@@ -1,0 +1,40 @@
+id: swave.rolling-bass.v02
+skills: [swave.rolling-bass]
+type: dictation
+difficulty: 3
+title: Octave pulse from the staff
+prompt: |
+  Write this two-bar bass line on a filtered `"sawtooth"` (low-pass **400 Hz**,
+  filter envelope **3 octaves**, decay **0.1 seconds**). Each bar holds one
+  root and jumps an octave on every other eighth. Write each bar's root
+  once, and add the octave jumps as a pattern of offsets in semitones.
+abc: |
+  X:1
+  M:4/4
+  L:1/8
+  K:Am clef=bass
+  A,A A,A A,A A,A | D,D D,D D,D D,D |
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("<a3 d3>")
+        .ply(8)
+        .add(note("[0 12]*4"))
+        .s("sawtooth")
+        .lpf(400)
+        .lpenv(3)
+        .lpdecay(0.1)
+listen_for:
+  - "Bar 1: A3 A4 A3 A4 A3 A4 A3 A4; bar 2: D3 D4 D3 D4 D3 D4 D3 D4"
+  - "A bouncing bass: low and high octaves alternate on every eighth"
+  - "Every note ticks: bright at the start, dark by the end"
+  - "Code check: the offset pattern has 8 steps per bar ([0 12]*4), matching the 8 eighths"
+verify:
+  cycles: 2
+  abc_agreement:
+    voice: 0
+    compare: [pitch, onset, duration]
+sources:
+  - strudel-doc: ply
+  - strudel-doc: add
+  - strudel-doc: lpenv

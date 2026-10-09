@@ -1,0 +1,40 @@
+id: spop.brass-stabs.v04
+skills: [spop.brass-stabs]
+type: transform
+difficulty: 3
+title: From string swell to brass stab
+prompt: |
+  The starter plays a soft swell: the loudness rises over 0.08 seconds
+  through a fixed filter. Turn it into brass stabs:
+
+  1. Move the 0.08-second rise from the **amplitude** to the **filter**:
+     amplitude attack 0.01 s, a low-pass at **500 Hz** that opens
+     **3 octaves** over **0.08 s** and closes over **0.25 s**.
+  2. Cut the held chords into off-beat hits on the "and" of every beat.
+starter: |
+  chord("<Cm Ab Eb Bb>").voicing().s("sawtooth").attack(0.08).lpf(1500).gain(0.5)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<Cm Ab Eb Bb>")
+        .struct("~ x ~ x ~ x ~ x")
+        .voicing()
+        .s("sawtooth")
+        .attack(0.01)
+        .lpf(500)
+        .lpenv(3)
+        .lpattack(0.08)
+        .lpdecay(0.25)
+        .gain(0.5)
+listen_for:
+  - "Four short hits per bar, each on an off-beat eighth"
+  - "Each hit is at full loudness at once but its tone opens over 80 ms: a horn's bloom instead of a string's swell"
+  - "The resting tone between blooms is dark (500 Hz)"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: struct
+  - strudel-doc: lpattack
+  - strudel-doc: attack
+  - lexicon: brassy
+  - lexicon: soft

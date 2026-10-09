@@ -1,0 +1,31 @@
+id: pat.superimpose.v02
+skills: [pat.superimpose]
+type: refactor
+difficulty: 3
+title: Diminution above, written once
+prompt: |
+  The starter writes the subject twice: once as it is, and once copied out
+  by hand an octave higher (every degree plus 7) and played twice as fast.
+  Rewrite it so the subject is written **once** and the second voice is
+  derived with `superimpose`. It must play exactly the same events.
+starter: |
+  stack(
+    n("0 1 2 0 4@2 3 2").scale("D4:dorian").s("triangle"),
+    n("7 8 9 7 11@2 10 9").scale("D4:dorian").s("triangle").fast(2),
+  )
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("0 1 2 0 4@2 3 2".superimpose((x) => x.fast(2).add(7)))
+        .scale("D4:dorian")
+        .s("triangle")
+listen_for:
+  - "The same sound as the starter: the subject from D4 in eighths, and above it the subject from D5 in sixteenths, twice per bar"
+  - "The copy's function does both changes: fast(2) for the diminution, add(7) for the octave"
+  - "A change to the subject now changes both voices"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: superimpose
+  - strudel-doc: fast
+  - strudel-doc: add

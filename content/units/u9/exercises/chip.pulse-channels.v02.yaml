@@ -1,0 +1,28 @@
+id: chip.pulse-channels.v02
+skills: [chip.pulse-channels]
+type: ear-dictation
+difficulty: 2
+title: Which width is each bar?
+prompt: |
+  Four bars play the same arpeggio on the pulse oscillator. Each bar uses
+  one of three widths: **50 %** (`pw(0)`), **25 %** (`pw(0.5)`) or
+  **12.5 %** (`pw(0.75)`). Write down the width of each bar, then write the
+  code with one `pw` pattern that changes once per bar.
+
+  Listen for the hollow, odd-harmonics-only sound of the square first; then
+  sort the other two by how thin and nasal they are.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("a4 c5 e5 a5").s("pulse").pw("<0.75 0 0.5 0>").gain(0.6)
+listen_for:
+  - "Bar 1: 12.5 %, the thinnest and most nasal"
+  - "Bars 2 and 4: 50 %, the hollow square"
+  - "Bar 3: 25 %, between the two"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: pw
+  - lexicon: hollow
+  - lexicon: thin
+  - lexicon: nasal

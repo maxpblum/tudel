@@ -1,0 +1,309 @@
+# Batch 2 (M3, units u9-u11): append these entries to content/skills.yaml under units: and skills:.
+
+# Every vocabulary entry is a primary doc.json name.
+units:
+  - id: u9
+    title: Chiptune track
+    milestone: M3
+    order: 10
+    summary: >-
+      Think like a game-console composer with four channels: pulse waves at
+      their classic widths for lead and harmony, a triangle bass, drums made
+      from noise bursts and pitch drops, arcade progressions with a semitone
+      lift, chords played as frame-fast arpeggios on one channel, and the
+      ornaments of 8-bit melody. Ends with a chiptune song project.
+
+  - id: u10
+    title: Synth-pop track
+    milestone: M3
+    order: 11
+    summary: >-
+      Early-80s synth-pop with built-in sounds: drum-machine grooves on the
+      808 and 909 with a big gated-style snare, pumping 16th-note sequenced
+      bass, brass stabs shaped by a filter envelope, choir pads, string beds
+      and arpeggiated beds, and short modal hooks over a four-chord loop.
+      Ends with a synth-pop song project.
+
+  - id: u11
+    title: Synthwave track
+    milestone: M3
+    order: 12
+    summary: >-
+      Outrun synthwave: a driving eighth-note filtered-saw bass, lush
+      detuned supersaw pads, pumping made from gain that rises through each
+      beat (signals, tremolo, then real ducking from the kick with
+      duckorbit), and a soaring lead in synced echoes and a large room.
+      Ends with a synthwave song project.
+
+skills:
+  # --- u9 Chiptune --------------------------------------------------------
+  - id: chip.pulse-channels
+    unit: u9
+    title: "Pulse waves and the four-channel band"
+    prereqs: [snd.waveforms, snd.amp-envelope, pit.polyphony, bus.mixing-balance]
+    summary: >-
+      Play the pulse oscillator at the classic console widths (50 %, 25 %,
+      12.5 %) with pw, sweep the width with pwrate and pwsweep, and plan a
+      piece for four monophonic channels: two pulses, a triangle bass and
+      noise.
+    vocabulary: [pw, pwrate, pwsweep]
+    lesson: chip.pulse-channels.lesson
+    idiom_note: >-
+      One $: line per channel, one note at a time per line. Writing to the
+      console's four-channel limit is a style choice in Strudel, and it is
+      what makes the result sound like a game.
+
+  - id: chip.noise-drums
+    unit: u9
+    title: "Chip drums from noise and pitch drops"
+    prereqs: [chip.pulse-channels, snd.noise, snd.highpass, rhy.layers]
+    summary: >-
+      Build a drum kit with no samples: hi-hats and snares from white-noise
+      bursts with a fast decay, and a kick from a triangle whose pitch drops
+      several octaves in a few hundredths of a second with penv and pdecay.
+    vocabulary: [penv, pdecay, decay, sustain]
+    lesson: chip.noise-drums.lesson
+    idiom_note: >-
+      A drum is an envelope: decay with sustain(0) decides how long each hit
+      lasts. Write the kit as one channel per drum with $: and let the
+      mini-notation carry the groove.
+
+  - id: chip.arcade-harmony
+    unit: u9
+    title: "Arcade progressions: bVI-bVII-I and the semitone lift"
+    prereqs: [pit.modal-mixture, pit.genre-progressions, chip.pulse-channels]
+    summary: >-
+      The harmonic stock of game music: the Aeolian loop i-bVI-bVII, the
+      borrowed bVI-bVII-I victory cadence, and the final-lap modulation up a
+      semitone with transpose.
+    vocabulary: [chord, voicing, transpose]
+    lesson: chip.arcade-harmony.lesson
+    idiom_note: >-
+      Modulate the whole loop with one transpose("<0 0 0 1>") at the end of
+      the line instead of rewriting every note in the new key.
+
+  - id: chip.fast-arps
+    unit: u9
+    title: "Fast arpeggios: a whole chord on one channel"
+    prereqs: [chip.pulse-channels, det.detuned-lead, pat.speed-dir]
+    summary: >-
+      Play a chord on a single monophonic channel by cycling its notes so
+      fast (twenty or more per second) that the ear fuses them into one
+      shimmering chord, and contrast that with a broken chord slow enough to
+      hear as a melody.
+    vocabulary: [arp, fast]
+    lesson: chip.fast-arps.lesson
+    idiom_note: >-
+      Keep the chord in the note pattern and the speed in the arp pattern:
+      note("<[c4,e4,g4] ...>").arp("[0 1 2]*8") changes chords once per bar
+      however fast the arpeggio runs.
+
+  - id: chip.ornaments
+    unit: u9
+    title: "Arcade ornaments: grace notes, trills, slides and the echo channel"
+    prereqs: [chip.fast-arps, pat.canon-imitation, det.pitch-drift]
+    summary: >-
+      Decorate an 8-bit melody the way game composers did: grace notes and
+      trills in mini-notation, repeated-note stutters with ply, pitch scoops
+      and drops with penv, vibrato with vib, and a quieter delayed copy of
+      the lead with off, the channel-borrowing echo.
+    vocabulary: [ply, penv, vib, "off"]
+    lesson: chip.ornaments.lesson
+    idiom_note: >-
+      Ornament the written line, not a copy of it: put grace notes inside the
+      step they decorate ("[b4 c5@3]") so the bar's grid stays intact.
+
+  - id: chip.project
+    unit: u9
+    title: "Chiptune song project"
+    prereqs: [chip.noise-drums, chip.arcade-harmony, chip.ornaments]
+    summary: >-
+      Build a complete looping game cue, channel by channel: a noise and
+      pitch-drop drum kit, a triangle bass, an arpeggiated pulse harmony and
+      an ornamented pulse lead, mixed within the four-channel limit.
+    vocabulary: [pw, arp, penv]
+    lesson: chip.project.lesson
+    idiom_note: >-
+      Build in checkpoints and keep every channel playing while you add the
+      next: a project that sounds right at each step is easier to finish.
+
+  # --- u10 Synth-pop ------------------------------------------------------
+  - id: spop.drum-machine
+    unit: u10
+    title: "Drum-machine grooves on the 808 and 909"
+    prereqs: [rhy.drums, rhy.layers, bus.mixing-balance, bus.orbit]
+    summary: >-
+      Program early-80s drum-machine patterns: four-on-the-floor and backbeat
+      grooves, accented sixteenth-note hats with a gain pattern, claps and
+      open hats, and a big gated-style snare from a short, loud reverb on its
+      own orbit.
+    vocabulary: [bank, gain, orbit, roomsize]
+    lesson: spop.drum-machine.lesson
+    idiom_note: >-
+      Accents are a gain pattern laid over the hits ("1 0.5 0.7 0.5"), not
+      extra sounds. The machine plays every step at the same strength, so the
+      groove lives in that pattern.
+
+  - id: spop.sequenced-bass
+    unit: u10
+    title: "Pumping 16th-note sequenced bass"
+    prereqs: [snd.filter-envelope, pat.ply-struct, pit.genre-progressions]
+    summary: >-
+      Write the sequencer bass of synth-pop: one root per bar repeated as
+      sixteenths with ply, octave jumps added as a pattern of note offsets,
+      and a short filter envelope that makes every note tick.
+    vocabulary: [ply, lpenv, lpdecay]
+    lesson: spop.sequenced-bass.lesson
+    idiom_note: >-
+      Write the roots once, one per bar, and let ply make the sixteenths:
+      note("<c3 ab3 eb3 bb3>").ply(16). The harmony stays readable at a glance.
+
+  - id: spop.brass-stabs
+    unit: u10
+    title: "Synth brass stabs"
+    prereqs: [snd.filter-envelope, pat.ply-struct, pit.extended-chords]
+    summary: >-
+      Make polysynth brass from sawtooth chords: a short attack, a filter
+      envelope that opens on each onset like a brass player's lips, and
+      short, syncopated chord hits placed with struct.
+    vocabulary: [lpenv, lpattack, attack, struct]
+    lesson: spop.brass-stabs.lesson
+    idiom_note: >-
+      The brass character comes from the filter's attack, not the amplitude's:
+      let lpattack open the tone over a few hundredths of a second while the
+      amplitude is already there.
+
+  - id: spop.pads
+    unit: u10
+    title: "Choir pads, string beds and arpeggiated beds"
+    prereqs: [det.chorus-detune, pit.voicing-controls, snd.bandpass, det.detuned-lead]
+    summary: >-
+      Lay down the harmonic bed of a synth-pop song: a choir pad from vowel
+      formants on sawtooth chords, a string-machine bed from slow-attack
+      detuned supersaws, and a moving bed that arpeggiates the same chords.
+    vocabulary: [vowel, attack, release, arp]
+    lesson: spop.pads.lesson
+    idiom_note: >-
+      Use one chord line for every bed. Voice it with chord(...).voicing() and
+      anchor, and change the sound around it, so the choir, strings and
+      arpeggio all follow the same harmony.
+
+  - id: spop.hooks
+    unit: u10
+    title: "Modal hooks: the riff over the loop"
+    prereqs: [pit.modes, pat.variation-every, spop.sequenced-bass]
+    summary: >-
+      Write a short, repeating synth riff with a modal colour (Aeolian,
+      Dorian or Mixolydian) over a four-chord loop, and vary it at the end of
+      each phrase with lastOf.
+    vocabulary: [scale, lastOf]
+    lesson: spop.hooks.lesson
+    idiom_note: >-
+      Write the hook in scale degrees with n and scale, so swapping the mode
+      name ("C4:dorian" for "C4:minor") changes its colour without touching
+      the rhythm.
+
+  - id: spop.project
+    unit: u10
+    title: "Synth-pop song project"
+    prereqs: [spop.drum-machine, spop.brass-stabs, spop.pads, spop.hooks]
+    summary: >-
+      Build an eight-bar synth-pop loop in checkpoints: drum machine, 16th
+      bass, a pad or string bed with brass stabs, and a modal hook, balanced
+      across orbits.
+    vocabulary: [bank, ply, lpenv, vowel]
+    lesson: spop.project.lesson
+    idiom_note: >-
+      Give each part its own $: line and its own orbit when its space differs.
+      Then balance with gain only after every part is in.
+
+  # --- u11 Synthwave ------------------------------------------------------
+  - id: swave.rolling-bass
+    unit: u11
+    title: "Driving eighth-note bass"
+    prereqs: [spop.sequenced-bass]
+    summary: >-
+      Drive a synthwave track with a filtered sawtooth playing steady eighth
+      notes on the chord roots, octave pulses, and the galloping sixteenth
+      variant that leaves the beat free for the kick.
+    vocabulary: [lpf, lpenv, struct]
+    lesson: swave.rolling-bass.lesson
+    idiom_note: >-
+      Keep the bass's rhythm in one place: roots in "< >", rhythm in ply or
+      struct. Changing "x*8" to "[~ x x x]*4" turns a drive into a gallop
+      without touching the harmony.
+
+  - id: swave.pads
+    unit: u11
+    title: "Lush detuned pad beds"
+    prereqs: [det.chorus-detune, pit.extended-chords, bus.shared-effects, mod.phrase-sweeps]
+    summary: >-
+      Build the warm wall of synthwave: seventh and add9 chords on a
+      many-voiced supersaw with moderate detune, a slow attack and long
+      release, a filter that breathes over a phrase, and a large reverb on
+      its own orbit.
+    vocabulary: [detune, unison, spread, roomsize]
+    lesson: swave.pads.lesson
+    idiom_note: >-
+      Put the pad on its own orbit with its own roomsize, so its long hall
+      doesn't rebuild or fight the shorter room of the drums.
+
+  - id: swave.pump
+    unit: u11
+    title: "Pumping: gain that breathes with the beat"
+    prereqs: [swave.pads, mod.segment, bus.mixing-balance]
+    summary: >-
+      Make a pad pump with the beat: gain that starts low on every beat and
+      rises before the next, first as a signal on re-triggered sixteenths
+      with segment, then as a continuous tremolo locked to the bar with
+      tremolosync.
+    vocabulary: [segment, gain, tremolosync, tremolodepth]
+    lesson: swave.pump.lesson
+    idiom_note: >-
+      A signal needs notes to carry it: gain(saw...) only changes at note
+      onsets, so chop a held pad with segment(16) or use tremolosync for a
+      truly continuous swell.
+
+  - id: swave.sidechain
+    unit: u11
+    title: "Sidechain ducking from the kick"
+    prereqs: [swave.pump, bus.orbit]
+    summary: >-
+      Duck a whole bus each time the kick plays with duckorbit, set how deep
+      and how fast it recovers with duckdepth and duckattack, and choose
+      between ducking and a pre-drawn gain pump.
+    vocabulary: [duckorbit, duckdepth, duckattack]
+    lesson: swave.sidechain.lesson
+    idiom_note: >-
+      Put the parts that should pump on their own orbit and let the kick
+      duck that orbit. The kick's own orbit, and anything else on it, stays
+      untouched.
+
+  - id: swave.lead
+    unit: u11
+    title: "A soaring lead: synced echoes and a big room"
+    prereqs: [det.detuned-lead, bus.shared-effects, det.pitch-drift, chip.ornaments]
+    summary: >-
+      Write a long-breathed synthwave lead: a sawtooth or two-voice supersaw
+      with a gentle attack and vibrato, a dotted-eighth echo with
+      delaysync and delayfeedback, a long hall on its own orbit, and an
+      octave doubling for the climax.
+    vocabulary: [delaysync, delayfeedback, room, vib]
+    lesson: swave.lead.lesson
+    idiom_note: >-
+      Write the lead's long notes long (@ in mini-notation) and let the echo
+      fill the space between phrases; the rests are part of the line.
+
+  - id: swave.project
+    unit: u11
+    title: "Synthwave song project"
+    prereqs: [swave.rolling-bass, swave.sidechain, swave.lead]
+    summary: >-
+      Build an eight-bar synthwave cue in checkpoints: drums, rolling bass,
+      a pumping detuned pad, and a soaring lead in echoes and reverb, each
+      on the right orbit.
+    vocabulary: [detune, duckorbit, delaysync, orbit]
+    lesson: swave.project.lesson
+    idiom_note: >-
+      Decide the orbits before the sounds: one for drums, one for the parts
+      that pump, one for the lead's hall. The mix then follows from the plan.

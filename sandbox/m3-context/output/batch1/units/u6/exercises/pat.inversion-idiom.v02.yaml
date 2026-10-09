@@ -1,0 +1,26 @@
+id: pat.inversion-idiom.v02
+skills: [pat.inversion-idiom]
+type: spec-to-code
+difficulty: 3
+title: A real inversion in semitones
+prompt: |
+  This line in D minor is written as note numbers (60 is C4, one unit is a
+  semitone): `"62 65 69 67 65 64 62@2"`, that is D4 F4 A4 G4 F4 E4 and a
+  quarter-note D4. Play its **real (chromatic) inversion** about D4 with
+  `note`, on `"triangle"`: every interval mirrored in exact semitones.
+
+  Before you play it, work out the second note. Is it the B flat of D minor?
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("62 65 69 67 65 64 62@2".mul(-1).add(124)).s("triangle")
+listen_for:
+  - "The axis is 62, so add 2 × 62 = 124"
+  - "The inversion runs D4 B3 G3 A3 B3 C4 and a quarter-note D4"
+  - "The rising minor third D4–F4 (3 semitones) becomes a falling minor third D4–B3, so B is natural, outside D minor"
+  - "A tonal inversion in degrees, n(\"0 2 4 3 2 1 0@2\".mul(-1)).scale(\"D4:minor\"), would give B flat instead"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: mul
+  - strudel-doc: note

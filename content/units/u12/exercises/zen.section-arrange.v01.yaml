@@ -1,0 +1,70 @@
+id: zen.section-arrange.v01
+skills: [zen.section-arrange]
+type: arrange
+difficulty: 2
+title: "Write the road map: intro, verse, chorus, outro"
+prompt: |
+  The starter defines three sections in D minor at 110 BPM: a quiet
+  *intro* (chords only), a *verse* and a fuller *chorus*. Don't change
+  them. Add one `arrange` line at the bottom that plays this form:
+
+  | Section | Bars |
+  |---|---|
+  | Intro | 2 |
+  | Verse | 4 |
+  | Chorus | 4 |
+  | Verse | 4 |
+  | Chorus | 4 |
+  | Outro (the intro again) | 2 |
+
+  Before you play it, check that each section's length is a multiple of
+  every `< >` inside it, so the section starts on its first chord each time.
+starter: |
+  setcpm(110 / 4)
+  const intro = chord("<Dm Bb>").voicing().s("triangle").lpf(900).gain(0.5)
+  const verse = stack(
+    s("bd ~ sd ~, hh*4").bank("RolandTR808"),
+    note("<d3 bb3>").ply(4).s("sawtooth").lpf(600).gain(0.6),
+    chord("<Dm Bb>").voicing().s("triangle").gain(0.5),
+  )
+  const chorus = stack(
+    s("bd*4, ~ cp ~ cp, hh*8").bank("RolandTR808"),
+    note("<f3 c3 d3 bb3>").ply(8).s("sawtooth").lpf(1000).gain(0.6),
+    chord("<F C Dm Bb>").voicing().s("supersaw").detune(0.2).gain(0.4),
+  )
+  intro
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(110 / 4)
+      const intro = chord("<Dm Bb>").voicing().s("triangle").lpf(900).gain(0.5)
+      const verse = stack(
+        s("bd ~ sd ~, hh*4").bank("RolandTR808"),
+        note("<d3 bb3>").ply(4).s("sawtooth").lpf(600).gain(0.6),
+        chord("<Dm Bb>").voicing().s("triangle").gain(0.5),
+      )
+      const chorus = stack(
+        s("bd*4, ~ cp ~ cp, hh*8").bank("RolandTR808"),
+        note("<f3 c3 d3 bb3>").ply(8).s("sawtooth").lpf(1000).gain(0.6),
+        chord("<F C Dm Bb>").voicing().s("supersaw").detune(0.2).gain(0.4),
+      )
+      arrange(
+        [2, intro],
+        [4, verse],
+        [4, chorus],
+        [4, verse],
+        [4, chorus],
+        [2, intro],
+      )
+listen_for:
+  - "Bars 1-2: soft, muffled chords alone, D minor then B flat"
+  - "Bars 3-6 and 11-14: the verse, with a sparse beat and quarter-note bass on D and B flat"
+  - "Bars 7-10 and 15-18: the chorus, with four-on-the-floor kick, claps, eighth-note hats and a brighter supersaw on F, C, D minor, B flat"
+  - "Bars 19-20: the intro's chords again as an outro, then the whole 20-bar form starts over"
+  - "Every section starts on its first chord, because each length (2 or 4 bars) is a multiple of its 2- or 4-step < >"
+verify:
+  cycles: 20
+sources:
+  - strudel-doc: arrange
+  - strudel-doc: stack
+  - strudel-src: "packages/core/pattern.mjs#L1469-L1473"

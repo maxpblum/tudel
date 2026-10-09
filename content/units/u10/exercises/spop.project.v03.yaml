@@ -1,0 +1,84 @@
+id: spop.project.v03
+skills: [spop.project]
+type: project
+difficulty: 5
+title: "Synth-pop capstone: Brass Is the Hook"
+prompt: |
+  Many synth-pop songs have no lead synth at all: the brass stabs *are* the
+  hook. Build an **eight-bar** track in **D Dorian** at **112 BPM** on the
+  two-chord vamp **D minor, G** (one chord per bar, played four times).
+
+  1. **Drum machine.** An 808 backbeat with a syncopated kick, accented
+     hats, the 808 cowbell somewhere memorable, and the gated-style snare on
+     its own orbit.
+  2. **Sequenced bass.** Roots in octave 3 as sixteenths with `ply`, with
+     an offset pattern that uses the fifth as well as the octave.
+  3. **Beds.** An **arpeggiated** bed (`arp` on the voiced chords) instead
+     of a held one, with a synced echo on its own orbit.
+  4. **Brass hook and final mix.** Brass stabs with a rhythm distinctive
+     enough to be the hook. Change their rhythm in the last bar of each
+     four-bar phrase with `lastOf`. Balance the mix so the stabs lead.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(112 / 4)
+      $: s("bd ~ ~ bd ~ ~ bd ~, ~ sd ~ sd").bank("RolandTR808")
+      $: s("hh*16").bank("RolandTR808").gain("[0.5 0.2 0.35 0.2]*4")
+      $: s("~ ~ ~ ~ ~ ~ ~ cb").bank("RolandTR808").gain(0.4)
+      $: s("~ sd ~ sd").bank("RolandTR808").room(0.8).roomsize(0.4).orbit(2)
+      $: note("<d3 g3>")
+        .ply(16)
+        .add(note("[0 12 7 12]*4"))
+        .s("sawtooth")
+        .lpf(400)
+        .lpenv(3)
+        .lpdecay(0.1)
+        .gain(0.55)
+      $: chord("<Dm G>")
+        .voicing()
+        .arp("0 1 2 3 2 1 2 3")
+        .s("square")
+        .decay(0.12)
+        .sustain(0)
+        .lpf(1600)
+        .delay(0.35)
+        .delaysync(3 / 16)
+        .orbit(3)
+        .gain(0.3)
+      $: chord("<Dm G>")
+        .struct("x ~ x ~ ~ x ~ x".lastOf(4, (x) => x.fast(2)))
+        .voicing()
+        .s("supersaw")
+        .unison(2)
+        .detune(0.1)
+        .attack(0.01)
+        .lpf(450)
+        .lpenv(4)
+        .lpattack(0.06)
+        .lpdecay(0.25)
+        .gain(0.5)
+listen_for:
+  - "D minor and G major alternate each bar: the major IV chord is the Dorian sound (B natural)"
+  - "The brass stabs carry the tune: hits on 1, 2, the 'and' of 3 and the 'and' of 4; in bars 4 and 8 the rhythm doubles in speed"
+  - "An 808 cowbell on the last eighth of every bar"
+  - "The bass outlines root, octave, fifth, octave in each beat"
+  - "A quiet arpeggio with dotted-eighth echoes underneath, never covering the brass"
+rubric:
+  - "Checkpoint 1: 808 backbeat with syncopated kick, hat accents, cowbell, and a short-room snare on its own orbit"
+  - "Checkpoint 2: roots once per bar with ply(16) and an offset pattern containing 7 and 12"
+  - "Checkpoint 3: an arp bed on the voiced chords, with delaysync, on its own orbit"
+  - "Checkpoint 4: brass stabs (lpattack above 0 with lpenv) whose struct rhythm is the hook, varied with lastOf in the last bar of each phrase"
+  - "The stabs are the loudest melodic part; the arp bed sits under them"
+  - "Chords D minor and G major only, valid symbols, every note at or above C3"
+  - "Original material: no riff or rhythm copied from an existing song"
+verify:
+  cycles: 8
+  equivalent_solutions: false
+sources:
+  - strudel-doc: struct
+  - strudel-doc: lastOf
+  - strudel-doc: arp
+  - strudel-doc: lpattack
+  - strudel-doc: bank
+  - lexicon: brassy
+  - lexicon: plucky

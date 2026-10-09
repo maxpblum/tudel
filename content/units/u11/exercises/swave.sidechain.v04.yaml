@@ -1,0 +1,65 @@
+id: swave.sidechain.v04
+skills: [swave.sidechain]
+type: refactor
+difficulty: 4
+title: Fix the orbit plan
+prompt: |
+  This mix is meant to work like the lesson's: the kick pumps the pad, and
+  the lead floats steadily above. Instead, the kick ducks itself, and the
+  lead pumps along with the pad. Fix the orbit plan without changing any
+  sound: drums on orbit 1, pad on orbit 2, lead on orbit 3, with the kick
+  ducking only the pad's orbit.
+starter: |
+  setcpm(100 / 4)
+  $: s("bd*4").bank("RolandTR909").orbit(2).duckorbit(2).duckattack(0.4)
+  $: chord("<Am9 F^7 Cadd9 G6>")
+    .voicing()
+    .s("supersaw")
+    .unison(7)
+    .detune(0.25)
+    .attack(0.3)
+    .release(1)
+    .lpf(2000)
+    .orbit(2)
+    .gain(0.5)
+  $: note("<[e5@3 d5] [c5@2 b4@2] a4 ~>")
+    .s("sawtooth")
+    .attack(0.05)
+    .release(0.4)
+    .lpf(3000)
+    .orbit(2)
+    .delay(0.35)
+    .gain(0.5)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(100 / 4)
+      $: s("bd*4").bank("RolandTR909").orbit(1).duckorbit(2).duckattack(0.4)
+      $: chord("<Am9 F^7 Cadd9 G6>")
+        .voicing()
+        .s("supersaw")
+        .unison(7)
+        .detune(0.25)
+        .attack(0.3)
+        .release(1)
+        .lpf(2000)
+        .orbit(2)
+        .gain(0.5)
+      $: note("<[e5@3 d5] [c5@2 b4@2] a4 ~>")
+        .s("sawtooth")
+        .attack(0.05)
+        .release(0.4)
+        .lpf(3000)
+        .orbit(3)
+        .delay(0.35)
+        .gain(0.5)
+listen_for:
+  - "The kick now hits at full level every time"
+  - "The pad still dips on every kick and swells back over 0.4 seconds"
+  - "The lead holds a steady level through the pumping, with its echoes undisturbed"
+  - "Code check: kick on orbit 1 (writing orbit(1) or leaving it out are the same), duckorbit(2) unchanged, lead on orbit 3"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: orbit
+  - strudel-doc: duckorbit

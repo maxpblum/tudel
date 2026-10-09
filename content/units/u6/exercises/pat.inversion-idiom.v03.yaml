@@ -1,0 +1,27 @@
+id: pat.inversion-idiom.v03
+skills: [pat.inversion-idiom, pat.speed-dir]
+type: spec-to-code
+difficulty: 3
+title: Retrograde inversion
+prompt: |
+  The subject from this unit is `"0 2 4 7 [6 5] 4 3@2"` in C major, tonic on
+  C4 (C4 E4 G4 C5, B4 A4 in sixteenths, G4, quarter-note F4). Play its
+  **retrograde inversion**, with the inversion mirrored about **G4**
+  (degree 4), on `"triangle"`.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("0 2 4 7 [6 5] 4 3@2".mul(-1).add(8).rev()).scale("C4:major").s("triangle")
+  - code: |
+      n("0 2 4 7 [6 5] 4 3@2".rev().mul(-1).add(8)).scale("C4:major").s("triangle")
+    note: rev changes only time and mul and add only pitch, so the order doesn't matter.
+listen_for:
+  - "The inversion alone would be D5 B4 G4 D4, E4 F4 (sixteenths), G4, A4 (quarter)"
+  - "Reversed, it starts with the quarter-note A4: A4, G4, F4 E4 (sixteenths), D4, G4, B4, D5"
+  - "The axis G4 sits in the middle of the line, so nothing goes below D4"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: mul
+  - strudel-doc: add
+  - strudel-doc: rev

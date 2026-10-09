@@ -1,0 +1,52 @@
+id: zen.dramatic-arc.v04
+skills: [zen.dramatic-arc]
+type: sweep
+difficulty: 3
+title: "Four bars of build, then the drop"
+prompt: |
+  Write an 8-bar loop at 100 BPM in A minor: a 4-bar **build** and a 4-bar
+  **drop**, with `arrange`.
+
+  The build, with no kick and no snare:
+  - hi-hats that double in density every bar: 4, 8, 16, then 32 per bar
+    (one `< >` inside the mini-notation);
+  - E3 in eighth notes on a sawtooth, its cutoff rising from 300 Hz to
+    3000 Hz across the four bars;
+  - a white-noise riser in sixteenths (decay 0.1 s, no sustain), its cutoff
+    rising from 400 Hz to 8000 Hz and its gain from 0.05 to 0.4.
+
+  Every sweep should take exactly the four bars of the build.
+
+  The drop: 909 kick on every beat, snare on 2 and 4, eighth-note hats; a
+  bass in eighths on A, F, C, G (octave 3, lpf 900 Hz); and a bright
+  supersaw on the chords A minor, F, C, G.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(100 / 4)
+      const build = stack(
+        s("hh*<4 8 16 32>").bank("RolandTR909").gain(0.4),
+        note("e3").ply(8).s("sawtooth").lpf(saw.slow(4).rangex(300, 3000)).gain(0.6),
+        s("white*16")
+          .decay(0.1)
+          .sustain(0)
+          .lpf(saw.slow(4).rangex(400, 8000))
+          .gain(saw.slow(4).rangex(0.05, 0.4)),
+      )
+      const drop = stack(
+        s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR909"),
+        note("<a3 f3 c3 g3>").ply(8).s("sawtooth").lpf(900).gain(0.6),
+        chord("<Am F C G>").voicing().s("supersaw").detune(0.2).lpf(3000).gain(0.35),
+      )
+      arrange([4, build], [4, drop])
+listen_for:
+  - "Hi-hats in quarters, eighths, sixteenths, then thirty-seconds (a roll) over bars 1-4"
+  - "The E3 pedal and the noise both brighten steadily through the build; the noise also grows louder"
+  - "Because rangex maps exponentially, the cutoff doubles at an even rate, so the rise sounds even rather than rushing at the top"
+  - "Bar 5: the full groove lands on A minor, and every sweep starts again from the bottom when the build returns"
+verify:
+  cycles: 8
+sources:
+  - strudel-doc: arrange
+  - strudel-doc: rangex
+  - strudel-doc: saw

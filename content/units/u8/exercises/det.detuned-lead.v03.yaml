@@ -1,0 +1,31 @@
+id: det.detuned-lead.v03
+skills: [det.detuned-lead]
+type: transform
+difficulty: 3
+title: From pad to lead
+prompt: |
+  The starter plays a melody on a pad sound: seven voices 40 cents apart, so
+  the pitches blur. Turn it into a clear, expressive lead: **2** voices
+  **12 cents** apart, plus a light vibrato of **5 Hz** and **±15 cents**.
+starter: |
+  note("e4 a4 c5 b4 a4 e4 g4 a4").s("supersaw").unison(7).detune(0.4)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("e4 a4 c5 b4 a4 e4 g4 a4")
+        .s("supersaw")
+        .unison(2)
+        .detune(0.12)
+        .vib(5)
+        .vibmod(0.15)
+listen_for:
+  - "Each pitch is now clear: two voices at -6 and +6 cents instead of seven spread over 40 cents"
+  - "The beating follows the register: about 2.3 times per second on e4, 3 on a4 and 3.6 on c5"
+  - "A light, even vibrato on every note, from its start"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: unison
+  - strudel-doc: detune
+  - strudel-doc: vib
+  - strudel-doc: vibmod

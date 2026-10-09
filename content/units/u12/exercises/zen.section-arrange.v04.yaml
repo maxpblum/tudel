@@ -1,0 +1,53 @@
+id: zen.section-arrange.v04
+skills: [zen.section-arrange]
+type: transform
+difficulty: 3
+title: "Add a B section: A A B A"
+prompt: |
+  The starter is a 4-bar A section in A minor at 96 BPM, looping on its own.
+  Turn it into a 16-bar song in the form **A A B A**:
+
+  - Add a 4-bar section named *b* on the chords **F, G, C, E**, one per
+    bar, with a bass on their roots in octave 3 (the same sound and rhythm
+    as A's bass), the same drums, and eighth-note hi-hats added for lift.
+  - Write the form with `arrange` on the last line.
+
+  The B section borrows the relative major's F, G and C, and its last chord,
+  E, is the dominant of A minor. Listen to how it leads back into the final A.
+starter: |
+  setcpm(96 / 4)
+  const drums = s("bd ~ sd ~").bank("RolandTR909")
+  const a = stack(
+    drums,
+    note("<a3 f3 c3 g3>").ply(4).s("sawtooth").lpf(700).gain(0.6),
+    chord("<Am F C G>").voicing().s("triangle").gain(0.5),
+  )
+  arrange([4, a])
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(96 / 4)
+      const drums = s("bd ~ sd ~").bank("RolandTR909")
+      const a = stack(
+        drums,
+        note("<a3 f3 c3 g3>").ply(4).s("sawtooth").lpf(700).gain(0.6),
+        chord("<Am F C G>").voicing().s("triangle").gain(0.5),
+      )
+      const b = stack(
+        drums,
+        s("hh*8").bank("RolandTR909").gain(0.5),
+        note("<f3 g3 c3 e3>").ply(4).s("sawtooth").lpf(700).gain(0.6),
+        chord("<F G C E>").voicing().s("triangle").gain(0.5),
+      )
+      arrange([4, a], [4, a], [4, b], [4, a])
+listen_for:
+  - "Bars 1-8: the A section twice, A minor, F, C, G"
+  - "Bars 9-12: B, with hi-hats added, on F, G, C, then E major. The G sharp in the E chord pulls toward A"
+  - "Bars 13-16: A returns, and its A minor in bar 13 resolves the E"
+  - "Code check: a is written once and named three times in the arrange line"
+verify:
+  cycles: 16
+sources:
+  - strudel-doc: arrange
+  - strudel-doc: stack
+  - strudel-doc: voicing

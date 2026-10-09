@@ -1,0 +1,35 @@
+id: spop.pads.v01
+skills: [spop.pads]
+type: describe-to-code
+difficulty: 2
+title: A choir singing "oo"
+prompt: |
+  Write a **soft**, **pad-like** choir bed for the loop **C minor, A flat,
+  E flat, B flat**, one chord per bar, voiced with `voicing`. The choir
+  sings a dark, rounded "oo", fades in slowly on each chord and lingers
+  after it. It sits under other parts, so keep it quiet.
+
+  Your exact times and levels may differ from the reference.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<Cm Ab Eb Bb>")
+        .voicing()
+        .s("sawtooth")
+        .attack(0.6)
+        .release(1.2)
+        .vowel("u")
+        .gain(0.4)
+listen_for:
+  - "A vowel-like, rounded colour: the formants of 'u' sit low (370 and 630 Hz)"
+  - "Each chord fades in over about half a second and dies away over about a second"
+  - "Chords C minor, A flat, E flat, B flat, smoothly connected"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: vowel
+  - strudel-src: "packages/superdough/vowel.mjs#L4-L9"
+  - strudel-doc: attack
+  - lexicon: soft
+  - lexicon: pad-like
+  - lexicon: dark

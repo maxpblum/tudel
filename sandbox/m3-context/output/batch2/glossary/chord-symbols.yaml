@@ -1,0 +1,102 @@
+# Batch 2 additions. Symbols already in content/glossary are included only so ingest merges their skills.
+entries:
+- symbol: Ab
+  tones: [Ab, C, Eb]
+  name: Ab major
+  skills: [chip.arcade-harmony, spop.brass-stabs, spop.pads, spop.project]
+- symbol: Ab^7
+  tones: [Ab, C, Eb, G]
+  name: Ab major seventh
+  skills: [swave.project]
+- symbol: Am
+  tones: [A, C, E]
+  name: A minor
+  skills: [chip.arcade-harmony, chip.fast-arps, spop.brass-stabs, spop.hooks, spop.pads, spop.project,
+    swave.pads]
+- symbol: Am9
+  tones: [A, C, E, G, B]
+  name: A minor ninth
+  skills: [swave.lead, swave.pads, swave.project, swave.pump, swave.sidechain]
+- symbol: Bb
+  tones: [Bb, D, F]
+  name: Bb major
+  skills: [chip.arcade-harmony, chip.fast-arps, spop.brass-stabs, spop.pads, spop.project]
+- symbol: C
+  tones: [C, E, G]
+  name: C major
+  skills: [chip.arcade-harmony, chip.fast-arps, chip.project, chip.pulse-channels, spop.brass-stabs, spop.hooks,
+    spop.pads, spop.project, swave.pads]
+- symbol: C^7
+  tones: [C, E, G, B]
+  name: C major seventh
+  skills: [swave.pads, swave.project, swave.pump]
+- symbol: Cadd9
+  tones: [C, E, G, D]
+  name: C major add ninth
+  skills: [swave.lead, swave.pads, swave.project, swave.pump, swave.sidechain]
+- symbol: Cm
+  tones: [C, Eb, G]
+  name: C minor
+  skills: [chip.project, spop.brass-stabs, spop.pads, spop.project]
+- symbol: D
+  tones: [D, F#, A]
+  name: D major
+  skills: [chip.arcade-harmony, chip.project, spop.brass-stabs, spop.pads]
+- symbol: D6
+  tones: [D, F#, A, B]
+  name: D sixth
+  skills: [swave.pads, swave.project, swave.pump]
+- symbol: Db
+  tones: [Db, F, Ab]
+  name: Db major
+  skills: [chip.project]
+- symbol: Db^7
+  tones: [Db, F, Ab, C]
+  name: Db major seventh
+  skills: [swave.project]
+- symbol: Dm
+  tones: [D, F, A]
+  name: D minor
+  skills: [chip.fast-arps, chip.pulse-channels, spop.brass-stabs, spop.pads, spop.project]
+- symbol: Eb
+  tones: [Eb, G, Bb]
+  name: Eb major
+  skills: [chip.project, spop.brass-stabs, spop.pads, spop.project]
+- symbol: Eb6
+  tones: [Eb, G, Bb, C]
+  name: Eb sixth
+  skills: [swave.project]
+- symbol: Em
+  tones: [E, G, B]
+  name: E minor
+  skills: [chip.arcade-harmony, chip.project, spop.brass-stabs, spop.pads]
+- symbol: Em9
+  tones: [E, G, B, D, F#]
+  name: E minor ninth
+  skills: [swave.pads, swave.project, swave.pump]
+- symbol: F
+  tones: [F, A, C]
+  name: F major
+  skills: [chip.arcade-harmony, chip.fast-arps, chip.project, spop.brass-stabs, spop.hooks, spop.pads,
+    spop.project, swave.pads]
+- symbol: F^7
+  tones: [F, A, C, E]
+  name: F major seventh
+  skills: [swave.lead, swave.pads, swave.project, swave.pump, swave.sidechain]
+- symbol: Fm9
+  tones: [F, Ab, C, Eb, G]
+  name: F minor ninth
+  skills: [swave.project]
+- symbol: G
+  tones: [G, B, D]
+  name: G major
+  skills: [chip.arcade-harmony, chip.fast-arps, chip.project, spop.brass-stabs, spop.hooks, spop.pads,
+    spop.project, swave.pads]
+- symbol: G6
+  tones: [G, B, D, E]
+  name: G sixth
+  skills: [swave.lead, swave.pads, swave.project, swave.pump, swave.sidechain]
+- symbol: G^7
+  tones: [G, B, D, F#]
+  name: G major seventh
+  skills: [swave.pads, swave.project, swave.pump]

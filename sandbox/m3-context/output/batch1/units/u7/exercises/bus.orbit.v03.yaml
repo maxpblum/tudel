@@ -1,0 +1,54 @@
+id: bus.orbit.v03
+skills: [bus.orbit]
+type: refactor
+difficulty: 2
+title: Stop the reverb tug-of-war
+prompt: |
+  These two parts should sound in two different spaces: the plucks in a small
+  room with a 1-second tail, the high sine voices in a church with an
+  8-second tail. As written, they share one reverb, and it is rebuilt twice
+  in every bar: once for the sine's 8 seconds, then for the plucks' 1 second. Fix it with the smallest change, and keep every sound setting
+  as it is.
+starter: |
+  $: n("0 2 4 2")
+    .scale("C4:major")
+    .s("triangle")
+    .decay(0.15)
+    .sustain(0)
+    .room(0.3)
+    .roomsize(1)
+  $: n("<0 4>")
+    .scale("C5:major")
+    .s("sine")
+    .attack(0.5)
+    .release(2)
+    .room(0.8)
+    .roomsize(8)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      $: n("0 2 4 2")
+        .scale("C4:major")
+        .s("triangle")
+        .decay(0.15)
+        .sustain(0)
+        .room(0.3)
+        .roomsize(1)
+      $: n("<0 4>")
+        .scale("C5:major")
+        .s("sine")
+        .attack(0.5)
+        .release(2)
+        .room(0.8)
+        .roomsize(8)
+        .orbit(2)
+listen_for:
+  - The plucks keep a short, even tail in every bar
+  - The sine voices, c5 then g5, swell in and ring for several seconds
+  - One added .orbit(2) is the whole fix. Putting .orbit(2) on the plucks instead works just as well. What matters is that the two roomsize values live on different orbits
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: orbit
+  - strudel-doc: roomsize
+  - strudel-src: "packages/superdough/superdoughoutput.mjs#L69-L93"

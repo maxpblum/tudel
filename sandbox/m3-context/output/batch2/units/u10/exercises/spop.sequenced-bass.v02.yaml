@@ -1,0 +1,39 @@
+id: spop.sequenced-bass.v02
+skills: [spop.sequenced-bass]
+type: transform
+difficulty: 3
+title: From whole notes to a bouncing octave bass
+prompt: |
+  The starter holds one root per bar. Turn it into a sequenced bass:
+
+  1. Repeat each root as **16 sixteenths**.
+  2. Make every **second** sixteenth jump up an octave (root, octave, root,
+     octave…), using a pattern of note offsets rather than writing the
+     octaves out.
+  3. Accent the line with gain **0.9** on each beat and **0.6** on the other
+     three sixteenths.
+starter: |
+  setcpm(118 / 4)
+  note("<c3 ab3 eb3 bb3>").s("sawtooth").lpf(400).lpenv(3).lpdecay(0.1)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(118 / 4)
+      note("<c3 ab3 eb3 bb3>")
+        .ply(16)
+        .add(note("[0 12]*8"))
+        .s("sawtooth")
+        .lpf(400)
+        .lpenv(3)
+        .lpdecay(0.1)
+        .gain("[0.9 0.6 0.6 0.6]*4")
+listen_for:
+  - "Bar 1 alternates C3 and C4 in sixteenths; bar 4 alternates Bb3 and Bb4"
+  - "The octave pattern follows the roots without being rewritten per bar"
+  - "A slight lean on each beat"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: ply
+  - strudel-doc: add
+  - strudel-doc: gain

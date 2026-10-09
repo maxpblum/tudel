@@ -1,0 +1,52 @@
+id: swave.sidechain.v01
+skills: [swave.sidechain]
+type: spec-to-code
+difficulty: 3
+title: Duck the pad and bass
+prompt: |
+  Three parts at **100 BPM**:
+
+  - a TR-909 kick on every beat, which **ducks orbit 2** to about 0.29 of full
+    level (a duck depth of **0.5**) and lets it recover over **0.35 seconds**;
+  - a pad, `chord("<Am9 F^7 Cadd9 G6>").voicing()` on a 7-voice supersaw
+    (detune 0.25, attack 0.3 seconds, release 1 second, low-pass 2000 Hz,
+    gain 0.5), on **orbit 2**;
+  - the eighth-note bass `note("<a3 f3 c3 g3>").ply(8)` on a sawtooth
+    (low-pass 400 Hz, filter envelope 3 octaves, decay 0.1 seconds), also on
+    **orbit 2**.
+
+  Leave the kick on the default orbit.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(100 / 4)
+      $: s("bd*4").bank("RolandTR909").duckorbit(2).duckdepth(0.5).duckattack(0.35)
+      $: chord("<Am9 F^7 Cadd9 G6>")
+        .voicing()
+        .s("supersaw")
+        .unison(7)
+        .detune(0.25)
+        .attack(0.3)
+        .release(1)
+        .lpf(2000)
+        .orbit(2)
+        .gain(0.5)
+      $: note("<a3 f3 c3 g3>")
+        .ply(8)
+        .s("sawtooth")
+        .lpf(400)
+        .lpenv(3)
+        .lpdecay(0.1)
+        .orbit(2)
+listen_for:
+  - "Pad and bass both drop on every kick and swell back within about half a beat (0.35 of the 0.6-second beat)"
+  - "The kick itself is not ducked: it stays at full level"
+  - "The dip is clear but not a full silence (about −11 dB)"
+  - "If the console says duck target orbit 2 does not exist on the first beat, that is the pad not having started yet; it is harmless"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: duckorbit
+  - strudel-doc: duckdepth
+  - strudel-doc: duckattack
+  - strudel-src: "packages/superdough/superdoughoutput.mjs#L102-L125"

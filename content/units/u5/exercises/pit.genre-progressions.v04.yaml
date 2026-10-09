@@ -1,0 +1,35 @@
+id: pit.genre-progressions.v04
+skills: [pit.genre-progressions]
+type: creative
+difficulty: 4
+title: Your own synth-pop loop
+prompt: |
+  Write a 4-bar synth-pop loop between **100 and 120 BPM**. Start from one of
+  the loops in the lesson (I–V–vi–IV, vi–IV–I–V, i–♭VI–♭III–♭VII or
+  i–♭VII–♭VI–♭VII) in any key, then colour at least **two** of its chords
+  with a seventh, a sus or an add9. Put a root bass with eighth notes under
+  it as a separate part. Keep every note at C3 or above.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(108 / 4)
+      stack(
+        chord("<Am7 Fadd9 C G7sus>").voicing().s("sawtooth").lpf(1400).gain(0.5),
+        note("<a3*8 f3*8 c3*8 g3*8>").s("sawtooth").lpf(500),
+      )
+listen_for:
+  - "Reference: vi–IV–I–V in C major at 108 BPM, coloured as Am7, Fadd9, C, G7sus"
+  - "The top voice holds C5 for all four bars, so the colour tones move underneath it"
+  - "G7sus never resolves its C to B, so the loop returns to Am7 without a leading tone"
+rubric:
+  - The tempo is between 100 and 120 BPM, set with setcpm(BPM / 4)
+  - The four chords follow one of the lesson's loops, one per bar
+  - At least two chords carry a seventh, sus or add9, spelled so they play (^7, not maj7; sus, not sus4)
+  - The bass plays eighth notes on the chord roots, as its own part, at C3 or above
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: setcpm
+  - strudel-doc: chord
+  - strudel-doc: voicing
+  - strudel-doc: stack

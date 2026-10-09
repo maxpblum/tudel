@@ -1,0 +1,35 @@
+id: chip.ornaments.v03
+skills: [chip.ornaments]
+type: match-by-ear
+difficulty: 4
+title: Scoops, stutters and a power-down
+prompt: |
+  Recreate this two-bar lead in A minor at 150 BPM on a 25 % pulse. Three
+  kinds of ornament are hidden in it:
+
+  - some notes **scoop up** into their pitch from a whole step below;
+  - one beat is a **stutter** of repeated notes;
+  - the last note **falls** an octave slowly, like a game character losing a
+    life.
+
+  Work out which notes get which ornament. Scoops take 0.08 seconds; the
+  fall takes 0.4 seconds.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(150 / 4)
+      note("<[a4 c5 e5 d5] [c5 [b4 b4 b4 b4] a4@2]>")
+        .s("pulse")
+        .penv("<[-2 0 -2 0] [0 0 12@2]>")
+        .pdecay("<0.08 [0.08 0.08 0.4@2]>")
+        .gain(0.5)
+listen_for:
+  - "Bar 1: A4 and E5 (beats 1 and 3) scoop up from a whole step below; C5 and D5 are clean"
+  - "Bar 2, beat 2: B4 stuttered four times"
+  - "The final A4 starts an octave above (A5) and slides down to A4 over 0.4 seconds"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: penv
+  - strudel-doc: pdecay
+  - strudel-src: "packages/superdough/helpers.mjs#L326-L344"

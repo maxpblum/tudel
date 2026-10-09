@@ -1,0 +1,23 @@
+id: pit.extended-chords.v02
+skills: [pit.extended-chords]
+type: recall
+difficulty: 1
+title: Respell a lead sheet for voicing
+prompt: |
+  A lead sheet reads **Cmaj7 | Am7 | Dm7 | Gsus4**, one chord per bar. Two of
+  those symbols are silent in Strudel's default dictionary. Write the line
+  with `chord` and `.voicing()` on `"triangle"`, spelled so that every bar
+  sounds.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<C^7 Am7 Dm7 Gsus>").voicing().s("triangle")
+listen_for:
+  - "All four bars sound: C^7 for Cmaj7 and Gsus for Gsus4. Am7 and Dm7 were already right"
+  - "C^7 is C3 E4 G4 B4, with the root alone at the bottom"
+  - "Gsus is G3 C4 D4 G4 C5: C, the fourth, and no B anywhere"
+verify:
+  cycles: 4
+sources:
+  - strudel-src: "packages/tonal/ireal.mjs#L48-L51"
+  - strudel-src: "packages/tonal/voicings.mjs#L209-L212"

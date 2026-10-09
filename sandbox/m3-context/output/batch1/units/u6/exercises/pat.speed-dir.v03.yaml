@@ -1,0 +1,24 @@
+id: pat.speed-dir.v03
+skills: [pat.speed-dir]
+type: match-by-ear
+difficulty: 2
+title: There and back
+prompt: |
+  The target starts from this one-bar line in C major: C4 D4 E4 F4 in eighth
+  notes, then G4 as a half note (`n("0 1 2 3 4@4")` on `"triangle"`). One
+  method is added, and the result takes two bars before it repeats. Listen,
+  name the method, and write the target.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("0 1 2 3 4@4").scale("C4:major").s("triangle").palindrome()
+listen_for:
+  - "Bar 1 is the line as written, rising to the long G4"
+  - "Bar 2 is its retrograde: G4 as a half note first, then F4 E4 D4 C4 in eighths"
+  - "The two bars alternate: forwards, backwards, forwards, backwards. That is palindrome"
+  - "Not rev: rev would play bar 2's version in every bar"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: palindrome
+  - strudel-doc: rev

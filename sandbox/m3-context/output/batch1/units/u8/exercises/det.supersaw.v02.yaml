@@ -1,0 +1,29 @@
+id: det.supersaw.v02
+skills: [det.supersaw]
+type: match-by-ear
+difficulty: 2
+title: Blend or sour?
+prompt: |
+  Listen to the target: an A minor arpeggio, **a3 c4 e4 a4** in quarter
+  notes, on `"supersaw"` with the default 5 voices. Only the `detune` changes,
+  once per bar. For each bar decide:
+
+  1. Does each note fuse into one pitch with a gentle shimmer, or can you hear
+     its edges as separate, sour pitches?
+  2. Roughly how many cents lie between the lowest and highest voice?
+
+  Then write it, with the two values in `< >`.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("a3 c4 e4 a4").s("supersaw").detune("<0.1 0.6>")
+listen_for:
+  - "Bar 1, detune 0.1 (10 cents, ±5 cents): one blended pitch with a slow shimmer, like a well-tuned choir section"
+  - "Bar 2, detune 0.6 (60 cents, ±30 cents): the outer voices are more than a quarter tone apart, and every note sounds sour"
+  - "On a4 in bar 2 the outer pair beats about 15 times per second, fast enough to sound rough rather than shimmering"
+  - "Anything from about 0.05 to 0.2 in bar 1 and from about 0.4 up in bar 2 has the right character"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: detune
+  - strudel-src: "packages/superdough/synth.mjs#L157-L158"

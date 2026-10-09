@@ -1,0 +1,24 @@
+id: chip.pulse-channels.v01
+skills: [chip.pulse-channels]
+type: recall
+difficulty: 1
+title: The thinnest NES pulse
+prompt: |
+  Play **e5 d5 c5 a4** on the pulse oscillator with a **12.5 %** duty cycle.
+  Remember that `pw` is not the duty cycle itself: the duty cycle is
+  (1 − pw) ÷ 2.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("e5 d5 c5 a4").s("pulse").pw(0.75)
+listen_for:
+  - "Four quarter notes falling E5 D5 C5 A4"
+  - "A thin, nasal tone, clearly narrower than a square wave"
+  - "Code check: pw(0.75). pw(0.125) would give a duty cycle of about 44 %, close to a square"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: pw
+  - strudel-src: "packages/superdough/worklets.mjs#L806-L806"
+  - lexicon: thin
+  - lexicon: nasal

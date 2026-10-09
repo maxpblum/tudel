@@ -1,0 +1,39 @@
+id: spop.brass-stabs.v01
+skills: [spop.brass-stabs]
+type: spec-to-code
+difficulty: 3
+title: Three-three-two brass
+prompt: |
+  Brass stabs on the loop **D minor, B flat, F, C**, one chord per bar, at
+  **120 BPM**, voiced with `voicing` and the default settings. Each bar has
+  three eighth-note hits grouped **3 + 3 + 2**: on beat 1, the "and" of 2
+  and beat 4.
+
+  The sound: `"sawtooth"`, amplitude attack **0.01 s**, a low-pass at
+  **500 Hz** whose envelope opens **3 octaves** over **0.05 s** and closes
+  over **0.2 s**, and gain **0.5**.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(120 / 4)
+      chord("<Dm Bb F C>")
+        .struct("x ~ ~ x ~ ~ x ~")
+        .voicing()
+        .s("sawtooth")
+        .attack(0.01)
+        .lpf(500)
+        .lpenv(3)
+        .lpattack(0.05)
+        .lpdecay(0.2)
+        .gain(0.5)
+listen_for:
+  - "Three short chord hits per bar, the last one on beat 4: the 3 + 3 + 2 grouping across the bar"
+  - "Each hit blooms bright within 50 ms and darkens over the next fifth of a second"
+  - "Chords D minor (D3 A3 D4 F4 A4), B flat, F, C, with the lowest notes D3, D3, F3, E3"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: struct
+  - strudel-doc: lpattack
+  - strudel-doc: lpenv
+  - lexicon: brassy

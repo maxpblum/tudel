@@ -1,0 +1,27 @@
+id: pat.ply-struct.v03
+skills: [pat.ply-struct]
+type: spec-to-code
+difficulty: 3
+title: Tresillo stabs
+prompt: |
+  Play the progression **Am F C G**, one chord per bar, with `chord` and
+  `.voicing()`, as stabs on `"square"` at **gain 0.5**. Every bar has the same
+  rhythm: the tresillo, 3 + 3 + 2 eighth notes, a stab at the start of each
+  group. Write the rhythm once with `struct`.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<Am F C G>").voicing().struct("x ~ ~ x ~ ~ x ~").s("square").gain(0.5)
+  - code: |
+      chord("<Am F C G>").voicing().struct("x(3,8)").s("square").gain(0.5)
+    note: The Euclidean form of the same rhythm.
+listen_for:
+  - "Three stabs per bar, eighth notes long: on beat 1, on the second half of beat 2, and on beat 4"
+  - "The rhythm stays the same while the chord changes every bar"
+  - "Each stab is the whole voiced chord, not one note of it"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: struct
+  - strudel-doc: chord
+  - strudel-doc: voicing

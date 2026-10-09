@@ -1,0 +1,28 @@
+id: pat.inversion-idiom.v04
+skills: [pat.inversion-idiom, pat.canon-imitation]
+type: transform
+difficulty: 4
+title: A canon in inversion
+prompt: |
+  The starter is a scale line in C major, up to G4 and back down in eighth
+  notes. Add a follower with `off` that enters **one beat** later and sings
+  the line **inverted**: mirror it about **E4** (degree 2), then raise the
+  mirrored line **one octave** (7 degrees). Combine both into one number
+  added after `mul(-1)`.
+starter: |
+  n("0 1 2 3 4 3 2 1").scale("C4:major").s("triangle")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      n("0 1 2 3 4 3 2 1".off(1 / 4, (x) => x.mul(-1).add(11)))
+        .scale("C4:major")
+        .s("triangle")
+listen_for:
+  - "Mirroring about degree 2 adds 2 × 2 = 4, the octave adds 7, so the follower is mul(-1).add(11)"
+  - "Where the leader rises, the follower falls: it runs G5 F5 E5 D5 C5 D5 E5 F5, starting two eighths late"
+  - "The two voices meet in tenths and sixths, with an octave on the fourth and eighth eighth notes"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: off
+  - strudel-doc: mul

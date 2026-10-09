@@ -1,0 +1,102 @@
+id: chip.project.v01
+skills: [chip.project]
+type: project
+difficulty: 4
+title: "Chiptune capstone: Overworld theme"
+prompt: |
+  Write an original **eight-bar overworld theme** for a game, in **G major
+  with a Mixolydian colour**, at **150 BPM**, for the four-channel console
+  band: two pulses, a triangle and noise. Every line plays one note at a
+  time. The harmony, one chord per bar, is
+
+  **G, F, C, G, G, F, Eb, F** (I, bVII, IV, I, I, bVII, bVI, bVII)
+
+  so bars 7 and 8 end with bVI-bVII, and the loop's return to G in bar 1
+  completes the victory cadence bVI-bVII-I.
+
+  Build it in four checkpoints. Play each one before moving on, and keep
+  every earlier channel playing.
+
+  1. **Drum kit (noise channel).** Hats in eighth notes and a snare on beats
+     2 and 4 on **one** noise line, with per-step `decay`, `hpf` and `gain`
+     patterns (hat about 0.03 seconds and 7000 Hz, snare about 0.15 seconds
+     and 1500 Hz, accents on the beats).
+  2. **Bassline (triangle).** The roots in octave 3 (C4 for the C chord), as
+     eighth notes that bounce up an octave on every offbeat. Fold the kick
+     into this channel: a pitch drop of about **36 semitones in 0.05
+     seconds** on beats 1 and 3 only.
+  3. **Arpeggiated lead (both pulses).** Pulse 2 plays the chord symbols as a
+     frame-fast arpeggio (at least 20 notes per second) on a 50 % pulse,
+     skipping the voicing's lowest note so it doesn't double the bass. Pulse
+     1 plays your melody on a 25 % pulse: mostly eighth notes, with at least
+     one grace note and one trill, and vibrato only on long notes.
+  4. **Final multi-voice mix.** Balance the four channels with `gain`: the
+     melody clearly on top, the arpeggio heard as harmony rather than as a
+     tune, the bass steady, the noise ticking rather than hissing.
+
+  The reference is one possible answer; yours will have a different tune.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(150 / 4)
+      $: note(`<
+        [d5 ~ b4 d5 g5@2 f5 d5]
+        [c5 ~ a4 c5 f5@2 d5 c5]
+        [e5 ~ g5 e5 c5 d5 e5 g5]
+        [d5@4 [c#5 d5@3]@2 b4 g4]
+        [d5 ~ b4 d5 g5@2 a5 b5]
+        [c6 ~ a5 f5 c5@2 d5 f5]
+        [g5@2 f5 eb5 bb4@2 g4 bb4]
+        [a4 c5 f5 a5 [g5 a5]*2 [g5 a5]*2 f5@2]
+      >`)
+        .s("pulse")
+        .vib(6)
+        .vibmod("<0 0 0 [0.3@4 0@4] 0 0 [0.3@2 0@6] 0>")
+        .gain(0.45)
+      $: chord("<G F C G G F Eb F>")
+        .voicing()
+        .arp("[1 2 3]*12")
+        .s("pulse")
+        .pw(0)
+        .gain(0.2)
+      $: note("<g3 f3 c4 g3 g3 f3 eb3 f3>")
+        .ply(8)
+        .add(note("[0 12]*4"))
+        .s("triangle")
+        .penv("[36 0 0 0]*2")
+        .pdecay(0.05)
+        .gain(0.9)
+      $: s("white*8")
+        .decay("[0.03 0.03 0.15 0.03]*2")
+        .sustain(0)
+        .hpf("[7000 7000 1500 7000]*2")
+        .gain("[0.3 0.15 0.4 0.15]*2")
+listen_for:
+  - "Eight bars at 150 BPM: G, F, C, G, G, F, Eb, F, then back to G with a sense of arrival"
+  - "Four single lines: a nasal 25 % lead, a buzzing arpeggio that sounds like chords, a round triangle bass, ticking noise"
+  - "A thump with a click of falling pitch on beats 1 and 3, coming from the bass channel"
+  - "Ornaments where they matter: a grace note C sharp into D on beat 3 of bar 4, a G5-A5 trill in bar 8, vibrato on the long notes of bars 4 and 7"
+  - "The F natural of the melody and the F chord give the Mixolydian colour; E flat and F in bars 7 and 8 are borrowed from G minor"
+rubric:
+  - "Checkpoint 1: hats and snare share one noise line, with the per-step differences written as patterns; snare on beats 2 and 4"
+  - "Checkpoint 2: triangle bass on the chord roots, eighth notes with an octave bounce, every note at or above C3"
+  - "Checkpoint 2: the kick is a penv pitch drop with pdecay set, on beats 1 and 3, inside the bass line"
+  - "Checkpoint 3: the harmony is a frame-fast arp (20 or more notes per second) of chord(...).voicing() or stacked notes, with the chord changing once per bar"
+  - "Checkpoint 3: the arpeggio leaves out the bass note (positions such as 1 2 3), so it doesn't double the triangle"
+  - "Checkpoint 3: an original melody on a 25 % pulse (pw 0.5 or the default) with at least one grace note and one trill written inside their steps"
+  - "Checkpoint 3: vibrato (vib, vibmod) only on long notes, through a vibmod pattern"
+  - "Checkpoint 4: four $: lines, no line ever plays two notes at once"
+  - "Checkpoint 4: the melody is clearly audible over the arpeggio; levels set with gain"
+  - "The progression is the one given, with bVI-bVII leading back to I"
+  - "No melody, riff or progression quoted from an existing game"
+verify:
+  cycles: 8
+  equivalent_solutions: false
+sources:
+  - strudel-doc: pw
+  - strudel-doc: arp
+  - strudel-doc: penv
+  - strudel-doc: pdecay
+  - strudel-doc: vibmod
+  - lexicon: nasal
+  - lexicon: hollow

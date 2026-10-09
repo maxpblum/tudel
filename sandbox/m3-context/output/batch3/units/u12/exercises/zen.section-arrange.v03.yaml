@@ -1,0 +1,40 @@
+id: zen.section-arrange.v03
+skills: [zen.section-arrange]
+type: read-the-code
+difficulty: 3
+title: "Which note starts each section?"
+prompt: |
+  Read the code and write down, before you play it, the note in each of
+  bars 1 to 12. Two things to work out: what the second section plays when
+  it first enters, and what it plays the second time round, given that it
+  lasts 3 bars but its `< >` has 4 steps. The last section is a bar of
+  rest.
+
+  :::code
+  arrange(
+    [2, note("<c4 d4>")],
+    [3, note("<e4 f4 g4 a4>")],
+    [1, silence],
+  ).s("triangle")
+  :::
+
+  Then play it and check.
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      arrange(
+        [2, note("<c4 d4>")],
+        [3, note("<e4 f4 g4 a4>")],
+        [1, silence],
+      ).s("triangle")
+listen_for:
+  - "The form is 2 + 3 + 1 = 6 bars long, then repeats"
+  - "First pass, bars 1-6: C4, D4, E4, F4, G4, rest. The second section starts on its own first step, E4, not on the step for bar 3 of the song"
+  - "Second pass, bars 7-12: C4, D4, A4, E4, F4, rest. The 3-bar section picks up where it stopped, at its fourth step"
+  - "The first section sounds the same on every pass, because its length (2 bars) is a multiple of its 2-step < >"
+verify:
+  cycles: 12
+sources:
+  - strudel-doc: arrange
+  - strudel-doc: silence
+  - strudel-src: "packages/core/pattern.mjs#L1469-L1473"

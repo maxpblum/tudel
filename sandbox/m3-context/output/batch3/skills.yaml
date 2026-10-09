@@ -1,0 +1,96 @@
+# Batch 3 (M3, unit u12): append these entries to content/skills.yaml under units: and skills:.
+
+# Every vocabulary entry is a primary doc.json name.
+units:
+  - id: u12
+    title: "Form, arc & zen"
+    milestone: M3
+    order: 13
+    summary: >-
+      From loops to pieces: write a song's form as a list of named sections
+      with arrange, stagger entrances with seqPLoop, shape the tension and
+      release of a whole piece, refactor sprawling code until it reads like a
+      score, and gather the course's idioms into one way of working.
+
+skills:
+  - id: zen.section-arrange
+    unit: u12
+    title: "Song sections in order with arrange"
+    prereqs: [rhy.alternate, rhy.layers, pit.genre-progressions]
+    summary: >-
+      Play whole sections one after another with arrange: name each section
+      as a stack of parts, list the form with a length in bars for each, and
+      know that every section starts from its own first bar when it enters.
+    vocabulary: [arrange, stack, silence]
+    lesson: zen.section-arrange.lesson
+    idiom_note: >-
+      Name the sections, then write the form once at the bottom:
+      arrange([4, verse], [4, chorus]) reads like a road map. Make each
+      section's length a multiple of every < > inside it, so each pass
+      sounds the same.
+
+  - id: zen.loop-layering
+    unit: u12
+    title: "Staggered entrances with seqPLoop"
+    prereqs: [zen.section-arrange, pat.canon-imitation]
+    summary: >-
+      Give each part a window of bars with seqPLoop, so parts can enter and
+      leave independently and overlap: a build-up, a fugal exposition, a
+      thinning outro. Know that windows follow the song's bar count, and
+      that the last entry written sets the loop's length.
+    vocabulary: [seqPLoop, mask]
+    lesson: zen.loop-layering.lesson
+    idiom_note: >-
+      seqPLoop is the cue sheet: one row per part, [start, end, part], all
+      in one place. Write the entry that ends last at the bottom, because its
+      end sets the length of the loop.
+
+  - id: zen.dramatic-arc
+    unit: u12
+    title: "Shaping the arc: tension and release across sections"
+    prereqs: [zen.section-arrange, mod.phrase-sweeps, bus.mixing-balance, chip.arcade-harmony]
+    summary: >-
+      Plan a piece's intensity section by section and realise it with the
+      dimensions you already control: density, register, brightness,
+      loudness, harmony and key. Build tension with a riser and a dominant
+      pedal, release it at the return, and lift the last chorus a semitone.
+    vocabulary: [arrange, rangex, transpose, gain, lpf]
+    lesson: zen.dramatic-arc.lesson
+    idiom_note: >-
+      Change several dimensions together and save the most for the end: a
+      section-length riser written as saw.slow(4) inside a 4-bar section
+      always starts at the section's first bar, because arrange restarts each
+      section's clock.
+
+  - id: zen.readability-refactor
+    unit: u12
+    title: "Refactoring a sprawling piece into a readable score"
+    prereqs: [zen.section-arrange, zen.loop-layering, pat.variation-every]
+    summary: >-
+      Recognise the signs of sprawling Strudel code (copied lines, long mask
+      strings, the same fact written three times, nested callbacks, unexplained
+      numbers) and rewrite it so its layout mirrors the music: named parts,
+      named sections, the form at the bottom.
+    vocabulary: [arrange, seqPLoop, stack, lastOf]
+    lesson: zen.readability-refactor.lesson
+    idiom_note: >-
+      One fact in one place: write the chord loop, the tempo and each part's
+      sound once, give them names, and derive everything else from the names.
+      If you have to change a fact in two places, the code isn't finished.
+
+  - id: zen.consolidated-idioms
+    unit: u12
+    title: "The zen of Strudel: the course's idioms in one piece"
+    prereqs: [zen.dramatic-arc, zen.readability-refactor, chip.project, spop.project, swave.project]
+    summary: >-
+      Bring the course's idioms together as a few principles for live coding:
+      say what, then with what; patterns go anywhere a number goes; write
+      once and derive; steps with < >, sweeps with signals; one part per
+      line, one space per orbit; time in cycles; the form at the bottom;
+      balance last.
+    vocabulary: [setcpm, voicing, scale, orbit, arrange]
+    lesson: zen.consolidated-idioms.lesson
+    idiom_note: >-
+      Good live code is written for the next edit: every musical decision
+      lives in one obvious place, so a key change, a new section or a
+      quieter pad is a one-word change made while the music keeps playing.

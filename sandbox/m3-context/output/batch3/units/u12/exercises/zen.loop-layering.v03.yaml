@@ -1,0 +1,42 @@
+id: zen.loop-layering.v03
+skills: [zen.loop-layering]
+type: refactor
+difficulty: 3
+title: "Four mask strings into one cue sheet"
+prompt: |
+  This 8-bar build in E minor brings its parts in with a `mask` string on
+  each line. To see when the bass enters, you have to count zeros. Rewrite
+  it so that each part is named once, without a mask, and a single
+  `seqPLoop` at the bottom says when each part plays. It should sound
+  exactly the same.
+starter: |
+  $: s("bd*4").bank("RolandTR909").mask("<1 1 1 1 1 1 1 1>")
+  $: s("~ sd ~ sd, hh*8").bank("RolandTR909").mask("<0 0 1 1 1 1 1 1>")
+  $: note("<e3 c3 g3 d3>")
+    .ply(8)
+    .s("sawtooth")
+    .lpf(600)
+    .gain(0.6)
+    .mask("<0 0 0 0 1 1 1 1>")
+  $: chord("<Em C G D>")
+    .voicing()
+    .s("triangle")
+    .gain(0.45)
+    .mask("<0 0 0 0 0 0 1 1>")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      const kick = s("bd*4").bank("RolandTR909")
+      const backbeat = s("~ sd ~ sd, hh*8").bank("RolandTR909")
+      const bass = note("<e3 c3 g3 d3>").ply(8).s("sawtooth").lpf(600).gain(0.6)
+      const chords = chord("<Em C G D>").voicing().s("triangle").gain(0.45)
+      seqPLoop([0, 8, kick], [2, 8, backbeat], [4, 8, bass], [6, 8, chords])
+listen_for:
+  - "Same sound as the masked version: kick from bar 1, snare and hats from bar 3, bass from bar 5, chords from bar 7"
+  - "The chords enter on G, the third chord of the loop, in both versions: masks and seqPLoop windows both follow the song's bar count"
+  - "Code check: the entrances are all on the last line, in order, and the entry that ends last (all end at 8) closes the list"
+verify:
+  cycles: 8
+sources:
+  - strudel-doc: seqPLoop
+  - strudel-doc: mask

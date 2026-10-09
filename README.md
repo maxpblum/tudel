@@ -8,7 +8,7 @@
 
 You type every answer in **your own** Strudel setup. tudel proposes a short daily session (spaced-repetition reviews plus one new micro-lesson with drills), plays reference solutions through a hidden Strudel engine, and lets you grade yourself by ear and by eye. Every code snippet and factual claim is machine-checked against a pinned Strudel version.
 
-- **Status:** milestone **M1** was approved by the learner on 2026-10-06 (`docs/qa/M1-walkthrough.md`). **M2** (foundation: units U1, U2, U3b, U4 and the skill map, search, overrides, fluency and glossaries) is completed, validated 100% green across all gates, unit tests, and Playwright e2e with L6 audio, and is ready for learner trial (see `docs/qa/M2-walkthrough.md`, `docs/qa/M2-exploratory.md`, and `docs/plan/M2-status.md`).
+- **Status:** milestone **M1** was approved by the learner on 2026-10-06 (`docs/qa/M1-walkthrough.md`). **M2** was completed on 2026-10-07 (`docs/qa/M2-walkthrough.md`). **M3** (full curriculum: 13 units U1–U12, 76 skills, 286 variants, genre tracks for chiptune, synth-pop, and synthwave, capstone song projects, and the Zen of Strudel) is completed, validated 100% green across all verification gates, unit tests, and Playwright e2e with L6 audio, and is ready for learner trial (see `docs/qa/M3-walkthrough.md`).
 - **Design:** `PROPOSAL.md` (binding requirements) and `ARCHITECTURE.md`.
 
 ## Quickstart

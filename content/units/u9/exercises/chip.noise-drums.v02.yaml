@@ -1,0 +1,32 @@
+id: chip.noise-drums.v02
+skills: [chip.noise-drums]
+type: ear-dictation
+difficulty: 3
+title: Where does the kick fall?
+prompt: |
+  A one-bar chip groove at 150 BPM loops twice: a pitch-drop kick, a noise
+  snare and noise hats. The snare and hats are the ones from the lesson (snare
+  on beats 2 and 4, hats in eighth notes). The kick is **syncopated**: write
+  down on which eighth notes of the bar it plays, then write the whole groove.
+  Use the lesson's kit settings (kick: C3, penv 36, pdecay 0.05, decay 0.15).
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(150 / 4)
+      $: note("c3 ~ ~ c3 ~ c3 ~ ~")
+        .s("triangle")
+        .penv(36)
+        .pdecay(0.05)
+        .decay(0.15)
+        .sustain(0)
+      $: s("~ white ~ white").decay(0.15).sustain(0).hpf(1500).gain(0.35)
+      $: s("white*8").decay(0.03).sustain(0).hpf(7000).gain("0.3 0.15")
+listen_for:
+  - "Kick on eighth notes 1, 4 and 6: beat 1, the and of beat 2, and the and of beat 3"
+  - "The second kick comes just after the first snare, the third just before the second snare"
+  - "Hats accented on the beats, lighter on the offbeats"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: penv
+  - strudel-doc: decay

@@ -1,0 +1,37 @@
+id: swave.rolling-bass.v03
+skills: [swave.rolling-bass]
+type: transform
+difficulty: 3
+title: From drive to gallop
+prompt: |
+  The bass below drives in straight eighths and plays on every beat, together
+  with the kick. Turn it into the **gallop**: sixteenth notes with the first
+  sixteenth of every beat left empty, so the kick sounds alone on the beat
+  and the bass answers with three notes after it. Change only the rhythm;
+  keep the roots, the sound and the drums. The notes are now half as long,
+  so shorten the filter decay to **0.08 seconds**.
+starter: |
+  setcpm(100 / 4)
+  $: note("<a3 f3 c3 g3>").ply(8).s("sawtooth").lpf(400).lpenv(3).lpdecay(0.1)
+  $: s("bd*4").bank("RolandTR909")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(100 / 4)
+      $: note("<a3 f3 c3 g3>")
+        .struct("[~ x x x]*4")
+        .s("sawtooth")
+        .lpf(400)
+        .lpenv(3)
+        .lpdecay(0.08)
+      $: s("bd*4").bank("RolandTR909")
+listen_for:
+  - "Kick alone on each beat, then three bass sixteenths: kick, bass, bass, bass"
+  - "The roots still change once per bar: A, F, C, G"
+  - "A rolling, forward-leaning rhythm instead of the even drive"
+  - "Twelve bass notes per bar instead of eight"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: struct
+  - strudel-doc: lpdecay

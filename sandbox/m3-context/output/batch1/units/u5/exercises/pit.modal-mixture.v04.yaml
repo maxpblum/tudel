@@ -1,0 +1,29 @@
+id: pit.modal-mixture.v04
+skills: [pit.modal-mixture]
+type: creative
+difficulty: 3
+title: Darken a phrase in C major
+prompt: |
+  Write an 8-bar progression in **C major**, one chord per bar, with `chord`
+  and `.voicing()` on `"triangle"`. Borrow at least **two different chords**
+  from C minor (iv, ♭VI, ♭VII or ♭III), and begin and end on C. Listen for
+  the moment each borrowed tone enters, and place it where you want the
+  phrase to darken.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<C Em F Fm C Ab Bb C>").voicing().s("triangle")
+listen_for:
+  - "Reference: I, iii, IV, iv, I, ♭VI, ♭VII, I"
+  - "Bars 3 and 4: the inner voice slides A4, A flat 4, then G4 in bar 5"
+  - "Bars 6 to 8: the bass goes A flat 3, D3, E3. With the default settings the B flat and C chords come out in first inversion; for whole tones rising to the root, use mode(\"root\") as in the lesson"
+rubric:
+  - Eight chords, one per bar, starting and ending on C
+  - At least two different borrowed chords from C minor (Fm, Ab, Bb or Eb)
+  - Every symbol plays; the console shows no unknown chord
+  - You can name the lowered degree each borrowed chord brings in (A flat, B flat or E flat)
+verify:
+  cycles: 8
+sources:
+  - strudel-doc: chord
+  - strudel-doc: voicing

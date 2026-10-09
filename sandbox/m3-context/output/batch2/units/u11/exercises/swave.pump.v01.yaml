@@ -1,0 +1,47 @@
+id: swave.pump.v01
+skills: [swave.pump]
+type: transform
+difficulty: 3
+title: Make the held pad breathe
+prompt: |
+  The pad below holds one chord per bar. Make it pump once per **beat**:
+  quiet at the start of each beat and swelling back up before the next,
+  **without** cutting the chords into shorter notes, so the slow attack and
+  release still work. Let it dip to **0.4** of full level, not to silence.
+starter: |
+  setcpm(100 / 4)
+  chord("<Am9 F^7 Cadd9 G6>")
+    .voicing()
+    .s("supersaw")
+    .unison(7)
+    .detune(0.25)
+    .attack(0.3)
+    .release(1)
+    .lpf(2000)
+    .gain(0.6)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(100 / 4)
+      chord("<Am9 F^7 Cadd9 G6>")
+        .voicing()
+        .s("supersaw")
+        .unison(7)
+        .detune(0.25)
+        .attack(0.3)
+        .release(1)
+        .lpf(2000)
+        .tremolosync(4)
+        .tremolodepth(0.6)
+        .gain(0.6)
+listen_for:
+  - "Four smooth swells per bar, one per beat, each starting from a dip on the beat"
+  - "The dips never go silent: the floor is 0.4 of full level (depth 0.6)"
+  - "Still one chord per bar, with its slow attack and its release overlapping the next chord"
+  - "Code check: tremolosync(4) with tremolodepth(0.6), and no segment"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: tremolosync
+  - strudel-doc: tremolodepth
+  - strudel-src: "packages/superdough/superdough.mjs#L796-L823"

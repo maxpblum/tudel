@@ -1,0 +1,35 @@
+id: det.chorus-detune.v03
+skills: [det.chorus-detune]
+type: describe-to-code
+difficulty: 3
+title: A hand-built string section
+prompt: |
+  Without `"supersaw"`, build a **warm**, **pad-like** bed of plain sawtooth
+  chords, **F major (f3 a3 c4)** then **D minor (d4 f4 a4)**, one per bar. It
+  should be wide but not hard-panned: the original a little left of centre
+  (pan **0.25**), and one copy a little right (pan **0.75**), tuned a few cents
+  sharp, between 5 and 10 cents. Give it a slow swell in and a long fade out.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("<[f3,a3,c4] [d4,f4,a4]>")
+        .s("sawtooth")
+        .attack(0.5)
+        .release(1.5)
+        .lpf(1000)
+        .pan(0.25)
+        .superimpose((x) => x.add(note(0.06)).pan(0.75))
+listen_for:
+  - "Two layers, one each side of centre, neither in only one ear"
+  - "A slow undulation from the copy 6 cents sharp, like an organ's voix céleste"
+  - "pan(0.25) comes before superimpose; after it, it would pull the copy back to 0.25 as well"
+  - "A soft onset and a tail of over a second (attack about 0.3 to 1 s, release about 1 to 2 s)"
+  - "Warmth from a moderate low-pass, about 800 to 1500 Hz on these chords"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: superimpose
+  - strudel-doc: pan
+  - strudel-src: "packages/core/controls.mjs#L41-L49"
+  - lexicon: warm
+  - lexicon: pad-like

@@ -1,0 +1,53 @@
+id: spop.hooks.v04
+skills: [spop.hooks]
+type: creative
+difficulty: 4
+title: Your hook over the loop
+prompt: |
+  Write your own one-bar synth hook over **A minor, F, C, G** at
+  **120 BPM**. Use `n` and `scale` so you can try it in Aeolian and in
+  Dorian by changing only the scale name, and keep whichever you prefer.
+  Vary it on the last bar of each four-bar phrase with `lastOf`. Put a
+  quiet pad or string bed under it so you hear how the loop reharmonises
+  your hook. The reference is one possible answer.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(120 / 4)
+      $: n("0 ~ 2 4 ~ 4 5 4".lastOf(4, (x) => x.add(-2)))
+        .scale("A4:dorian")
+        .s("square")
+        .decay(0.2)
+        .sustain(0.3)
+        .lpf(3000)
+        .delay(0.25)
+        .delaysync(3 / 16)
+        .gain(0.5)
+      $: chord("<Am F C G>")
+        .voicing()
+        .s("supersaw")
+        .unison(5)
+        .detune(0.2)
+        .attack(0.5)
+        .release(1)
+        .lpf(2500)
+        .gain(0.3)
+listen_for:
+  - "A short, rhythmic riff that repeats every bar and is easy to sing back"
+  - "A clear modal colour (here F sharp, Dorian, which rubs against the F major chord in bar 2)"
+  - "Bar 4 answers the first three bars: same rhythm, different notes"
+rubric:
+  - "The hook is one bar long, written in scale degrees with n and scale"
+  - "Its rhythm has rests or syncopation, not just eight even notes"
+  - "It stays within about an octave and sits above the bed"
+  - "lastOf(4, …) varies bar 4 of each phrase while keeping the hook recognisable"
+  - "A quiet bed under it plays the loop A minor, F, C, G"
+  - "Every note at or above C3"
+verify:
+  cycles: 4
+  equivalent_solutions: false
+sources:
+  - strudel-doc: lastOf
+  - strudel-doc: scale
+  - lexicon: bright
+  - lexicon: plucky

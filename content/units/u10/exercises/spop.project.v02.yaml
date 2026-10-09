@@ -1,0 +1,90 @@
+id: spop.project.v02
+skills: [spop.project]
+type: project
+difficulty: 4
+title: "Synth-pop capstone: Mixolydian Dancefloor"
+prompt: |
+  Build an **eight-bar** major-key dance track in **G Mixolydian** at
+  **124 BPM** on the loop **G, F, C, G**, played twice. Bright, but never
+  quite settling: there is no F sharp anywhere.
+
+  1. **Drum machine.** A **four-on-the-floor** 909 groove: bass drum on
+     every beat, clap on 2 and 4, closed and open hats with accents.
+  2. **Sequenced bass.** Roots in octave 3 as sixteenths with `ply`,
+     alternating root and octave, with a short filter envelope.
+  3. **Bed and brass.** A choir bed with `vowel` on its own orbit, and
+     brass stabs on the same chords. Let the stabs play only in bars 5 to 8.
+  4. **Hook and final mix.** A one-bar hook in **G Mixolydian** that uses
+     the F natural, with an echo (`delaysync`). It plays throughout; vary it
+     in the last bar of each four-bar phrase. Balance the mix.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(124 / 4)
+      $: s("bd*4").bank("RolandTR909")
+      $: s("~ cp ~ cp").bank("RolandTR909")
+      $: s("[hh hh oh hh]*4").bank("RolandTR909").gain("[0.6 0.25 0.45 0.25]*4")
+      $: note("<g3 f3 c3 g3>")
+        .ply(16)
+        .add(note("[0 12]*8"))
+        .s("sawtooth")
+        .lpf(450)
+        .lpenv(3)
+        .lpdecay(0.08)
+        .gain(0.55)
+      $: chord("<G F C G>")
+        .voicing()
+        .s("sawtooth")
+        .attack(0.3)
+        .release(0.8)
+        .vowel("o")
+        .room(0.4)
+        .roomsize(2.5)
+        .orbit(3)
+        .gain(0.3)
+      $: chord("<G F C G>")
+        .struct("x ~ ~ x ~ ~ x ~")
+        .voicing()
+        .s("sawtooth")
+        .attack(0.01)
+        .lpf(500)
+        .lpenv(3)
+        .lpattack(0.05)
+        .lpdecay(0.2)
+        .gain(0.35)
+        .mask("<0!4 1!4>")
+      $: n("0 2 4 ~ 6 ~ 4 2".lastOf(4, (x) => x.add(1)))
+        .scale("G5:mixolydian")
+        .s("square")
+        .decay(0.15)
+        .sustain(0.2)
+        .lpf(2500)
+        .delay(0.3)
+        .delaysync(3 / 16)
+        .gain(0.35)
+listen_for:
+  - "A disco-style kick on every beat at 124 BPM, claps on 2 and 4, an open hat on each off-beat"
+  - "The bass alternates root and octave in sixteenths: G3 G4, F3 F4, C3 C4, G3 G4"
+  - "A rounded 'o' choir throughout; brass stabs in 3 + 3 + 2 join in bar 5"
+  - "Hook G5 B5 D6, rest, F6, rest, D6 B5: the F natural is the Mixolydian flat seventh"
+  - "In bars 4 and 8 the hook moves one scale step up"
+rubric:
+  - "Checkpoint 1: four-on-the-floor kick, clap on 2 and 4, accented hats with open hats on the off-beats"
+  - "Checkpoint 2: roots once per bar, ply(16), a root/octave offset pattern, a short filter envelope"
+  - "Checkpoint 3: a vowel choir bed on its own orbit, and brass stabs (lpattack above 0, lpenv, struct before voicing) masked to bars 5 to 8"
+  - "Checkpoint 4: a hook in G Mixolydian that features F natural, with a tempo-synced echo, varied with lastOf"
+  - "No F sharp in any part"
+  - "Balanced mix: bass, bed, stabs and hook each audible in its own register"
+  - "Every note at or above C3; original material"
+verify:
+  cycles: 8
+  equivalent_solutions: false
+sources:
+  - strudel-doc: bank
+  - strudel-doc: ply
+  - strudel-doc: vowel
+  - strudel-doc: mask
+  - strudel-doc: lastOf
+  - strudel-doc: delaysync
+  - lexicon: bright
+  - lexicon: brassy

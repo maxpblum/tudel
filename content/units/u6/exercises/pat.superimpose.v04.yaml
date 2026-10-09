@@ -1,0 +1,28 @@
+id: pat.superimpose.v04
+skills: [pat.superimpose, pat.canon-imitation]
+type: read-the-code
+difficulty: 2
+title: Same copy, two methods
+prompt: |
+  Read both lines before you play them. They differ in one method. Predict
+  what you will hear in each, then play them one after the other.
+
+  1. `n("0 2 4 7".superimpose((x) => x.add(2))).scale("F4:major").s("triangle")`
+  2. `n("0 2 4 7".off(1 / 8, (x) => x.add(2))).scale("F4:major").s("triangle")`
+
+  The reference below is the first line.
+hide_reference_code_until_reveal: false
+solutions:
+  - code: |
+      n("0 2 4 7".superimpose((x) => x.add(2)))
+        .scale("F4:major")
+        .s("triangle")
+listen_for:
+  - "Line 1: four quarter-note dyads in thirds: F4 with A4, A4 with C5, C5 with E5, F5 with A5"
+  - "Line 2: the same upper notes, each one eighth note late, so the attacks alternate leader, follower, in eighth notes"
+  - "superimpose doubles at the same moment; off imitates after a delay"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: superimpose
+  - strudel-doc: off

@@ -1,0 +1,67 @@
+● Batch 1 is written: 4 units, 19 skills, 19 lessons and 75 exercise variants,
+  everything in output/batch1/. I didn't run pnpm verify; that's left for the
+  ingest step, as the sandbox README says, and you asked to keep testing light.
+  The authors did run every snippet through the eval tool: none errors, none
+  goes below C3, and the pitches named in the prose match what Strudel plays.
+
+  ┌───────────────┬────────────────────────────────────┬─────────┬──────────┐
+  │     Unit      │               Skills               │ Lessons │ Variants │
+  ├───────────────┼────────────────────────────────────┼─────────┼──────────┤
+  │ u5 Harmony &  │ voicing controls, extended chords, │         │          │
+  │ voicing       │  slash chords, modal mixture,      │ 5       │ 20       │
+  │               │ genre progressions                 │         │          │
+  ├───────────────┼────────────────────────────────────┼─────────┼──────────┤
+  │ u6 Pattern    │ speed and direction, canon (off),  │         │          │
+  │ transforms    │ superimpose, every/lastOf,         │ 6       │ 24       │
+  │               │ inversion, ply/struct              │         │          │
+  ├───────────────┼────────────────────────────────────┼─────────┼──────────┤
+  │ u7 Layering & │ orbit, stereo pan, mixing balance, │ 4       │ 15       │
+  │  buses        │  shared effects                    │         │          │
+  ├───────────────┼────────────────────────────────────┼─────────┼──────────┤
+  │ u8 Detune &   │ supersaw, pitch drift,             │ 4       │ 16       │
+  │ wobble        │ chorus-style detune, detuned lead  │         │          │
+  └───────────────┴────────────────────────────────────┴─────────┴──────────┘
+
+  The other files:
+  - skills.yaml: all units and skills merged. A script confirmed every
+    prerequisite resolves, every skill has at least 3 variants, and every lesson
+    links to its skill.
+  - glossary/chord-symbols.yaml: 18 new chord symbols.
+  - VERIFIED_FACTS.md: the facts checked against the pinned Strudel source, for
+    whoever ingests the batch.
+  - qa/: the two style QA review records. The independent reviewers fixed 28
+    issues, including two wrong numbers and a demo that didn't do what it
+    claimed.
+
+  The sandbox's API file has errors. I'd fix STRUDEL_API_M3.md before batches 2
+  and 3, or point them at VERIFIED_FACTS.md:
+  - .add(7) after note(…): it doesn't transpose. It logs a warning, which fails
+    the verify gate. This breaks the sandbox's canon and pitch-drift examples.
+    The forms that work are .add(note(7)) and .add(n(4)).
+  - Chord spellings: Cmaj7, Csus4 and Csus2 play silence. The spellings that
+    work are C^7/CM7 and Csus. There is no working sus2 symbol, so sus2 is
+    taught as the sus4 a fifth up, or written out as notes.
+  - Slash chords: they can't go inside chord("…"). They're taught as inversions
+    or as a separate bass part.
+  - invert: it does exist in Strudel, but it flips a rhythm pattern. Melodic
+    inversion is taught as .mul(-1).
+  - detune: it only works on supersaw, where it sets the total spread in
+    semitones.
+  - Default gain: it is 0.8, not 1.
+
+  Still open:
+  - Multi-line $: code inside :::play blocks has never appeared in shipped
+    lessons, so it's untested.
+  - Several timbre words have no entry in the timbre lexicon yet: wide, shimmer,
+    dry, sour.
+  - A few prose points are loose: the wording for a positive offset, the ♭III
+    chord in the modal-mixture table has no demo, and one exercise prompt (genre
+    progressions v02) also fits a second progression.
+  - The other reviewer's open item is now fixed: I added pat.speed-dir as a
+    prerequisite of bus.stereo-pan.
+
+  Nothing is committed.
+
+✻ Brewed for 11s · done 10:04 AM
+
+● Agent "Style QA review u5+u6" finished · 5m 42s

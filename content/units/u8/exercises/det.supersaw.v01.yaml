@@ -1,0 +1,23 @@
+id: det.supersaw.v01
+skills: [det.supersaw]
+type: spec-to-code
+difficulty: 1
+title: Three voices, 20 cents apart
+prompt: |
+  Play **c4 eb4 g4 bb4** as quarter notes on `"supersaw"` with **3** unison
+  voices spread **20 cents** from the lowest voice to the highest. First turn
+  the cents into the unit `detune` uses.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      note("c4 eb4 g4 bb4").s("supersaw").unison(3).detune(0.2)
+listen_for:
+  - "20 cents is 0.2 semitones, so detune(0.2): the voices sit at -10, 0 and +10 cents"
+  - "One fused pitch per note with a slow shimmer, not three separate pitches"
+  - "The shimmer is faster on the higher notes: the outer pair beats about 3 times per second on c4 and about 4.5 times on g4"
+verify:
+  cycles: 1
+sources:
+  - strudel-doc: unison
+  - strudel-doc: detune
+  - strudel-src: "packages/superdough/worklets.mjs#L38-L49"

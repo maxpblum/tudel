@@ -1,0 +1,32 @@
+id: spop.sequenced-bass.v03
+skills: [spop.sequenced-bass]
+type: ear-dictation
+difficulty: 3
+title: Root, octave, fifth
+prompt: |
+  Listen to the four-bar bass. Write down, bar by bar, the root and the
+  four-sixteenth figure that repeats in each beat (as intervals above the
+  root). Then write it in Strudel with one root per bar and a single offset
+  pattern.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(120 / 4)
+      note("<d3 bb3 f3 c3>")
+        .ply(16)
+        .add(note("[0 12 7 12]*4"))
+        .s("sawtooth")
+        .lpf(450)
+        .lpenv(3)
+        .lpdecay(0.1)
+listen_for:
+  - "Roots D3, Bb3, F3, C3: D minor, B flat, F, C"
+  - "Each beat: root, octave, fifth, octave (offsets 0, 12, 7, 12 semitones)"
+  - "Bar 2 reaches B flat 4 and F4 above its root; bar 4 reaches C4 and G3"
+  - "A short filter tick on every note"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: ply
+  - strudel-doc: add
+  - strudel-doc: lpenv

@@ -1,0 +1,40 @@
+id: bus.shared-effects.v03
+skills: [bus.shared-effects]
+type: spec-to-code
+difficulty: 3
+title: The offstage horn call
+prompt: |
+  Write two `$:` parts in two different spaces:
+
+  - **On stage:** `chord("<C F>").voicing()` on `"triangle"`, in a dry hall:
+    `room` 0.2, `roomsize` 1.5 seconds, on the default orbit.
+  - **Offstage:** a horn call `note("<[g4 c5 e5 ~] ~>")` on `"sawtooth"`,
+    `attack` 0.05 seconds, low-passed at 900 Hz, far away in a large space:
+    `room` 0.9, `roomsize` 8 seconds, on **orbit 2**, at `gain` 0.3.
+
+  Use the house chain order: sound, envelope, filter, effects and orbit, then
+  gain.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      $: chord("<C F>").voicing().s("triangle").room(0.2).roomsize(1.5)
+      $: note("<[g4 c5 e5 ~] ~>")
+        .s("sawtooth")
+        .attack(0.05)
+        .lpf(900)
+        .room(0.9)
+        .roomsize(8)
+        .orbit(2)
+        .gain(0.3)
+listen_for:
+  - The chords sound close, with a short tail
+  - "The horn call, g4 c5 e5, comes every other bar: soft, muffled and far away, its tail ringing through the bar after it"
+  - The chords keep their short tail even while the horn's long one rings. The two spaces never mix, because each roomsize lives on its own orbit
+  - "The horn sits behind the chords: gain 0.3 against the chords' default 0.8 is about 8.5 dB quieter"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: orbit
+  - strudel-doc: room
+  - strudel-doc: roomsize
+  - strudel-src: "packages/superdough/superdoughoutput.mjs#L69-L93"

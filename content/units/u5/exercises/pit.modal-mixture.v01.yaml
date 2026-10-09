@@ -1,0 +1,22 @@
+id: pit.modal-mixture.v01
+skills: [pit.modal-mixture]
+type: spec-to-code
+difficulty: 2
+title: IV, then the minor iv, in G major
+prompt: |
+  Play **I, IV, iv, I** in G major, one chord per bar, with `chord` and
+  `.voicing()` on `"triangle"`, with the default settings. The iv is
+  borrowed from G minor: it is the IV chord with its third lowered.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<G C Cm G>").voicing().s("triangle")
+listen_for:
+  - "G, C, Cm, G"
+  - "An inner voice slides down by semitones: E4 in C, E flat 4 in Cm, D4 in G"
+  - "E flat is the lowered sixth degree of G major, borrowed from G minor"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: chord
+  - strudel-doc: voicing

@@ -1,0 +1,75 @@
+id: zen.readability-refactor.v03
+skills: [zen.readability-refactor]
+type: refactor
+difficulty: 2
+title: "One progression, written once"
+prompt: |
+  Three parts of this synth-pop bed (a pad, an arpeggio and off-beat stabs)
+  all play the same progression, and it is typed out three times. Rewrite
+  the code so the progression is stored once under the name *loop* and
+  each part uses the name. Then prove it works: change the progression to
+  **D minor, B flat, G minor, A** by editing that one line.
+starter: |
+  setcpm(118 / 4)
+  $: chord("<Dm Bb F C>")
+    .voicing()
+    .s("supersaw")
+    .detune(0.2)
+    .attack(0.4)
+    .release(1)
+    .gain(0.3)
+  $: n("0 1 2 3 2 1 2 3")
+    .chord("<Dm Bb F C>")
+    .voicing()
+    .s("square")
+    .decay(0.15)
+    .sustain(0)
+    .lpf(2500)
+    .gain(0.3)
+  $: chord("<Dm Bb F C>")
+    .struct("~ x ~ x")
+    .voicing()
+    .s("sawtooth")
+    .decay(0.2)
+    .sustain(0)
+    .lpf(1800)
+    .gain(0.35)
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(118 / 4)
+      const loop = "<Dm Bb Gm A>"
+      $: chord(loop)
+        .voicing()
+        .s("supersaw")
+        .detune(0.2)
+        .attack(0.4)
+        .release(1)
+        .gain(0.3)
+      $: n("0 1 2 3 2 1 2 3")
+        .chord(loop)
+        .voicing()
+        .s("square")
+        .decay(0.15)
+        .sustain(0)
+        .lpf(2500)
+        .gain(0.3)
+      $: chord(loop)
+        .struct("~ x ~ x")
+        .voicing()
+        .s("sawtooth")
+        .decay(0.2)
+        .sustain(0)
+        .lpf(1800)
+        .gain(0.35)
+listen_for:
+  - "Pad, arpeggio and stabs all move together through D minor, B flat, G minor, A"
+  - "Bar 4's A major (with C sharp) pulls back to D minor, which the old C major didn't"
+  - "Code check: the chord symbols appear once, in the line that defines loop"
+verify:
+  cycles: 4
+  equivalent_solutions: false
+sources:
+  - strudel-doc: chord
+  - strudel-doc: voicing
+  - strudel-doc: struct

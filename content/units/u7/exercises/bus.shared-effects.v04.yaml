@@ -1,0 +1,48 @@
+id: bus.shared-effects.v04
+skills: [bus.shared-effects]
+type: creative
+difficulty: 3
+title: Design two spaces
+prompt: |
+  Write a short sketch, four bars that loop, with at least three parts in
+  **two spaces**: an ensemble that shares one space, and one part that
+  belongs somewhere else, for example an echoing lead or a distant voice.
+  Choose the sounds, notes and values yourself. Check your sketch against the
+  rubric.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      $: stack(
+        s("bd ~ sd ~, hh*8").bank("RolandTR909").room(0.05),
+        chord("<Am F C G>").voicing().s("triangle").room(0.4),
+        n("<0 -2 -5 -1>").scale("A3:minor").s("sawtooth").lpf(500).gain(0.4),
+      ).roomsize(2)
+      $: n("4 ~ 2 3 ~ 4 7 ~")
+        .scale("A4:minor")
+        .s("square")
+        .decay(0.1)
+        .sustain(0)
+        .lpf(2000)
+        .delay(0.4)
+        .delaysync(3 / 16)
+        .delayfeedback(0.6)
+        .room(0.3)
+        .roomsize(5)
+        .orbit(2)
+        .gain(0.35)
+    note: One possible sketch. The drums, chords and bass share a 2-second room on orbit 1. The lead has dotted-eighth echoes and a 5-second reverb of its own on orbit 2.
+listen_for:
+  - In the reference, the drums are nearly dry, the chords sit back in the room, and the bass sends nothing
+  - The lead's dotted-eighth echoes run across the beat, and only the lead has them
+rubric:
+  - At least three parts. At least two of them share one orbit
+  - The shared space's settings (roomsize, and delaysync if the ensemble uses a delay) are written once, for example after a stack, so parts on that orbit never disagree
+  - The parts that share the space use different send levels (room or delay), and you can hear which part is nearer
+  - One part with different space settings (another roomsize or delaysync) is on its own orbit
+  - Every pitched note is at C3 or above
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: orbit
+  - strudel-doc: room
+  - strudel-doc: delay

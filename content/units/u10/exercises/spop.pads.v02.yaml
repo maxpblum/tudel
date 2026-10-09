@@ -1,0 +1,43 @@
+id: spop.pads.v02
+skills: [spop.pads]
+type: spec-to-code
+difficulty: 3
+title: String machine in a hall
+prompt: |
+  A string bed for **D minor, B flat, F, C**, one chord per bar, voiced with
+  `voicing`:
+
+  - `"supersaw"` with **7** voices spread over **0.25 semitones** (25 cents)
+  - attack **0.6 s**, release **1.5 s**
+  - a low-pass at **3000 Hz**
+  - a reverb send of **0.5** into a **4-second** hall on **orbit 3**, so it
+    can't change any other part's reverb
+  - gain **0.5**
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      chord("<Dm Bb F C>")
+        .voicing()
+        .s("supersaw")
+        .unison(7)
+        .detune(0.25)
+        .attack(0.6)
+        .release(1.5)
+        .lpf(3000)
+        .room(0.5)
+        .roomsize(4)
+        .orbit(3)
+        .gain(0.5)
+listen_for:
+  - "A wide, shimmering chord: seven voices beating slowly against each other"
+  - "Each chord enters like a bowed section, over about half a second"
+  - "A long hall tail joins one chord to the next"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: unison
+  - strudel-doc: detune
+  - strudel-doc: roomsize
+  - strudel-doc: orbit
+  - lexicon: pad-like
+  - lexicon: wet

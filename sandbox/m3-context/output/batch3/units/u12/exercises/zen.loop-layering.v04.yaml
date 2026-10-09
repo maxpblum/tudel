@@ -1,0 +1,45 @@
+id: zen.loop-layering.v04
+skills: [zen.loop-layering]
+type: transform
+difficulty: 3
+title: "Voices enter from the bass up"
+prompt: |
+  The starter is a four-voice chorale texture in D minor (chords D minor,
+  B flat, F, C), all four voices starting together. Rewrite it so the
+  voices enter one by one from the bottom, the way a choral piece might
+  begin with the basses alone:
+
+  - bass from bar 1, tenor from bar 3, alto from bar 5, soprano from bar 7;
+  - an 8-bar loop, with all voices playing to its end.
+
+  Name each voice and use `seqPLoop`. Before you play it, work out which
+  chord each new voice enters on, and check that it fits.
+starter: |
+  stack(
+    note("<d3 bb3 f3 c3>").s("triangle").gain(0.6),
+    note("<a3 bb3 a3 g3>").s("triangle").gain(0.5),
+    note("<f4 f4 c4 e4>").s("triangle").gain(0.45),
+    note("<[d5 e5] [f5 d5] [c5 a4] [g4 c5]>").s("square").lpf(2000).gain(0.3),
+  )
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      const bass = note("<d3 bb3 f3 c3>").s("triangle").gain(0.6)
+      const tenor = note("<a3 bb3 a3 g3>").s("triangle").gain(0.5)
+      const alto = note("<f4 f4 c4 e4>").s("triangle").gain(0.45)
+      const soprano = note("<[d5 e5] [f5 d5] [c5 a4] [g4 c5]>")
+        .s("square")
+        .lpf(2000)
+        .gain(0.3)
+      seqPLoop([0, 8, bass], [2, 8, tenor], [4, 8, alto], [6, 8, soprano])
+listen_for:
+  - "Bars 1-2: the bass alone, D3 then B flat 3"
+  - "Bar 3: the tenor enters on its third note, A3, over F3 in the bass: the F major chord, third in the loop. It fits, because both voices follow the song's bar count"
+  - "Bar 5: the alto enters on F4 over D3 and A3: D minor, the loop's first chord again"
+  - "Bar 7: the soprano enters on C5 then A4, over F; bar 8 ends on C major"
+  - "Every vertical sonority is a complete or incomplete chord of the loop, because the windows open on a shared clock"
+verify:
+  cycles: 8
+sources:
+  - strudel-doc: seqPLoop
+  - strudel-src: "packages/core/pattern.mjs#L1486-L1501"
