@@ -5,14 +5,14 @@ difficulty: 2
 title: "Locking a sawtooth bassline beneath extended chords"
 prompt: |
   The starter gives a TR-808 groove and voiced seventh chords in A minor
-  (`<Am7 Fmaj7 Cmaj7 G>`). Add a root bassline to the `stack`: octave-3
+  (`<Am7 F^7 C^7 G>`). Add a root bassline to the `stack`: octave-3
   roots `<a3 f3 c3 g3>` repeated in eighth notes with `.ply(2)` on
   `s("sawtooth")`, filtered with `.lpf(550)` at `gain(0.7)`.
 starter: |
   setcpm(116 / 4)
   stack(
     s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR808"),
-    chord("<Am7 Fmaj7 Cmaj7 G>")
+    chord("<Am7 F^7 C^7 G>")
       .voicing()
       .s("supersaw")
       .detune(0.15)
@@ -26,7 +26,7 @@ solutions:
       stack(
         s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR808"),
         note("<a3 f3 c3 g3>").ply(2).s("sawtooth").lpf(550).gain(0.7),
-        chord("<Am7 Fmaj7 Cmaj7 G>")
+        chord("<Am7 F^7 C^7 G>")
           .voicing()
           .s("supersaw")
           .detune(0.15)

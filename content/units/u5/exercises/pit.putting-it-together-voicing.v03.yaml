@@ -8,7 +8,7 @@ prompt: |
 
   1. **Rhythm:** a TR-808 drum beat with kick on 1 and 3, backbeat snare, and sixteenth-note hats (`s("bd ~ bd ~, ~ sd ~ sd, hh*16")`).
   2. **Bass:** octave-3 root notes `<c3 a3 f3 g3>` on `s("sawtooth")` filtered at `.lpf(500)` at `gain(0.7)`.
-  3. **Extended chords:** seventh-chord loop `<Cmaj7 Am7 Fmaj7 G>` voiced with `.voicing()` on `s("supersaw")` with `.detune(0.15).lpf(2000)` at `gain(0.35)`.
+  3. **Extended chords:** seventh-chord loop `<C^7 Am7 F^7 G>` voiced with `.voicing()` on `s("supersaw")` with `.detune(0.15).lpf(2000)` at `gain(0.35)`.
 hide_reference_code_until_reveal: true
 solutions:
   - code: |
@@ -16,7 +16,7 @@ solutions:
       stack(
         s("bd ~ bd ~, ~ sd ~ sd, hh*16").bank("RolandTR808"),
         note("<c3 a3 f3 g3>").s("sawtooth").lpf(500).gain(0.7),
-        chord("<Cmaj7 Am7 Fmaj7 G>")
+        chord("<C^7 Am7 F^7 G>")
           .voicing()
           .s("supersaw")
           .detune(0.15)
@@ -29,7 +29,7 @@ listen_for:
   - "Lush major and minor seventh voicings creating a smooth, sophisticated harmony"
 rubric:
   - "Combines rhythm, bass, and extended chord voicings in stack"
-  - "Uses 7th chords (e.g. Cmaj7, Am7, Fmaj7) voiced with .voicing()"
+  - "Uses 7th chords (e.g. C^7, Am7, F^7) voiced with .voicing()"
   - "Sawtooth bass plays root notes at or above C3"
   - "Drums establish steady backbeat with sixteenth-note hi-hats"
   - "Gain levels are properly balanced across the three tiers"
