@@ -2,14 +2,16 @@ id: pat.putting-it-together.v03
 skills: [pat.putting-it-together]
 type: creative
 difficulty: 2
-title: "Micro-burst: polyphonic derived arrangement in D minor"
+title: "Micro-burst: polyphonic derived arrangement"
 prompt: |
-  Compose a 4-bar groove at 116 BPM using pattern transforms to derive
-  rich counterpoint from minimal code:
+  Compose an original 4-bar groove at 116 BPM using `stack` and pattern
+  transforms to derive rich polyphony and variation from concise code:
 
-  1. **Dynamic drums:** a TR-909 beat with an automatic cadence fill on the fourth bar using `.lastOf(4, (x) => x.ply(2))`.
-  2. **Bass foundation:** octave-3 root notes `<d3 bb3 f3 c3>` on `s("sawtooth")` at `gain(0.7)`.
-  3. **Polyphonic melody:** seed motif `n("0 2 4 7 5 3 2 0").scale("D4:minor")` layered with an octave-higher retrograde countermelody using `.superimpose((x) => x.add(note(12)).rev())` on `s("triangle")` at `gain(0.4)`.
+  1. **Dynamic drums:** a drum pattern using a sound bank (such as `bank("RolandTR909")`), adding an automatic cadence fill on the fourth bar using `lastOf` or `every`.
+  2. **Bass foundation:** a low bassline playing root notes at or above C3 on `"sawtooth"`.
+  3. **Polyphonic melody:** a melodic motif using scale degrees (`n(...)` with `scale`), thickened into counterpoint by deriving a second voice with `superimpose` (such as transposition with `add` or retrograde with `rev`) on `"triangle"`, balanced with `gain`.
+
+  Choose your own scale, motif, transformation, and drum rhythm. Check your groove against the rubric; the reference is one possible answer in D minor.
 hide_reference_code_until_reveal: true
 solutions:
   - code: |
@@ -25,15 +27,16 @@ solutions:
           .s("triangle")
           .gain(0.4),
       )
+    note: "One possible groove. Drums double hits on bar 4 with lastOf, and a D minor melody derives an octave-higher retrograde countermelody with superimpose."
 listen_for:
-  - "Drums keep steady eighth time, then double to sixteenth notes on bar 4"
-  - "Low roots D3, B flat 3, F3, and C3 driving the harmonic progression"
-  - "Forward melody in octave 4 intertwining seamlessly with reverse melody in octave 5"
+  - "In the reference, drums keep steady eighth time, then double to sixteenth notes on bar 4"
+  - "Low roots D3, B flat 3, F3, and C3 drive the harmonic progression"
+  - "Forward melody in octave 4 intertwines seamlessly with reverse melody in octave 5"
 rubric:
-  - "Combines steady rhythm with algorithmic variation on melody or harmony"
-  - "Uses every(4, rev) or similar transformation to create phrase cadence on bar 4"
+  - "Combines steady rhythm with algorithmic variation on melody and drums in stack"
+  - "Uses lastOf or every to create an automatic cadence fill on bar 4 of the drum pattern"
   - "Bassline tracks roots in octave 3 (at or above C3)"
-  - "Drums maintain steady groove throughout"
+  - "Derives a polyphonic countermelody from a seed line using superimpose"
   - "Relative gain balances allow the transformed melody to stand out"
 verify:
   cycles: 4
@@ -44,3 +47,5 @@ sources:
   - strudel-doc: lastOf
   - strudel-doc: ply
   - strudel-doc: scale
+  - strudel-doc: bank
+  - strudel-doc: gain

@@ -4,12 +4,14 @@ type: creative
 difficulty: 2
 title: "Micro-burst: multi-speed modulation on a 4-bar groove"
 prompt: |
-  Create a 4-bar soundscape at 116 BPM with two simultaneous speeds of
-  modulation:
+  Create an original 4-bar soundscape at 116 BPM using `stack` with two
+  simultaneous speeds of continuous modulation:
 
-  1. **Drums:** a TR-909 pattern with kick, snare, and eighth-note hats.
-  2. **Macro-motion (phrase sweep):** an octave-3 sawtooth bassline on `<d3 bb3 f3 c3>` repeated in eighth notes with `.ply(2)`, its filter swept from 400 to 2400 Hz over 4 bars using `.lpf(saw.range(400, 2400).slow(4))`.
-  3. **Meso-motion (rhythmic tremolo):** pulse the bass's volume with a quarter-note sine wave using `.gain(sine.range(0.4, 0.75).fast(4))`.
+  1. **Drums:** a steady beat on a drum machine sound bank (such as `bank("RolandTR909")`), providing a rhythmic anchor.
+  2. **Macro-motion (phrase sweep):** a synth voice (such as bass on `"sawtooth"`) whose lowpass filter cutoff slowly evolves across the 4-bar phrase using `lpf` modulated by an LFO with `slow(4)`.
+  3. **Meso-motion (rhythmic tremolo):** a faster, beat-synced volume modulation applied to the synth voice using `gain` modulated by an LFO with `fast`.
+
+  Choose your own notes, waveforms, and modulation ranges. Check your soundscape against the rubric; the reference is one possible answer.
 hide_reference_code_until_reveal: true
 solutions:
   - code: |
@@ -22,15 +24,16 @@ solutions:
           .lpf(saw.range(400, 2400).slow(4))
           .gain(sine.range(0.4, 0.75).fast(4)),
       )
+    note: "One possible soundscape. A 4-bar phrase sweep on filter cutoff combines with a quarter-note tremolo on bass gain over TR-909 drums."
 listen_for:
-  - "Steady TR-909 drum beat anchoring 4/4 time"
-  - "Eighth-note bassline pulsing in volume on every beat"
-  - "Overall lowpass filter opening steadily across the 4-bar chord cycle"
+  - "In the reference, a steady TR-909 drum beat anchors 4/4 time"
+  - "Eighth-note bassline pulses in volume on every beat from the fast sine tremolo"
+  - "Overall lowpass filter opens steadily across the 4-bar chord cycle"
 rubric:
-  - "Combines steady rhythm with dual-speed continuous modulation"
-  - "Macro-motion: a slow 4-bar phrase sweep on filter cutoff using slow(4)"
-  - "Meso-motion: a faster rhythmic modulation on volume using fast(4) or rhythmic sine/saw"
-  - "Bassline stays in octave 3 (at or above C3)"
+  - "Combines steady drums with dual-speed continuous modulation in stack"
+  - "Macro-motion: a slow 4-bar phrase sweep on filter cutoff using lpf and slow(4)"
+  - "Meso-motion: a faster rhythmic modulation on volume using gain and fast"
+  - "All pitched notes stay at or above C3"
   - "Drums provide a steady reference tempo"
 verify:
   cycles: 4
@@ -41,3 +44,6 @@ sources:
   - strudel-doc: saw
   - strudel-doc: sine
   - strudel-doc: fast
+  - strudel-doc: slow
+  - strudel-doc: bank
+  - strudel-doc: gain

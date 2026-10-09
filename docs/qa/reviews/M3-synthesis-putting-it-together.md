@@ -33,4 +33,14 @@ Method: Evaluated all 8 lessons and 24 exercise variants against `content/STYLE_
    - Fixed `white` and `supersaw` citations in exercise sources to cite primary doc name `s`.
    - Updated prompt in `rhy.putting-it-together.v03` to use `s("hh(5,8)")` rather than bare `hh(5,8)`.
 4. **All 9 Gates Green**:
-   - `pnpm verify` passes 100% across all 481 schema checks, 718 evaluations, 965 vocabulary checks, 394 snapshots, 47 notations, 30 equivalences, 718 style checks, and 1,714 prose claims.
+   - `pnpm verify` passes 100% across all 481 schema checks, 718 evaluations, 965 vocabulary checks, 394 snapshots, 47 notations, 30 equivalences, 718 style checks, and 1,733 prose claims.
+
+## Refactor: Non-prescriptive creative exercises
+
+Following user review, all 8 `.v03` (`type: creative`) exercises were refactored to remove overly prescriptive instructions:
+- **Prior antipattern**: Prompts prescribed exact rhythms (e.g. `<[bd ~ bd ~] [bd ~ ~ bd]>`, `~ sd ~ sd`), exact chord loops (`<Em C G D>`), exact notes (`<d3 c3 bb3 a3>`), and exact LFO ranges. This effectively reduced open creative exercises to transcription tasks.
+- **Architectural constraint design**: Prompts now prescribe constraints in terms of methods (`stack`, `< >`, `euclid`, `voicing`, `ply`, `superimpose`, `lastOf`/`every`), tools/functions (`lpf`, `slow`, `fast`, `gain`, `fmi`/`fmh`, `delaysync`, `room`, `vib`/`vibmod`), and sound banks/timbres (`bank("RolandTR909")`, `bank("RolandTR808")`, `"sawtooth"`, `"triangle"`, `"supersaw"`, `"square"`).
+- **Learner agency**: Learners choose their own rhythms, chord progressions, melodies, and parameter ranges. Prompts clearly state: "Choose your own... The reference is one possible answer; check your groove against the rubric."
+- **Rubrics & references**: Rubrics evaluate the structural and methodological constraints. Reference solutions provide exemplary implementations with descriptive `note:` annotations, and `listen_for:` lists explicitly frame observations around the reference implementation ("In the reference...").
+- **Verification**: `ci/run-all.sh` is 100% green across all unit, coverage, and E2E audio tests.
+

@@ -4,11 +4,14 @@ type: creative
 difficulty: 2
 title: "Micro-burst: 3D spatial mix with FM plucks"
 prompt: |
-  Compose a 4-bar groove at 116 BPM that creates clear front-to-back depth:
+  Compose an original 4-bar groove at 116 BPM using `stack` that establishes
+  clear front-to-back spatial depth:
 
-  1. **Foreground anchor:** dry drums on the TR-808 (`s("bd*2, ~ sd, hh*8")`) and sawtooth bass on `<d3 c3 bb3 a3>`.
-  2. **Metallic timbre:** an FM pluck on `s("sine")` using `.fmi(3.5).fmh(2)` with `.decay(0.15).sustain(0)`.
-  3. **Spatial depth:** give the FM melody a synced delay `.delay(0.35).delaysync(3 / 16)` and room wash `.room(0.4)` at `.gain(0.45)`.
+  1. **Foreground anchor:** a dry rhythm section combining a drum machine bank (such as `bank("RolandTR808")`) and an octave-3 `"sawtooth"` bass, kept completely dry with no delay or reverb.
+  2. **Metallic timbre:** a plucked melodic line using FM synthesis on `s("sine")`, shaped with `fmi` and `fmh` and a short percussive envelope (`decay` and zero `sustain`).
+  3. **Spatial depth:** place the FM melody deeper in the virtual room using synced delay (`delay` and `delaysync`) and reverberation (`room`), balanced with `gain`.
+
+  Choose your own notes, rhythms, and spatial settings. Check your sketch against the rubric; the reference is one possible answer.
 hide_reference_code_until_reveal: true
 solutions:
   - code: |
@@ -27,15 +30,16 @@ solutions:
           .room(0.4)
           .gain(0.45),
       )
+    note: "One possible sketch. Dry drums and bass anchor the front of the mix, while FM plucks carry dotted-eighth echoes and a reverberant room wash."
 listen_for:
-  - "Punchy, completely dry rhythm section upfront"
-  - "Distinct metallic bell chime on F4, A4, C5, and E5"
-  - "Echoes and reverberant tail placing the melody in a wide virtual acoustic room"
+  - "In the reference, a punchy, completely dry rhythm section anchors the mix upfront"
+  - "Distinct metallic bell chimes move through F4, A4, C5, and E5"
+  - "Echoes and reverberant tail place the melody in a wide virtual acoustic room"
 rubric:
-  - "Combines dry rhythm tracks with wet, spaced lead tracks in stack"
+  - "Combines dry rhythm tracks with wet, spaced melodic tracks in stack"
   - "Rhythm section stays upfront and dry (no room or delay on drums and bass)"
-  - "Lead melody uses FM synthesis parameters fmi and fmh on sine wave"
-  - "Lead melody is placed in the background using delay, delaysync, or room"
+  - "Melodic voice uses FM synthesis with fmi and fmh on a sine wave with a short pluck envelope"
+  - "Melodic voice is placed in the background using delay (with delaysync) and room"
   - "All pitches are at or above C3"
 verify:
   cycles: 4
@@ -46,3 +50,6 @@ sources:
   - strudel-doc: fmh
   - strudel-doc: delay
   - strudel-doc: room
+  - strudel-doc: delaysync
+  - strudel-doc: bank
+  - strudel-doc: gain

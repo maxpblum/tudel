@@ -4,13 +4,15 @@ type: creative
 difficulty: 2
 title: "Micro-burst: complete 4-tier electronic production"
 prompt: |
-  Compose a complete 4-bar electronic production at 120 BPM with four
-  interlocking tiers:
+  Compose an original 4-bar electronic production at 120 BPM using `stack`
+  with four interlocking tiers:
 
-  1. **Drums:** a TR-909 pattern with kick, snare, and eighth-note hats at `gain(0.85)`.
-  2. **Sub-bass:** octave-3 root notes `<a3 f3 c3 g3>` on `s("sawtooth")` filtered with `.lpf(450)` at `gain(0.7)`.
-  3. **Warm pad:** chord progression `<Am F C G>` voiced with `.voicing()` on `s("supersaw")` with `.detune(0.2).lpf(2000)` at `gain(0.35)`.
-  4. **Vibrato lead:** melody `n("<[4@2 5 7] [5@2 4 2] [0@2 2 4] [2@3 ~]>").scale("A4:minor")` on `s("square")` with `.vib(6).vibmod(0.2)` at `gain(0.3)`.
+  1. **Drums:** a driving rhythm section using a drum machine sound bank (such as `bank("RolandTR909")`).
+  2. **Sub-bass:** a low bassline playing root notes at or above C3 on `"sawtooth"`, filtered with `lpf` so it anchors the low frequencies without masking the midrange.
+  3. **Warm pad:** a 4-bar progression voiced with `chord(...).voicing()` on `"supersaw"` with subtle `detune` to create a wide stereo chorus.
+  4. **Vibrato lead:** a melodic lead on `"square"` (or `"sawtooth"`) with expressive vibrato on sustained notes using `vib` and `vibmod`.
+
+  Choose your own progression, melodies, and drum rhythms. Stage the gain of each tier so the full mix does not clip. Check your track against the rubric; the reference is one possible production in A minor.
 hide_reference_code_until_reveal: true
 solutions:
   - code: |
@@ -26,15 +28,16 @@ solutions:
           .vibmod(0.2)
           .gain(0.3),
       )
+    note: "One possible production. TR-909 drums, filtered sawtooth sub-bass, detuned supersaw chords, and a square lead with vocal-style vibrato."
 listen_for:
-  - "Solid four-on-the-floor beat and warm sub-bass in the low frequencies"
-  - "Wide, rich detuned chords filling the stereo field"
-  - "Vocal-style vibrato on the lead square synth carrying the hook across the 4-bar progression"
+  - "In the reference, a four-on-the-floor beat and warm sub-bass anchor the low end"
+  - "Wide, rich detuned chords fill the stereo field behind the groove"
+  - "Vocal-style vibrato on the lead square synth carries the hook across the 4-bar progression"
 rubric:
   - "Integrates rhythm, bass, detuned supersaw chords, and lead in a balanced stack"
-  - "Pads use supersaw with detune for wide harmonic chorus"
+  - "Pads use supersaw with detune for harmonic width"
+  - "Lead melody uses vibrato with vib and vibmod"
   - "Bass and melody stay at or above C3"
-  - "Drums maintain clear groove"
   - "Individual gains are staged so the composite mix does not clip"
 verify:
   cycles: 4
@@ -45,3 +48,7 @@ sources:
   - strudel-doc: detune
   - strudel-doc: vib
   - strudel-doc: vibmod
+  - strudel-doc: lpf
+  - strudel-doc: voicing
+  - strudel-doc: bank
+  - strudel-doc: gain
