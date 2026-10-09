@@ -1,0 +1,46 @@
+id: snd.putting-it-together-space.v01
+skills: [snd.putting-it-together-space]
+type: transform
+difficulty: 2
+title: "Adding a delayed FM bell over a dry rhythm section"
+prompt: |
+  The starter provides a dry TR-808 beat and sawtooth bassline. Add a
+  melodic FM chime layer to the `stack`: `note("<e4 g4 a4 b4>")` with FM
+  synthesis on `s("sine").fmi(3).fmh(2)`, a short pluck envelope
+  `.decay(0.12).sustain(0)`, and a dotted-eighth synced delay
+  `.delay(0.3).delaysync(3 / 16)` at `.gain(0.45)`.
+starter: |
+  setcpm(116 / 4)
+  stack(
+    s("bd*2, ~ sd, hh*8").bank("RolandTR808"),
+    note("<e3 c3 d3 e3>").ply(2).s("sawtooth").gain(0.65),
+  )
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(116 / 4)
+      stack(
+        s("bd*2, ~ sd, hh*8").bank("RolandTR808"),
+        note("<e3 c3 d3 e3>").ply(2).s("sawtooth").gain(0.65),
+        note("<e4 g4 a4 b4>")
+          .s("sine")
+          .fmi(3)
+          .fmh(2)
+          .decay(0.12)
+          .sustain(0)
+          .delay(0.3)
+          .delaysync(3 / 16)
+          .gain(0.45),
+      )
+listen_for:
+  - "Punchy, dry drum beat and sawtooth bass upfront in the mix"
+  - "Bright, metallic FM chimes moving through E4, G4, A4, and B4"
+  - "Echoes repeating a dotted eighth note after each pluck"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: stack
+  - strudel-doc: fmi
+  - strudel-doc: fmh
+  - strudel-doc: delay
+  - strudel-doc: delaysync

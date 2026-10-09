@@ -1,0 +1,42 @@
+id: snd.putting-it-together-filters.v03
+skills: [snd.putting-it-together-filters]
+type: creative
+difficulty: 2
+title: "Micro-burst: 4-bar filtered bass build"
+prompt: |
+  Compose a 4-bar filtered groove at 120 BPM with three tight constraints:
+
+  1. **Drums:** a TR-909 pattern with kick on 1 and 3, snare on 2 and 4, and eighth-note hats.
+  2. **Bassline:** root notes `<d3 c3 bb3 a3>` repeated in eighth notes with `.ply(2)` on `s("sawtooth")`.
+  3. **Filter motion:** a continuous 4-bar lowpass sweep using `.lpf(saw.range(400, 2000).slow(4))` with `.gain(0.7)`.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(120 / 4)
+      stack(
+        s("bd ~ bd ~, ~ sd ~ sd, hh*8").bank("RolandTR909"),
+        note("<d3 c3 bb3 a3>")
+          .ply(2)
+          .s("sawtooth")
+          .lpf(saw.range(400, 2000).slow(4))
+          .gain(0.7),
+      )
+listen_for:
+  - "Punchy TR-909 drum beat anchoring the groove"
+  - "Low sawtooth bass roots moving through D3, C3, B flat 3, and A3"
+  - "Lowpass cutoff climbing steadily from 400 Hz to 2000 Hz over the 4-bar phrase"
+rubric:
+  - "Combines a drum groove and a filtered bassline in a single stack"
+  - "Drums use RolandTR909 bank with kick, snare, and eighth-note hi-hats"
+  - "Bassline plays octave-3 notes (at or above C3) with sawtooth timbre"
+  - "Lowpass filter cutoff modulates across a 4-bar sweep using slow(4)"
+  - "Gain levels are balanced between drums and bass"
+verify:
+  cycles: 4
+  equivalent_solutions: false
+sources:
+  - strudel-doc: stack
+  - strudel-doc: lpf
+  - strudel-doc: saw
+  - strudel-doc: range
+  - strudel-doc: bank

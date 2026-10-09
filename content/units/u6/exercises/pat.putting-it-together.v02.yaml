@@ -1,0 +1,39 @@
+id: pat.putting-it-together.v02
+skills: [pat.putting-it-together]
+type: transform
+difficulty: 2
+title: "Adding automated phrase-ending fills with lastOf"
+prompt: |
+  The starter provides a 4-bar groove where the drum pattern loops
+  without variation. Add an automatic rhythmic fill on every fourth bar:
+  apply `.lastOf(4, (x) => x.ply(2))` directly to the drum line so bars
+  1 to 3 play standard eighths, while bar 4 doubles all hits into sixteenths.
+starter: |
+  setcpm(120 / 4)
+  stack(
+    s("bd ~ bd ~, ~ sd ~ sd, hh*8").bank("RolandTR808"),
+    note("<a3 f3 c3 g3>").ply(2).s("sawtooth").gain(0.65),
+    chord("<Am F C G>").voicing().s("triangle").gain(0.4),
+  )
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(120 / 4)
+      stack(
+        s("bd ~ bd ~, ~ sd ~ sd, hh*8")
+          .bank("RolandTR808")
+          .lastOf(4, (x) => x.ply(2)),
+        note("<a3 f3 c3 g3>").ply(2).s("sawtooth").gain(0.65),
+        chord("<Am F C G>").voicing().s("triangle").gain(0.4),
+      )
+listen_for:
+  - "Bars 1, 2, and 3 play a standard eighth-note TR-808 rhythm"
+  - "Bar 4 automatically doubles all hits to energetic sixteenth notes"
+  - "Bass and chords continue smoothly without disruption underneath"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: stack
+  - strudel-doc: lastOf
+  - strudel-doc: ply
+  - strudel-doc: bank

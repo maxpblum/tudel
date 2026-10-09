@@ -1,0 +1,44 @@
+id: pit.putting-it-together-voicing.v03
+skills: [pit.putting-it-together-voicing]
+type: creative
+difficulty: 2
+title: "Micro-burst: extended seventh-chord groove in C major"
+prompt: |
+  Compose a 4-bar neo-soul groove at 112 BPM with three tiers:
+
+  1. **Rhythm:** a TR-808 drum beat with kick on 1 and 3, backbeat snare, and sixteenth-note hats (`s("bd ~ bd ~, ~ sd ~ sd, hh*16")`).
+  2. **Bass:** octave-3 root notes `<c3 a3 f3 g3>` on `s("sawtooth")` filtered at `.lpf(500)` at `gain(0.7)`.
+  3. **Extended chords:** seventh-chord loop `<Cmaj7 Am7 Fmaj7 G>` voiced with `.voicing()` on `s("supersaw")` with `.detune(0.15).lpf(2000)` at `gain(0.35)`.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(112 / 4)
+      stack(
+        s("bd ~ bd ~, ~ sd ~ sd, hh*16").bank("RolandTR808"),
+        note("<c3 a3 f3 g3>").s("sawtooth").lpf(500).gain(0.7),
+        chord("<Cmaj7 Am7 Fmaj7 G>")
+          .voicing()
+          .s("supersaw")
+          .detune(0.15)
+          .lpf(2000)
+          .gain(0.35),
+      )
+listen_for:
+  - "Sixteenth-note hats riding over the TR-808 backbeat"
+  - "Warm, rounded bass notes anchoring C3, A3, F3, and G3"
+  - "Lush major and minor seventh voicings creating a smooth, sophisticated harmony"
+rubric:
+  - "Combines rhythm, bass, and extended chord voicings in stack"
+  - "Uses 7th chords (e.g. Cmaj7, Am7, Fmaj7) voiced with .voicing()"
+  - "Sawtooth bass plays root notes at or above C3"
+  - "Drums establish steady backbeat with sixteenth-note hi-hats"
+  - "Gain levels are properly balanced across the three tiers"
+verify:
+  cycles: 4
+  equivalent_solutions: false
+sources:
+  - strudel-doc: stack
+  - strudel-doc: chord
+  - strudel-doc: voicing
+  - strudel-doc: detune
+  - strudel-doc: lpf

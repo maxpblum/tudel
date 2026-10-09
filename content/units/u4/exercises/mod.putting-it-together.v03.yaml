@@ -1,0 +1,43 @@
+id: mod.putting-it-together.v03
+skills: [mod.putting-it-together]
+type: creative
+difficulty: 2
+title: "Micro-burst: multi-speed modulation on a 4-bar groove"
+prompt: |
+  Create a 4-bar soundscape at 116 BPM with two simultaneous speeds of
+  modulation:
+
+  1. **Drums:** a TR-909 pattern with kick, snare, and eighth-note hats.
+  2. **Macro-motion (phrase sweep):** an octave-3 sawtooth bassline on `<d3 bb3 f3 c3>` repeated in eighth notes with `.ply(2)`, its filter swept from 400 to 2400 Hz over 4 bars using `.lpf(saw.range(400, 2400).slow(4))`.
+  3. **Meso-motion (rhythmic tremolo):** pulse the bass's volume with a quarter-note sine wave using `.gain(sine.range(0.4, 0.75).fast(4))`.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(116 / 4)
+      stack(
+        s("bd ~ bd ~, ~ sd ~ sd, hh*8").bank("RolandTR909"),
+        note("<d3 bb3 f3 c3>")
+          .ply(2)
+          .s("sawtooth")
+          .lpf(saw.range(400, 2400).slow(4))
+          .gain(sine.range(0.4, 0.75).fast(4)),
+      )
+listen_for:
+  - "Steady TR-909 drum beat anchoring 4/4 time"
+  - "Eighth-note bassline pulsing in volume on every beat"
+  - "Overall lowpass filter opening steadily across the 4-bar chord cycle"
+rubric:
+  - "Combines steady rhythm with dual-speed continuous modulation"
+  - "Macro-motion: a slow 4-bar phrase sweep on filter cutoff using slow(4)"
+  - "Meso-motion: a faster rhythmic modulation on volume using fast(4) or rhythmic sine/saw"
+  - "Bassline stays in octave 3 (at or above C3)"
+  - "Drums provide a steady reference tempo"
+verify:
+  cycles: 4
+  equivalent_solutions: false
+sources:
+  - strudel-doc: stack
+  - strudel-doc: lpf
+  - strudel-doc: saw
+  - strudel-doc: sine
+  - strudel-doc: fast

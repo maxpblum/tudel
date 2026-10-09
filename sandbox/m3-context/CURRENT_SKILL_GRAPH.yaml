@@ -174,6 +174,25 @@ skills:
     idiom_note: 'Patterns go anywhere a number goes: put the change inside the
       parameter (.lpf("<400 800>") or .lpf(sine.range(400, 2000).slow(4)))
       instead of copying the line once per bar.'
+  - id: snd.putting-it-together-filters
+    unit: u3a
+    title: "Putting it together: filtered drums and sweeping bass"
+    prereqs:
+      - rhy.putting-it-together
+      - snd.waveforms
+      - snd.lowpass
+      - snd.filter-sweep
+    summary: "Shape a full frequency spectrum: place lowpass sweeps on a sawtooth
+      bass while contrasting against filtered drum elements and resonant peaks."
+    vocabulary:
+      - lpf
+      - lpq
+      - saw
+      - range
+      - stack
+    lesson: snd.putting-it-together-filters.lesson
+    idiom_note: "Share the frequency spectrum: roll off the bass above 800 Hz so the
+      crisp transients of highpass-filtered drums have room to breathe."
   - id: rhy.cycles-tempo
     unit: u1
     title: Cycles, bars and tempo
@@ -265,6 +284,27 @@ skills:
     lesson: rhy.euclid.lesson
     idiom_note: '"bd(3,8)" says "tresillo" in one word; spell out the rests only
       when the hits are not spread evenly.'
+  - id: rhy.putting-it-together
+    unit: u1
+    title: "Putting it together: multi-part rhythm groove"
+    prereqs:
+      - rhy.drums
+      - rhy.subdivide
+      - rhy.rests-lengths
+      - rhy.alternate
+      - rhy.euclid
+    summary: Combine kick, syncopated snare, hi-hat subdivisions and Euclidean
+      patterns into an assembled drum groove that plays as a complete rhythm
+      section.
+    vocabulary:
+      - s
+      - bank
+      - stack
+      - euclid
+    lesson: rhy.putting-it-together.lesson
+    idiom_note: "Assemble a drum groove with stack, giving each drum voice its own
+      line and rhythm: kick on beats 1 and 3, snare on 2 and 4 with ghost notes,
+      and Euclidean hats filling the spaces."
   - id: pit.scale-degrees
     unit: u2
     title: Scale degrees with n and scale
@@ -376,6 +416,26 @@ skills:
     lesson: pit.progressions.lesson
     idiom_note: One <...> of chord symbols is the whole progression; a fixed anchor,
       not voicing's memory, is what keeps the soprano smooth.
+  - id: pit.putting-it-together
+    unit: u2
+    title: "Putting it together: rhythm and harmony groove"
+    prereqs:
+      - rhy.putting-it-together
+      - pit.chords-mini
+      - pit.chord-voicing
+      - pit.progressions
+    summary: "Put rhythm and harmony together: anchor a drum beat with a moving
+      bassline on roots and voiced keyboard chords playing the harmony."
+    vocabulary:
+      - stack
+      - chord
+      - voicing
+      - note
+      - s
+    lesson: pit.putting-it-together.lesson
+    idiom_note: "Lock the rhythm section together: let the bass double the kick's
+      attacks or fill the rests between them, while chords sustain across the
+      bar."
   - id: snd.filter-envelope
     unit: u3b
     title: Filter envelopes and resonance
@@ -478,6 +538,28 @@ skills:
     lesson: snd.delay.lesson
     idiom_note: "Time echoes in cycles with delaysync, so they stay on the grid when
       the tempo changes: 3 / 16 is a dotted eighth in a 4/4 bar."
+  - id: snd.putting-it-together-space
+    unit: u3b
+    title: "Putting it together: FM synthesis, noise and space"
+    prereqs:
+      - pit.putting-it-together
+      - snd.fm
+      - snd.noise
+      - snd.delay
+      - snd.room
+    summary: "Orchestrate timbral depth and space: layer metallic FM bells, textured
+      noise hats, and dry bass grooves across different reverb rooms and delay
+      lines."
+    vocabulary:
+      - fmi
+      - fmh
+      - room
+      - delay
+      - delaysync
+    lesson: snd.putting-it-together-space.lesson
+    idiom_note: "Create front-to-back depth: keep the kick and bass bone dry (room
+      0), send FM plucks to a rhythmic delay, and bathe background pads in a
+      wide room."
   - id: mod.signals
     unit: u4
     title: Signal shapes
@@ -586,6 +668,28 @@ skills:
     idiom_note: 'Slow the signal before you range it: saw.slow(8).range(300, "<1500
       4000>/8") changes the range every verse, because slow stretches everything
       written before it.'
+  - id: mod.putting-it-together
+    unit: u4
+    title: "Putting it together: multi-speed modulation soundscapes"
+    prereqs:
+      - snd.putting-it-together-filters
+      - mod.range
+      - mod.signal-speed
+      - mod.phrase-sweeps
+      - mod.perlin
+    summary: "Layer modulations operating at different time scales: a 4-bar slow
+      filter sweep, a 1-beat tremolo, and subtle Perlin pitch drift running
+      concurrently."
+    vocabulary:
+      - sine
+      - saw
+      - range
+      - slow
+      - perlin
+    lesson: mod.putting-it-together.lesson
+    idiom_note: "Vary your modulation speeds: match slow sweeps (slow(4)) to the
+      musical phrase, fast signals (fast(8)) to timbral texture, and random
+      drift to acoustic warmth."
   - id: pit.voicing-controls
     unit: u5
     title: "Harmonising a melody: anchor, duck and offset"
@@ -668,6 +772,26 @@ skills:
     lesson: pit.genre-progressions.lesson
     idiom_note: A pop loop is one <...> of four symbols; rotate it, recolour it, or
       put a bass under it, and the rest of the song is arrangement.
+  - id: pit.putting-it-together-voicing
+    unit: u5
+    title: "Putting it together: extended harmony over a rhythm section"
+    prereqs:
+      - pit.putting-it-together
+      - pit.extended-chords
+      - pit.slash-chords
+      - pit.modal-mixture
+    summary: Compose complete harmonic grooves using extended ninth chords, borrowed
+      minor chords, and slash bass pedals over dynamic syncopated beats.
+    vocabulary:
+      - chord
+      - voicing
+      - add
+      - note
+      - stack
+    lesson: pit.putting-it-together-voicing.lesson
+    idiom_note: "Voice extended chords cleanly above bass pedals: keep root movement
+      in the bass channel while the chord layer voices color tones (7ths, 9ths)
+      in the middle octave."
   - id: pat.speed-dir
     unit: u6
     title: Diminution, augmentation and retrograde
@@ -714,6 +838,27 @@ skills:
     lesson: pat.superimpose.lesson
     idiom_note: superimpose is off without the delay. Reach for it when the copy
       needs its own rhythm or sound; a plain interval is shorter as add("0,7").
+  - id: pat.putting-it-together
+    unit: u6
+    title: "Putting it together: polyphonic transform grooves"
+    prereqs:
+      - pit.putting-it-together
+      - pat.ply-struct
+      - pat.canon-imitation
+      - pat.variation-every
+    summary: "Synthesize pattern transforms: turn a single melodic phrase into a
+      complete evolving groove using canons, structural masking, and periodic
+      variations."
+    vocabulary:
+      - ply
+      - struct
+      - every
+      - superimpose
+      - rev
+    lesson: pat.putting-it-together.lesson
+    idiom_note: "Derive arrangements from a single seed: use superimpose and off to
+      generate countermelodies, and every(4, ...) to deliver fills at bar
+      lines."
   - id: pat.variation-every
     unit: u6
     title: "Phrase-level variation: every, lastOf and when"
@@ -904,6 +1049,26 @@ skills:
     idiom_note: "Pads take many wide voices, leads take few narrow ones: unison(2)
       with detune(0.12) keeps the pitch clear and still beats. Let arp read the
       chord and keep the chord in one place."
+  - id: det.putting-it-together
+    unit: u8
+    title: "Putting it together: full sound design with buses, detune and wobble"
+    prereqs:
+      - bus.mixing-balance
+      - bus.orbit
+      - det.supersaw
+      - det.pitch-drift
+    summary: Integrate multi-bus routing, gain staging, stereo panning, and detuned
+      supersaw textures into a cohesive, balanced electronic mix.
+    vocabulary:
+      - orbit
+      - pan
+      - jux
+      - detune
+      - gain
+    lesson: det.putting-it-together.lesson
+    idiom_note: "Balance the mix with gain and space: reserve orbit 0 for drums,
+      send wide detuned leads to jux, and trim channel gains so the master never
+      clips."
   - id: chip.pulse-channels
     unit: u9
     title: Pulse waves and the four-channel band

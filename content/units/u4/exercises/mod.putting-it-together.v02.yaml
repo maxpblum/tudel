@@ -1,0 +1,45 @@
+id: mod.putting-it-together.v02
+skills: [mod.putting-it-together]
+type: transform
+difficulty: 2
+title: "Adding organic Perlin pitch drift to a lead synth"
+prompt: |
+  The starter provides drums and a repetitive synth lead. Give the melody
+  an analog, imperfect tape drift by adding subtle Perlin pitch wobble:
+  insert `.add(note(perlin.range(-0.15, 0.15).slow(2)))` right after the
+  note pattern.
+starter: |
+  setcpm(116 / 4)
+  stack(
+    s("bd ~ bd ~, ~ sd ~ sd, hh*8").bank("RolandTR808"),
+    note("<[e4 g4 a4 b4] [c5 b4 a4 g4]>")
+      .s("triangle")
+      .decay(0.2)
+      .sustain(0.4)
+      .gain(0.55),
+  )
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(116 / 4)
+      stack(
+        s("bd ~ bd ~, ~ sd ~ sd, hh*8").bank("RolandTR808"),
+        note("<[e4 g4 a4 b4] [c5 b4 a4 g4]>")
+          .add(note(perlin.range(-0.15, 0.15).slow(2)))
+          .s("triangle")
+          .decay(0.2)
+          .sustain(0.4)
+          .gain(0.55),
+      )
+listen_for:
+  - "Crisp TR-808 rhythm section maintaining tempo"
+  - "Melody notes wavering slightly by fractions of a semitone"
+  - "The pitch variations evolve organically across cycles without mechanical repetition"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: stack
+  - strudel-doc: perlin
+  - strudel-doc: add
+  - strudel-doc: note
+  - strudel-doc: range

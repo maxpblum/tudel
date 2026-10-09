@@ -1,0 +1,38 @@
+id: pit.putting-it-together.v01
+skills: [pit.putting-it-together]
+type: transform
+difficulty: 2
+title: "Adding a bassline to drums and chords"
+prompt: |
+  The starter gives a drum beat and a 4-chord progression in D minor
+  (`<Dm Bb F C>`). Add a bass layer to the `stack`: octave-3 root notes
+  played as quarter notes on beats 1 and 3 (`<[d3 ~ d3 ~] [bb3 ~ bb3 ~] [f3 ~ f3 ~] [c3 ~ c3 ~]>`)
+  using `s("sawtooth")` at `gain(0.65)`.
+starter: |
+  setcpm(112 / 4)
+  stack(
+    s("bd ~ bd ~, ~ sd ~ sd, hh*8").bank("RolandTR909"),
+    chord("<Dm Bb F C>").voicing().s("triangle").gain(0.5),
+  )
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(112 / 4)
+      stack(
+        s("bd ~ bd ~, ~ sd ~ sd, hh*8").bank("RolandTR909"),
+        note("<[d3 ~ d3 ~] [bb3 ~ bb3 ~] [f3 ~ f3 ~] [c3 ~ c3 ~]>")
+          .s("sawtooth")
+          .gain(0.65),
+        chord("<Dm Bb F C>").voicing().s("triangle").gain(0.5),
+      )
+listen_for:
+  - "Solid TR-909 drum beat on beats 1 through 4"
+  - "Sawtooth bass playing low D3, B flat 3, F3, and C3 on beats 1 and 3 of each bar"
+  - "Warm triangle chords sustaining across each bar"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: stack
+  - strudel-doc: voicing
+  - strudel-doc: chord
+  - strudel-doc: note

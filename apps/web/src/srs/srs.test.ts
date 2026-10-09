@@ -148,4 +148,24 @@ describe('helpers', () => {
     expect(describeDue(hours, now)).toBe('in 3 h');
     expect(statusOf(undefined)).toBe('new');
   });
+
+  it('replaySrs should preserve existing skill statuses and leave unrated skills as new when curriculum skills are added', () => {
+    const log = mkLog([
+      [T0, rate('rhy.drums', 3)],
+      [T0 + 5 * MIN, rate('rhy.subdivide', 4)],
+      [T0 + 10 * MIN, rate('pit.chords-mini', 3)],
+    ]);
+
+    const state = replaySrs(log);
+
+    expect(isIntroduced(state.get('rhy.drums'))).toBe(true);
+    expect(statusOf(state.get('rhy.drums'))).toBe('learning');
+    expect(isIntroduced(state.get('rhy.subdivide'))).toBe(true);
+    expect(statusOf(state.get('rhy.subdivide'))).toBe('review');
+    expect(isIntroduced(state.get('pit.chords-mini'))).toBe(true);
+    expect(statusOf(state.get('pit.chords-mini'))).toBe('learning');
+    expect(isIntroduced(state.get('pit.putting-it-together'))).toBe(false);
+    expect(statusOf(state.get('pit.putting-it-together'))).toBe('new');
+    expect(describeDue(state.get('pit.putting-it-together'), new Date(T0 + DAY))).toBe('not started');
+  });
 });

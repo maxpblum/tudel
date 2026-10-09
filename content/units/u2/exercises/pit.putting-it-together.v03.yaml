@@ -1,0 +1,39 @@
+id: pit.putting-it-together.v03
+skills: [pit.putting-it-together]
+type: creative
+difficulty: 2
+title: "Micro-burst: 3-tier rhythm section in E minor"
+prompt: |
+  Construct a complete 4-bar groove in E minor at 110 BPM with three
+  interlocking tiers:
+
+  1. **Drums:** a TR-808 pattern with kick, snare, and eighth-note hats (`s("bd*2, ~ sd, hh*8").bank("RolandTR808")`).
+  2. **Bass:** octave-3 roots following the chord progression `<e3 c3 g3 d3>` on `s("sawtooth")` at `gain(0.7)`.
+  3. **Chords:** the four-chord loop `<Em C G D>` voiced with `.voicing()` on `s("triangle")` at `gain(0.45)`.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(110 / 4)
+      stack(
+        s("bd*2, ~ sd, hh*8").bank("RolandTR808"),
+        note("<e3 c3 g3 d3>").s("sawtooth").gain(0.7),
+        chord("<Em C G D>").voicing().s("triangle").gain(0.45),
+      )
+listen_for:
+  - "Punchy TR-808 drum beat establishing steady time"
+  - "Low sawtooth bass roots moving through E3, C3, G3, and D3"
+  - "Warm triangle chords holding the 4-bar progression in the middle register"
+rubric:
+  - "Uses stack to layer drums, bassline, and voiced chord harmony"
+  - "Drums use RolandTR808 bank with kick, snare, and hi-hats"
+  - "Bassline plays octave-3 roots (at or above C3) tracking the E minor progression"
+  - "Chords are voiced using chord(...).voicing() on triangle wave at a lower gain"
+  - "All three parts play simultaneously across a 4-bar cycle"
+verify:
+  cycles: 4
+  equivalent_solutions: false
+sources:
+  - strudel-doc: stack
+  - strudel-doc: chord
+  - strudel-doc: voicing
+  - strudel-doc: bank

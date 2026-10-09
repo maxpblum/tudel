@@ -1,0 +1,38 @@
+id: rhy.putting-it-together.v03
+skills: [rhy.putting-it-together]
+type: creative
+difficulty: 2
+title: "Micro-burst: 2-bar alternating drum ensemble"
+prompt: |
+  Compose a 2-bar drum groove on the Roland TR-909 at 124 BPM using
+  `stack` with three tight constraints:
+
+  1. **Kick:** a 2-bar alternating pattern using `<[bd ~ bd ~] [bd ~ ~ bd]>`.
+  2. **Snare:** anchored on beats 2 and 4 (`~ sd ~ sd`).
+  3. **Hi-hat:** an interlocking Euclidean rhythm `s("hh(5,8)")` at `gain(0.5)`.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(124 / 4)
+      stack(
+        s("<[bd ~ bd ~] [bd ~ ~ bd]>"),
+        s("~ sd ~ sd"),
+        s("hh(5,8)").gain(0.5),
+      ).bank("RolandTR909")
+listen_for:
+  - "Bar 1 has kick on beats 1 and 3; bar 2 shifts its second kick to the upbeat of beat 4"
+  - "Snare hits solidly on beats 2 and 4 in every bar"
+  - "Five hi-hat hits per bar weave around the drum pulses"
+rubric:
+  - "Uses stack to layer kick, snare, and hi-hat parts"
+  - "Kick alternates across two bars using angle brackets < >"
+  - "Snare plays a steady backbeat on beats 2 and 4 (~ sd ~ sd)"
+  - "Hi-hat uses a Euclidean pattern such as hh(5,8) sitting lower in volume"
+  - "RolandTR909 bank is applied to the drum sounds"
+verify:
+  cycles: 4
+  equivalent_solutions: false
+sources:
+  - strudel-doc: stack
+  - strudel-doc: euclid
+  - strudel-doc: bank

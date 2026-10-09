@@ -1,0 +1,47 @@
+id: det.putting-it-together.v03
+skills: [det.putting-it-together]
+type: creative
+difficulty: 2
+title: "Micro-burst: complete 4-tier electronic production"
+prompt: |
+  Compose a complete 4-bar electronic production at 120 BPM with four
+  interlocking tiers:
+
+  1. **Drums:** a TR-909 pattern with kick, snare, and eighth-note hats at `gain(0.85)`.
+  2. **Sub-bass:** octave-3 root notes `<a3 f3 c3 g3>` on `s("sawtooth")` filtered with `.lpf(450)` at `gain(0.7)`.
+  3. **Warm pad:** chord progression `<Am F C G>` voiced with `.voicing()` on `s("supersaw")` with `.detune(0.2).lpf(2000)` at `gain(0.35)`.
+  4. **Vibrato lead:** melody `n("<[4@2 5 7] [5@2 4 2] [0@2 2 4] [2@3 ~]>").scale("A4:minor")` on `s("square")` with `.vib(6).vibmod(0.2)` at `gain(0.3)`.
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(120 / 4)
+      stack(
+        s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR909").gain(0.85),
+        note("<a3 f3 c3 g3>").s("sawtooth").lpf(450).gain(0.7),
+        chord("<Am F C G>").voicing().s("supersaw").detune(0.2).lpf(2000).gain(0.35),
+        n("<[4@2 5 7] [5@2 4 2] [0@2 2 4] [2@3 ~]>")
+          .scale("A4:minor")
+          .s("square")
+          .vib(6)
+          .vibmod(0.2)
+          .gain(0.3),
+      )
+listen_for:
+  - "Solid four-on-the-floor beat and warm sub-bass in the low frequencies"
+  - "Wide, rich detuned chords filling the stereo field"
+  - "Vocal-style vibrato on the lead square synth carrying the hook across the 4-bar progression"
+rubric:
+  - "Integrates rhythm, bass, detuned supersaw chords, and lead in a balanced stack"
+  - "Pads use supersaw with detune for wide harmonic chorus"
+  - "Bass and melody stay at or above C3"
+  - "Drums maintain clear groove"
+  - "Individual gains are staged so the composite mix does not clip"
+verify:
+  cycles: 4
+  equivalent_solutions: false
+sources:
+  - strudel-doc: stack
+  - strudel-doc: s
+  - strudel-doc: detune
+  - strudel-doc: vib
+  - strudel-doc: vibmod

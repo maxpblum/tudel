@@ -1,0 +1,28 @@
+id: rhy.putting-it-together.v02
+skills: [rhy.putting-it-together]
+type: transform
+difficulty: 2
+title: "Syncopated ghost snare over four-on-the-floor"
+prompt: |
+  The starter provides a steady four-on-the-floor kick and eighth-note
+  hi-hats. Add a snare layer in the middle of the `stack`: a standard
+  backbeat on beats 2 and 4 (`~ sd ~ sd`), plus a ghost snare sixteenth
+  note tucked right before beat 4 (`~ sd ~ [~ sd]`).
+starter: |
+  setcpm(120 / 4)
+  stack(s("bd*4"), s("hh*8").gain(0.4)).bank("RolandTR909")
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(120 / 4)
+      stack(s("bd*4"), s("~ sd ~ [~ sd]"), s("hh*8").gain(0.4)).bank("RolandTR909")
+listen_for:
+  - "Four even kick drums per bar driving the quarter-note pulse"
+  - "Snare firmly on beat 2, followed by a double hit right on the upbeat before beat 4"
+  - "Steady eighth-note hi-hats keeping continuous time"
+verify:
+  cycles: 2
+sources:
+  - strudel-doc: stack
+  - strudel-doc: s
+  - strudel-doc: bank

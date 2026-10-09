@@ -1,0 +1,44 @@
+id: mod.putting-it-together.v01
+skills: [mod.putting-it-together]
+type: transform
+difficulty: 2
+title: "Adding a rhythmic tremolo to a sweeping synth pad"
+prompt: |
+  The starter gives a drum beat and a chord pad sweeping its lowpass
+  filter over 4 bars. Add a fast, rhythmic volume tremolo to the pad:
+  replace the fixed gain with a 1-beat sine wave pulsing between 0.35
+  and 0.75 using `.gain(sine.range(0.35, 0.75).fast(4))`.
+starter: |
+  setcpm(120 / 4)
+  stack(
+    s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR909"),
+    chord("<Am F C G>")
+      .voicing()
+      .s("sawtooth")
+      .lpf(saw.range(400, 2600).slow(4))
+      .gain(0.55),
+  )
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(120 / 4)
+      stack(
+        s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR909"),
+        chord("<Am F C G>")
+          .voicing()
+          .s("sawtooth")
+          .lpf(saw.range(400, 2600).slow(4))
+          .gain(sine.range(0.35, 0.75).fast(4)),
+      )
+listen_for:
+  - "Four-on-the-floor kick with snare on 2 and 4"
+  - "Sawtooth chords sweeping open smoothly across the 4-bar progression"
+  - "Distinct quarter-note volume pulses on each beat giving the sustained chords rhythmic movement"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: stack
+  - strudel-doc: lpf
+  - strudel-doc: saw
+  - strudel-doc: sine
+  - strudel-doc: fast

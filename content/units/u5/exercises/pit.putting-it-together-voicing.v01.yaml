@@ -1,0 +1,36 @@
+id: pit.putting-it-together-voicing.v01
+skills: [pit.putting-it-together-voicing]
+type: transform
+difficulty: 2
+title: "Adding borrowed modal chords over a bass pedal"
+prompt: |
+  The starter provides a TR-909 beat and an eighth-note C3 bass pedal.
+  Add a modal mixture chord progression to the `stack`: the 4-bar loop
+  `<C F Fm C>` voiced with `.voicing()`, played on `s("triangle")` at
+  `gain(0.5)`.
+starter: |
+  setcpm(112 / 4)
+  stack(
+    s("bd ~ bd ~, ~ sd ~ sd, hh*8").bank("RolandTR909"),
+    note("c3").ply(2).s("sawtooth").lpf(600).gain(0.65),
+  )
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(112 / 4)
+      stack(
+        s("bd ~ bd ~, ~ sd ~ sd, hh*8").bank("RolandTR909"),
+        note("c3").ply(2).s("sawtooth").lpf(600).gain(0.65),
+        chord("<C F Fm C>").voicing().s("triangle").gain(0.5),
+      )
+listen_for:
+  - "Solid TR-909 beat and continuous C3 bass pedal anchoring the groove"
+  - "Major chords C and F followed by the melancholy borrowed minor chord Fm"
+  - "Smooth voice leading as the chord layer resolves back to C major"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: stack
+  - strudel-doc: chord
+  - strudel-doc: voicing
+  - strudel-doc: ply

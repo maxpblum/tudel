@@ -1,0 +1,41 @@
+id: snd.putting-it-together-filters.v02
+skills: [snd.putting-it-together-filters]
+type: transform
+difficulty: 2
+title: "Continuous 4-bar saw sweep on an eighth-note bass"
+prompt: |
+  The starter gives four-on-the-floor drums and an eighth-note bassline
+  with a static filter at 500 Hz. Replace the static filter on the bass
+  with a continuous rising sweep over 4 bars using `saw.range(300, 2200).slow(4)`
+  and add slight resonance with `.lpq(3)`.
+starter: |
+  setcpm(120 / 4)
+  stack(
+    s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR808"),
+    note("<a3 f3 c3 g3>").ply(2).s("sawtooth").lpf(500).gain(0.65),
+  )
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(120 / 4)
+      stack(
+        s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR808"),
+        note("<a3 f3 c3 g3>")
+          .ply(2)
+          .s("sawtooth")
+          .lpf(saw.range(300, 2200).slow(4))
+          .lpq(3)
+          .gain(0.65),
+      )
+listen_for:
+  - "Four-on-the-floor kick with steady snare and hats on the TR-808"
+  - "Bassline starts deep and muffled at 300 Hz and rises smoothly across all 4 bars"
+  - "Audible resonant peak from lpq(3) emphasizing the cutoff as it climbs"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: stack
+  - strudel-doc: lpf
+  - strudel-doc: lpq
+  - strudel-doc: saw
+  - strudel-doc: range

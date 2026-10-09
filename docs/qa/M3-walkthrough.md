@@ -19,7 +19,9 @@ Open the URL in any modern browser. Audio starts on your first click. Progress i
 
 ## What's in it
 
-### Complete Curriculum: 13 Units, 76 Skills, 76 Lessons, 286 Variants
+### Complete Curriculum: 13 Units, 84 Skills, 84 Lessons, 310 Variants
+
+Including 8 incremental "Putting It Together" synthesis skills across Units U1–U8 to bridge isolated learning with achievable micro-bursts of creativity.
 
 | Unit | Title | Scope |
 |---|---|---|

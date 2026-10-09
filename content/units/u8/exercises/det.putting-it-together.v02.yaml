@@ -1,0 +1,49 @@
+id: det.putting-it-together.v02
+skills: [det.putting-it-together]
+type: transform
+difficulty: 2
+title: "Adding a detuned supersaw pad to a rhythm and lead mix"
+prompt: |
+  The starter gives drums, an eighth-note bassline in D minor, and a lead
+  melody. Add a rich, detuned harmonic pad in the middle of the `stack`:
+  the chord progression `<Dm Bb F C>` voiced with `.voicing()` on
+  `s("supersaw")` with `.detune(0.2).lpf(1800)` at `gain(0.35)`.
+starter: |
+  setcpm(120 / 4)
+  stack(
+    s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR909").gain(0.85),
+    note("<d3 bb3 f3 c3>").ply(2).s("sawtooth").lpf(450).gain(0.7),
+    n("<0 2 3 5 7 5 3 2>")
+      .scale("D5:minor")
+      .s("square")
+      .vib(6)
+      .vibmod(0.2)
+      .gain(0.3),
+  )
+hide_reference_code_until_reveal: true
+solutions:
+  - code: |
+      setcpm(120 / 4)
+      stack(
+        s("bd*4, ~ sd ~ sd, hh*8").bank("RolandTR909").gain(0.85),
+        note("<d3 bb3 f3 c3>").ply(2).s("sawtooth").lpf(450).gain(0.7),
+        chord("<Dm Bb F C>").voicing().s("supersaw").detune(0.2).lpf(1800).gain(0.35),
+        n("<0 2 3 5 7 5 3 2>")
+          .scale("D5:minor")
+          .s("square")
+          .vib(6)
+          .vibmod(0.2)
+          .gain(0.3),
+      )
+listen_for:
+  - "Punchy four-on-the-floor beat and grounded bassline"
+  - "Full, buzzing supersaw chords binding the rhythm and melody together"
+  - "Bright lead melody with slight vibrato dancing across the top"
+verify:
+  cycles: 4
+sources:
+  - strudel-doc: stack
+  - strudel-doc: s
+  - strudel-doc: detune
+  - strudel-doc: chord
+  - strudel-doc: voicing
