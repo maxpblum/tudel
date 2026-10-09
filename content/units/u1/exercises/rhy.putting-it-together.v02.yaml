@@ -1,13 +1,17 @@
 id: rhy.putting-it-together.v02
 skills: [rhy.putting-it-together]
-type: transform
+type: creative
 difficulty: 2
 title: "Syncopated ghost snare over four-on-the-floor"
 prompt: |
   The starter provides a steady four-on-the-floor kick and eighth-note
-  hi-hats. Add a snare layer in the middle of the `stack`: a standard
-  backbeat on beats 2 and 4 (`~ sd ~ sd`), plus a ghost snare sixteenth
-  note tucked right before beat 4 (`~ sd ~ [~ sd]`).
+  hi-hats on the TR-909. Add a snare layer to the middle of the `stack`:
+
+  1. Anchor the primary backbeat on beats 2 and 4.
+  2. Add a syncopated ghost note using a sixteenth-note subdivision (`[ ]`) to create forward momentum.
+  3. Keep the groove balanced with the existing kick and hats.
+
+  Choose your own ghost note placement. Check your pattern against the rubric; the reference is one possible answer.
 starter: |
   setcpm(120 / 4)
   stack(s("bd*4"), s("hh*8").gain(0.4)).bank("RolandTR909")
@@ -16,12 +20,19 @@ solutions:
   - code: |
       setcpm(120 / 4)
       stack(s("bd*4"), s("~ sd ~ [~ sd]"), s("hh*8").gain(0.4)).bank("RolandTR909")
+    note: "One possible addition. Standard backbeat on beats 2 and 4 with a ghost snare sixteenth tucked right before beat 4."
 listen_for:
-  - "Four even kick drums per bar driving the quarter-note pulse"
-  - "Snare firmly on beat 2, followed by a double hit right on the upbeat before beat 4"
-  - "Steady eighth-note hi-hats keeping continuous time"
+  - "In the reference, four even kick drums per bar drive the quarter-note pulse"
+  - "Snare lands firmly on beat 2, followed by a double hit right on the upbeat before beat 4"
+  - "Steady eighth-note hi-hats maintain continuous timekeeping"
+rubric:
+  - "Adds a snare layer to the stack"
+  - "Anchors the backbeat on beats 2 and 4"
+  - "Includes a syncopated ghost note or sixteenth-note subdivision"
+  - "Leaves the starter kick and hi-hat layers intact"
 verify:
   cycles: 2
+  equivalent_solutions: false
 sources:
   - strudel-doc: stack
   - strudel-doc: s

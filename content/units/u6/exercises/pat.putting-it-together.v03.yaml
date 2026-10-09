@@ -11,7 +11,7 @@ prompt: |
   2. **Bass foundation:** a low bassline playing root notes at or above C3 on `"sawtooth"`.
   3. **Polyphonic melody:** a melodic motif using scale degrees (`n(...)` with `scale`), thickened into counterpoint by deriving a second voice with `superimpose` (such as transposition with `add` or retrograde with `rev`) on `"triangle"`, balanced with `gain`.
 
-  Choose your own scale, motif, transformation, and drum rhythm. Check your groove against the rubric; the reference is one possible answer in D minor.
+  Choose your own scale, motif, transformation, and drum rhythm. Check your groove against the rubric; the reference is one possible answer.
 hide_reference_code_until_reveal: true
 solutions:
   - code: |

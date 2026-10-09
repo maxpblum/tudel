@@ -1,13 +1,16 @@
 id: pat.putting-it-together.v01
 skills: [pat.putting-it-together]
-type: transform
+type: creative
 difficulty: 2
 title: "Deriving an octave countermelody with superimpose"
 prompt: |
-  The starter gives a TR-909 drum beat, bass, and an 8-note melody in
-  C major. Use `.superimpose` on the melody to layer a second voice that
-  is transposed an octave higher and played in reverse:
-  `.superimpose((x) => x.add(note(12)).rev())`.
+  The starter gives a TR-909 drum beat, bass, and a melody in C major.
+  Derive a polyphonic countermelody using pattern transformations:
+
+  1. Use `superimpose` on the melodic line to layer a second simultaneous voice without duplicating code.
+  2. Transform the derived voice with transposition (such as `add(note(12))` or `add(note(7))`) or rhythmic alteration (such as `rev`).
+
+  Choose your own transformation function. Check your addition against the rubric; the reference is one possible answer.
 starter: |
   setcpm(116 / 4)
   stack(
@@ -28,15 +31,23 @@ solutions:
           .s("triangle")
           .gain(0.45),
       )
+    note: "One possible countermelody. An octave-higher retrograde voice derived with superimpose((x) => x.add(note(12)).rev())."
 listen_for:
-  - "Steady TR-909 beat and low bassline in the lower octaves"
-  - "The original C-major melody climbing forward in octave 4"
-  - "The superimposed countermelody descending backward in octave 5 at the same time"
+  - "In the reference, the main melody in octave 4 intertwines with a retrograde countermelody in octave 5"
+  - "The two voices move in opposite directions, creating rich classical counterpoint"
+  - "The drum and bass foundation stays solid underneath"
+rubric:
+  - "Applies superimpose to derive a countermelody from the lead line"
+  - "Transforms the superimposed voice with transposition (add) or temporal reversal (rev)"
+  - "All pitches remain at or above C3"
+  - "Leaves the starter drum and bass tracks intact"
 verify:
   cycles: 4
+  equivalent_solutions: false
 sources:
   - strudel-doc: stack
   - strudel-doc: superimpose
-  - strudel-doc: rev
   - strudel-doc: add
-  - strudel-doc: scale
+  - strudel-doc: note
+  - strudel-doc: rev
+  - strudel-doc: gain

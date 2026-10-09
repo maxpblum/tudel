@@ -1,13 +1,17 @@
 id: rhy.putting-it-together.v01
 skills: [rhy.putting-it-together]
-type: transform
+type: creative
 difficulty: 2
 title: "Interlocking Euclidean hi-hats over a beat"
 prompt: |
   The starter gives a 1-bar kick and snare pattern on the TR-909. Add a
-  third layer to the `stack`: a closed hi-hat playing five hits spread
-  evenly over eight eighth-note slots (using `s("hh(5,8)")`), softened to
-  `gain(0.5)`.
+  third layer to the `stack`:
+
+  1. Add a closed hi-hat (`"hh"`) line.
+  2. Use a Euclidean rhythm (such as `(k,n)` spread notation) to weave through the pulse.
+  3. Soften the hi-hat level with `gain` so it sits lower in volume behind the kick and snare.
+
+  Choose your own Euclidean hit count and subdivision spread. Check your groove against the rubric; the reference is one possible answer.
 starter: |
   setcpm(120 / 4)
   stack(s("bd ~ bd ~"), s("~ sd ~ sd")).bank("RolandTR909")
@@ -18,13 +22,22 @@ solutions:
       stack(s("bd ~ bd ~"), s("~ sd ~ sd"), s("hh(5,8)").gain(0.5)).bank(
         "RolandTR909",
       )
+    note: "One possible addition. An interlocking hh(5,8) Euclidean rhythm softened to gain(0.5)."
 listen_for:
-  - "Kick on beats 1 and 3, snare on beats 2 and 4"
-  - "Closed hi-hat playing 5 hits per bar spread across the 8 eighth-note positions"
+  - "In the reference, five hi-hat hits per bar weave across the 8 eighth-note positions"
+  - "Kick on beats 1 and 3, snare on beats 2 and 4 remain clear"
   - "The hi-hat sits slightly lower in volume behind the kick and snare"
+rubric:
+  - "Adds a closed hi-hat layer to the stack"
+  - "Uses a Euclidean rhythm pattern (k,n) to interlock with the pulse"
+  - "Reduces hi-hat volume with gain so it sits beneath kick and snare"
+  - "Leaves the starter kick and snare layers intact"
+  - "RolandTR909 bank applies across all drum voices"
 verify:
   cycles: 2
+  equivalent_solutions: false
 sources:
   - strudel-doc: stack
   - strudel-doc: euclid
   - strudel-doc: bank
+  - strudel-doc: gain

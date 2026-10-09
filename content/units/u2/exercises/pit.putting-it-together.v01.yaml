@@ -1,13 +1,17 @@
 id: pit.putting-it-together.v01
 skills: [pit.putting-it-together]
-type: transform
+type: creative
 difficulty: 2
 title: "Adding a bassline to drums and chords"
 prompt: |
-  The starter gives a drum beat and a 4-chord progression in D minor
-  (`<Dm Bb F C>`). Add a bass layer to the `stack`: octave-3 root notes
-  played as quarter notes on beats 1 and 3 (`<[d3 ~ d3 ~] [bb3 ~ bb3 ~] [f3 ~ f3 ~] [c3 ~ c3 ~]>`)
-  using `s("sawtooth")` at `gain(0.65)`.
+  The starter provides a drum beat and a 4-chord progression in D minor.
+  Add a bass layer to the `stack`:
+
+  1. Outline the harmonic roots of the chord progression in octave 3 (at or above C3) on a `"sawtooth"` synth.
+  2. Choose your own rhythm to lock into the beat (such as quarter notes on beats 1 and 3, or eighth notes).
+  3. Balance the bass volume with `gain` so it anchors the harmony without overpowering the drums.
+
+  Check your addition against the rubric; the reference is one possible answer.
 starter: |
   setcpm(112 / 4)
   stack(
@@ -25,14 +29,20 @@ solutions:
           .gain(0.65),
         chord("<Dm Bb F C>").voicing().s("triangle").gain(0.5),
       )
+    note: "One possible bassline. Quarter notes on beats 1 and 3 lock with the kick while outlining the roots D3, Bb3, F3, and C3."
 listen_for:
-  - "Solid TR-909 drum beat on beats 1 through 4"
-  - "Sawtooth bass playing low D3, B flat 3, F3, and C3 on beats 1 and 3 of each bar"
-  - "Warm triangle chords sustaining across each bar"
+  - "In the reference, low sawtooth bass roots move through D3, B flat 3, F3, and C3 on beats 1 and 3"
+  - "Bass hits lock in time with the kick drum while triangle chords float in the middle register"
+rubric:
+  - "Adds a bassline layer to the stack on a sawtooth wave"
+  - "Plays root notes of the chord progression at or above C3"
+  - "Locks into the meter with a clear rhythmic pattern"
+  - "Balances volume with gain so bass, drums, and chords remain distinct"
+  - "Leaves the starter drum and chord layers intact"
 verify:
   cycles: 4
+  equivalent_solutions: false
 sources:
   - strudel-doc: stack
-  - strudel-doc: voicing
-  - strudel-doc: chord
   - strudel-doc: note
+  - strudel-doc: gain

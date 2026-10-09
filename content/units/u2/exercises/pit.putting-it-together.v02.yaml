@@ -1,13 +1,17 @@
 id: pit.putting-it-together.v02
 skills: [pit.putting-it-together]
-type: transform
+type: creative
 difficulty: 2
 title: "Voicing chords over a drum and bass rhythm"
 prompt: |
-  The starter gives an active drum beat and an eighth-note bassline in
-  A minor (`<a3 f3 c3 g3>`). Add a chordal layer to the `stack`: the chord
-  progression `<Am F C G>` voiced with `.voicing()`, played on `s("triangle")`
-  at `gain(0.45)`.
+  The starter gives an active drum beat and an eighth-note bassline in A minor.
+  Add a chordal layer to the `stack`:
+
+  1. Voice the chord progression across the middle register using `chord(...).voicing()`.
+  2. Play the chords on a warm, smooth synth such as `"triangle"`.
+  3. Balance the chord level with `gain` so the harmony enriches the mix without masking the rhythm section.
+
+  Choose your own rhythmic placement and sustain. Check your addition against the rubric; the reference is one possible answer.
 starter: |
   setcpm(116 / 4)
   stack(
@@ -23,14 +27,22 @@ solutions:
         note("<a3 f3 c3 g3>").ply(2).s("sawtooth").gain(0.6),
         chord("<Am F C G>").voicing().s("triangle").gain(0.45),
       )
+    note: "One possible harmonic layer. The Am-F-C-G progression voiced on triangle wave at gain(0.45)."
 listen_for:
-  - "Driving four-on-the-floor beat on the TR-808"
-  - "Sawtooth bass repeating eighth notes on A3, F3, C3, and G3"
-  - "Smoothly voiced chords sustaining the four-bar harmony above the rhythm section"
+  - "In the reference, warm triangle chords hold the 4-bar progression in the middle register"
+  - "Chords sustain smoothly over the active eighth-note bassline"
+  - "TR-808 drum beat anchors the groove"
+rubric:
+  - "Adds a chordal layer to the stack using chord(...).voicing()"
+  - "Uses a triangle wave for smooth harmonic support"
+  - "Follows the A minor harmonic progression outlined by the bass roots"
+  - "Balances volume with gain so chords sit behind drums and bass"
+  - "Leaves the starter drum and bass layers intact"
 verify:
   cycles: 4
+  equivalent_solutions: false
 sources:
   - strudel-doc: stack
   - strudel-doc: chord
   - strudel-doc: voicing
-  - strudel-doc: ply
+  - strudel-doc: gain

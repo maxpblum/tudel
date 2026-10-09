@@ -1,13 +1,16 @@
 id: pat.putting-it-together.v02
 skills: [pat.putting-it-together]
-type: transform
+type: creative
 difficulty: 2
 title: "Adding automated phrase-ending fills with lastOf"
 prompt: |
-  The starter provides a 4-bar groove where the drum pattern loops
-  without variation. Add an automatic rhythmic fill on every fourth bar:
-  apply `.lastOf(4, (x) => x.ply(2))` directly to the drum line so bars
-  1 to 3 play standard eighths, while bar 4 doubles all hits into sixteenths.
+  The starter provides a 4-bar groove where the drum pattern loops without
+  variation. Add phrase-level dynamic variation to the drums:
+
+  1. Use `lastOf(4, ...)` (or `every(4, ...)`) to target the fourth bar of the phrase.
+  2. Transform the drums on that bar to create an automatic cadence fill (such as doubling hits with `ply(2)`, reversing with `rev`, or altering rhythm).
+
+  Choose your own fill transformation. Check your modification against the rubric; the reference is one possible answer.
 starter: |
   setcpm(120 / 4)
   stack(
@@ -26,12 +29,19 @@ solutions:
         note("<a3 f3 c3 g3>").ply(2).s("sawtooth").gain(0.65),
         chord("<Am F C G>").voicing().s("triangle").gain(0.4),
       )
+    note: "One possible cadence fill. Applying lastOf(4, (x) => x.ply(2)) to double drum hits on bar 4 into sixteenths."
 listen_for:
-  - "Bars 1, 2, and 3 play a standard eighth-note TR-808 rhythm"
-  - "Bar 4 automatically doubles all hits to energetic sixteenth notes"
-  - "Bass and chords continue smoothly without disruption underneath"
+  - "In the reference, bars 1 to 3 play steady eighth-note drums"
+  - "Bar 4 doubles into energetic sixteenths, marking the 4-bar phrase ending"
+  - "The bass and chords loop steadily without interruption"
+rubric:
+  - "Applies lastOf or every to alter the drum pattern on bar 4"
+  - "Creates an audible rhythmic fill or variation at the cadence"
+  - "Leaves bars 1 to 3 of the drums playing their core groove"
+  - "Maintains harmony and bass tracks intact"
 verify:
   cycles: 4
+  equivalent_solutions: false
 sources:
   - strudel-doc: stack
   - strudel-doc: lastOf

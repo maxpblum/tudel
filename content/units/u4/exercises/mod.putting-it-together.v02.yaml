@@ -1,13 +1,17 @@
 id: mod.putting-it-together.v02
 skills: [mod.putting-it-together]
-type: transform
+type: creative
 difficulty: 2
 title: "Adding organic Perlin pitch drift to a lead synth"
 prompt: |
-  The starter provides drums and a repetitive synth lead. Give the melody
-  an analog, imperfect tape drift by adding subtle Perlin pitch wobble:
-  insert `.add(note(perlin.range(-0.15, 0.15).slow(2)))` right after the
-  note pattern.
+  The starter provides drums and a repetitive synth lead. Give the melody an
+  analog, imperfect tape drift by adding subtle pitch modulation:
+
+  1. Use smooth Perlin noise (`perlin`) slowed with `slow` to create organic, non-repeating drift.
+  2. Scale the drift with `range` so the pitch deviates by only a fraction of a semitone (e.g. within ±0.2 semitones).
+  3. Combine the drift with the melody notes using `add(note(...))`.
+
+  Choose your own drift depth and speed. Check your modification against the rubric; the reference is one possible answer.
 starter: |
   setcpm(116 / 4)
   stack(
@@ -31,15 +35,23 @@ solutions:
           .sustain(0.4)
           .gain(0.55),
       )
+    note: "One possible drift. Perlin noise slowed over 2 bars subtly wandering between -0.15 and +0.15 semitones."
 listen_for:
-  - "Crisp TR-808 rhythm section maintaining tempo"
-  - "Melody notes wavering slightly by fractions of a semitone"
-  - "The pitch variations evolve organically across cycles without mechanical repetition"
+  - "In the reference, the repetitive lead wanders slightly sharp and flat over time"
+  - "The pitch wobble sounds continuous and organic rather than cyclic"
+  - "Drums keep steady, unmodulated tempo"
+rubric:
+  - "Modulates lead melody pitch using perlin noise slowed with slow"
+  - "Restricts pitch drift to subtle micro-deviations using range"
+  - "Applies pitch modulation via add(note(...))"
+  - "Leaves the drum foundation and core melody intact"
 verify:
   cycles: 4
+  equivalent_solutions: false
 sources:
   - strudel-doc: stack
-  - strudel-doc: perlin
   - strudel-doc: add
   - strudel-doc: note
+  - strudel-doc: perlin
   - strudel-doc: range
+  - strudel-doc: slow

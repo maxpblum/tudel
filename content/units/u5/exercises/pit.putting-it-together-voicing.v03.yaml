@@ -10,7 +10,7 @@ prompt: |
   2. **Bass:** a low bassline playing root notes at or above C3 on `"sawtooth"`, filtered with `lpf` to sit cleanly below the chords.
   3. **Extended chords:** a 4-bar progression of extended seventh chords voiced with `chord(...).voicing()` on a pad synth (such as `"supersaw"` with `detune`, or `"triangle"`), balanced with `gain` so the harmony enriches the groove without overpowering it.
 
-  Choose your own chord progression, rhythms, and voicing timbres. Check your groove against the rubric; the reference is one possible answer in C major (`<C^7 Am7 F^7 G>`).
+  Choose your own chord progression, rhythms, and voicing timbres. Check your groove against the rubric; the reference is one possible answer.
 hide_reference_code_until_reveal: true
 solutions:
   - code: |
@@ -25,7 +25,7 @@ solutions:
           .lpf(2000)
           .gain(0.35),
       )
-    note: "One possible groove. TR-808 drums with sixteenth hats, filtered sawtooth bass, and detuned supersaw seventh chords."
+    note: "One possible groove. TR-808 drums with sixteenth hats, filtered sawtooth bass, and detuned supersaw seventh chords in C major."
 listen_for:
   - "In the reference, sixteenth-note hats ride over the TR-808 backbeat"
   - "Warm, rounded bass notes anchor C3, A3, F3, and G3"

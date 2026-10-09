@@ -1,13 +1,18 @@
 id: pit.putting-it-together-voicing.v02
 skills: [pit.putting-it-together-voicing]
-type: transform
+type: creative
 difficulty: 2
 title: "Locking a sawtooth bassline beneath extended chords"
 prompt: |
-  The starter gives a TR-808 groove and voiced seventh chords in A minor
-  (`<Am7 F^7 C^7 G>`). Add a root bassline to the `stack`: octave-3
-  roots `<a3 f3 c3 g3>` repeated in eighth notes with `.ply(2)` on
-  `s("sawtooth")`, filtered with `.lpf(550)` at `gain(0.7)`.
+  The starter gives a TR-808 groove and voiced seventh chords in A minor.
+  Add a bass foundation to the `stack`:
+
+  1. Play the chord roots in octave 3 (at or above C3) on `"sawtooth"`.
+  2. Give the bass rhythmic motion using `ply` or subdivided mini-notation.
+  3. Filter the bass with `lpf` to tame higher harmonics, leaving space for the rich supersaw chords.
+  4. Balance the bass level with `gain`.
+
+  Choose your own rhythm and filter cutoff. Check your addition against the rubric; the reference is one possible answer.
 starter: |
   setcpm(116 / 4)
   stack(
@@ -33,15 +38,23 @@ solutions:
           .lpf(2000)
           .gain(0.35),
       )
+    note: "One possible bassline. Eighth-note sawtooth roots filtered at 550 Hz anchoring the seventh chords."
 listen_for:
-  - "Four-on-the-floor TR-808 rhythm section"
-  - "Warm sawtooth bass outlining A3, F3, C3, and G3 roots below 550 Hz"
-  - "Lush, shimmering seventh chord voicings floating in the upper register"
+  - "In the reference, rounded sawtooth bass notes anchor A3, F3, C3, and G3"
+  - "The lowpass filter at 550 Hz keeps the bass warm without masking the supersaw pad"
+  - "TR-808 drums drive the groove steadily"
+rubric:
+  - "Adds a sawtooth bassline to the stack"
+  - "Follows the root motion of the chord progression at or above C3"
+  - "Filters the bassline with lpf"
+  - "Uses rhythmic subdivision to lock into the groove"
+  - "Balances gain across drums, bass, and pads"
 verify:
   cycles: 4
+  equivalent_solutions: false
 sources:
   - strudel-doc: stack
-  - strudel-doc: chord
-  - strudel-doc: voicing
-  - strudel-doc: lpf
+  - strudel-doc: note
   - strudel-doc: ply
+  - strudel-doc: lpf
+  - strudel-doc: gain

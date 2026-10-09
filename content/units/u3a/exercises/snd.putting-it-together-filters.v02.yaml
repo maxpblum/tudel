@@ -1,13 +1,16 @@
 id: snd.putting-it-together-filters.v02
 skills: [snd.putting-it-together-filters]
-type: transform
+type: creative
 difficulty: 2
 title: "Continuous 4-bar saw sweep on an eighth-note bass"
 prompt: |
-  The starter gives four-on-the-floor drums and an eighth-note bassline
-  with a static filter at 500 Hz. Replace the static filter on the bass
-  with a continuous rising sweep over 4 bars using `saw.range(300, 2200).slow(4)`
-  and add slight resonance with `.lpq(3)`.
+  The starter gives four-on-the-floor drums and a bassline filtered with a
+  static cutoff. Modify the bass filter to build continuous phrase tension:
+
+  1. Replace the static `lpf` cutoff with an LFO sweep that rises continuously over 4 bars using `saw.range(...)` and `slow(4)`.
+  2. Add resonance with `lpq` so the sweeping harmonic peak is clearly audible.
+
+  Choose your own sweep frequency range and resonance level. Check your modification against the rubric; the reference is one possible answer.
 starter: |
   setcpm(120 / 4)
   stack(
@@ -27,15 +30,23 @@ solutions:
           .lpq(3)
           .gain(0.65),
       )
+    note: "One possible sweep. A rising sawtooth LFO sweep from 300 to 2200 Hz with lpq(3) resonance over 4 bars."
 listen_for:
-  - "Four-on-the-floor kick with steady snare and hats on the TR-808"
-  - "Bassline starts deep and muffled at 300 Hz and rises smoothly across all 4 bars"
-  - "Audible resonant peak from lpq(3) emphasizing the cutoff as it climbs"
+  - "In the reference, the bass cutoff sweeps smoothly upward across all 4 bars"
+  - "A resonant peak (lpq 3) gives the rising harmonics distinct vocal character"
+  - "The filter snaps back dark at the downbeat of bar 1"
+rubric:
+  - "Replaces static filter with a continuous 4-bar lowpass sweep using lpf, saw.range, and slow(4)"
+  - "Adds audible resonance with lpq"
+  - "Leaves the drum groove and bass pitch sequence intact"
+  - "Bass level stays balanced with gain"
 verify:
   cycles: 4
+  equivalent_solutions: false
 sources:
   - strudel-doc: stack
   - strudel-doc: lpf
   - strudel-doc: lpq
   - strudel-doc: saw
   - strudel-doc: range
+  - strudel-doc: slow

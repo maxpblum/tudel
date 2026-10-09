@@ -1,14 +1,18 @@
 id: snd.putting-it-together-space.v01
 skills: [snd.putting-it-together-space]
-type: transform
+type: creative
 difficulty: 2
 title: "Adding a delayed FM bell over a dry rhythm section"
 prompt: |
   The starter provides a dry TR-808 beat and sawtooth bassline. Add a
-  melodic FM chime layer to the `stack`: `note("<e4 g4 a4 b4>")` with FM
-  synthesis on `s("sine").fmi(3).fmh(2)`, a short pluck envelope
-  `.decay(0.12).sustain(0)`, and a dotted-eighth synced delay
-  `.delay(0.3).delaysync(3 / 16)` at `.gain(0.45)`.
+  melodic FM chime layer to the `stack` that floats above the rhythm section:
+
+  1. Use FM synthesis on `s("sine")` with `fmi` and `fmh` to give the line a metallic bell timbre.
+  2. Shape the notes with a short pluck envelope using `decay` and zero `sustain`.
+  3. Place the chime in space with tempo-synced delay using `delay` and `delaysync`.
+  4. Balance its volume with `gain` so the echoes hover behind the groove.
+
+  Choose your own melody and delay sync interval. Check your addition against the rubric; the reference is one possible answer.
 starter: |
   setcpm(116 / 4)
   stack(
@@ -32,15 +36,24 @@ solutions:
           .delaysync(3 / 16)
           .gain(0.45),
       )
+    note: "One possible chime melody. An FM sine chime with fmi(3), fmh(2), short decay, and dotted-eighth synced delay."
 listen_for:
-  - "Punchy, dry drum beat and sawtooth bass upfront in the mix"
-  - "Bright, metallic FM chimes moving through E4, G4, A4, and B4"
-  - "Echoes repeating a dotted eighth note after each pluck"
+  - "In the reference, crisp metallic FM chimes enter in the upper register"
+  - "Dotted-eighth echoes trail behind each chime onset across the measure"
+  - "The TR-808 beat and sawtooth bass remain completely dry upfront"
+rubric:
+  - "Adds a melodic layer to the stack on a sine wave with FM synthesis (fmi, fmh)"
+  - "Uses a pluck envelope with decay and zero sustain"
+  - "Applies tempo-synced delay with delay and delaysync"
+  - "All pitches are at or above C3"
+  - "Leaves the starter dry drum and bass tracks intact"
 verify:
   cycles: 4
+  equivalent_solutions: false
 sources:
   - strudel-doc: stack
   - strudel-doc: fmi
   - strudel-doc: fmh
   - strudel-doc: delay
   - strudel-doc: delaysync
+  - strudel-doc: gain

@@ -1,13 +1,18 @@
 id: snd.putting-it-together-filters.v01
 skills: [snd.putting-it-together-filters]
-type: transform
+type: creative
 difficulty: 2
 title: "Stepping filter cutoffs over a drum groove"
 prompt: |
-  The starter gives a 4-bar TR-909 drum groove. Add a sawtooth bass layer
-  to the `stack`: octave-3 root notes `<c3 eb3 f3 g3>` repeating in quarter
-  notes with `ply(4)`, stepping the lowpass filter cutoff up every bar using
-  `.lpf("<400 800 1600 2400>")` at `gain(0.7)`.
+  The starter gives a 4-bar TR-909 drum groove. Add a filtered bassline to
+  the `stack`:
+
+  1. Play an octave-3 bassline (at or above C3) on a `"sawtooth"` synth.
+  2. Subdivide the notes using `ply` to give the bass rhythmic drive.
+  3. Step the lowpass filter cutoff progressively higher each bar using `lpf` with a pattern of cutoff frequencies, opening up brightness across the phrase.
+  4. Balance the bass volume with `gain`.
+
+  Choose your own notes and cutoff steps. Check your addition against the rubric; the reference is one possible answer.
 starter: |
   setcpm(120 / 4)
   stack(s("bd ~ bd ~, ~ sd ~ sd, hh*8").bank("RolandTR909"))
@@ -23,14 +28,22 @@ solutions:
           .lpf("<400 800 1600 2400>")
           .gain(0.7),
       )
+    note: "One possible bassline. Sawtooth bass repeated in quarter notes with ply(4), stepping cutoff from 400 Hz to 2400 Hz over 4 bars."
 listen_for:
-  - "Consistent TR-909 drum beat throughout"
-  - "Sawtooth bass starts dark at 400 Hz in bar 1, then grows brighter each bar (800, 1600, 2400 Hz)"
-  - "Bass steps through C3, E flat 3, F3, and G3"
+  - "In the reference, the bass cutoff steps up each bar (400, 800, 1600, 2400 Hz)"
+  - "The bassline grows noticeably brighter and buzzier as the phrase advances"
+  - "The drum groove maintains a steady, unfiltered foundation"
+rubric:
+  - "Adds a bassline to the stack on a sawtooth wave"
+  - "All bass notes are at or above C3"
+  - "Uses ply to subdivide the bass pulses"
+  - "Modulates lpf cutoff across the 4 bars to step up brightness"
+  - "Balances bass volume with gain against the drums"
 verify:
   cycles: 4
+  equivalent_solutions: false
 sources:
   - strudel-doc: stack
   - strudel-doc: lpf
   - strudel-doc: ply
-  - strudel-doc: bank
+  - strudel-doc: gain

@@ -1,13 +1,17 @@
 id: det.putting-it-together.v01
 skills: [det.putting-it-together]
-type: transform
+type: creative
 difficulty: 2
 title: "Adding a vibrato lead synth over a full electronic mix"
 prompt: |
   The starter provides a TR-909 beat, low sawtooth bass, and shimmering
-  supersaw chords. Add a lead melody to the top of the `stack`:
-  `n("<[4@2 5 7] [5@2 4 2] [0@2 2 4] [2@3 ~]>")` scaled to `"A4:minor"`,
-  played on `s("square")` with vibrato `.vib(6).vibmod(0.25)` at `.gain(0.3)`.
+  supersaw chords in A minor. Add a melodic lead to the top of the `stack`:
+
+  1. Write a lead melody in A minor using `n(...)` with `scale("A4:minor")` (or direct notes at or above C4) on `"square"` or `"sawtooth"`.
+  2. Add expressive pitch vibrato using `vib` and `vibmod`.
+  3. Balance the lead with `gain` so it sings above the chords and bass without pushing the composite mix into clipping.
+
+  Choose your own melodic contour and vibrato settings. Check your addition against the rubric; the reference is one possible answer.
 starter: |
   setcpm(120 / 4)
   stack(
@@ -30,15 +34,23 @@ solutions:
           .vibmod(0.25)
           .gain(0.3),
       )
+    note: "One possible lead melody. A square lead in A minor with vib(6) and vibmod(0.25) vibrato at gain(0.3)."
 listen_for:
-  - "Full, driving TR-909 rhythm and solid low-pass filtered bass"
-  - "Wide detuned supersaw chords filling out the harmonic background"
-  - "Square-wave lead melody singing cleanly over the mix with expressive 6 Hz pitch vibrato"
+  - "In the reference, a bright square lead enters above the supersaw pad"
+  - "Continuous vibrato gives sustained notes expressive warmth"
+  - "The composite mix remains clear and uncluttered"
+rubric:
+  - "Adds a lead melody to the stack in A minor"
+  - "Applies vibrato using vib and vibmod"
+  - "All melody notes sit at or above C4"
+  - "Lead gain is staged properly so the mix does not clip"
+  - "Leaves the starter drum, bass, and pad layers intact"
 verify:
   cycles: 4
+  equivalent_solutions: false
 sources:
   - strudel-doc: stack
   - strudel-doc: vib
   - strudel-doc: vibmod
-  - strudel-doc: s
-  - strudel-doc: detune
+  - strudel-doc: scale
+  - strudel-doc: gain

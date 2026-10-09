@@ -1,13 +1,17 @@
 id: pit.putting-it-together-voicing.v01
 skills: [pit.putting-it-together-voicing]
-type: transform
+type: creative
 difficulty: 2
 title: "Adding borrowed modal chords over a bass pedal"
 prompt: |
   The starter provides a TR-909 beat and an eighth-note C3 bass pedal.
-  Add a modal mixture chord progression to the `stack`: the 4-bar loop
-  `<C F Fm C>` voiced with `.voicing()`, played on `s("triangle")` at
-  `gain(0.5)`.
+  Add a 4-bar harmonic layer to the `stack`:
+
+  1. Use modal mixture by borrowing a chord from the parallel minor (such as Fm or Ab in C major).
+  2. Voice the chords smoothly across the middle register using `chord(...).voicing()`.
+  3. Play them on a warm synth (such as `"triangle"`), balanced with `gain`.
+
+  Choose your own chord progression that incorporates modal mixture. Check your addition against the rubric; the reference is one possible answer.
 starter: |
   setcpm(112 / 4)
   stack(
@@ -23,14 +27,22 @@ solutions:
         note("c3").ply(2).s("sawtooth").lpf(600).gain(0.65),
         chord("<C F Fm C>").voicing().s("triangle").gain(0.5),
       )
+    note: "One possible modal mixture progression. The 4-bar loop <C F Fm C> voicing the borrowed Fm chord in bar 3."
 listen_for:
-  - "Solid TR-909 beat and continuous C3 bass pedal anchoring the groove"
-  - "Major chords C and F followed by the melancholy borrowed minor chord Fm"
-  - "Smooth voice leading as the chord layer resolves back to C major"
+  - "In the reference, the F minor chord introduces a darker minor-iv sound in bar 3"
+  - "Triangle chords voice smoothly over the steady C3 pedal note"
+  - "Drums keep firm time underneath"
+rubric:
+  - "Adds a chordal layer to the stack voiced with chord(...).voicing()"
+  - "Progression includes at least one borrowed chord from the parallel minor"
+  - "Uses a smooth synth timbre such as triangle wave"
+  - "Balances chord gain against the pedal bass and drums"
+  - "Leaves the starter drum and pedal bass layers intact"
 verify:
   cycles: 4
+  equivalent_solutions: false
 sources:
   - strudel-doc: stack
   - strudel-doc: chord
   - strudel-doc: voicing
-  - strudel-doc: ply
+  - strudel-doc: gain

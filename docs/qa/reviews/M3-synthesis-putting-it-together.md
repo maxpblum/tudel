@@ -37,10 +37,15 @@ Method: Evaluated all 8 lessons and 24 exercise variants against `content/STYLE_
 
 ## Refactor: Non-prescriptive creative exercises
 
-Following user review, all 8 `.v03` (`type: creative`) exercises were refactored to remove overly prescriptive instructions:
-- **Prior antipattern**: Prompts prescribed exact rhythms (e.g. `<[bd ~ bd ~] [bd ~ ~ bd]>`, `~ sd ~ sd`), exact chord loops (`<Em C G D>`), exact notes (`<d3 c3 bb3 a3>`), and exact LFO ranges. This effectively reduced open creative exercises to transcription tasks.
-- **Architectural constraint design**: Prompts now prescribe constraints in terms of methods (`stack`, `< >`, `euclid`, `voicing`, `ply`, `superimpose`, `lastOf`/`every`), tools/functions (`lpf`, `slow`, `fast`, `gain`, `fmi`/`fmh`, `delaysync`, `room`, `vib`/`vibmod`), and sound banks/timbres (`bank("RolandTR909")`, `bank("RolandTR808")`, `"sawtooth"`, `"triangle"`, `"supersaw"`, `"square"`).
-- **Learner agency**: Learners choose their own rhythms, chord progressions, melodies, and parameter ranges. Prompts clearly state: "Choose your own... The reference is one possible answer; check your groove against the rubric."
-- **Rubrics & references**: Rubrics evaluate the structural and methodological constraints. Reference solutions provide exemplary implementations with descriptive `note:` annotations, and `listen_for:` lists explicitly frame observations around the reference implementation ("In the reference...").
+Following user review, all 24 exercise variants (`.v01`, `.v02`, and `.v03`, now all `type: creative`) across all 8 synthesis skills were systematically refactored to eliminate prescriptive instructions:
+- **Prior antipattern**:
+  - In `.v01` and `.v02`, prompts previously dictated exact code strings in parentheses (such as `(<[d3 ~ d3 ~] [bb3 ~ bb3 ~] [f3 ~ f3 ~] [c3 ~ c3 ~]>)`, `using s("hh(5,8)")`, and exact filter cutoff lists), reducing layered additions to transcription exercises.
+  - In `.v03`, prompts dictated exact rhythms, notes, chord progressions, and modulation formulas under rigid numbered lists.
+- **Architectural constraint design**:
+  - Every prompt now prescribes constraints in terms of musical roles, methods (`stack`, `< >`, Euclidean notation, `voicing`, `ply`, `superimpose`, `lastOf`/`every`), tools/functions (`lpf`, `slow`, `fast`, `gain`, `fmi`/`fmh`, `delaysync`, `room`, `vib`/`vibmod`), and sound banks/timbres (`bank("RolandTR909")`, `bank("RolandTR808")`, `"sawtooth"`, `"triangle"`, `"supersaw"`, `"square"`).
+  - For `.v01` and `.v02`, starter code provides the existing rhythm or harmonic foundation, and learners compose the requested layer (e.g. bassline, hi-hats, chords, countermelody) using their own rhythms and voicings within the stated constraints.
+  - For `.v03`, learners compose full multi-tier grooves from scratch under structural and frequency-tier constraints.
+- **Learner agency**: Learners choose their own rhythms, chord progressions, melodies, and parameter ranges. Prompts clearly state: "Choose your own... Check your addition/groove against the rubric; the reference is one possible answer."
+- **Rubrics & references**: Every variant includes a self-assessment `rubric:` verifying that the architectural, methodological, and mixing constraints are met. Reference solutions provide exemplary implementations with descriptive `note:` annotations, and `listen_for:` lists explicitly frame observations around the reference implementation ("In the reference...").
 - **Verification**: `ci/run-all.sh` is 100% green across all unit, coverage, and E2E audio tests.
 

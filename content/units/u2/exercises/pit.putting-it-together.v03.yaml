@@ -11,7 +11,7 @@ prompt: |
   2. **Bass:** a low harmonic anchor playing octave-3 roots (at or above C3) on a `"sawtooth"` synth, locking into the chord progression.
   3. **Chords:** a four-chord loop voiced with `chord(...).voicing()` on a `"triangle"` synth, balanced with `gain` so the harmony supports without overpowering the rhythm section.
 
-  Choose your own key, chord progression, and rhythms. Check your groove against the rubric; the reference is one possible answer in E minor (`<Em C G D>`).
+  Choose your own key, chord progression, and rhythms. Check your groove against the rubric; the reference is one possible answer.
 hide_reference_code_until_reveal: true
 solutions:
   - code: |
@@ -21,7 +21,7 @@ solutions:
         note("<e3 c3 g3 d3>").s("sawtooth").gain(0.7),
         chord("<Em C G D>").voicing().s("triangle").gain(0.45),
       )
-    note: "One possible groove. TR-808 drums anchor time, sawtooth bass outlines roots, and triangle chords voice the Em-C-G-D loop."
+    note: "One possible groove in E minor. TR-808 drums anchor time, sawtooth bass outlines roots, and triangle chords voice the Em-C-G-D loop."
 listen_for:
   - "In the reference, a punchy TR-808 drum beat establishes steady time"
   - "Low sawtooth bass roots move through E3, C3, G3, and D3"

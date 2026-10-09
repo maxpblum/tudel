@@ -1,13 +1,19 @@
 id: det.putting-it-together.v02
 skills: [det.putting-it-together]
-type: transform
+type: creative
 difficulty: 2
 title: "Adding a detuned supersaw pad to a rhythm and lead mix"
 prompt: |
   The starter gives drums, an eighth-note bassline in D minor, and a lead
-  melody. Add a rich, detuned harmonic pad in the middle of the `stack`:
-  the chord progression `<Dm Bb F C>` voiced with `.voicing()` on
-  `s("supersaw")` with `.detune(0.2).lpf(1800)` at `gain(0.35)`.
+  melody. Add a harmonic pad in the middle of the `stack` to fill the space
+  between the bass and the lead:
+
+  1. Voice a 4-bar chord progression in D minor using `chord(...).voicing()`.
+  2. Play it on `"supersaw"`, with `detune` to create a wide stereo chorus.
+  3. Filter the high frequencies with `lpf` so the pad stays warm and doesn't clash with the lead.
+  4. Balance its level with `gain`.
+
+  Choose your own chord progression and detune depth. Check your addition against the rubric; the reference is one possible answer.
 starter: |
   setcpm(120 / 4)
   stack(
@@ -35,15 +41,24 @@ solutions:
           .vibmod(0.2)
           .gain(0.3),
       )
+    note: "One possible harmonic pad. Detuned supersaw pad (<Dm Bb F C>) filtered at 1800 Hz sitting between bass and lead."
 listen_for:
-  - "Punchy four-on-the-floor beat and grounded bassline"
-  - "Full, buzzing supersaw chords binding the rhythm and melody together"
-  - "Bright lead melody with slight vibrato dancing across the top"
+  - "In the reference, wide detuned supersaw chords fill the harmonic middle register"
+  - "The lowpass filter at 1800 Hz prevents the pad from masking the square lead"
+  - "The drum and bass foundation remains punchy and clear"
+rubric:
+  - "Adds a harmonic pad to the stack using chord(...).voicing()"
+  - "Uses supersaw with detune for chorused width"
+  - "Filters the pad with lpf to prevent clash with the lead"
+  - "Pad gain is staged so the overall mix remains balanced"
+  - "Leaves the starter drum, bass, and lead tracks intact"
 verify:
   cycles: 4
+  equivalent_solutions: false
 sources:
   - strudel-doc: stack
-  - strudel-doc: s
-  - strudel-doc: detune
   - strudel-doc: chord
   - strudel-doc: voicing
+  - strudel-doc: detune
+  - strudel-doc: lpf
+  - strudel-doc: gain

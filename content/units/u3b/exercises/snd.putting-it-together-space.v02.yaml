@@ -1,13 +1,18 @@
 id: snd.putting-it-together-space.v02
 skills: [snd.putting-it-together-space]
-type: transform
+type: creative
 difficulty: 2
 title: "Adding a reverbed noise wash behind an FM groove"
 prompt: |
-  The starter provides a dry beat, bass, and an FM pluck. Add an airy,
-  reverberant white-noise layer to the `stack`: `s("white*4")` highpassed
-  with `.hpf(6000)`, with a short pluck envelope `.decay(0.1).sustain(0)`,
-  placed in a wide space with `.room(0.55)` at `.gain(0.25)`.
+  The starter provides a dry beat, bass, and an FM pluck. Add a reverberant
+  ambient noise layer to the `stack`:
+
+  1. Use white noise (`s("white")`) high-passed with `hpf` so it acts as an airy shimmer without muddying lower frequencies.
+  2. Shape it with a short decay envelope (`decay`, zero `sustain`).
+  3. Send it into a wide virtual space with `room`.
+  4. Balance its level with `gain` so it sits gently in the background.
+
+  Choose your own rhythm and filtering values. Check your addition against the rubric; the reference is one possible answer.
 starter: |
   setcpm(120 / 4)
   stack(
@@ -37,14 +42,23 @@ solutions:
           .gain(0.4),
         s("white*4").hpf(6000).decay(0.1).sustain(0).room(0.55).gain(0.25),
       )
+    note: "One possible noise wash. Highpassed white noise on quarter notes placed in a wide reverberant room."
 listen_for:
-  - "Solid TR-909 beat and bass in the center of the mix"
-  - "Clear, bell-like FM pluck outlining A minor chords"
-  - "Airy white-noise bursts floating in a distant, reverberant space"
+  - "In the reference, high-passed white noise bursts puff gently on the quarter notes"
+  - "The reverb tail (room 0.55) wraps the noise in wide acoustic ambience"
+  - "The kick, snare, and sawtooth bass punch cleanly through in the foreground"
+rubric:
+  - "Adds a noise layer to the stack using s(\"white\")"
+  - "Filters the noise with hpf to isolate high frequencies"
+  - "Shapes the noise with a percussive decay envelope"
+  - "Places the layer in a reverberant acoustic space using room"
+  - "Keeps noise gain low so it acts as background ambience"
 verify:
   cycles: 4
+  equivalent_solutions: false
 sources:
   - strudel-doc: stack
+  - strudel-doc: s
   - strudel-doc: hpf
   - strudel-doc: room
-  - strudel-doc: s
+  - strudel-doc: gain

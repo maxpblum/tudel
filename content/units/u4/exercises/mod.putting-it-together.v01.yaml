@@ -1,13 +1,16 @@
 id: mod.putting-it-together.v01
 skills: [mod.putting-it-together]
-type: transform
+type: creative
 difficulty: 2
 title: "Adding a rhythmic tremolo to a sweeping synth pad"
 prompt: |
-  The starter gives a drum beat and a chord pad sweeping its lowpass
-  filter over 4 bars. Add a fast, rhythmic volume tremolo to the pad:
-  replace the fixed gain with a 1-beat sine wave pulsing between 0.35
-  and 0.75 using `.gain(sine.range(0.35, 0.75).fast(4))`.
+  The starter gives a drum beat and a chord pad sweeping its lowpass filter
+  over 4 bars. Add rhythmic motion to the pad by modulating its amplitude:
+
+  1. Replace the fixed `gain` with a beat-synced tremolo using an LFO (such as `sine` or `saw`) accelerated with `fast`.
+  2. Scale the modulation range using `range` so the volume pulses rhythmically without dropping to complete silence.
+
+  Choose your own LFO shape and modulation depth. Check your addition against the rubric; the reference is one possible answer.
 starter: |
   setcpm(120 / 4)
   stack(
@@ -30,15 +33,22 @@ solutions:
           .lpf(saw.range(400, 2600).slow(4))
           .gain(sine.range(0.35, 0.75).fast(4)),
       )
+    note: "One possible tremolo. Fast sine LFO pulsing between 0.35 and 0.75 gain on every quarter note."
 listen_for:
-  - "Four-on-the-floor kick with snare on 2 and 4"
-  - "Sawtooth chords sweeping open smoothly across the 4-bar progression"
-  - "Distinct quarter-note volume pulses on each beat giving the sustained chords rhythmic movement"
+  - "In the reference, the sweeping pad pulses rapidly in loudness on each quarter note"
+  - "The long 4-bar lowpass filter sweep continues rising smoothly underneath the tremolo"
+  - "Drums drive the 4/4 pulse steadily"
+rubric:
+  - "Modulates pad gain with an LFO accelerated by fast"
+  - "Uses range to keep the minimum volume audible"
+  - "Preserves the 4-bar lowpass filter sweep on the pad"
+  - "Leaves the drum groove intact"
 verify:
   cycles: 4
+  equivalent_solutions: false
 sources:
   - strudel-doc: stack
-  - strudel-doc: lpf
-  - strudel-doc: saw
+  - strudel-doc: gain
   - strudel-doc: sine
+  - strudel-doc: range
   - strudel-doc: fast
